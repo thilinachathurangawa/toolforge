@@ -1,0 +1,176 @@
+import React from 'react';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import {
+  TOOLS,
+  getTool,
+  getRelatedTools,
+  CATEGORIES,
+} from '@/lib/constants/tools';
+import { siteConfig } from '@/lib/constants/site';
+import { buildToolJsonLd } from '@/lib/seo/json-ld';
+import { Breadcrumb } from '@/components/shared/Breadcrumb';
+import { RelatedTools } from '@/components/shared/RelatedTools';
+import { DynamicIcon } from '@/components/shared/DynamicIcon';
+import { ToolPlaceholder } from '@/components/tools/ToolPlaceholder';
+import { AdBanner, AdInArticle, AdSidebar } from '@/components/ads';
+import { ToolCard } from '@/components/shared/ToolCard';
+
+interface ToolPageParams {
+  params: { slug: string };
+}
+
+export async function generateStaticParams() {
+  return TOOLS.map((tool) => ({ slug: tool.slug }));
+}
+
+export async function generateMetadata({ params }: ToolPageParams): Promise<Metadata> {
+  const { slug } = params;
+  const tool = getTool(slug);
+
+  if (!tool) {
+    return { title: 'Tool Not Found' };
+  }
+
+  const canonical = `/tools/${tool.slug}`;
+
+  return {
+    title: `${tool.name} — Free Online Tool`,
+    description: tool.description,
+    keywords: tool.keywords,
+    alternates: { canonical },
+    openGraph: {
+      title: `${tool.name} | ${siteConfig.name}`,
+      description: tool.description,
+      url: `${siteConfig.url}${canonical}`,
+      type: 'website',
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: tool.name,
+      description: tool.description,
+    },
+  };
+}
+
+export default function ToolPage({ params }: ToolPageParams) {
+  const { slug } = params;
+  const tool = getTool(slug);
+
+  if (!tool) {
+    notFound();
+  }
+
+  const relatedTools = getRelatedTools(slug);
+  const category = CATEGORIES.find((c) => c.value === tool.category);
+  const jsonLd = buildToolJsonLd(tool);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <AdBanner position="top" />
+
+        <div className="grid lg:grid-cols-[1fr_300px] gap-8 lg:gap-10 mt-4">
+          {/* Main column */}
+          <div className="min-w-0 flex flex-col gap-8">
+            <header className="flex flex-col gap-4">
+              <Breadcrumb
+                items={[
+                  { label: 'Tools', href: '/tools' },
+                  ...(category
+                    ? [{ label: category.label, href: `/category/${category.value}` }]
+                    : []),
+                  { label: tool.name },
+                ]}
+              />
+
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent border border-accent/20">
+                  <DynamicIcon name={tool.icon} size={24} />
+                </div>
+                <div>
+                  <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+                    {tool.name}
+                  </h1>
+                  <p className="text-sm sm:text-base text-text-secondary mt-2 leading-relaxed">
+                    {tool.shortDescription}
+                  </p>
+                </div>
+              </div>
+            </header>
+
+            <ToolPlaceholder tool={tool} />
+
+            <AdInArticle />
+
+            <section className="prose-tool">
+              <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+                How to Use
+              </h2>
+              <ol className="list-decimal list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
+                <li>Open {tool.name} on this page — no account or install required.</li>
+                <li>
+                  Provide your input (paste text, upload a file, or adjust settings depending on
+                  the tool).
+                </li>
+                <li>Run the tool — processing happens entirely in your browser.</li>
+                <li>Copy or download the result when you are done.</li>
+              </ol>
+            </section>
+
+            <section>
+              <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+                About This Tool
+              </h2>
+              <p className="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
+              <p className="text-sm text-text-secondary leading-relaxed mt-3">
+                ToolForge runs {tool.name.toLowerCase()} client-side so your data never leaves your
+                device. It is free, requires no sign-up, and works on desktop and mobile browsers.
+              </p>
+              {tool.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {tool.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-md bg-muted text-[11px] font-medium text-text-secondary"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            {/* Related tools — visible on mobile; sidebar shows on desktop */}
+            {relatedTools.length > 0 && (
+              <section className="lg:hidden">
+                <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+                  Related Tools
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {relatedTools.map((related) => (
+                    <ToolCard key={related.slug} tool={related} />
+                  ))}
+                </div>
+              </section>
+            )}
+          </div>
+
+          {/* Sidebar — desktop */}
+          <div className="hidden lg:flex flex-col gap-8">
+            <AdSidebar />
+            <RelatedTools tools={relatedTools} />
+          </div>
+        </div>
+
+        <AdBanner position="bottom" />
+      </div>
+    </>
+  );
+}

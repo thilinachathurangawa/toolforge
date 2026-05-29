@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Backgrounds ── */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    /* ── Cards / Surfaces ── */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    /* ── Primary (Navy) ── */
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 98%;
+
+    /* ── Secondary (Light gray) ── */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    /* ── Accent (Indigo) ── */
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 98%;
+
+    /* ── Muted ── */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* ── Border / Input ── */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 239 84% 67%;
+
+    /* ── Radius ── */
+    --radius: 0.625rem;
+
+    /* ── Design system (Phase 1) ── */
+    --surface: 210 40% 98%;
+    --text-primary: 222 47% 11%;
+    --text-secondary: 215 16% 47%;
+    --success: 160 84% 39%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 239 84% 67%;
+    --accent-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 239 84% 67%;
+    --surface: 217 33% 14%;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  code, pre {
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  }
+}
+
+@layer utilities {
+  /* Ad placeholder styles (shown when ads not loaded) */
+  .ad-placeholder {
+    @apply bg-muted border border-dashed border-border rounded-lg flex items-center justify-center text-muted-foreground text-sm;
+  }
+
+  /* Tool input drop zone */
+  .drop-zone {
+    @apply border-2 border-dashed border-border rounded-xl p-8 text-center transition-colors duration-200;
+  }
+
+  .drop-zone:hover,
+  .drop-zone.drag-over {
+    @apply border-accent bg-accent/5;
+  }
+
+  /* Result output area */
+  .output-area {
+    @apply bg-muted rounded-lg p-4 font-mono text-sm overflow-auto;
+  }
+}

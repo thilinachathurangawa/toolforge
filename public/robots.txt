@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Host
+Host: https://toolforge.vercel.app
+
+# Sitemaps
+Sitemap: https://toolforge.vercel.app/sitemap.xml
