@@ -1,7 +1,7 @@
 # SPEC: URL Encoder / Decoder Tool
-**File:** `docs/specs/tools/URL_ENCODER.md`  
-**Status:** Pending  
-**Slug:** `url-encoder`  
+**File:** `docs/specs/tools/URL_ENCODER.md`
+**Status:** Completed
+**Slug:** `url-encoder`
 **Category:** developer
 
 ---
