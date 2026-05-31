@@ -1,7 +1,7 @@
 # SPEC: Word & Character Counter Tool
-**File:** `docs/specs/tools/WORD_COUNTER.md`  
-**Status:** Pending  
-**Slug:** `word-counter`  
+**File:** `docs/specs/tools/WORD_COUNTER.md`
+**Status:** Completed
+**Slug:** `word-counter`
 **Category:** text
 
 ---

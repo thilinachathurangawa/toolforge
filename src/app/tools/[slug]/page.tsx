@@ -51,6 +51,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
     ssr: false,
   }),
+  'word-counter': dynamic(() => import('@/components/tools/WordCounter').then(mod => ({ default: mod.WordCounter })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
