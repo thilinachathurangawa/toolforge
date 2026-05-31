@@ -15,10 +15,27 @@ import { DynamicIcon } from '@/components/shared/DynamicIcon';
 import { ToolPlaceholder } from '@/components/tools/ToolPlaceholder';
 import { AdBanner, AdInArticle, AdSidebar } from '@/components/ads';
 import { ToolCard } from '@/components/shared/ToolCard';
+import dynamic from 'next/dynamic';
 
 interface ToolPageParams {
   params: { slug: string };
 }
+
+// Dynamic imports for tool components
+const toolComponents: Record<string, React.ComponentType> = {
+  'base64-encoder': dynamic(() => import('@/components/tools/Base64Encoder').then(mod => ({ default: mod.Base64Encoder })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'color-palette': dynamic(() => import('@/components/tools/ColorPalette').then(mod => ({ default: mod.ColorPalette })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'image-compressor': dynamic(() => import('@/components/tools/ImageCompressor').then(mod => ({ default: mod.ImageCompressor })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+};
 
 export async function generateStaticParams() {
   return TOOLS.map((tool) => ({ slug: tool.slug }));
@@ -105,7 +122,11 @@ export default function ToolPage({ params }: ToolPageParams) {
               </div>
             </header>
 
-            <ToolPlaceholder tool={tool} />
+            {toolComponents[tool.slug] ? (
+              React.createElement(toolComponents[tool.slug])
+            ) : (
+              <ToolPlaceholder tool={tool} />
+            )}
 
             <AdInArticle />
 
