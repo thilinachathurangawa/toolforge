@@ -43,6 +43,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
     ssr: false,
   }),
+  'password-generator': dynamic(() => import('@/components/tools/PasswordGenerator').then(mod => ({ default: mod.PasswordGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
