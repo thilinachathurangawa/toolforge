@@ -71,6 +71,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
     ssr: false,
   }),
+  'unit-converter': dynamic(() => import('@/components/tools/UnitConverter').then(mod => ({ default: mod.UnitConverter })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {

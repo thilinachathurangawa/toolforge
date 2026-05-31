@@ -1,7 +1,7 @@
 # SPEC: Unit Converter Tool
-**File:** `docs/specs/tools/UNIT_CONVERTER.md`  
-**Status:** Pending  
-**Slug:** `unit-converter`  
+**File:** `docs/specs/tools/UNIT_CONVERTER.md`
+**Status:** Completed
+**Slug:** `unit-converter`
 **Category:** converter
 
 ---
