@@ -1,7 +1,7 @@
 # SPEC: JSON Formatter & Validator Tool
-**File:** `docs/specs/tools/JSON_FORMATTER.md`  
-**Status:** Pending  
-**Slug:** `json-formatter`  
+**File:** `docs/specs/tools/JSON_FORMATTER.md`
+**Status:** Completed
+**Slug:** `json-formatter`
 **Category:** developer
 
 ---
