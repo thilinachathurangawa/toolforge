@@ -1,6 +1,6 @@
 # SPEC: Image Resizer Tool
 **File:** `docs/specs/tools/IMAGE_RESIZER.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `image-resizer`  
 **Category:** image
 

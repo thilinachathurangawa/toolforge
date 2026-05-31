@@ -1,6 +1,6 @@
 # SPEC: Image Cropper Tool
 **File:** `docs/specs/tools/IMAGE_CROPPER.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `image-cropper`  
 **Category:** image
 

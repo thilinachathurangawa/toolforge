@@ -1,6 +1,6 @@
 # SPEC: QR Code Generator Tool
 **File:** `docs/specs/tools/QR_GENERATOR.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `qr-generator`  
 **Category:** generator
 

@@ -1,6 +1,6 @@
 # SPEC: Image Format Converter Tool
 **File:** `docs/specs/tools/IMAGE_CONVERTER.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `image-converter`  
 **Category:** image
 

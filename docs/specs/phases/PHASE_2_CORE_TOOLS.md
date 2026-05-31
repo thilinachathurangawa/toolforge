@@ -1,6 +1,6 @@
 # SPEC: Phase 2 — Core Tools
 **File:** `docs/specs/phases/PHASE_2_CORE_TOOLS.md`  
-**Status:** Pending (after Phase 1)  
+**Status:** Completed  
 **Version:** 1.0
 
 ---
@@ -71,10 +71,10 @@ Every tool UI MUST have:
 
 ## Phase 2 Acceptance Criteria
 
-- [ ] All 8 tools functional
-- [ ] Each tool has SEO metadata
-- [ ] Each tool has JSON-LD schema
-- [ ] Each tool linked from homepage
-- [ ] Ad units placed correctly on each tool page
-- [ ] All tools work on mobile
-- [ ] No tool sends data to external servers
+- [x] All 8 tools functional
+- [x] Each tool has SEO metadata
+- [x] Each tool has JSON-LD schema
+- [x] Each tool linked from homepage
+- [x] Ad units placed correctly on each tool page
+- [x] All tools work on mobile
+- [x] No tool sends data to external servers

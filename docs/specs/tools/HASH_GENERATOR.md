@@ -1,6 +1,6 @@
 # SPEC: Hash Generator Tool
 **File:** `docs/specs/tools/HASH_GENERATOR.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `hash-generator`  
 **Category:** security
 

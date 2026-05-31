@@ -1,6 +1,6 @@
 # SPEC: Markdown Previewer Tool
 **File:** `docs/specs/tools/MARKDOWN_PREVIEWER.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `markdown-previewer`  
 **Category:** text
 

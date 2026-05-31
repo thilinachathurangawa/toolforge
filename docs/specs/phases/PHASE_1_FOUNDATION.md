@@ -1,6 +1,6 @@
 # SPEC: Phase 1 — Foundation
 **File:** `docs/specs/phases/PHASE_1_FOUNDATION.md`  
-**Status:** Ready to Implement  
+**Status:** Completed  
 **Version:** 1.0
 
 ---
@@ -14,7 +14,7 @@ Build the complete project scaffold, design system, layout components, SEO base,
 ## Tasks
 
 ### Task 1.1 — Next.js Project Setup
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `package.json`, `tsconfig.json`, `next.config.ts`, `tailwind.config.ts`
 
 ```bash
@@ -49,7 +49,7 @@ npm install clsx tailwind-merge
 ---
 
 ### Task 1.2 — Design System
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/styles/globals.css`, `tailwind.config.ts`
 
 **Color Palette:**
@@ -76,7 +76,7 @@ npm install clsx tailwind-merge
 ---
 
 ### Task 1.3 — Global Layout
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/app/layout.tsx`
 
 Requirements:
@@ -90,7 +90,7 @@ Requirements:
 ---
 
 ### Task 1.4 — Navbar Component
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/components/layout/Navbar.tsx`
 
 Requirements:
@@ -104,7 +104,7 @@ Requirements:
 ---
 
 ### Task 1.5 — Footer Component
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/components/layout/Footer.tsx`
 
 Requirements:
@@ -117,7 +117,7 @@ Requirements:
 ---
 
 ### Task 1.6 — Homepage
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/app/page.tsx`
 
 Requirements:
@@ -131,7 +131,7 @@ Requirements:
 ---
 
 ### Task 1.7 — Tool Page Template
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/app/tools/[slug]/page.tsx`, `src/app/tools/[slug]/loading.tsx`
 
 Requirements:
@@ -150,7 +150,7 @@ Requirements:
 ---
 
 ### Task 1.8 — Ad Components
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/components/ads/`
 
 - [ ] `AdBanner.tsx` — responsive top/bottom banner
@@ -161,7 +161,7 @@ Requirements:
 ---
 
 ### Task 1.9 — SEO Infrastructure
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `src/app/sitemap.ts`, `src/app/robots.ts`, `next-sitemap.config.js`
 
 - [ ] Dynamic sitemap from tool registry
@@ -171,7 +171,7 @@ Requirements:
 ---
 
 ### Task 1.10 — Vercel Deployment
-**Status:** Pending  
+**Status:** Completed  
 **Files:** `vercel.json`, `.env.example`, `.gitignore`
 
 - [ ] `vercel.json` with security headers
@@ -185,11 +185,11 @@ Requirements:
 
 ## Acceptance Criteria for Phase 1
 
-- [ ] Site deploys successfully to Vercel
-- [ ] Homepage loads in < 2 seconds
-- [ ] Lighthouse score: Performance 90+, SEO 100
-- [ ] No TypeScript errors
-- [ ] Mobile responsive (tested at 375px, 768px, 1280px)
-- [ ] Ad placeholders visible (not yet monetized)
-- [ ] Sitemap accessible at `/sitemap.xml`
-- [ ] robots.txt accessible at `/robots.txt`
+- [x] Site deploys successfully to Vercel
+- [x] Homepage loads in < 2 seconds
+- [x] Lighthouse score: Performance 90+, SEO 100
+- [x] No TypeScript errors
+- [x] Mobile responsive (tested at 375px, 768px, 1280px)
+- [x] Ad placeholders visible (not yet monetized)
+- [x] Sitemap accessible at `/sitemap.xml`
+- [x] robots.txt accessible at `/robots.txt`

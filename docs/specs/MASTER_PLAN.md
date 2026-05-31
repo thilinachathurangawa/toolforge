@@ -31,33 +31,33 @@
 ## 3. Development Phases
 
 ### Phase 1 — Foundation (Week 1–2)
-- [ ] Project scaffold (Next.js 14 + TypeScript + Tailwind)
-- [ ] Design system & global layout
-- [ ] Navbar, Footer, Sidebar components
-- [ ] Ad unit components (Banner, Sidebar, In-Article)
-- [ ] SEO base setup (next-seo, JSON-LD, sitemap, robots)
-- [ ] Google Analytics 4 integration
-- [ ] Vercel deployment pipeline
-- [ ] Homepage
+- [x] Project scaffold (Next.js 14 + TypeScript + Tailwind)
+- [x] Design system & global layout
+- [x] Navbar, Footer, Sidebar components
+- [x] Ad unit components (Banner, Sidebar, In-Article)
+- [x] SEO base setup (next-seo, JSON-LD, sitemap, robots)
+- [x] Google Analytics 4 integration
+- [x] Vercel deployment pipeline
+- [x] Homepage
 
 ### Phase 2 — Core Tools (Week 2–4)
-- [ ] Image Compressor
-- [ ] Image Cropper
-- [ ] QR Code Generator
-- [ ] Color Palette Extractor
-- [ ] Image Format Converter
-- [ ] Password Generator
-- [ ] JSON Formatter / Validator
-- [ ] Word / Character Counter
+- [x] Image Compressor
+- [x] Image Cropper
+- [x] QR Code Generator
+- [x] Color Palette Extractor
+- [x] Image Format Converter
+- [x] Password Generator
+- [x] JSON Formatter / Validator
+- [x] Word / Character Counter
 
 ### Phase 3 — Expand Tools (Week 4–6)
-- [ ] Base64 Encoder/Decoder
-- [ ] URL Encoder/Decoder
-- [ ] Hash Generator (MD5, SHA-256)
-- [ ] Unit Converter
-- [ ] Image Resizer
-- [ ] Markdown Previewer
-- [ ] Lorem Ipsum Generator
+- [x] Base64 Encoder/Decoder
+- [x] URL Encoder/Decoder
+- [x] Hash Generator (MD5, SHA-256)
+- [x] Unit Converter
+- [x] Image Resizer
+- [x] Markdown Previewer
+- [x] Lorem Ipsum Generator
 - [ ] CSS Gradient Generator
 
 ### Phase 4 — SEO & Monetization (Week 6–8)

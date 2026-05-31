@@ -1,6 +1,6 @@
 # SPEC: Image Compressor Tool
 **File:** `docs/specs/tools/IMAGE_COMPRESSOR.md`  
-**Status:** Pending  
+**Status:** Completed  
 **Slug:** `image-compressor`  
 **Category:** image
 
