@@ -47,6 +47,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
     ssr: false,
   }),
+  'qr-generator': dynamic(() => import('@/components/tools/QRGenerator').then(mod => ({ default: mod.QRGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
