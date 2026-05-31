@@ -14,8 +14,8 @@ export const siteConfig = {
   navLinks: [
     { label: 'Home', href: '/' },
     { label: 'All Tools', href: '/tools' },
-    { label: 'Image Tools', href: '/category/image' },
-    { label: 'Developer Tools', href: '/category/developer' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'About', href: '/about' },
   ],
 
   // Footer
