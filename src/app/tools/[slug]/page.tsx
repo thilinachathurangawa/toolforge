@@ -83,6 +83,94 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
     ssr: false,
   }),
+  'json-to-csv': dynamic(() => import('@/components/tools/JsonToCsv').then(mod => ({ default: mod.JsonToCsv })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-diff': dynamic(() => import('@/components/tools/JsonDiff').then(mod => ({ default: mod.JsonDiff })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-path-finder': dynamic(() => import('@/components/tools/JsonPathFinder').then(mod => ({ default: mod.JsonPathFinder })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-escape': dynamic(() => import('@/components/tools/JsonEscape').then(mod => ({ default: mod.JsonEscape })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-stringify': dynamic(() => import('@/components/tools/JsonStringify').then(mod => ({ default: mod.JsonStringify })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-parse': dynamic(() => import('@/components/tools/JsonParse').then(mod => ({ default: mod.JsonParse })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-filter': dynamic(() => import('@/components/tools/JsonFilter').then(mod => ({ default: mod.JsonFilter })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'json-schema-visualizer': dynamic(() => import('@/components/tools/JsonSchemaVisualizer').then(mod => ({ default: mod.JsonSchemaVisualizer })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'regex-tester': dynamic(() => import('@/components/tools/RegexTester').then(mod => ({ default: mod.RegexTester })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'regex-explainer': dynamic(() => import('@/components/tools/RegexExplainer').then(mod => ({ default: mod.RegexExplainer })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'uuid-generator': dynamic(() => import('@/components/tools/UuidGenerator').then(mod => ({ default: mod.UuidGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'jwt-decoder': dynamic(() => import('@/components/tools/JwtDecoder').then(mod => ({ default: mod.JwtDecoder })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'string-converter': dynamic(() => import('@/components/tools/StringConverter').then(mod => ({ default: mod.StringConverter })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'sql-formatter': dynamic(() => import('@/components/tools/SqlFormatter').then(mod => ({ default: mod.SqlFormatter })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'markdown-to-html': dynamic(() => import('@/components/tools/MarkdownToHtml').then(mod => ({ default: mod.MarkdownToHtml })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'text-diff': dynamic(() => import('@/components/tools/TextDiff').then(mod => ({ default: mod.TextDiff })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'html-viewer': dynamic(() => import('@/components/tools/HtmlViewer').then(mod => ({ default: mod.HtmlViewer })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'code-minifier': dynamic(() => import('@/components/tools/CodeMinifier').then(mod => ({ default: mod.CodeMinifier })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'cron-builder': dynamic(() => import('@/components/tools/CronBuilder').then(mod => ({ default: mod.CronBuilder })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'css-grid-generator': dynamic(() => import('@/components/tools/CssGridGenerator').then(mod => ({ default: mod.CssGridGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'har-viewer': dynamic(() => import('@/components/tools/HarViewer').then(mod => ({ default: mod.HarViewer })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
+  'security-header-analyzer': dynamic(() => import('@/components/tools/SecurityHeaderAnalyzer').then(mod => ({ default: mod.SecurityHeaderAnalyzer })), {
+    loading: () => <div className="animate-pulse bg-muted h-64 rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
