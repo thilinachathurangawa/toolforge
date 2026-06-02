@@ -100,7 +100,7 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
   const canonical = `/tools/${tool.slug}`;
 
   return {
-    title: `${tool.name} — Free Online Tool`,
+    title: `${tool.name} — Free Online Tool | ToolForge`,
     description: tool.description,
     keywords: tool.keywords,
     alternates: { canonical },
