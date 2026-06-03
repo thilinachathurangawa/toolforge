@@ -61,7 +61,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "{Tool Name}",
-  "url": "https://toolforge.vercel.app/tools/{slug}",
+  "url": "https://toolforge-jet.vercel.app/tools/{slug}",
   "description": "{tool description}",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Web Browser",
@@ -90,16 +90,16 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://toolforge.vercel.app/sitemap.xml
+Sitemap: https://toolforge-jet.vercel.app/sitemap.xml
 ```
 
 ### URL Structure
 ```
-https://toolforge.vercel.app/                        ← Homepage
-https://toolforge.vercel.app/tools/image-compressor  ← Tool page
-https://toolforge.vercel.app/tools/qr-generator      ← Tool page
-https://toolforge.vercel.app/category/image          ← Category page (Phase 4)
-https://toolforge.vercel.app/blog/how-to-compress-images ← Blog (Phase 4)
+https://toolforge-jet.vercel.app/                        ← Homepage
+https://toolforge-jet.vercel.app/tools/image-compressor  ← Tool page
+https://toolforge-jet.vercel.app/tools/qr-generator      ← Tool page
+https://toolforge-jet.vercel.app/category/image          ← Category page (Phase 4)
+https://toolforge-jet.vercel.app/blog/how-to-compress-images ← Blog (Phase 4)
 ```
 
 ---

@@ -77,7 +77,7 @@ export default function ContactPage() {
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-surface border border-border rounded-lg p-6">
             <h3 className="font-semibold text-text-primary mb-2">Email</h3>
-            <p className="text-sm text-text-secondary">contact@toolforge.vercel.app</p>
+            <p className="text-sm text-text-secondary">contact@toolforge-jet.vercel.app</p>
           </div>
 
           <div className="bg-surface border border-border rounded-lg p-6">
