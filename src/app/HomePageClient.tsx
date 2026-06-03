@@ -7,6 +7,7 @@ import { TOOLS, CATEGORIES, Tool } from '@/lib/constants/tools';
 import { cn } from '@/lib/utils';
 import { ToolCard } from '@/components/shared/ToolCard';
 import { AdBanner } from '@/components/ads';
+import { adConfig } from '@/lib/constants/site';
 import { Search, Sparkles, Shield, Cpu, Zap, Mail, X } from 'lucide-react';
 
 export function HomePageClient() {
@@ -114,7 +115,7 @@ export function HomePageClient() {
         </div>
       </section>
 
-      <AdBanner position="top" className="animate-fade-in relative z-10" />
+      <AdBanner position="top" adsterraKey={adConfig.adsterraBannerKey} className="animate-fade-in relative z-10" />
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div className="flex flex-col gap-2 p-5 rounded-2xl bg-card border border-border/80 shadow-sm hover:border-accent/20 transition-all duration-300">
@@ -230,7 +231,7 @@ export function HomePageClient() {
         )}
       </section>
 
-      <AdBanner position="bottom" className="border-t border-border/40 relative z-10" />
+      <AdBanner position="bottom" adsterraKey={adConfig.adsterraBannerKey} className="border-t border-border/40 relative z-10" />
 
     </div>
   );

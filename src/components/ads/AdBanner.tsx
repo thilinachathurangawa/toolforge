@@ -8,9 +8,11 @@ interface AdBannerProps {
   className?: string;
   /** Optional AdSense slot unit ID when monetization is enabled */
   adsenseSlot?: string;
+  /** Optional Adsterra key when monetization is enabled */
+  adsterraKey?: string;
 }
 
-export function AdBanner({ position = 'top', className, adsenseSlot }: AdBannerProps) {
+export function AdBanner({ position = 'top', className, adsenseSlot, adsterraKey }: AdBannerProps) {
   return (
     <div
       className={cn(
@@ -20,7 +22,7 @@ export function AdBanner({ position = 'top', className, adsenseSlot }: AdBannerP
       )}
       data-ad-position={position}
     >
-      <AdSlot format="banner" adsenseSlot={adsenseSlot} className="w-full max-w-[728px]" />
+      <AdSlot format="banner" adsenseSlot={adsenseSlot} adsterraKey={adsterraKey} className="w-full max-w-[728px]" />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { TOOLS } from '@/lib/constants/tools';
-import { siteConfig } from '@/lib/constants/site';
+import { siteConfig, adConfig } from '@/lib/constants/site';
 import { ToolCard } from '@/components/shared/ToolCard';
 import { AdBanner } from '@/components/ads';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
@@ -26,7 +26,7 @@ export default function ToolsIndexPage() {
         </p>
       </header>
 
-      <AdBanner position="top" />
+      <AdBanner position="top" adsterraKey={adConfig.adsterraBannerKey} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
         {TOOLS.map((tool) => (
@@ -34,7 +34,7 @@ export default function ToolsIndexPage() {
         ))}
       </div>
 
-      <AdBanner position="bottom" />
+      <AdBanner position="bottom" adsterraKey={adConfig.adsterraBannerKey} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ import {
   getRelatedTools,
   CATEGORIES,
 } from '@/lib/constants/tools';
-import { siteConfig } from '@/lib/constants/site';
+import { siteConfig, adConfig } from '@/lib/constants/site';
 import { buildToolJsonLd } from '@/lib/seo/json-ld';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 import { RelatedTools } from '@/components/shared/RelatedTools';
@@ -227,7 +227,7 @@ export default function ToolPage({ params }: ToolPageParams) {
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <AdBanner position="top" />
+        <AdBanner position="top" adsterraKey={adConfig.adsterraBannerKey} />
 
         <div className="grid lg:grid-cols-[1fr_300px] gap-8 lg:gap-10 mt-4">
           {/* Main column */}
@@ -264,7 +264,7 @@ export default function ToolPage({ params }: ToolPageParams) {
               <ToolPlaceholder tool={tool} />
             )}
 
-            <AdInArticle />
+            <AdInArticle adsterraKey={adConfig.adsterraBannerKey} />
 
             <section className="prose-tool">
               <h2 className="font-display text-xl font-bold text-text-primary mb-3">
@@ -321,12 +321,15 @@ export default function ToolPage({ params }: ToolPageParams) {
 
           {/* Sidebar — desktop */}
           <div className="hidden lg:flex flex-col gap-8">
-            <AdSidebar />
+            <AdSidebar 
+              rectAdsterraKey={adConfig.adsterraSidebarKey}
+              skyscraperAdsterraKey={adConfig.adsterraSidebarKey}
+            />
             <RelatedTools tools={relatedTools} />
           </div>
         </div>
 
-        <AdBanner position="bottom" />
+        <AdBanner position="bottom" adsterraKey={adConfig.adsterraBannerKey} />
       </div>
     </>
   );
