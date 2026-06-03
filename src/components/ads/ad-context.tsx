@@ -7,7 +7,8 @@ export interface AdContextValue {
   enabled: boolean;
   adsenseClientId: string;
   adsterraBannerKey: string;
-  adsterraSidebarKey: string;
+  adsterraSidebarRectKey: string;
+  adsterraSidebarSkyscraperKey: string;
 }
 
 const AdContext = createContext<AdContextValue | null>(null);
@@ -17,7 +18,8 @@ export function AdContextProvider({ children }: { children: React.ReactNode }) {
     enabled: adConfig.enabled,
     adsenseClientId: adConfig.adsenseClientId,
     adsterraBannerKey: adConfig.adsterraBannerKey,
-    adsterraSidebarKey: adConfig.adsterraSidebarKey,
+    adsterraSidebarRectKey: adConfig.adsterraSidebarRectKey,
+    adsterraSidebarSkyscraperKey: adConfig.adsterraSidebarSkyscraperKey,
   };
 
   return <AdContext.Provider value={value}>{children}</AdContext.Provider>;

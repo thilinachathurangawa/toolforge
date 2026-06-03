@@ -57,7 +57,7 @@ const FORMAT_CONFIG: Record<
 };
 
 export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'Advertisement' }: AdSlotProps) {
-  const { enabled, adsenseClientId, adsterraBannerKey, adsterraSidebarKey } = useAds();
+  const { enabled, adsenseClientId, adsterraBannerKey, adsterraSidebarRectKey, adsterraSidebarSkyscraperKey } = useAds();
   const insRef = useRef<HTMLModElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const config = FORMAT_CONFIG[format];
@@ -70,7 +70,8 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
   const getAdsterraKey = () => {
     if (adsterraKey) return adsterraKey;
     if (format === 'banner') return adsterraBannerKey;
-    if (format === 'sidebar-rect' || format === 'sidebar-skyscraper') return adsterraSidebarKey;
+    if (format === 'sidebar-rect') return adsterraSidebarRectKey;
+    if (format === 'sidebar-skyscraper') return adsterraSidebarSkyscraperKey;
     return null;
   };
 

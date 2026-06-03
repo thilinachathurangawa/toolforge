@@ -38,7 +38,8 @@ export const siteConfig = {
 export const adConfig = {
   adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || '',
   adsterraBannerKey: process.env.NEXT_PUBLIC_ADSTERRA_BANNER_KEY || '',
-  adsterraSidebarKey: process.env.NEXT_PUBLIC_ADSTERRA_SIDEBAR_KEY || '',
+  adsterraSidebarRectKey: process.env.NEXT_PUBLIC_ADSTERRA_SIDEBAR_RECT_KEY || '',
+  adsterraSidebarSkyscraperKey: process.env.NEXT_PUBLIC_ADSTERRA_SIDEBAR_SKYSCRAPER_KEY || '',
   // Set to true when ad networks are configured
   enabled: process.env.NEXT_PUBLIC_ADS_ENABLED === 'true',
 };
