@@ -38,7 +38,7 @@ export default function AboutPage() {
             Privacy First
           </h2>
           <p className="text-text-secondary leading-relaxed">
-            Unlike many online tools, we don't collect, store, or transmit your data. Every image you compress, every password you generate, and every text you process stays on your device. We believe privacy shouldn't be a premium feature—it should be the standard.
+            Unlike many online tools, we don&apos;t collect, store, or transmit your data. Every image you compress, every password you generate, and every text you process stays on your device. We believe privacy shouldn&apos;t be a premium feature—it should be the standard.
           </p>
         </section>
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
             Get in Touch
           </h2>
           <p className="text-text-secondary leading-relaxed mb-4">
-            Have questions, suggestions, or want to report a bug? We'd love to hear from you.
+            Have questions, suggestions, or want to report a bug? We&apos;d love to hear from you.
           </p>
           <a
             href="/contact"

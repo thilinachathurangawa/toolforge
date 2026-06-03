@@ -221,7 +221,7 @@ export function JSONFormatter() {
         <div key={depth} style={{ paddingLeft }}>
           <div className="flex items-center gap-2">
             <span className="font-medium text-purple-400">
-              {node.key && <span className="text-blue-300">"{node.key}": </span>}
+              {node.key && <span className="text-blue-300">&quot;{node.key}&quot;: </span>}
               {node.type === 'object' ? '{' : '['}
             </span>
             <span className="text-muted-foreground text-sm">{node.value}</span>
@@ -242,9 +242,9 @@ export function JSONFormatter() {
 
     return (
       <div key={depth} style={{ paddingLeft }} className="flex items-center gap-2">
-        {node.key && <span className="text-blue-300">"{node.key}": </span>}
+        {node.key && <span className="text-blue-300">&quot;{node.key}&quot;: </span>}
         <span className={getValueColor(node.type)}>
-          {node.type === 'string' ? `"${node.value}"` : String(node.value)}
+          {node.type === 'string' ? `&quot;${node.value}&quot;` : String(node.value)}
         </span>
       </div>
     );

@@ -19,7 +19,7 @@ export default function ContactPage() {
           Contact Us
         </h1>
         <p className="text-sm sm:text-base text-text-secondary mt-2 max-w-2xl">
-          Have questions or feedback? We'd love to hear from you.
+          Have questions or feedback? We&apos;d love to hear from you.
         </p>
       </header>
 

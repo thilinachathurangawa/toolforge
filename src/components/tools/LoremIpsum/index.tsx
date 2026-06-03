@@ -214,7 +214,7 @@ export function LoremIpsum() {
               onChange={(e) => setOptions({ ...options, startWithLorem: e.target.checked })}
               className="rounded accent-accent"
             />
-            Start with "Lorem ipsum"
+            Start with &quot;Lorem ipsum&quot;
           </label>
           
           <div className="space-y-2">
