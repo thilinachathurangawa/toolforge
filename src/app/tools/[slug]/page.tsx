@@ -321,7 +321,10 @@ export default function ToolPage({ params }: ToolPageParams) {
 
           {/* Sidebar — desktop */}
           <div className="hidden lg:flex flex-col gap-8">
-            <AdSidebar />
+            <AdSidebar
+              adseraRectKey={adConfig.adseraSidebarRectKey}
+              adseraSkyscraperKey={adConfig.adseraSidebarSkyscraperKey}
+            />
             <RelatedTools tools={relatedTools} />
           </div>
         </div>

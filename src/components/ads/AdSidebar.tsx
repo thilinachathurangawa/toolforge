@@ -7,10 +7,12 @@ interface AdSidebarProps {
   className?: string;
   rectSlot?: string;
   skyscraperSlot?: string;
+  adseraRectKey?: string;
+  adseraSkyscraperKey?: string;
 }
 
 /** Desktop-only sticky sidebar ad stack (300×250 + 300×600). */
-export function AdSidebar({ className, rectSlot, skyscraperSlot }: AdSidebarProps) {
+export function AdSidebar({ className, rectSlot, skyscraperSlot, adseraRectKey, adseraSkyscraperKey }: AdSidebarProps) {
   return (
     <aside
       className={cn(
@@ -20,8 +22,8 @@ export function AdSidebar({ className, rectSlot, skyscraperSlot }: AdSidebarProp
       aria-label="Sidebar advertisements"
     >
       <div className="sticky top-24 flex flex-col gap-6">
-        <AdSlot format="sidebar-rect" adsenseSlot={rectSlot} />
-        <AdSlot format="sidebar-skyscraper" adsenseSlot={skyscraperSlot} />
+        <AdSlot format="sidebar-rect" adsenseSlot={rectSlot} adseraKey={adseraRectKey} />
+        <AdSlot format="sidebar-skyscraper" adsenseSlot={skyscraperSlot} adseraKey={adseraSkyscraperKey} />
       </div>
     </aside>
   );

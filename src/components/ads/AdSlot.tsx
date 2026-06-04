@@ -18,6 +18,8 @@ interface AdSlotProps {
   adsenseSlot?: string;
   /** Adsterra ad key — required for live Adsterra units */
   adsterraKey?: string;
+  /** Adsera ad key — required for live Adsera units */
+  adseraKey?: string;
   className?: string;
   label?: string;
 }
@@ -56,8 +58,8 @@ const FORMAT_CONFIG: Record<
   },
 };
 
-export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'Advertisement' }: AdSlotProps) {
-  const { enabled, adsenseClientId, adsterraBannerKey, adsterraSidebarRectKey, adsterraSidebarSkyscraperKey } = useAds();
+export function AdSlot({ format, adsenseSlot, adsterraKey, adseraKey, className, label = 'Advertisement' }: AdSlotProps) {
+  const { enabled, adsenseClientId, adsterraBannerKey, adsterraSidebarRectKey, adsterraSidebarSkyscraperKey, adseraSidebarRectKey, adseraSidebarSkyscraperKey } = useAds();
   const insRef = useRef<HTMLModElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const config = FORMAT_CONFIG[format];
@@ -65,6 +67,7 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
   // Determine which ad network to use
   const showAdSense = enabled && adsenseClientId && adsenseSlot;
   const showAdsterra = enabled && adsterraKey;
+  const showAdsera = enabled && adseraKey;
 
   // Map format to Adsterra key
   const getAdsterraKey = () => {
@@ -76,6 +79,16 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
   };
 
   const adsterraKeyToUse = getAdsterraKey();
+
+  // Map format to Adsera key
+  const getAdseraKey = () => {
+    if (adseraKey) return adseraKey;
+    if (format === 'sidebar-rect') return adseraSidebarRectKey;
+    if (format === 'sidebar-skyscraper') return adseraSidebarSkyscraperKey;
+    return null;
+  };
+
+  const adseraKeyToUse = getAdseraKey();
 
   // AdSense loading effect
   useEffect(() => {
@@ -111,6 +124,28 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
 </html>`;
   };
 
+  // Adsera iframe HTML generation
+  const generateAdseraHTML = (key: string, width: number, height: number) => {
+    return `<!DOCTYPE html>
+<html>
+<head>
+  <style>body { margin: 0; padding: 0; overflow: hidden; }</style>
+</head>
+<body>
+  <script type="text/javascript">
+    atOptions = {
+      'key': '${key}',
+      'format': 'iframe',
+      'height': ${height},
+      'width': ${width},
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="//www.topcreativeformat.com/${key}/invoke.js"></script>
+</body>
+</html>`;
+  };
+
   // Show AdSense ad
   if (showAdSense) {
     return (
@@ -142,7 +177,7 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
   // Show Adsterra ad
   if (showAdsterra && adsterraKeyToUse) {
     const adHTML = generateAdsterraHTML(adsterraKeyToUse, config.width, config.height);
-    
+
     return (
       <div className={cn('w-full flex flex-col items-center gap-1', className)}>
         <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70">
@@ -156,11 +191,44 @@ export function AdSlot({ format, adsenseSlot, adsterraKey, className, label = 'A
         >
           <iframe
             srcDoc={adHTML}
-            style={{ 
-              width: format === 'banner' || format === 'in-article' ? '100%' : `${config.width}px`, 
-              height: `${config.height}px`, 
-              border: 'none', 
-              overflow: 'hidden' 
+            style={{
+              width: format === 'banner' || format === 'in-article' ? '100%' : `${config.width}px`,
+              height: `${config.height}px`,
+              border: 'none',
+              overflow: 'hidden'
+            }}
+            scrolling="no"
+            frameBorder="0"
+            title={`${label} - ${format}`}
+            className="w-full"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Show Adsera ad
+  if (showAdsera && adseraKeyToUse) {
+    const adHTML = generateAdseraHTML(adseraKeyToUse, config.width, config.height);
+
+    return (
+      <div className={cn('w-full flex flex-col items-center gap-1', className)}>
+        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70">
+          {label}
+        </span>
+        <div
+          className={cn(
+            'w-full flex justify-center overflow-hidden rounded-xl',
+            config.placeholder
+          )}
+        >
+          <iframe
+            srcDoc={adHTML}
+            style={{
+              width: format === 'banner' || format === 'in-article' ? '100%' : `${config.width}px`,
+              height: `${config.height}px`,
+              border: 'none',
+              overflow: 'hidden'
             }}
             scrolling="no"
             frameBorder="0"

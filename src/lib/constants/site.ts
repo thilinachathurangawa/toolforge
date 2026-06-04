@@ -40,6 +40,8 @@ export const adConfig = {
   adsterraBannerKey: process.env.NEXT_PUBLIC_ADSTERRA_BANNER_KEY || '',
   adsterraSidebarRectKey: process.env.NEXT_PUBLIC_ADSTERRA_SIDEBAR_RECT_KEY || '',
   adsterraSidebarSkyscraperKey: process.env.NEXT_PUBLIC_ADSTERRA_SIDEBAR_SKYSCRAPER_KEY || '',
+  adseraSidebarRectKey: process.env.NEXT_PUBLIC_ADSERA_SIDEBAR_RECT_KEY || '',
+  adseraSidebarSkyscraperKey: process.env.NEXT_PUBLIC_ADSERA_SIDEBAR_SKYSCRAPER_KEY || '',
   // Set to true when ad networks are configured
   enabled: process.env.NEXT_PUBLIC_ADS_ENABLED === 'true',
 };
