@@ -2,6 +2,7 @@
 import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import { siteConfig } from '@/lib/constants/site';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -142,6 +143,8 @@ export default function RootLayout({
             defer
           />
         )}
+
+        <Analytics />
 
       </body>
     </html>
