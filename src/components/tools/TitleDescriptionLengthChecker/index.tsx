@@ -163,7 +163,7 @@ export function TitleDescriptionLengthChecker() {
           {title && (
             <div className="p-3 bg-muted/50 rounded-lg">
               <p className="text-xs text-muted-foreground mb-1">Truncated Preview:</p>
-              <p className="text-sm text-foreground">"{getTruncatedTitle()}"</p>
+              <p className="text-sm text-foreground">&quot;{getTruncatedTitle()}&quot;</p>
             </div>
           )}
         </div>
@@ -220,7 +220,7 @@ export function TitleDescriptionLengthChecker() {
           {description && (
             <div className="p-3 bg-muted/50 rounded-lg">
               <p className="text-xs text-muted-foreground mb-1">Truncated Preview:</p>
-              <p className="text-sm text-foreground">"{getTruncatedDescription()}"</p>
+              <p className="text-sm text-foreground">&quot;{getTruncatedDescription()}&quot;</p>
             </div>
           )}
         </div>
