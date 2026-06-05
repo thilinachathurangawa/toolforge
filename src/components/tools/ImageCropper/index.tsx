@@ -319,7 +319,7 @@ export function ImageCropper() {
           </div>
 
           {/* Crop Area */}
-          <div className="flex justify-center bg-muted/50 rounded-lg p-4 overflow-hidden">
+          <div className="flex justify-center bg-muted/50 rounded-lg p-4 overflow-hidden min-h-[500px]">
             <div className="relative inline-block max-w-full">
               <ReactCrop
                 crop={crop}

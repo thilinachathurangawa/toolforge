@@ -369,7 +369,7 @@ export function Base64Encoder() {
               <div className="space-y-4">
                 <div>
                   <label className="text-sm font-medium text-foreground">Preview</label>
-                  <div className="mt-2 border rounded-lg p-4 flex justify-center bg-muted/50">
+                  <div className="mt-2 border rounded-lg p-4 flex justify-center bg-muted/50 min-h-[300px]">
                     <img
                       src={imageUrl}
                       alt="Preview"

@@ -212,7 +212,7 @@ export function ColorPalette() {
         <div className="p-6 border border-border rounded-xl bg-card space-y-4">
           <div>
             <label className="text-sm font-medium text-foreground">Image Preview</label>
-            <div className="mt-2 border rounded-lg p-4 flex justify-center bg-muted/50">
+            <div className="mt-2 border rounded-lg p-4 flex justify-center bg-muted/50 min-h-[300px]">
               <img
                 ref={imageRef}
                 src={imageUrl}

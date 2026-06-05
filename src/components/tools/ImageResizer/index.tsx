@@ -509,7 +509,7 @@ export function ImageResizer() {
                   <div className="grid grid-cols-2 gap-4 pt-2">
                     <div className="space-y-1">
                       <p className="text-xs text-muted-foreground">Original</p>
-                      <div className="border rounded-lg p-2 bg-background">
+                      <div className="border rounded-lg p-2 bg-background min-h-[160px]">
                         <img
                           src={URL.createObjectURL(result.file)}
                           alt="Original"
@@ -519,7 +519,7 @@ export function ImageResizer() {
                     </div>
                     <div className="space-y-1">
                       <p className="text-xs text-muted-foreground">Resized</p>
-                      <div className="border rounded-lg p-2 bg-background">
+                      <div className="border rounded-lg p-2 bg-background min-h-[160px]">
                         <img
                           src={result.previewUrl}
                           alt="Resized"
