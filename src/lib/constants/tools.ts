@@ -8,7 +8,8 @@ export type ToolCategory =
   | 'converter'
   | 'generator'
   | 'calculator'
-  | 'security';
+  | 'security'
+  | 'seo';
 
 export interface Tool {
   slug: string;
@@ -490,6 +491,141 @@ export const TOOLS: Tool[] = [
     relatedTools: ['jwt-decoder', 'hash-generator'],
     phase: 3,
   },
+
+  // ── SEO Tools ─────────────────────────────────────────────────────────────
+
+  {
+    slug: 'meta-tag-generator',
+    name: 'Meta Tag Generator',
+    shortDescription: 'Generate SEO meta tags for your website',
+    description: 'Generate meta tags for your website instantly. Create title, description, keywords, Open Graph, Twitter Card, and other SEO meta tags for free.',
+    category: 'seo',
+    tags: ['meta', 'tags', 'seo', 'open graph', 'twitter card'],
+    keywords: ['meta tag generator', 'meta tags creator', 'SEO meta tags', 'HTML meta tags generator'],
+    icon: 'Tag',
+    relatedTools: ['open-graph-preview-generator', 'serp-snippet-preview'],
+    phase: 3,
+  },
+  {
+    slug: 'keyword-density-checker',
+    name: 'Keyword Density Checker',
+    shortDescription: 'Analyze keyword usage in your content',
+    description: 'Check keyword density in your content for free. Analyze word frequency, keyword repetition, and optimize your content for SEO.',
+    category: 'seo',
+    tags: ['keyword', 'density', 'seo', 'content', 'analysis'],
+    keywords: ['keyword density checker', 'keyword analyzer', 'word frequency counter', 'SEO keyword analysis'],
+    icon: 'BarChart3',
+    relatedTools: ['readability-checker', 'title-description-length-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'sitemap-generator',
+    name: 'Sitemap Generator',
+    shortDescription: 'Create XML sitemaps for search engines',
+    description: 'Generate XML sitemaps for your website instantly. Add URLs, set priorities, change frequencies, and download valid sitemap files for free.',
+    category: 'seo',
+    tags: ['sitemap', 'xml', 'seo', 'search engine', 'indexing'],
+    keywords: ['sitemap generator', 'XML sitemap creator', 'sitemap builder', 'Google sitemap generator'],
+    icon: 'FileJson',
+    relatedTools: ['robots-txt-generator', 'meta-tag-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'url-encoder-decoder',
+    name: 'URL Encoder / Decoder (SEO)',
+    shortDescription: 'Encode and decode URLs with SEO suggestions',
+    description: 'Encode and decode URLs for SEO. Clean up URL parameters, fix special characters, and ensure your URLs are search engine friendly.',
+    category: 'seo',
+    tags: ['url', 'encode', 'decode', 'seo', 'clean'],
+    keywords: ['URL encoder decoder SEO', 'URL cleaner', 'SEO URL tool', 'encode decode URL'],
+    icon: 'Link',
+    relatedTools: ['url-parameter-cleaner', 'sitemap-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'open-graph-preview-generator',
+    name: 'Open Graph Preview Generator',
+    shortDescription: 'Test how your links appear on social media',
+    description: 'Preview how your website appears on social media. Test Open Graph tags, see Facebook and LinkedIn previews, and optimize your social sharing.',
+    category: 'seo',
+    tags: ['open graph', 'og', 'social media', 'preview', 'facebook'],
+    keywords: ['Open Graph preview generator', 'OG tag tester', 'social media preview', 'Facebook link preview'],
+    icon: 'Eye',
+    relatedTools: ['meta-tag-generator', 'open-graph-image-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'open-graph-image-generator',
+    name: 'Open Graph Image Generator',
+    shortDescription: 'Create custom OG images for social sharing',
+    description: 'Generate Open Graph images for social media sharing. Create custom OG images with your branding, text, and colors for free.',
+    category: 'seo',
+    tags: ['open graph', 'og', 'image', 'social media', 'generator'],
+    keywords: ['Open Graph image generator', 'OG image creator', 'social media image generator', 'Facebook image maker'],
+    icon: 'ImagePlus',
+    relatedTools: ['open-graph-preview-generator', 'meta-tag-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'serp-snippet-preview',
+    name: 'SERP Snippet Preview',
+    shortDescription: 'Preview Google search results appearance',
+    description: 'Preview how your website appears in Google search results. Test title tags, meta descriptions, and optimize your SERP snippets for SEO.',
+    category: 'seo',
+    tags: ['serp', 'google', 'search', 'preview', 'snippet'],
+    keywords: ['SERP snippet preview', 'Google search preview', 'SERP simulator', 'title tag preview'],
+    icon: 'Search',
+    relatedTools: ['title-description-length-checker', 'meta-tag-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'title-description-length-checker',
+    name: 'Title & Description Length Checker',
+    shortDescription: 'Check meta tag character limits for SEO',
+    description: 'Check title tag and meta description length for SEO. Ensure your meta tags are within optimal character limits for Google and other search engines.',
+    category: 'seo',
+    tags: ['title', 'description', 'length', 'seo', 'meta'],
+    keywords: ['title description length checker', 'meta tag length checker', 'SEO title analyzer', 'meta description counter'],
+    icon: 'Ruler',
+    relatedTools: ['serp-snippet-preview', 'keyword-density-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'robots-txt-generator',
+    name: 'Robots.txt Generator',
+    shortDescription: 'Create robots.txt files for crawler control',
+    description: 'Generate robots.txt files for your website instantly. Control crawler access, set sitemap location, and manage SEO indexing for free.',
+    category: 'seo',
+    tags: ['robots', 'txt', 'crawler', 'seo', 'sitemap'],
+    keywords: ['robots.txt generator', 'robots.txt creator', 'crawler control', 'SEO robots file'],
+    icon: 'FileCode',
+    relatedTools: ['sitemap-generator', 'meta-tag-generator'],
+    phase: 3,
+  },
+  {
+    slug: 'readability-checker',
+    name: 'Readability Checker',
+    shortDescription: 'Analyze text readability score',
+    description: 'Check text readability score and analyze content quality. Calculate Flesch-Kincaid, Gunning Fog, and other readability metrics for SEO.',
+    category: 'seo',
+    tags: ['readability', 'text', 'seo', 'content', 'analysis'],
+    keywords: ['readability checker', 'text readability analyzer', 'Flesch Kincaid score', 'content readability test'],
+    icon: 'BookOpen',
+    relatedTools: ['keyword-density-checker', 'title-description-length-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'url-parameter-cleaner',
+    name: 'URL Parameter Cleaner',
+    shortDescription: 'Remove tracking parameters from URLs',
+    description: 'Clean URLs by removing tracking parameters, UTM tags, and unnecessary query strings. Create clean, SEO-friendly URLs for free.',
+    category: 'seo',
+    tags: ['url', 'parameter', 'clean', 'tracking', 'utm'],
+    keywords: ['URL parameter cleaner', 'URL cleaner', 'remove UTM parameters', 'strip tracking parameters'],
+    icon: 'Filter',
+    relatedTools: ['url-encoder-decoder', 'sitemap-generator'],
+    phase: 3,
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -502,6 +638,7 @@ export const CATEGORIES: { value: ToolCategory; label: string; icon: string }[] 
   { value: 'generator', label: 'Generators', icon: 'Wand2' },
   { value: 'calculator', label: 'Calculators', icon: 'Calculator' },
   { value: 'security', label: 'Security', icon: 'Shield' },
+  { value: 'seo', label: 'SEO Tools', icon: 'Search' },
 ];
 
 export function getTool(slug: string): Tool | undefined {

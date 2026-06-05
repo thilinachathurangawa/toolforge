@@ -171,6 +171,50 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'meta-tag-generator': dynamic(() => import('@/components/tools/MetaTagGenerator').then(mod => ({ default: mod.MetaTagGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'keyword-density-checker': dynamic(() => import('@/components/tools/KeywordDensityChecker').then(mod => ({ default: mod.KeywordDensityChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'sitemap-generator': dynamic(() => import('@/components/tools/SitemapGenerator').then(mod => ({ default: mod.SitemapGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'url-encoder-decoder': dynamic(() => import('@/components/tools/URLEncoderDecoder').then(mod => ({ default: mod.URLEncoderDecoder })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'open-graph-preview-generator': dynamic(() => import('@/components/tools/OpenGraphPreviewGenerator').then(mod => ({ default: mod.OpenGraphPreviewGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'open-graph-image-generator': dynamic(() => import('@/components/tools/OpenGraphImageGenerator').then(mod => ({ default: mod.OpenGraphImageGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'serp-snippet-preview': dynamic(() => import('@/components/tools/SERPSnippetPreview').then(mod => ({ default: mod.SERPSnippetPreview })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'title-description-length-checker': dynamic(() => import('@/components/tools/TitleDescriptionLengthChecker').then(mod => ({ default: mod.TitleDescriptionLengthChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'robots-txt-generator': dynamic(() => import('@/components/tools/RobotsTxtGenerator').then(mod => ({ default: mod.RobotsTxtGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'readability-checker': dynamic(() => import('@/components/tools/ReadabilityChecker').then(mod => ({ default: mod.ReadabilityChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'url-parameter-cleaner': dynamic(() => import('@/components/tools/URLParameterCleaner').then(mod => ({ default: mod.URLParameterCleaner })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
