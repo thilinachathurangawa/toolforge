@@ -59,6 +59,14 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'image-metadata-remover': dynamic(() => import('@/components/tools/ImageMetadataRemover').then(mod => ({ default: mod.ImageMetadataRemover })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'image-batch-resizer': dynamic(() => import('@/components/tools/ImageBatchResizer').then(mod => ({ default: mod.ImageBatchResizer })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
   'image-converter': dynamic(() => import('@/components/tools/ImageConverter').then(mod => ({ default: mod.ImageConverter })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
