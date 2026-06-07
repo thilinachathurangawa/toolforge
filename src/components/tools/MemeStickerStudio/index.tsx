@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Upload, Download, Layers, Trash2, Plus, X, Undo, Redo, ZoomIn, ZoomOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -28,6 +28,7 @@ interface TextLayer extends Layer {
 interface ImageLayer extends Layer {
   type: 'image' | 'sticker';
   src: string;
+  image?: HTMLImageElement;
 }
 
 export function MemeStickerStudio() {
@@ -39,6 +40,7 @@ export function MemeStickerStudio() {
   const [zoom, setZoom] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const stickers = ['😀', '😂', '😎', '🎉', '❤️', '⭐', '🔥', '💯'];
@@ -62,6 +64,7 @@ export function MemeStickerStudio() {
     const reader = new FileReader();
     reader.onload = (event) => {
       const img = new Image();
+      img.crossOrigin = 'anonymous';
       img.onload = () => {
         const newLayer: ImageLayer = {
           id: Date.now().toString(),
@@ -73,6 +76,7 @@ export function MemeStickerStudio() {
           scaleX: 1,
           scaleY: 1,
           src: event.target?.result as string,
+          image: img,
         };
         
         // Set canvas size to match image if it's the first layer
@@ -84,6 +88,7 @@ export function MemeStickerStudio() {
         setLayers(newLayers);
         setSelectedLayerId(newLayer.id);
         addToHistory(newLayers);
+        setImagesLoaded(true);
       };
       img.src = event.target?.result as string;
     };
@@ -220,16 +225,16 @@ export function MemeStickerStudio() {
           ctx.strokeText(textLayer.text, 0, 0);
         }
         ctx.fillText(textLayer.text, 0, 0);
-      } else if (layer.type === 'image' || layer.type === 'sticker') {
+      } else if (layer.type === 'image') {
         const imgLayer = layer as ImageLayer;
-        const img = new Image();
-        img.onload = () => {
-          ctx.drawImage(img, -img.width / 2, -img.height / 2);
-        };
-        img.src = imgLayer.src;
+        if (imgLayer.image) {
+          // Draw image centered at position
+          ctx.drawImage(imgLayer.image, -imgLayer.image.width / 2, -imgLayer.image.height / 2);
+        }
       } else if (layer.type === 'sticker') {
         const imgLayer = layer as ImageLayer;
         ctx.font = '80px Arial';
+        ctx.fillStyle = '#000000';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(imgLayer.src, 0, 0);
@@ -243,11 +248,17 @@ export function MemeStickerStudio() {
     renderCanvas();
   }, [renderCanvas]);
 
+  // Re-render canvas when images are loaded
+  React.useEffect(() => {
+    if (imagesLoaded) {
+      renderCanvas();
+    }
+  }, [imagesLoaded, renderCanvas]);
+
   const selectedLayer = layers.find((layer) => layer.id === selectedLayerId);
 
   return (
     <div className="w-full space-y-6">
-      <canvas ref={canvasRef} className="hidden" />
 
       {/* Upload Section */}
       <div className="p-6 border border-border rounded-xl bg-card space-y-4">
@@ -359,10 +370,10 @@ export function MemeStickerStudio() {
           </div>
           <div className="border rounded-lg p-4 flex justify-center bg-muted/50 overflow-auto">
             <div style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}>
-              <img
-                src={canvasRef.current?.toDataURL() || ''}
-                alt="Canvas Preview"
-                className="max-w-full"
+              <canvas
+                ref={canvasRef}
+                className="max-w-full border border-border"
+                style={{ maxWidth: '100%', height: 'auto' }}
               />
             </div>
           </div>

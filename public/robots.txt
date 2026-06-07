@@ -4,7 +4,7 @@ Allow: /
 Disallow: /api/
 
 # Host
-Host: https://toolforge-jet.vercel.app
+Host: https://www.toolforge.website
 
 # Sitemaps
-Sitemap: https://toolforge-jet.vercel.app/sitemap.xml
+Sitemap: https://www.toolforge.website/sitemap.xml
