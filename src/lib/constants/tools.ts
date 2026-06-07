@@ -776,6 +776,69 @@ export const TOOLS: Tool[] = [
     relatedTools: ['http-headers-checker', 'website-status-checker'],
     phase: 3,
   },
+
+  // ── Creative Tools ─────────────────────────────────────────────────────────────
+
+  {
+    slug: 'ascii-art-generator',
+    name: 'ASCII Art Generator',
+    shortDescription: 'Convert images to ASCII text art',
+    description: 'Convert images to ASCII art text instantly. Upload JPG, PNG, or GIF and create stunning text-based artwork. Free, no sign-up required.',
+    category: 'creative',
+    tags: ['ascii', 'art', 'text', 'image', 'convert', 'generator'],
+    keywords: ['ascii art generator', 'image to ascii', 'text art generator', 'ascii converter', 'picture to text art'],
+    icon: 'Type',
+    relatedTools: ['meme-generator', 'filter-effect-studio'],
+    phase: 3,
+  },
+  {
+    slug: 'meme-generator',
+    name: 'Meme Generator',
+    shortDescription: 'Create custom memes with text',
+    description: 'Create custom memes instantly with our free meme generator. Add text to images, choose fonts, and download your memes. No sign-up required.',
+    category: 'creative',
+    tags: ['meme', 'generator', 'text', 'image', 'create', 'fun'],
+    keywords: ['meme generator', 'make a meme', 'create meme online', 'meme maker', 'text on image'],
+    icon: 'Smile',
+    relatedTools: ['ascii-art-generator', 'meme-sticker-studio'],
+    phase: 3,
+  },
+  {
+    slug: 'meme-sticker-studio',
+    name: 'Meme & Sticker Studio',
+    shortDescription: 'Advanced meme & sticker editor with layers',
+    description: 'Create custom memes and stickers with our advanced studio. Add text, stickers, effects, and layers. Download in multiple formats. Free, no sign-up required.',
+    category: 'creative',
+    tags: ['meme', 'sticker', 'editor', 'layers', 'effects', 'creative'],
+    keywords: ['meme and sticker studio', 'create stickers online', 'sticker maker', 'meme creator', 'image editor'],
+    icon: 'Layers',
+    relatedTools: ['meme-generator', 'filter-effect-studio'],
+    phase: 3,
+  },
+  {
+    slug: 'optical-illusion-lab',
+    name: 'Optical Illusion Lab',
+    shortDescription: 'Create mind-bending optical illusions',
+    description: 'Create stunning optical illusions and visual effects online. Generate spiral patterns, moiré effects, and more. Free, no sign-up required.',
+    category: 'creative',
+    tags: ['optical', 'illusion', 'visual', 'effects', 'spiral', 'pattern'],
+    keywords: ['optical illusion generator', 'create optical illusions', 'visual effects generator', 'spiral pattern maker', 'moire effect'],
+    icon: 'Eye',
+    relatedTools: ['filter-effect-studio'],
+    phase: 3,
+  },
+  {
+    slug: 'filter-effect-studio',
+    name: 'Filter & Effect Studio',
+    shortDescription: 'Apply professional filters and effects to images',
+    description: 'Apply professional filters and effects to your images online. Vintage, blur, sharpen, color adjustments and more. Free, no sign-up required.',
+    category: 'creative',
+    tags: ['filter', 'effect', 'image', 'editor', 'vintage', 'blur'],
+    keywords: ['image filter studio', 'apply image filters', 'photo effects', 'image editor online', 'filter effects'],
+    icon: 'Wand2',
+    relatedTools: ['meme-sticker-studio', 'optical-illusion-lab'],
+    phase: 3,
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -790,6 +853,7 @@ export const CATEGORIES: { value: ToolCategory; label: string; icon: string }[] 
   { value: 'security', label: 'Security', icon: 'Shield' },
   { value: 'seo', label: 'SEO Tools', icon: 'Search' },
   { value: 'network', label: 'Network Tools', icon: 'Globe' },
+  { value: 'creative', label: 'Creative Tools', icon: 'Palette' },
 ];
 
 export function getTool(slug: string): Tool | undefined {

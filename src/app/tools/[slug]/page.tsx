@@ -263,6 +263,26 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'ascii-art-generator': dynamic(() => import('@/components/tools/AsciiArtGenerator').then(mod => ({ default: mod.AsciiArtGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'meme-generator': dynamic(() => import('@/components/tools/MemeGenerator').then(mod => ({ default: mod.MemeGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'meme-sticker-studio': dynamic(() => import('@/components/tools/MemeStickerStudio').then(mod => ({ default: mod.MemeStickerStudio })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'optical-illusion-lab': dynamic(() => import('@/components/tools/OpticalIllusionLab').then(mod => ({ default: mod.OpticalIllusionLab })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'filter-effect-studio': dynamic(() => import('@/components/tools/FilterEffectStudio').then(mod => ({ default: mod.FilterEffectStudio })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
