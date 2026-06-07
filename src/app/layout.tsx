@@ -124,6 +124,21 @@ export default function RootLayout({
         {/* Global Footer */}
         <Footer />
 
+        {/* Buy Me a Coffee Button */}
+        <div className="fixed bottom-4 right-4 z-50 animate-bounce hover:scale-105 transition-transform duration-300">
+          <a
+            href="https://www.buymeacoffee.com/thilinachai"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
+              alt="Buy Me a Coffee"
+              style={{ height: '35px !important', width: '120px !important' }}
+            />
+          </a>
+        </div>
+
         {/* Google Analytics Script Hook */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <script
