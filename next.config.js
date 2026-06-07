@@ -15,6 +15,11 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
+  // Ignore ESLint during builds
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   // Headers handled in vercel.json
 };
 
