@@ -10,7 +10,8 @@ export type ToolCategory =
   | 'calculator'
   | 'security'
   | 'seo'
-  | 'network';
+  | 'network'
+  | 'creative';
 
 export interface Tool {
   slug: string;
