@@ -9,7 +9,8 @@ export type ToolCategory =
   | 'generator'
   | 'calculator'
   | 'security'
-  | 'seo';
+  | 'seo'
+  | 'network';
 
 export interface Tool {
   slug: string;
@@ -650,6 +651,130 @@ export const TOOLS: Tool[] = [
     relatedTools: ['url-encoder-decoder', 'sitemap-generator'],
     phase: 3,
   },
+
+  // ── Network Tools ─────────────────────────────────────────────────────────────
+
+  {
+    slug: 'internet-speed-test',
+    name: 'Internet Speed Test',
+    shortDescription: 'Check download & upload speed, latency, and jitter',
+    description: 'Test your internet connection speed with our free online speed test. Measure download, upload, latency, and jitter using Cloudflare\'s network.',
+    category: 'network',
+    tags: ['speed', 'test', 'internet', 'bandwidth', 'latency', 'jitter'],
+    keywords: ['internet speed test', 'network speed test', 'bandwidth test', 'connection speed', 'download speed', 'upload speed'],
+    icon: 'Gauge',
+    isPopular: true,
+    relatedTools: ['ping-tool', 'website-status-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'address-lookup',
+    name: 'IP Address Lookup',
+    shortDescription: 'Get location, ISP, and timezone info for any IP',
+    description: 'Lookup any IP address to find location, ISP, timezone, and more. Free IP geolocation service using ipapi.co.',
+    category: 'network',
+    tags: ['ip', 'address', 'lookup', 'geolocation', 'location', 'isp'],
+    keywords: ['IP address lookup', 'IP geolocation', 'find IP location', 'IP info', 'ISP lookup', 'IP tracker'],
+    icon: 'MapPin',
+    relatedTools: ['dns-lookup', 'whois-lookup'],
+    phase: 3,
+  },
+  {
+    slug: 'dns-lookup',
+    name: 'DNS Lookup',
+    shortDescription: 'Query DNS records for any domain',
+    description: 'Perform DNS lookups for A, AAAA, MX, TXT, NS, CNAME records using Google\'s DNS API. Free DNS query tool.',
+    category: 'network',
+    tags: ['dns', 'lookup', 'query', 'records', 'domain', 'nslookup'],
+    keywords: ['DNS lookup', 'DNS query', 'DNS records', 'dig online', 'nslookup', 'DNS checker'],
+    icon: 'Server',
+    relatedTools: ['address-lookup', 'whois-lookup'],
+    phase: 3,
+  },
+  {
+    slug: 'http-headers-checker',
+    name: 'HTTP Headers Checker',
+    shortDescription: 'View and analyze HTTP response headers',
+    description: 'Check HTTP response headers for any URL. View security headers, caching, content type, and more using AllOrigins API.',
+    category: 'network',
+    tags: ['http', 'headers', 'response', 'security', 'analyze'],
+    keywords: ['HTTP headers checker', 'response headers', 'HTTP header analyzer', 'view headers', 'security headers'],
+    icon: 'FileText',
+    relatedTools: ['ssl-certificate-checker', 'website-status-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'ssl-certificate-checker',
+    name: 'SSL Certificate Checker',
+    shortDescription: 'Verify SSL/TLS certificates and security ratings',
+    description: 'Check SSL certificate details, expiration, and security rating for any domain using SSL Labs API. Free SSL checker.',
+    category: 'network',
+    tags: ['ssl', 'certificate', 'tls', 'security', 'verify', 'expiry'],
+    keywords: ['SSL certificate checker', 'SSL verification', 'TLS certificate', 'SSL test', 'certificate analyzer', 'SSL expiry'],
+    icon: 'ShieldCheck',
+    relatedTools: ['http-headers-checker', 'website-status-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'ping-tool',
+    name: 'Ping Tool',
+    shortDescription: 'Test network latency and connectivity',
+    description: 'Ping any host or IP address to test network connectivity and measure latency. Free online ping tool with packet loss detection.',
+    category: 'network',
+    tags: ['ping', 'network', 'latency', 'connectivity', 'test', 'packet loss'],
+    keywords: ['ping tool', 'network ping', 'latency test', 'ping online', 'connectivity test', 'packet loss'],
+    icon: 'Activity',
+    relatedTools: ['internet-speed-test', 'port-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'port-checker',
+    name: 'Port Checker',
+    shortDescription: 'Check if ports are open or closed on servers',
+    description: 'Check if a port is open or closed on any server. Test common ports (80, 443, 22, 21, etc.) or custom ports. Free port scanner.',
+    category: 'network',
+    tags: ['port', 'checker', 'scanner', 'network', 'tcp', 'open'],
+    keywords: ['port checker', 'open port scanner', 'port test', 'network port check', 'TCP port checker'],
+    icon: 'Server',
+    relatedTools: ['ping-tool', 'website-status-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'whois-lookup',
+    name: 'WHOIS Lookup',
+    shortDescription: 'Get domain registration and owner information',
+    description: 'Lookup WHOIS information for any domain. Find registrar, creation date, expiration, and owner details using WhoisJSON API.',
+    category: 'network',
+    tags: ['whois', 'domain', 'registration', 'owner', 'registrar'],
+    keywords: ['WHOIS lookup', 'domain WHOIS', 'domain registration info', 'WHOIS search', 'domain owner lookup'],
+    icon: 'FileText',
+    relatedTools: ['address-lookup', 'dns-lookup'],
+    phase: 3,
+  },
+  {
+    slug: 'website-status-checker',
+    name: 'Website Status Checker',
+    shortDescription: 'Monitor website uptime and availability',
+    description: 'Check if a website is online or down. Monitor uptime, response time, and status codes using UpDown.io API. Free website monitoring.',
+    category: 'network',
+    tags: ['website', 'status', 'uptime', 'monitor', 'availability', 'down'],
+    keywords: ['website status checker', 'website uptime', 'is website down', 'site status', 'uptime monitor', 'website availability'],
+    icon: 'Activity',
+    relatedTools: ['internet-speed-test', 'ssl-certificate-checker'],
+    phase: 3,
+  },
+  {
+    slug: 'url-redirect-tracer',
+    name: 'URL Redirect Tracer',
+    shortDescription: 'Follow and analyze HTTP redirect chains',
+    description: 'Trace the full redirect chain for any URL. See all 301, 302, and other redirects with status codes and headers. Free redirect checker.',
+    category: 'network',
+    tags: ['url', 'redirect', 'tracer', 'chain', '301', '302'],
+    keywords: ['URL redirect tracer', 'redirect checker', 'follow redirects', 'HTTP redirect chain', 'URL tracer', '301 redirect'],
+    icon: 'ArrowRight',
+    relatedTools: ['http-headers-checker', 'website-status-checker'],
+    phase: 3,
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -663,6 +788,7 @@ export const CATEGORIES: { value: ToolCategory; label: string; icon: string }[] 
   { value: 'calculator', label: 'Calculators', icon: 'Calculator' },
   { value: 'security', label: 'Security', icon: 'Shield' },
   { value: 'seo', label: 'SEO Tools', icon: 'Search' },
+  { value: 'network', label: 'Network Tools', icon: 'Globe' },
 ];
 
 export function getTool(slug: string): Tool | undefined {

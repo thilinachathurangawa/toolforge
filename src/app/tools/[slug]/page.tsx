@@ -223,6 +223,46 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'internet-speed-test': dynamic(() => import('@/components/tools/InternetSpeedTest').then(mod => ({ default: mod.InternetSpeedTest })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'address-lookup': dynamic(() => import('@/components/tools/AddressLookup').then(mod => ({ default: mod.AddressLookup })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'dns-lookup': dynamic(() => import('@/components/tools/DnsLookup').then(mod => ({ default: mod.DnsLookup })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'http-headers-checker': dynamic(() => import('@/components/tools/HttpHeadersChecker').then(mod => ({ default: mod.HttpHeadersChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ssl-certificate-checker': dynamic(() => import('@/components/tools/SslCertificateChecker').then(mod => ({ default: mod.SslCertificateChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ping-tool': dynamic(() => import('@/components/tools/PingTool').then(mod => ({ default: mod.PingTool })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'port-checker': dynamic(() => import('@/components/tools/PortChecker').then(mod => ({ default: mod.PortChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'whois-lookup': dynamic(() => import('@/components/tools/WhoisLookup').then(mod => ({ default: mod.WhoisLookup })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'website-status-checker': dynamic(() => import('@/components/tools/WebsiteStatusChecker').then(mod => ({ default: mod.WebsiteStatusChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'url-redirect-tracer': dynamic(() => import('@/components/tools/UrlRedirectTracer').then(mod => ({ default: mod.UrlRedirectTracer })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
