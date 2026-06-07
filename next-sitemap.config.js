@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://toolforge-jet.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.toolforge.website',
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,
