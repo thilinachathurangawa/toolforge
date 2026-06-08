@@ -229,7 +229,7 @@ export function SERPSnippetPreview() {
             {siteName && (
               <div className="flex items-center gap-2 mb-1">
                 {faviconUrl ? (
-                  <img src={faviconUrl} alt="" className="w-4 h-4" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                  <img src={faviconUrl} alt="Website favicon" className="w-4 h-4" onError={(e) => (e.currentTarget.style.display = 'none')} />
                 ) : (
                   <div className="w-4 h-4 bg-gray-300 dark:bg-gray-600 rounded" />
                 )}

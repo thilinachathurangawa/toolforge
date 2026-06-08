@@ -119,7 +119,7 @@ export function AsciiArtGenerator() {
     <div className="w-full space-y-6">
       {/* Hidden canvas for processing */}
       <canvas ref={canvasRef} className="hidden" />
-      <img ref={imageRef} src={imageUrl || ''} alt="" className="hidden" crossOrigin="anonymous" />
+      <img ref={imageRef} src={imageUrl || ''} alt="Upload image for ASCII art conversion" className="hidden" crossOrigin="anonymous" />
 
       {/* Upload Section */}
       <div className="p-6 border border-border rounded-xl bg-card">

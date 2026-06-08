@@ -8,6 +8,7 @@ import {
   type ToolCategory,
 } from '@/lib/constants/tools';
 import { siteConfig } from '@/lib/constants/site';
+import { buildCategoryJsonLd } from '@/lib/seo/json-ld';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 import { ToolCard } from '@/components/shared/ToolCard';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
@@ -58,9 +59,15 @@ export default function CategoryPage({ params }: CategoryPageParams) {
   }
 
   const tools = getToolsByCategory(slug as ToolCategory);
+  const jsonLd = buildCategoryJsonLd(category, tools);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
       <Breadcrumb
         items={[
           { label: 'Tools', href: '/tools' },
@@ -83,6 +90,18 @@ export default function CategoryPage({ params }: CategoryPageParams) {
           </div>
         </header>
 
+        <section className="mb-8 bg-surface border border-border rounded-lg p-6">
+          <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+            About {category.label}
+          </h2>
+          <p className="text-sm text-text-secondary leading-relaxed">
+            Browse our comprehensive collection of free online {category.label.toLowerCase()}.
+            All tools are completely free, require no registration, and run entirely in your browser
+            for maximum privacy and security. Perfect for developers, designers, students, and anyone
+            who needs quick, reliable online tools.
+          </p>
+        </section>
+
         {tools.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
@@ -104,5 +123,6 @@ export default function CategoryPage({ params }: CategoryPageParams) {
         )}
       </div>
     </div>
+    </>
   );
 }

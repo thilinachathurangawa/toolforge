@@ -329,7 +329,7 @@ export default function ToolPage({ params }: ToolPageParams) {
 
   const relatedTools = getRelatedTools(slug);
   const category = CATEGORIES.find((c) => c.value === tool.category);
-  const jsonLd = buildToolJsonLd(tool);
+  const jsonLd = buildToolJsonLd(tool, tool.faqs);
 
   return (
     <>
@@ -383,13 +383,16 @@ export default function ToolPage({ params }: ToolPageParams) {
                 How to Use
               </h2>
               <ol className="list-decimal list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
-                <li>Open {tool.name} on this page — no account or install required.</li>
-                <li>
-                  Provide your input (paste text, upload a file, or adjust settings depending on
-                  the tool).
-                </li>
-                <li>Run the tool — processing happens entirely in your browser.</li>
-                <li>Copy or download the result when you are done.</li>
+                {tool.howToUse && tool.howToUse.length > 0 ? (
+                  tool.howToUse.map((step, index) => <li key={index}>{step}</li>)
+                ) : (
+                  <>
+                    <li>Open {tool.name} on this page — no account or install required.</li>
+                    <li>Provide your input (paste text, upload a file, or adjust settings depending on the tool).</li>
+                    <li>Run the tool — processing happens entirely in your browser.</li>
+                    <li>Copy or download the result when you are done.</li>
+                  </>
+                )}
               </ol>
             </section>
 
@@ -397,11 +400,17 @@ export default function ToolPage({ params }: ToolPageParams) {
               <h2 className="font-display text-xl font-bold text-text-primary mb-3">
                 About This Tool
               </h2>
-              <p className="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
-              <p className="text-sm text-text-secondary leading-relaxed mt-3">
-                ToolForge runs {tool.name.toLowerCase()} client-side so your data never leaves your
-                device. It is free, requires no sign-up, and works on desktop and mobile browsers.
-              </p>
+              {tool.aboutContent ? (
+                <p className="text-sm text-text-secondary leading-relaxed">{tool.aboutContent}</p>
+              ) : (
+                <p className="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
+              )}
+              {!tool.aboutContent && (
+                <p className="text-sm text-text-secondary leading-relaxed mt-3">
+                  ToolForge runs {tool.name.toLowerCase()} client-side so your data never leaves your
+                  device. It is free, requires no sign-up, and works on desktop and mobile browsers.
+                </p>
+              )}
               {tool.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2 mt-4">
                   {tool.tags.map((tag) => (
@@ -415,6 +424,22 @@ export default function ToolPage({ params }: ToolPageParams) {
                 </div>
               )}
             </section>
+
+            {tool.faqs && tool.faqs.length > 0 && (
+              <section>
+                <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {tool.faqs.map((faq, index) => (
+                    <div key={index} className="border border-border rounded-lg p-4 bg-surface">
+                      <h3 className="font-medium text-text-primary mb-2">{faq.question}</h3>
+                      <p className="text-sm text-text-secondary leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Related tools — visible on mobile; sidebar shows on desktop */}
             {relatedTools.length > 0 && (

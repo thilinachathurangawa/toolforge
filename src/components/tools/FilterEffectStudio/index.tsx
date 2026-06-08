@@ -253,7 +253,7 @@ export function FilterEffectStudio() {
     <div className="w-full space-y-6">
       {/* Hidden elements */}
       <canvas ref={canvasRef} className="hidden" />
-      <img ref={imageRef} src={imageUrl || ''} alt="" className="hidden" crossOrigin="anonymous" onLoad={applyFilters} />
+      <img ref={imageRef} src={imageUrl || ''} alt="Upload image for filter effects" className="hidden" crossOrigin="anonymous" onLoad={applyFilters} />
 
       {/* Upload Section */}
       <div className="p-6 border border-border rounded-xl bg-card">

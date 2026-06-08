@@ -13,6 +13,8 @@ export type ToolCategory =
   | 'network'
   | 'creative';
 
+import { FAQ } from '@/lib/seo/json-ld';
+
 export interface Tool {
   slug: string;
   name: string;
@@ -26,6 +28,9 @@ export interface Tool {
   isPopular?: boolean;
   relatedTools?: string[];
   phase: 1 | 2 | 3 | 4; // which phase this tool ships in
+  faqs?: FAQ[]; // SEO FAQs for FAQPage schema
+  howToUse?: string[]; // Custom how-to steps for this tool
+  aboutContent?: string; // Enhanced about content (100-150 words)
 }
 
 export const TOOLS: Tool[] = [
@@ -44,6 +49,31 @@ export const TOOLS: Tool[] = [
     isPopular: true,
     relatedTools: ['image-resizer', 'image-converter', 'image-cropper'],
     phase: 2,
+    faqs: [
+      {
+        question: 'How does image compression work without losing quality?',
+        answer: 'Our tool uses advanced algorithms to optimize image data while preserving visual quality. It removes unnecessary metadata and applies smart compression techniques that reduce file size significantly while maintaining the image clarity.',
+      },
+      {
+        question: 'Is my image data safe when using this tool?',
+        answer: 'Absolutely. All image processing happens directly in your browser using JavaScript. Your images are never uploaded to any server, ensuring complete privacy and security.',
+      },
+      {
+        question: 'What image formats are supported?',
+        answer: 'We support JPG, PNG, and WebP formats. You can compress individual images or batch process multiple images at once.',
+      },
+      {
+        question: 'Can I control the compression level?',
+        answer: 'Yes, you can adjust the compression quality slider to balance between file size reduction and image quality according to your needs.',
+      },
+    ],
+    howToUse: [
+      'Upload your image by dragging and dropping or clicking the upload button',
+      'Adjust the compression quality slider to your preferred level',
+      'Preview the compressed image and compare file sizes',
+      'Download your optimized image instantly',
+    ],
+    aboutContent: 'The Image Compressor is a powerful free online tool that reduces image file sizes while maintaining quality. Perfect for web developers, content creators, and anyone who needs to optimize images for faster website loading. Our compression algorithm intelligently removes unnecessary data and applies efficient encoding techniques. Use this tool to compress JPG, PNG, and WebP images without installing any software or uploading files to external servers.',
   },
   {
     slug: 'qr-generator',
@@ -58,6 +88,31 @@ export const TOOLS: Tool[] = [
     isPopular: true,
     relatedTools: ['barcode-generator', 'password-generator'],
     phase: 2,
+    faqs: [
+      {
+        question: 'What types of QR codes can I generate?',
+        answer: 'You can generate QR codes for URLs, plain text, email addresses, phone numbers, WiFi credentials, and more. Each type is optimized for its specific use case.',
+      },
+      {
+        question: 'What file formats are available for download?',
+        answer: 'QR codes can be downloaded as PNG (raster) or SVG (vector) formats. SVG is recommended for print materials as it can be scaled without quality loss.',
+      },
+      {
+        question: 'Can I customize the QR code appearance?',
+        answer: 'Yes, you can adjust the size, color, and error correction level of your QR code to match your branding or design requirements.',
+      },
+      {
+        question: 'Are the generated QR codes free to use?',
+        answer: 'Absolutely. All QR codes generated are completely free for both personal and commercial use with no watermarks or restrictions.',
+      },
+    ],
+    howToUse: [
+      'Select the type of QR code you want to create (URL, text, WiFi, etc.)',
+      'Enter your content in the input field',
+      'Customize the size, color, and other settings if desired',
+      'Click generate and download your QR code in PNG or SVG format',
+    ],
+    aboutContent: 'The QR Code Generator is a versatile free online tool for creating custom QR codes for various purposes. Whether you need to share a website link, contact information, or WiFi credentials, this tool makes it simple. Perfect for marketers, business owners, and anyone who needs quick, scannable codes. Our generator supports multiple data types and offers both raster and vector output formats for maximum flexibility.',
   },
   {
     slug: 'password-generator',
@@ -72,6 +127,31 @@ export const TOOLS: Tool[] = [
     isPopular: true,
     relatedTools: ['hash-generator', 'uuid-generator'],
     phase: 2,
+    faqs: [
+      {
+        question: 'How secure are the generated passwords?',
+        answer: 'Our password generator uses cryptographically secure random number generation to create truly unpredictable passwords. Each password is generated locally in your browser for maximum security.',
+      },
+      {
+        question: 'What password length should I use?',
+        answer: 'We recommend at least 16 characters for high-security applications. Longer passwords are exponentially more difficult to crack. Our generator supports up to 128 characters.',
+      },
+      {
+        question: 'Should I include special characters and numbers?',
+        answer: 'Yes, including a mix of uppercase letters, lowercase letters, numbers, and special characters significantly increases password strength by expanding the possible character combinations.',
+      },
+      {
+        question: 'Are my passwords stored or sent anywhere?',
+        answer: 'No. All password generation happens entirely in your browser using JavaScript. No data is ever sent to any server, ensuring your passwords remain completely private.',
+      },
+    ],
+    howToUse: [
+      'Set your desired password length using the slider (minimum 8 characters recommended)',
+      'Select character types: uppercase, lowercase, numbers, and symbols',
+      'Click the generate button to create a random password',
+      'Copy the password to your clipboard using the copy button',
+    ],
+    aboutContent: 'The Password Generator is a essential security tool for creating strong, random passwords that protect your online accounts. Using weak or predictable passwords is a major security risk. Our generator creates cryptographically secure passwords with customizable length and complexity. Perfect for creating passwords for websites, applications, and services. All generation happens locally in your browser, ensuring your passwords are never stored or transmitted.',
   },
   {
     slug: 'image-cropper',
@@ -99,6 +179,31 @@ export const TOOLS: Tool[] = [
     isPopular: true,
     relatedTools: ['base64-encoder', 'url-encoder', 'hash-generator'],
     phase: 2,
+    faqs: [
+      {
+        question: 'What can I do with this JSON tool?',
+        answer: 'You can format and beautify JSON for readability, validate JSON syntax to find errors, minify JSON to reduce file size, and view JSON data in a structured tree format.',
+      },
+      {
+        question: 'How does JSON validation work?',
+        answer: 'Our tool checks your JSON against the official JSON specification. It identifies syntax errors, missing commas, mismatched brackets, and other common issues with clear error messages.',
+      },
+      {
+        question: 'Can I minify JSON for production use?',
+        answer: 'Yes, our minify feature removes all whitespace and unnecessary characters to create compact JSON files perfect for API responses and production environments.',
+      },
+      {
+        question: 'Is my JSON data secure?',
+        answer: 'Absolutely. All JSON processing happens locally in your browser. Your data is never sent to any server, ensuring complete privacy and security for sensitive data.',
+      },
+    ],
+    howToUse: [
+      'Paste or type your JSON data into the input area',
+      'Click "Format" to beautify or "Minify" to compress',
+      'Use "Validate" to check for syntax errors',
+      'Copy the formatted result to your clipboard',
+    ],
+    aboutContent: 'The JSON Formatter is an essential developer tool for working with JSON data. Whether you need to format messy JSON for readability, validate syntax, or minify for production, this tool handles it all. Perfect for web developers, API integrators, and anyone working with JSON data. Our validator provides clear error messages to help you debug quickly, and the tree view makes complex JSON structures easy to understand.',
   },
   {
     slug: 'word-counter',
@@ -112,6 +217,31 @@ export const TOOLS: Tool[] = [
     icon: 'AlignLeft',
     relatedTools: ['lorem-ipsum', 'case-converter', 'markdown-previewer'],
     phase: 2,
+    faqs: [
+      {
+        question: 'What text metrics does this tool count?',
+        answer: 'Our word counter tracks words, characters (with and without spaces), sentences, paragraphs, and reading time. It provides comprehensive text analysis for writers and editors.',
+      },
+      {
+        question: 'Does this tool count words in real-time?',
+        answer: 'Yes, the word counter updates instantly as you type or paste text. You can see the counts change in real-time, making it perfect for writing with specific word count requirements.',
+      },
+      {
+        question: 'Can I use this for academic or professional writing?',
+        answer: 'Absolutely. Our word counter is ideal for essays, reports, articles, and any writing with word limits. It accurately counts words according to standard conventions.',
+      },
+      {
+        question: 'Is my text data private?',
+        answer: 'Yes, all text processing happens entirely in your browser. Your content is never sent to any server, ensuring complete privacy for sensitive documents.',
+      },
+    ],
+    howToUse: [
+      'Type or paste your text into the input area',
+      'View real-time word count, character count, and other metrics',
+      'Use the analysis to meet word count requirements or improve readability',
+      'Copy the results or clear the text to start over',
+    ],
+    aboutContent: 'The Word Counter is a versatile free online tool for writers, students, bloggers, and anyone who needs to track text metrics. Our tool provides real-time word count, character count, sentence count, paragraph count, and estimated reading time. Perfect for meeting essay requirements, social media character limits, or analyzing document length. All processing happens locally in your browser for complete privacy.',
   },
   {
     slug: 'color-palette',
@@ -125,6 +255,31 @@ export const TOOLS: Tool[] = [
     icon: 'Palette',
     relatedTools: ['image-compressor', 'image-cropper', 'color-picker'],
     phase: 2,
+    faqs: [
+      {
+        question: 'How does color extraction work?',
+        answer: 'Our tool analyzes the pixels in your image to identify the most frequently occurring colors. It uses advanced algorithms to extract dominant colors while ignoring minor variations and noise.',
+      },
+      {
+        question: 'What color formats are supported?',
+        answer: 'We provide colors in multiple formats including HEX (for web), RGB (for digital design), and HSL (for color manipulation). You can copy any format with one click.',
+      },
+      {
+        question: 'Can I upload any type of image?',
+        answer: 'Yes, we support all common image formats including JPG, PNG, WebP, GIF, and more. The tool processes images entirely in your browser for maximum privacy.',
+      },
+      {
+        question: 'How many colors will be extracted?',
+        answer: 'By default, we extract the 10 most dominant colors from your image. You can adjust this number to get fewer or more colors depending on your needs.',
+      },
+    ],
+    howToUse: [
+      'Upload an image by dragging and dropping or clicking the upload button',
+      'The tool automatically extracts dominant colors from your image',
+      'View the color palette with HEX, RGB, and HSL values',
+      'Click on any color to copy it to your clipboard',
+    ],
+    aboutContent: 'The Color Palette Extractor is a powerful free online tool for designers, developers, and anyone working with colors. Simply upload an image and instantly extract the dominant colors to create beautiful color schemes. Perfect for website design, branding, art projects, and color inspiration. Our tool provides colors in multiple formats and processes images locally for complete privacy.',
   },
   {
     slug: 'base64-encoder',
@@ -225,6 +380,31 @@ export const TOOLS: Tool[] = [
     icon: 'ArrowLeftRight',
     relatedTools: [],
     phase: 3,
+    faqs: [
+      {
+        question: 'What unit categories are supported?',
+        answer: 'Our unit converter supports length, weight, temperature, area, volume, speed, time, data storage, and more. We regularly add new unit categories based on user feedback.',
+      },
+      {
+        question: 'How accurate are the conversions?',
+        answer: 'Our conversions use precise mathematical formulas and standard conversion factors. The results are accurate to multiple decimal places for scientific and engineering applications.',
+      },
+      {
+        question: 'Can I convert multiple values at once?',
+        answer: 'Yes, you can convert as many values as you need. Simply enter a value and select the units, and the conversion happens instantly. You can then change the value and units for additional conversions.',
+      },
+      {
+        question: 'Is this tool free to use?',
+        answer: 'Absolutely. Our unit converter is completely free with no limitations, subscriptions, or hidden fees. Use it as often as you need for personal or commercial purposes.',
+      },
+    ],
+    howToUse: [
+      'Select the unit category you want to convert (length, weight, temperature, etc.)',
+      'Enter the value you want to convert',
+      'Select the original unit and target unit from the dropdowns',
+      'View the converted result instantly',
+    ],
+    aboutContent: 'The Unit Converter is a comprehensive free online tool for converting between different measurement units. Whether you need to convert metric to imperial, calculate temperature differences, or convert data storage units, this tool handles it all. Perfect for students, engineers, scientists, and everyday conversions. Our converter supports multiple categories and provides instant, accurate results.',
   },
   {
     slug: 'markdown-previewer',
@@ -237,6 +417,31 @@ export const TOOLS: Tool[] = [
     icon: 'FileText',
     relatedTools: ['word-counter', 'lorem-ipsum'],
     phase: 3,
+    faqs: [
+      {
+        question: 'What Markdown syntax is supported?',
+        answer: 'Our previewer supports GitHub Flavored Markdown (GFM), including tables, task lists, strikethrough, autolinks, and more. It also supports standard Markdown syntax like headers, lists, links, images, and code blocks.',
+      },
+      {
+        question: 'Can I export the rendered Markdown?',
+        answer: 'Yes, you can copy the rendered HTML or export it. This is perfect for using Markdown content in websites, emails, or documents that support HTML.',
+      },
+      {
+        question: 'Is my content saved or stored anywhere?',
+        answer: 'No, all content stays in your browser. Nothing is sent to servers or stored in databases. Your Markdown content remains completely private and secure.',
+      },
+      {
+        question: 'Can I use syntax highlighting for code blocks?',
+        answer: 'Yes, our previewer supports syntax highlighting for code blocks. Simply specify the language after the opening backticks (e.g., ```javascript) and your code will be beautifully highlighted.',
+      },
+    ],
+    howToUse: [
+      'Type or paste your Markdown content in the left editor panel',
+      'See the live rendered preview in the right panel',
+      'Use the toolbar buttons for common Markdown formatting',
+      'Copy the HTML or download when finished',
+    ],
+    aboutContent: 'The Markdown Previewer is an essential tool for writers, developers, and content creators. Write Markdown syntax and see a live preview instantly, making it easy to format documents, blog posts, and technical documentation. Our tool supports GitHub Flavored Markdown with syntax highlighting for code blocks. Perfect for README files, documentation, and any Markdown-based content.',
   },
   {
     slug: 'lorem-ipsum',
@@ -249,6 +454,31 @@ export const TOOLS: Tool[] = [
     icon: 'Type',
     relatedTools: ['word-counter', 'markdown-previewer'],
     phase: 3,
+    faqs: [
+      {
+        question: 'What is Lorem Ipsum text?',
+        answer: 'Lorem Ipsum is standard placeholder text used in printing and typesetting. It has been the industry standard for centuries and helps designers focus on layout without being distracted by meaningful content.',
+      },
+      {
+        question: 'Can I customize the amount of text generated?',
+        answer: 'Yes, you can choose to generate a specific number of words, sentences, or paragraphs. You can also generate text that fits within a specific character limit for your design needs.',
+      },
+      {
+        question: 'Is the generated text unique each time?',
+        answer: 'Each time you generate text, it creates a new random variation while maintaining the classic Lorem Ipsum structure. This gives you variety while keeping the authentic look and feel.',
+      },
+      {
+        question: 'Can I use this for commercial projects?',
+        answer: 'Absolutely. Lorem Ipsum text is in the public domain and free to use for any purpose, personal or commercial. Our generator makes it easy to get the exact amount you need.',
+      },
+    ],
+    howToUse: [
+      'Select the type of text you want (words, sentences, or paragraphs)',
+      'Specify the quantity or let it generate a standard amount',
+      'Click generate to create your placeholder text',
+      'Copy the text to use in your designs or mockups',
+    ],
+    aboutContent: 'The Lorem Ipsum Generator is the perfect tool for designers, developers, and anyone needing placeholder text. Create realistic dummy text for website mockups, print designs, and prototypes. Our generator allows you to control the amount and type of text, giving you exactly what you need for your project. Lorem Ipsum has been the standard placeholder text for centuries, and our tool makes it easy to use.',
   },
 
   // ── Phase 3: Developer Tools (Extended) ───────────────────────────────
