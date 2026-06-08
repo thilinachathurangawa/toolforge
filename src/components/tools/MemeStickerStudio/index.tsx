@@ -42,8 +42,20 @@ export function MemeStickerStudio() {
   const [error, setError] = useState<string | null>(null);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [layerStart, setLayerStart] = useState({ x: 0, y: 0 });
 
-  const stickers = ['😀', '😂', '😎', '🎉', '❤️', '⭐', '🔥', '💯'];
+  const stickers = [
+    '😀', '😂', '😎', '🎉', '❤️', '⭐', '🔥', '💯',
+    '👍', '👎', '🤣', '😍', '🥳', '😜', '🤔', '😴',
+    '🙄', '😱', '🤯', '🥺', '😇', '🤩', '😈', '👻',
+    '💀', '🎃', '🎄', '🎂', '🎁', '🎈', '🎀', '🏆',
+    '🥇', '🥈', '🥉', '💎', '💰', '💸', '💳', '🔑',
+    '🚀', '✈️', '🚗', '🏠', '🌟', '☀️', '🌈', '🍕',
+    '🍔', '🍟', '🍦', '🍩', '🍪', '☕', '🍺', '🎵',
+    '🎸', '🎹', '🎤', '🎧', '📱', '💻', '📷', '🎥'
+  ];
 
   const addToHistory = (newLayers: Layer[]) => {
     const newHistory = history.slice(0, historyIndex + 1);
@@ -66,23 +78,26 @@ export function MemeStickerStudio() {
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
+        // Set canvas size to match image if it's the first layer
+        const canvasWidth = layers.length === 0 ? img.width : canvasSize.width;
+        const canvasHeight = layers.length === 0 ? img.height : canvasSize.height;
+        
+        if (layers.length === 0) {
+          setCanvasSize({ width: img.width, height: img.height });
+        }
+
         const newLayer: ImageLayer = {
           id: Date.now().toString(),
           type: 'image',
           visible: true,
-          x: 0,
-          y: 0,
+          x: canvasWidth / 2,
+          y: canvasHeight / 2,
           rotation: 0,
           scaleX: 1,
           scaleY: 1,
           src: event.target?.result as string,
           image: img,
         };
-        
-        // Set canvas size to match image if it's the first layer
-        if (layers.length === 0) {
-          setCanvasSize({ width: img.width, height: img.height });
-        }
         
         const newLayers = [...layers, newLayer];
         setLayers(newLayers);
@@ -257,6 +272,103 @@ export function MemeStickerStudio() {
 
   const selectedLayer = layers.find((layer) => layer.id === selectedLayerId);
 
+  const handleCanvasMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    // Find the topmost visible layer at the click position
+    for (let i = layers.length - 1; i >= 0; i--) {
+      const layer = layers[i];
+      if (!layer.visible) continue;
+
+      // Simple hit detection - check if click is within reasonable distance of layer center
+      const dx = x - layer.x;
+      const dy = y - layer.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      // For images, use a larger hit area
+      if (layer.type === 'image' || layer.type === 'sticker') {
+        const imgLayer = layer as ImageLayer;
+        const hitRadius = Math.max(canvasSize.width, canvasSize.height) * 0.15;
+        if (distance < hitRadius) {
+          setSelectedLayerId(layer.id);
+          setIsDragging(true);
+          setDragStart({ x, y });
+          setLayerStart({ x: layer.x, y: layer.y });
+          return;
+        }
+      } else if (layer.type === 'text') {
+        const textLayer = layer as TextLayer;
+        const hitRadius = textLayer.size * 2;
+        if (distance < hitRadius) {
+          setSelectedLayerId(layer.id);
+          setIsDragging(true);
+          setDragStart({ x, y });
+          setLayerStart({ x: layer.x, y: layer.y });
+          return;
+        }
+      }
+    }
+  };
+
+  const handleCanvasMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!isDragging || !selectedLayerId || !canvasRef.current) return;
+
+    const canvas = canvasRef.current;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+
+    const dx = x - dragStart.x;
+    const dy = y - dragStart.y;
+
+    const newLayers = layers.map((layer) =>
+      layer.id === selectedLayerId
+        ? { ...layer, x: layerStart.x + dx, y: layerStart.y + dy }
+        : layer
+    );
+
+    setLayers(newLayers);
+  };
+
+  const handleCanvasMouseUp = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      addToHistory(layers);
+    }
+  };
+
+  const handleCanvasMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      addToHistory(layers);
+    }
+  };
+
+  const handleScaleChange = (newScale: number) => {
+    if (!selectedLayerId) return;
+    const newLayers = layers.map((layer) =>
+      layer.id === selectedLayerId
+        ? { ...layer, scaleX: newScale, scaleY: newScale }
+        : layer
+    );
+    setLayers(newLayers);
+  };
+
+  const handleScaleChangeEnd = () => {
+    if (selectedLayerId) {
+      addToHistory(layers);
+    }
+  };
+
   return (
     <div className="w-full space-y-6">
 
@@ -368,12 +480,57 @@ export function MemeStickerStudio() {
               </button>
             </div>
           </div>
+
+          {/* Resize Controls */}
+          {selectedLayer && (
+            <div className="p-4 bg-muted/50 rounded-lg space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-foreground">Resize {selectedLayer.type}</span>
+                <span className="text-sm text-muted-foreground">{Math.round(selectedLayer.scaleX * 100)}%</span>
+              </div>
+              <input
+                type="range"
+                min="0.1"
+                max="3"
+                step="0.1"
+                value={selectedLayer.scaleX}
+                onChange={(e) => handleScaleChange(parseFloat(e.target.value))}
+                onMouseUp={handleScaleChangeEnd}
+                className="w-full h-2 bg-muted-foreground/20 rounded-lg appearance-none cursor-pointer accent-accent"
+              />
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleScaleChange(Math.max(0.1, selectedLayer.scaleX - 0.1))}
+                  className="flex-1 px-3 py-1 text-sm bg-secondary hover:bg-secondary/80 rounded transition-colors"
+                >
+                  -10%
+                </button>
+                <button
+                  onClick={() => handleScaleChange(1)}
+                  className="flex-1 px-3 py-1 text-sm bg-secondary hover:bg-secondary/80 rounded transition-colors"
+                >
+                  Reset
+                </button>
+                <button
+                  onClick={() => handleScaleChange(Math.min(3, selectedLayer.scaleX + 0.1))}
+                  className="flex-1 px-3 py-1 text-sm bg-secondary hover:bg-secondary/80 rounded transition-colors"
+                >
+                  +10%
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="border rounded-lg p-4 flex justify-center bg-muted/50 overflow-auto">
             <div style={{ transform: `scale(${zoom})`, transformOrigin: 'top center' }}>
               <canvas
                 ref={canvasRef}
-                className="max-w-full border border-border"
+                className="max-w-full border border-border cursor-move"
                 style={{ maxWidth: '100%', height: 'auto' }}
+                onMouseDown={handleCanvasMouseDown}
+                onMouseMove={handleCanvasMouseMove}
+                onMouseUp={handleCanvasMouseUp}
+                onMouseLeave={handleCanvasMouseLeave}
               />
             </div>
           </div>
