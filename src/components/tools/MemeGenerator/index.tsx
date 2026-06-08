@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { Upload, Download, Plus, Trash2, Smile, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +19,7 @@ interface TextLayer {
 export function MemeGenerator() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [loadedImage, setLoadedImage] = useState<HTMLImageElement | null>(null);
   const [textLayers, setTextLayers] = useState<TextLayer[]>([
     { id: '1', text: 'TOP TEXT', x: 50, y: 50, font: 'Impact', size: 48, color: '#FFFFFF', hasStroke: true, strokeColor: '#000000' },
     { id: '2', text: 'BOTTOM TEXT', x: 50, y: 90, font: 'Impact', size: 48, color: '#FFFFFF', hasStroke: true, strokeColor: '#000000' },
@@ -27,7 +28,6 @@ export function MemeGenerator() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
 
   const fonts = ['Impact', 'Arial', 'Comic Sans MS', 'Times New Roman', 'Courier New'];
 
@@ -44,6 +44,14 @@ export function MemeGenerator() {
     reader.onload = (e) => {
       const result = e.target?.result as string;
       setImageUrl(result);
+      
+      // Pre-load the image
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        setLoadedImage(img);
+      };
+      img.src = result;
     };
     reader.readAsDataURL(uploadedFile);
   };
@@ -84,18 +92,17 @@ export function MemeGenerator() {
   };
 
   const renderCanvas = useCallback(() => {
-    if (!canvasRef.current || !imageRef.current || !imageUrl) return;
+    if (!canvasRef.current || !loadedImage) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const img = imageRef.current;
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = loadedImage.width;
+    canvas.height = loadedImage.height;
 
     // Draw image
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(loadedImage, 0, 0);
 
     // Draw text layers
     textLayers.forEach((layer) => {
@@ -117,20 +124,23 @@ export function MemeGenerator() {
       // Draw text
       ctx.fillText(layer.text, x, y);
     });
-  }, [imageUrl, textLayers]);
+  }, [loadedImage, textLayers]);
 
   React.useEffect(() => {
     renderCanvas();
   }, [renderCanvas]);
 
+  // Re-render canvas when image is loaded
+  React.useEffect(() => {
+    if (loadedImage) {
+      renderCanvas();
+    }
+  }, [loadedImage, renderCanvas]);
+
   const selectedLayer = textLayers.find((layer) => layer.id === selectedLayerId);
 
   return (
     <div className="w-full space-y-6">
-      {/* Hidden elements */}
-      <canvas ref={canvasRef} className="hidden" />
-      <img ref={imageRef} src={imageUrl || ''} alt="" className="hidden" crossOrigin="anonymous" onLoad={renderCanvas} />
-
       {/* Upload Section */}
       <div className="p-6 border border-border rounded-xl bg-card">
         <div className="space-y-4">
@@ -313,14 +323,14 @@ export function MemeGenerator() {
       </div>
 
       {/* Preview Section */}
-      {imageUrl && (
+      {loadedImage && (
         <div className="p-6 border border-border rounded-xl bg-card space-y-4">
           <h3 className="font-semibold text-foreground">Preview</h3>
           <div className="border rounded-lg p-4 flex justify-center bg-muted/50 min-h-[300px]">
-            <img
-              src={canvasRef.current?.toDataURL() || imageUrl}
-              alt="Meme Preview"
-              className="max-w-full max-h-[500px] object-contain"
+            <canvas
+              ref={canvasRef}
+              className="max-w-full max-h-[500px] object-contain border border-border"
+              style={{ maxWidth: '100%', height: 'auto' }}
             />
           </div>
 
