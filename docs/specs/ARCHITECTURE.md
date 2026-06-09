@@ -120,11 +120,11 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     openGraph: {
       title: tool.name,
       description: tool.description,
-      url: `https://toolforge-jet.vercel.app/tools/${tool.slug}`,
+      url: `https://www.toolforge.website/tools/${tool.slug}`,
       images: [`/og-images/${tool.slug}.png`],
     },
     alternates: {
-      canonical: `https://toolforge-jet.vercel.app/tools/${tool.slug}`,
+      canonical: `https://www.toolforge.website/tools/${tool.slug}`,
     },
   };
 }
@@ -173,7 +173,7 @@ Sidebar layout (desktop only):
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-XXXXXXXXXXXXXXXX
 NEXT_PUBLIC_ADSTERRA_KEY=XXXXXXXXXX
-NEXT_PUBLIC_SITE_URL=https://toolforge-jet.vercel.app
+NEXT_PUBLIC_SITE_URL=https://www.toolforge.website
 ```
 
 ---

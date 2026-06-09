@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
                   <tr>
                     <td style="padding: 20px 40px 40px 40px; border-top: 1px solid #e2e8f0; text-align: center;">
                       <p style="margin: 0; font-size: 13px; color: #94a3b8;">
-                        This message was sent from the <a href="https://toolforge-jet.vercel.app/contact" style="color: #6366f1; text-decoration: none; font-weight: 500;">ToolForge contact form</a>.
+                        This message was sent from the <a href="https://www.toolforge.website/contact" style="color: #6366f1; text-decoration: none; font-weight: 500;">ToolForge contact form</a>.
                       </p>
                       <p style="margin: 8px 0 0 0; font-size: 12px; color: #cbd5e1;">
                         © ${new Date().getFullYear()} ToolForge. All rights reserved.
