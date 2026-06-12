@@ -1,10 +1,5 @@
-# *
 User-agent: *
 Allow: /
 Disallow: /api/
 
-# Host
-Host: https://www.toolforge.website
-
-# Sitemaps
 Sitemap: https://www.toolforge.website/sitemap.xml
