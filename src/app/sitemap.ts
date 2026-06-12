@@ -10,7 +10,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1.0,
     },
@@ -20,7 +19,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   CATEGORIES.forEach((cat) => {
     routes.push({
       url: `${baseUrl}/category/${cat.value}`,
-      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     });
@@ -30,7 +28,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   TOOLS.forEach((tool) => {
     routes.push({
       url: `${baseUrl}/tools/${tool.slug}`,
-      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     });
