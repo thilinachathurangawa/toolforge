@@ -46,7 +46,7 @@ export function DebtPayoffCalculator() {
     let totalInterestValue = 0;
     let months = 0;
 
-    if (monthlyPayment <= minPaymentNum) {
+    if (paymentNum <= minPaymentNum) {
       setMonthsToPayoff(null);
       setTotalInterest(null);
       setTotalPaid(null);
@@ -55,7 +55,7 @@ export function DebtPayoffCalculator() {
 
     while (balance > 0 && months < 600) {
       const interestPayment = balance * monthlyRate;
-      const principalPayment = monthlyPayment - interestPayment;
+      const principalPayment = paymentNum - interestPayment;
       
       if (principalPayment <= 0) {
         // Payment only covers interest

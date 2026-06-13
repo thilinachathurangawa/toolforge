@@ -66,9 +66,6 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Generate sitemap
-npm run postbuild
 ```
 
 ---

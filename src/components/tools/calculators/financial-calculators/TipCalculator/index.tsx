@@ -49,7 +49,7 @@ export function TipCalculator() {
   }, [calculateTip]);
 
   const handleCopy = () => {
-    if (totalAmount !== null && tipAmount !== null) {
+    if (totalAmount !== null && tipAmount !== null && perPersonTotal !== null) {
       const result = `Bill Amount: $${parseFloat(billAmount).toFixed(2)}\nTip Amount: $${tipAmount.toFixed(2)}\nTotal Amount: $${totalAmount.toFixed(2)}\nPer Person: $${perPersonTotal.toFixed(2)}`;
       navigator.clipboard.writeText(result);
       setCopied(true);

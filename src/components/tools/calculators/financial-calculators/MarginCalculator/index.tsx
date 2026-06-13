@@ -44,7 +44,7 @@ export function MarginCalculator() {
   }, [calculateMargin]);
 
   const handleCopy = () => {
-    if (profitAmount !== null && profitMargin !== null) {
+    if (profitAmount !== null && profitMargin !== null && markupPercentage !== null) {
       const result = `Cost Price: $${parseFloat(costPrice).toFixed(2)}\nSelling Price: $${parseFloat(sellingPrice).toFixed(2)}\nProfit: $${profitAmount.toFixed(2)}\nProfit Margin: ${profitMargin.toFixed(2)}%\nMarkup: ${markupPercentage.toFixed(2)}%`;
       navigator.clipboard.writeText(result);
       setCopied(true);

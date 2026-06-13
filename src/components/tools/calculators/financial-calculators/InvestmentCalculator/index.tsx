@@ -87,7 +87,7 @@ export function InvestmentCalculator() {
   }, [calculateInvestment]);
 
   const handleCopy = () => {
-    if (finalValue !== null && totalProfit !== null && roi !== null) {
+    if (finalValue !== null && totalProfit !== null && roi !== null && totalInvested !== null) {
       const result = `Initial Investment: $${parseFloat(initialInvestment).toFixed(2)}\nMonthly Contribution: $${parseFloat(monthlyContribution).toFixed(2)}\nFinal Value: $${finalValue.toFixed(2)}\nTotal Invested: $${totalInvested.toFixed(2)}\nTotal Profit: $${totalProfit.toFixed(2)}\nROI: ${roi.toFixed(2)}%`;
       navigator.clipboard.writeText(result);
       setCopied(true);

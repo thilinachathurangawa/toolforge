@@ -283,6 +283,94 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'loan-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/LoanCalculator').then(mod => ({ default: mod.LoanCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'emi-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/EMICalculator').then(mod => ({ default: mod.EMICalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'compound-interest-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/CompoundInterestCalculator').then(mod => ({ default: mod.CompoundInterestCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'simple-interest-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/SimpleInterestCalculator').then(mod => ({ default: mod.SimpleInterestCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'savings-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/SavingsCalculator').then(mod => ({ default: mod.SavingsCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'investment-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/InvestmentCalculator').then(mod => ({ default: mod.InvestmentCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'roi-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/ROICalculator').then(mod => ({ default: mod.ROICalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'discount-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/DiscountCalculator').then(mod => ({ default: mod.DiscountCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'percent-off-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/PercentOffCalculator').then(mod => ({ default: mod.PercentOffCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'sales-tax-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/SalesTaxCalculator').then(mod => ({ default: mod.SalesTaxCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'vat-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/VATCalculator').then(mod => ({ default: mod.VATCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'tip-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/TipCalculator').then(mod => ({ default: mod.TipCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'margin-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/MarginCalculator').then(mod => ({ default: mod.MarginCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'commission-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/CommissionCalculator').then(mod => ({ default: mod.CommissionCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'salary-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/SalaryCalculator').then(mod => ({ default: mod.SalaryCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'budget-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/BudgetCalculator').then(mod => ({ default: mod.BudgetCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'debt-payoff-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/DebtPayoffCalculator').then(mod => ({ default: mod.DebtPayoffCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'credit-card-payoff-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/CreditCardPayoffCalculator').then(mod => ({ default: mod.CreditCardPayoffCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'student-loan-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/StudentLoanCalculator').then(mod => ({ default: mod.StudentLoanCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'present-value-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/PresentValueCalculator').then(mod => ({ default: mod.PresentValueCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'future-value-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/FutureValueCalculator').then(mod => ({ default: mod.FutureValueCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'break-even-calculator': dynamic(() => import('@/components/tools/calculators/financial-calculators/BreakEvenCalculator').then(mod => ({ default: mod.BreakEvenCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
