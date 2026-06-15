@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { TOOLS, CATEGORIES, Tool } from '@/lib/constants/tools';
+import { TOOLS, CATEGORIES, Tool, CALCULATOR_SUBCATEGORIES } from '@/lib/constants/tools';
 import { cn } from '@/lib/utils';
 import { ToolCard } from '@/components/shared/ToolCard';
 import { AdBanner } from '@/components/ads';
@@ -16,6 +16,7 @@ export function HomePageClient() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [activeSubcategory, setActiveSubcategory] = useState<string>('all');
   const [filteredTools, setFilteredTools] = useState<Tool[]>(TOOLS);
 
   useEffect(() => {
@@ -24,6 +25,9 @@ export function HomePageClient() {
 
     const category = searchParams.get('category') || 'all';
     setActiveCategory(category);
+
+    const subcategory = searchParams.get('subcategory') || 'all';
+    setActiveSubcategory(subcategory);
   }, [searchParams]);
 
   useEffect(() => {
@@ -31,6 +35,10 @@ export function HomePageClient() {
 
     if (activeCategory !== 'all') {
       result = result.filter((t) => t.category === activeCategory);
+    }
+
+    if (activeCategory === 'calculator' && activeSubcategory !== 'all') {
+      result = result.filter((t) => t.subcategory === activeSubcategory);
     }
 
     if (searchQuery.trim()) {
@@ -45,30 +53,56 @@ export function HomePageClient() {
     }
 
     setFilteredTools(result);
-  }, [searchQuery, activeCategory]);
+  }, [searchQuery, activeCategory, activeSubcategory]);
 
   const clearSearch = () => {
     setSearchQuery('');
-    updateQueryParams('', activeCategory);
+    updateQueryParams('', activeCategory, activeSubcategory);
   };
 
-  const updateQueryParams = (searchVal: string, catVal: string) => {
+  const updateQueryParams = (searchVal: string, catVal: string, subcatVal: string = 'all') => {
     const params = new URLSearchParams();
     if (searchVal) params.set('search', searchVal);
     if (catVal && catVal !== 'all') params.set('category', catVal);
+    if (subcatVal && subcatVal !== 'all') params.set('subcategory', subcatVal);
     router.replace(`/?${params.toString()}`);
   };
 
   const handleCategorySelect = (categoryVal: string) => {
     setActiveCategory(categoryVal);
-    updateQueryParams(searchQuery, categoryVal);
+    setActiveSubcategory('all'); // Reset subcategory when category changes
+    updateQueryParams(searchQuery, categoryVal, 'all');
+  };
+
+  const handleSubcategorySelect = (subcategoryVal: string) => {
+    setActiveSubcategory(subcategoryVal);
+    updateQueryParams(searchQuery, activeCategory, subcategoryVal);
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setSearchQuery(val);
-    updateQueryParams(val, activeCategory);
+    updateQueryParams(val, activeCategory, activeSubcategory);
   };
+
+  // Group calculators by subcategory for display
+  const getGroupedCalculators = (tools: Tool[]) => {
+    const calculators = tools.filter(t => t.category === 'calculator');
+    const grouped: { [key: string]: Tool[] } = {};
+    
+    calculators.forEach(tool => {
+      const subcat = tool.subcategory || 'other';
+      if (!grouped[subcat]) {
+        grouped[subcat] = [];
+      }
+      grouped[subcat].push(tool);
+    });
+    
+    return grouped;
+  };
+
+  const groupedCalculators = getGroupedCalculators(filteredTools);
+  const showSubcategoryFilters = activeCategory === 'calculator' && !searchQuery;
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex flex-col gap-12 sm:gap-16">
@@ -199,12 +233,70 @@ export function HomePageClient() {
           </div>
         </div>
 
-        {filteredTools.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
-            {filteredTools.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
+        {/* Subcategory filters for calculators */}
+        {showSubcategoryFilters && (
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none shrink-0 -mx-4 px-4 md:mx-0 md:px-0">
+            <button
+              onClick={() => handleSubcategorySelect('all')}
+              className={cn(
+                "px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 border border-transparent",
+                activeSubcategory === 'all'
+                  ? 'bg-accent text-white shadow-sm shadow-accent/20'
+                  : 'bg-muted hover:bg-muted/80 text-text-secondary hover:text-text-primary'
+              )}
+            >
+              All Calculators
+            </button>
+            {CALCULATOR_SUBCATEGORIES.map((subcat) => (
+              <button
+                key={subcat.value}
+                onClick={() => handleSubcategorySelect(subcat.value)}
+                className={cn(
+                  "px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 border border-transparent",
+                  activeSubcategory === subcat.value
+                    ? 'bg-accent text-white shadow-sm shadow-accent/20'
+                    : 'bg-muted hover:bg-muted/80 text-text-secondary hover:text-text-primary'
+                )}
+              >
+                {subcat.label}
+              </button>
             ))}
           </div>
+        )}
+
+        {filteredTools.length > 0 ? (
+          <>
+            {/* Show grouped calculators when in calculator category without search */}
+            {activeCategory === 'calculator' && !searchQuery && activeSubcategory === 'all' ? (
+              <div className="flex flex-col gap-8 animate-fade-in">
+                {Object.entries(groupedCalculators).map(([subcategory, tools]) => {
+                  if (tools.length === 0) return null;
+                  const subcategoryInfo = CALCULATOR_SUBCATEGORIES.find(sc => sc.value === subcategory);
+                  const subcategoryLabel = subcategoryInfo?.label || subcategory;
+                  
+                  return (
+                    <div key={subcategory} className="flex flex-col gap-4">
+                      <h3 className="font-display text-lg font-bold tracking-tight text-text-primary">
+                        {subcategoryLabel}
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {tools.map((tool) => (
+                          <ToolCard key={tool.slug} tool={tool} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              /* Show regular grid for other categories or when searching/filtering */
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-fade-in">
+                {filteredTools.map((tool) => (
+                  <ToolCard key={tool.slug} tool={tool} />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex flex-col items-center justify-center text-center p-12 border border-dashed border-border rounded-2xl bg-card/50 max-w-lg mx-auto w-full animate-fade-in">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent mb-4">
