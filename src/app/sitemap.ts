@@ -15,7 +15,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // 2. Tool Categories sitemap nodes (SEO internal discovery)
+  // 2. Core static pages (About, Contact, Privacy)
+  const staticPages = [
+    { path: '/about', priority: 0.7, changeFreq: 'monthly' as const },
+    { path: '/contact', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/privacy', priority: 0.5, changeFreq: 'yearly' as const },
+  ];
+
+  staticPages.forEach((page) => {
+    routes.push({
+      url: `${baseUrl}${page.path}`,
+      changeFrequency: page.changeFreq,
+      priority: page.priority,
+    });
+  });
+
+  // 3. Tool Categories sitemap nodes (SEO internal discovery)
   CATEGORIES.forEach((cat) => {
     routes.push({
       url: `${baseUrl}/category/${cat.value}`,
