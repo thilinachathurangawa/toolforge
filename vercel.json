@@ -3,24 +3,6 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "toolforge.website"
-        }
-      ],
-      "destination": "https://www.toolforge.website/$1",
-      "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "name": "x-forwarded-proto",
-          "value": "http"
-        }
-      ],
       "destination": "https://www.toolforge.website/$1",
       "permanent": true
     }
