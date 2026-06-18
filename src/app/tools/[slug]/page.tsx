@@ -371,6 +371,94 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'bmi-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/BMICalculator').then(mod => ({ default: mod.BMICalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'bmr-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/BMRCalculator').then(mod => ({ default: mod.BMRCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'tdee-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/TDEECalculator').then(mod => ({ default: mod.TDEECalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'calorie-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/CalorieCalculator').then(mod => ({ default: mod.CalorieCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ideal-weight-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/IdealWeightCalculator').then(mod => ({ default: mod.IdealWeightCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'body-fat-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/BodyFatCalculator').then(mod => ({ default: mod.BodyFatCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'lean-body-mass-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/LeanBodyMassCalculator').then(mod => ({ default: mod.LeanBodyMassCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'protein-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/ProteinCalculator').then(mod => ({ default: mod.ProteinCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'macro-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/MacroCalculator').then(mod => ({ default: mod.MacroCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'target-heart-rate-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/TargetHeartRateCalculator').then(mod => ({ default: mod.TargetHeartRateCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'one-rep-max-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/OneRepMaxCalculator').then(mod => ({ default: mod.OneRepMaxCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'pace-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/PaceCalculator').then(mod => ({ default: mod.PaceCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'calories-burned-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/CaloriesBurnedCalculator').then(mod => ({ default: mod.CaloriesBurnedCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'water-intake-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/WaterIntakeCalculator').then(mod => ({ default: mod.WaterIntakeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'sleep-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/SleepCalculator').then(mod => ({ default: mod.SleepCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'age-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/AgeCalculator').then(mod => ({ default: mod.AgeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'due-date-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/DueDateCalculator').then(mod => ({ default: mod.DueDateCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ovulation-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/OvulationCalculator').then(mod => ({ default: mod.OvulationCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'period-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/PeriodCalculator').then(mod => ({ default: mod.PeriodCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'bac-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/BACCalculator').then(mod => ({ default: mod.BACCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'body-surface-area-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/BodySurfaceAreaCalculator').then(mod => ({ default: mod.BodySurfaceAreaCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'fat-intake-calculator': dynamic(() => import('@/components/tools/calculators/health-fitness-calculators/FatIntakeCalculator').then(mod => ({ default: mod.FatIntakeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
