@@ -65,7 +65,7 @@ export function HomePageClient() {
     if (searchVal) params.set('search', searchVal);
     if (catVal && catVal !== 'all') params.set('category', catVal);
     if (subcatVal && subcatVal !== 'all') params.set('subcategory', subcatVal);
-    router.replace(`/?${params.toString()}`);
+    router.replace(`/?${params.toString()}`, { scroll: false });
   };
 
   const handleCategorySelect = (categoryVal: string) => {
