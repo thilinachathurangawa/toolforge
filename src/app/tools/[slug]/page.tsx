@@ -459,6 +459,86 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'percentage-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/PercentageCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'fraction-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/FractionCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'average-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/AverageCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'mean-median-mode-range-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/MeanMedianModeRange'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'standard-deviation-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/StandardDeviationCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'percentage-error-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/PercentageErrorCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'exponent-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/ExponentCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'root-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/RootCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ratio-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/RatioCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'rounding-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/RoundingCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'gcf-lcm-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/GCFLCMCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'factor-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/FactorCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'prime-factorization-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/PrimeFactorizationCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'probability-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/ProbabilityCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'permutation-combination-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/PermutationCombinationCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'area-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/AreaCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'volume-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/VolumeCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'pythagorean-theorem-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/PythagoreanTheoremCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'quadratic-formula-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/QuadraticFormulaCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'scientific-notation-calculator': dynamic(() => import('@/components/tools/calculators/math-calculators/ScientificNotationCalculator'), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
