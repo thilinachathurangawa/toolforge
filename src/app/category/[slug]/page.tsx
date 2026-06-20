@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: CategoryPageParams): Promise<
     return { title: 'Category Not Found' };
   }
 
-  const canonical = `/category/${category.value}`;
+  const canonical = `${siteConfig.url}/category/${category.value}`;
 
   return {
     title: `${category.label} — Free Online Tools | ToolForge`,
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: CategoryPageParams): Promise<
     openGraph: {
       title: `${category.label} | ${siteConfig.name}`,
       description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
-      url: `${siteConfig.url}${canonical}`,
+      url: canonical,
       type: 'website',
       images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
     },

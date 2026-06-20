@@ -473,7 +473,7 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
     return { title: 'Tool Not Found' };
   }
 
-  const canonical = `/tools/${tool.slug}`;
+  const canonical = `${siteConfig.url}/tools/${tool.slug}`;
 
   return {
     title: `${tool.name} — Free Online Tool | ToolForge`,
@@ -483,7 +483,7 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
     openGraph: {
       title: `${tool.name} | ${siteConfig.name}`,
       description: tool.description,
-      url: `${siteConfig.url}${canonical}`,
+      url: canonical,
       type: 'website',
       images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
     },

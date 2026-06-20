@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   metadataBase: new URL(siteConfig.url),
   alternates: {
-    canonical: '/',
+    canonical: siteConfig.url,
   },
   icons: {
     icon: '/icon.svg',

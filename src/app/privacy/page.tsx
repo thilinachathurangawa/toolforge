@@ -6,7 +6,7 @@ import { Breadcrumb } from '@/components/shared/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: `Learn how ${siteConfig.name} protects your privacy and handles your data.`,
-  alternates: { canonical: '/privacy' },
+  alternates: { canonical: `${siteConfig.url}/privacy` },
 };
 
 export default function PrivacyPage() {

@@ -10,7 +10,7 @@ import { DynamicIcon } from '@/components/shared/DynamicIcon';
 export const metadata: Metadata = {
   title: 'All Tools',
   description: `Browse all free online tools on ${siteConfig.name}. Image, text, developer, and security utilities — 100% browser-based.`,
-  alternates: { canonical: '/tools' },
+  alternates: { canonical: `${siteConfig.url}/tools` },
 };
 
 export default function ToolsIndexPage() {

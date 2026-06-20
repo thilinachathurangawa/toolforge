@@ -15,10 +15,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // 2. Core static pages (About, Contact, Privacy, Tools)
+  // 2. Core static pages (About, Privacy, Tools)
+  // Note: /contact excluded as it's a client component without canonical metadata
   const staticPages = [
     { path: '/about', priority: 0.7, changeFreq: 'monthly' as const },
-    { path: '/contact', priority: 0.6, changeFreq: 'monthly' as const },
     { path: '/privacy', priority: 0.5, changeFreq: 'yearly' as const },
     { path: '/tools', priority: 0.8, changeFreq: 'weekly' as const },
   ];

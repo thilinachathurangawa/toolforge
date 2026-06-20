@@ -6,7 +6,7 @@ import { Breadcrumb } from '@/components/shared/Breadcrumb';
 export const metadata: Metadata = {
   title: 'About',
   description: `Learn more about ${siteConfig.name} and our mission to provide free online tools.`,
-  alternates: { canonical: '/about' },
+  alternates: { canonical: `${siteConfig.url}/about` },
 };
 
 export default function AboutPage() {
