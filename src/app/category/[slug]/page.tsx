@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: CategoryPageParams): Promise<
   const canonical = `${siteConfig.url}/category/${category.value}`;
 
   return {
-    title: `${category.label} — Free Online Tools | ToolForge`,
+    title: `${category.label} — Free Online Tools`,
     description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
     alternates: { canonical },
     openGraph: {
@@ -119,7 +119,7 @@ export default function CategoryPage({ params }: CategoryPageParams) {
             Related Categories
           </h2>
           <div className="flex flex-wrap gap-2">
-            {CATEGORIES.filter(c => c.value !== category.value).slice(0, 5).map((relatedCategory) => (
+            {CATEGORIES.filter(c => c.value !== category.value).map((relatedCategory) => (
               <Link
                 key={relatedCategory.value}
                 href={`/category/${relatedCategory.value}`}

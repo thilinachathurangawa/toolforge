@@ -1605,16 +1605,16 @@ export const TOOLS: Tool[] = [
 // ── Helpers ──────────────────────────────────────────────────────────
 
 export const CATEGORIES: { value: ToolCategory; label: string; icon: string; description: string }[] = [
-  { value: 'image', label: 'Image Tools', icon: 'Image', description: 'Compress, resize, crop, convert, and optimize images directly in your browser. Perfect for web developers, designers, and content creators.' },
-  { value: 'text', label: 'Text Tools', icon: 'Type', description: 'Count words, analyze text, generate placeholder content, and format text with our comprehensive text processing tools.' },
-  { value: 'developer', label: 'Developer Tools', icon: 'Code2', description: 'Format, validate, convert, and debug code with our developer utilities. JSON, Base64, URL encoding, regex testing, and more.' },
-  { value: 'converter', label: 'Converters', icon: 'ArrowLeftRight', description: 'Convert between different units, formats, and data types. Length, weight, temperature, and file format converters.' },
-  { value: 'generator', label: 'Generators', icon: 'Wand2', description: 'Generate QR codes, passwords, UUIDs, Lorem Ipsum text, and other content instantly. Perfect for developers and designers.' },
-  { value: 'calculator', label: 'Calculators', icon: 'Calculator', description: 'Financial, health & fitness, math, and science calculators. Calculate loans, BMI, equations, and more in your browser.' },
-  { value: 'security', label: 'Security', icon: 'Shield', description: 'Generate secure passwords, cryptographic hashes, and protect your data with our privacy-focused security tools.' },
-  { value: 'seo', label: 'SEO Tools', icon: 'Search', description: 'Optimize your website for search engines with meta tag generators, keyword analysis, SERP previews, and SEO auditing tools.' },
-  { value: 'network', label: 'Network Tools', icon: 'Globe', description: 'Test internet speed, lookup IP addresses, query DNS records, and analyze network performance with our network utilities.' },
-  { value: 'creative', label: 'Creative Tools', icon: 'Palette', description: 'Extract color palettes, generate creative content, and design with our creative tools for designers and artists.' },
+  { value: 'image', label: 'Image Tools', icon: 'Image', description: 'Compress JPG, PNG, WebP images, resize photos, crop with custom aspect ratios, convert between formats, remove EXIF metadata, and extract color palettes. Perfect for web optimization, social media, and design work.' },
+  { value: 'text', label: 'Text Tools', icon: 'Type', description: 'Count words and characters in real-time, analyze text statistics, generate Lorem Ipsum placeholder content, convert text cases, preview Markdown, and format documents. Essential for writers, bloggers, and content creators.' },
+  { value: 'developer', label: 'Developer Tools', icon: 'Code2', description: 'Format and validate JSON, encode/decode Base64 and URLs, test regular expressions, generate UUIDs, decode JWT tokens, and debug code. Complete toolkit for web developers, API integrators, and programmers.' },
+  { value: 'converter', label: 'Converters', icon: 'ArrowLeftRight', description: 'Convert between measurement units including length, weight, temperature, area, volume, speed, and time. Also convert file formats like JSON to CSV. Perfect for students, engineers, and everyday calculations.' },
+  { value: 'generator', label: 'Generators', icon: 'Wand2', description: 'Generate QR codes for URLs and WiFi, create strong secure passwords, generate UUID v4 identifiers, produce Lorem Ipsum text, and create barcodes. Ideal for developers, marketers, and security-conscious users.' },
+  { value: 'calculator', label: 'Calculators', icon: 'Calculator', description: 'Calculate loan payments and interest rates, compute BMI and health metrics, solve mathematical equations, perform scientific calculations, and analyze financial data. Includes mortgage, loan, BMI, and math calculators.' },
+  { value: 'security', label: 'Security', icon: 'Shield', description: 'Generate cryptographically secure passwords, create MD5, SHA-1, SHA-256, and SHA-512 hashes, encode sensitive data, and protect your privacy. All processing happens client-side for maximum security.' },
+  { value: 'seo', label: 'SEO Tools', icon: 'Search', description: 'Analyze keyword density, optimize meta tags, preview SERP snippets, check website status, and improve search engine rankings. Essential tools for digital marketers, SEO specialists, and website owners.' },
+  { value: 'network', label: 'Network Tools', icon: 'Globe', description: 'Test internet connection speed, lookup IP address information, query DNS records, check port availability, and analyze network performance. Useful for network administrators and developers.' },
+  { value: 'creative', label: 'Creative Tools', icon: 'Palette', description: 'Extract color palettes from images, create memes and stickers, design with color tools, and generate creative content. Perfect for designers, artists, and creative professionals.' },
 ];
 
 // Calculator subcategories
