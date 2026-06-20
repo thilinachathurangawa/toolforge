@@ -61,7 +61,7 @@ export function Footer() {
               Categories
             </h3>
             <ul className="flex flex-col gap-2.5">
-              {CATEGORIES.slice(0, 5).map((category) => (
+              {CATEGORIES.map((category) => (
                 <li key={category.value}>
                   <Link
                     href={`/category/${category.value}`}

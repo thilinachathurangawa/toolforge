@@ -95,11 +95,41 @@ export default function CategoryPage({ params }: CategoryPageParams) {
             About {category.label}
           </h2>
           <p className="text-sm text-text-secondary leading-relaxed">
-            Browse our comprehensive collection of free online {category.label.toLowerCase()}.
-            All tools are completely free, require no registration, and run entirely in your browser
-            for maximum privacy and security. Perfect for developers, designers, students, and anyone
-            who needs quick, reliable online tools.
+            {category.description}
           </p>
+        </section>
+
+        {/* Popular Tools in this Category */}
+        {tools.filter(t => t.isPopular).length > 0 && (
+          <section className="mb-8">
+            <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+              Popular {category.label}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {tools.filter(t => t.isPopular).map((tool) => (
+                <ToolCard key={tool.slug} tool={tool} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Related Categories */}
+        <section className="mb-8 bg-surface border border-border rounded-lg p-6">
+          <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+            Related Categories
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {CATEGORIES.filter(c => c.value !== category.value).slice(0, 5).map((relatedCategory) => (
+              <Link
+                key={relatedCategory.value}
+                href={`/category/${relatedCategory.value}`}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-muted hover:bg-accent hover:text-white text-sm font-medium text-text-secondary transition-all duration-200"
+              >
+                <DynamicIcon name={relatedCategory.icon} size={14} />
+                {relatedCategory.label}
+              </Link>
+            ))}
+          </div>
         </section>
 
         {tools.length > 0 ? (

@@ -9,6 +9,8 @@ import { ToolCard } from '@/components/shared/ToolCard';
 import { AdBanner } from '@/components/ads';
 import { adConfig } from '@/lib/constants/site';
 import { Search, Sparkles, Shield, Cpu, Zap, Mail, X } from 'lucide-react';
+import { DynamicIcon } from '@/components/shared/DynamicIcon';
+import Link from 'next/link';
 
 export function HomePageClient() {
   const searchParams = useSearchParams();
@@ -150,6 +152,39 @@ export function HomePageClient() {
       </section>
 
       <AdBanner position="top" adsterraKey={adConfig.adsterraBannerKey} className="animate-fade-in relative z-10" />
+
+      {/* Browse by Category Section */}
+      <section className="flex flex-col gap-6">
+        <div className="flex items-center justify-between">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-text-primary">
+            Browse by Category
+          </h2>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {CATEGORIES.map((category) => {
+            const tools = TOOLS.filter(t => t.category === category.value);
+            return (
+              <Link
+                key={category.value}
+                href={`/category/${category.value}`}
+                className="group flex flex-col gap-3 p-5 rounded-2xl bg-card border border-border/80 shadow-sm hover:border-accent/40 hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+                  <DynamicIcon name={category.icon} size={20} />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-text-primary group-hover:text-accent transition-colors">
+                    {category.label}
+                  </h3>
+                  <p className="text-xs text-text-secondary mt-1">
+                    {tools.length} tool{tools.length !== 1 ? 's' : ''}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div className="flex flex-col gap-2 p-5 rounded-2xl bg-card border border-border/80 shadow-sm hover:border-accent/20 transition-all duration-300">

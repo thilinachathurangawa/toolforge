@@ -1604,17 +1604,17 @@ export const TOOLS: Tool[] = [
 
 // ── Helpers ──────────────────────────────────────────────────────────
 
-export const CATEGORIES: { value: ToolCategory; label: string; icon: string }[] = [
-  { value: 'image', label: 'Image Tools', icon: 'Image' },
-  { value: 'text', label: 'Text Tools', icon: 'Type' },
-  { value: 'developer', label: 'Developer Tools', icon: 'Code2' },
-  { value: 'converter', label: 'Converters', icon: 'ArrowLeftRight' },
-  { value: 'generator', label: 'Generators', icon: 'Wand2' },
-  { value: 'calculator', label: 'Calculators', icon: 'Calculator' },
-  { value: 'security', label: 'Security', icon: 'Shield' },
-  { value: 'seo', label: 'SEO Tools', icon: 'Search' },
-  { value: 'network', label: 'Network Tools', icon: 'Globe' },
-  { value: 'creative', label: 'Creative Tools', icon: 'Palette' },
+export const CATEGORIES: { value: ToolCategory; label: string; icon: string; description: string }[] = [
+  { value: 'image', label: 'Image Tools', icon: 'Image', description: 'Compress, resize, crop, convert, and optimize images directly in your browser. Perfect for web developers, designers, and content creators.' },
+  { value: 'text', label: 'Text Tools', icon: 'Type', description: 'Count words, analyze text, generate placeholder content, and format text with our comprehensive text processing tools.' },
+  { value: 'developer', label: 'Developer Tools', icon: 'Code2', description: 'Format, validate, convert, and debug code with our developer utilities. JSON, Base64, URL encoding, regex testing, and more.' },
+  { value: 'converter', label: 'Converters', icon: 'ArrowLeftRight', description: 'Convert between different units, formats, and data types. Length, weight, temperature, and file format converters.' },
+  { value: 'generator', label: 'Generators', icon: 'Wand2', description: 'Generate QR codes, passwords, UUIDs, Lorem Ipsum text, and other content instantly. Perfect for developers and designers.' },
+  { value: 'calculator', label: 'Calculators', icon: 'Calculator', description: 'Financial, health & fitness, math, and science calculators. Calculate loans, BMI, equations, and more in your browser.' },
+  { value: 'security', label: 'Security', icon: 'Shield', description: 'Generate secure passwords, cryptographic hashes, and protect your data with our privacy-focused security tools.' },
+  { value: 'seo', label: 'SEO Tools', icon: 'Search', description: 'Optimize your website for search engines with meta tag generators, keyword analysis, SERP previews, and SEO auditing tools.' },
+  { value: 'network', label: 'Network Tools', icon: 'Globe', description: 'Test internet speed, lookup IP addresses, query DNS records, and analyze network performance with our network utilities.' },
+  { value: 'creative', label: 'Creative Tools', icon: 'Palette', description: 'Extract color palettes, generate creative content, and design with our creative tools for designers and artists.' },
 ];
 
 // Calculator subcategories
