@@ -539,6 +539,46 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'velocity-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/VelocityCalculator').then(mod => ({ default: mod.VelocityCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'force-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/ForceCalculator').then(mod => ({ default: mod.ForceCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'kinetic-energy-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/KineticEnergyCalculator').then(mod => ({ default: mod.KineticEnergyCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ohms-law-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/OhmsLawCalculator').then(mod => ({ default: mod.OhmsLawCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ph-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/PHCalculator').then(mod => ({ default: mod.PHCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'molarity-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/MolarityCalculator').then(mod => ({ default: mod.MolarityCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'ideal-gas-law-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/IdealGasLawCalculator').then(mod => ({ default: mod.IdealGasLawCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'projectile-motion-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/ProjectileMotionCalculator').then(mod => ({ default: mod.ProjectileMotionCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'resistor-color-code-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/ResistorColorCodeCalculator').then(mod => ({ default: mod.ResistorColorCodeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'density-calculator': dynamic(() => import('@/components/tools/calculators/science-calculators/DensityCalculator').then(mod => ({ default: mod.DensityCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
