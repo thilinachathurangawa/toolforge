@@ -579,6 +579,62 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'date-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/DateCalculator').then(mod => ({ default: mod.DateCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'time-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/TimeCalculator').then(mod => ({ default: mod.TimeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'hours-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/HoursCalculator').then(mod => ({ default: mod.HoursCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'gpa-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/GPACalculator').then(mod => ({ default: mod.GPACalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'grade-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/GradeCalculator').then(mod => ({ default: mod.GradeCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'fuel-cost-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/FuelCostCalculator').then(mod => ({ default: mod.FuelCostCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'random-number-generator': dynamic(() => import('@/components/tools/calculators/other-calculators/RandomNumberGenerator').then(mod => ({ default: mod.RandomNumberGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'dice-roller': dynamic(() => import('@/components/tools/calculators/other-calculators/DiceRoller').then(mod => ({ default: mod.DiceRoller })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'shoe-size-converter': dynamic(() => import('@/components/tools/calculators/other-calculators/ShoeSizeConverter').then(mod => ({ default: mod.ShoeSizeConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'time-zone-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/TimeZoneCalculator').then(mod => ({ default: mod.TimeZoneCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'square-footage-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/SquareFootageCalculator').then(mod => ({ default: mod.SquareFootageCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'concrete-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/ConcreteCalculator').then(mod => ({ default: mod.ConcreteCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'tile-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/TileCalculator').then(mod => ({ default: mod.TileCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'wind-chill-heat-index-calculator': dynamic(() => import('@/components/tools/calculators/other-calculators/WindChillHeatIndexCalculator').then(mod => ({ default: mod.WindChillHeatIndexCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {

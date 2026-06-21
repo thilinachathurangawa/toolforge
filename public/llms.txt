@@ -1,0 +1,55 @@
+# llms.txt - AI/LLM Discovery File
+# ToolForge - Free Online Tools Platform
+
+title: ToolForge
+description: A collection of free, fast, browser-based tools built for SEO performance and ad revenue. No backend required. No sign-up. No data leaves your browser.
+url: https://www.toolforge.website
+license: MIT
+author: ToolForge
+
+# Tools available
+tools:
+  - name: Image Compressor
+    url: https://www.toolforge.website/tools/image-compressor
+    description: Compress images online free without losing quality
+
+  - name: QR Code Generator
+    url: https://www.toolforge.website/tools/qr-generator
+    description: Generate QR codes online free for URLs, text, and more
+
+  - name: JSON Formatter
+    url: https://www.toolforge.website/tools/json-formatter
+    description: Format and beautify JSON data online
+
+  - name: Password Generator
+    url: https://www.toolforge.website/tools/password-generator
+    description: Generate strong, secure passwords online
+
+  - name: Base64 Encoder
+    url: https://www.toolforge.website/tools/base64-encoder
+    description: Encode and decode Base64 text online
+
+  - name: Word Counter
+    url: https://www.toolforge.website/tools/word-counter
+    description: Count words, characters, and sentences online
+
+  - name: Color Palette
+    url: https://www.toolforge.website/tools/color-palette
+    description: Extract color palettes from images online
+
+  - name: UUID Generator
+    url: https://www.toolforge.website/tools/uuid-generator
+    description: Generate UUIDs and GUIDs online
+
+  - name: Image Resizer
+    url: https://www.toolforge.website/tools/image-resizer
+    description: Resize images online free to any dimension
+
+  - name: Image Cropper
+    url: https://www.toolforge.website/tools/image-cropper
+    description: Crop images online free with precision
+
+# API endpoints (if any)
+api:
+  - url: https://www.toolforge.website/api
+    description: ToolForge API endpoints
