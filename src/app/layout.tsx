@@ -43,6 +43,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   alternates: {
     canonical: siteConfig.url,
+    languages: {
+      'en': siteConfig.url,
+      'x-default': siteConfig.url,
+    },
   },
   icons: {
     icon: '/icon.svg',
@@ -75,6 +79,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  },
 };
 
 export default function RootLayout({
@@ -92,6 +99,9 @@ export default function RootLayout({
         fontJetBrainsMono.variable
       )}
     >
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className="relative min-h-screen bg-background text-foreground font-body antialiased flex flex-col overflow-x-hidden">
         {/* Ambient Premium Backdrop: Grid Mesh + Glow Blobs */}
         <div className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
@@ -134,6 +144,7 @@ export default function RootLayout({
             <img
               src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
               alt="Buy Me a Coffee"
+              loading="lazy"
               style={{ height: '35px !important', width: '120px !important' }}
             />
           </a>
