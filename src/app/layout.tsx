@@ -100,7 +100,7 @@ export default function RootLayout({
       )}
     >
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body className="relative min-h-screen bg-background text-foreground font-body antialiased flex flex-col overflow-x-hidden">
         {/* Ambient Premium Backdrop: Grid Mesh + Glow Blobs */}
