@@ -1,6 +1,6 @@
 'use client';
 
-import Script from 'next/script';
+import { useEffect } from 'react';
 import { adConfig } from '@/lib/constants/site';
 import { AdContextProvider } from './ad-context';
 
@@ -16,17 +16,27 @@ export function AdProvider({ children }: AdProviderProps) {
   const loadAdsense =
     adConfig.enabled && Boolean(adConfig.adsenseClientId);
 
+  useEffect(() => {
+    if (!loadAdsense) return;
+
+    // Load AdSense script using regular script tag to avoid data-nscript attribute issue
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adConfig.adsenseClientId}`;
+    script.crossOrigin = 'anonymous';
+    
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+    };
+  }, [loadAdsense]);
+
   return (
     <AdContextProvider>
-      {loadAdsense && (
-        <Script
-          id="adsense-script"
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adConfig.adsenseClientId}`}
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
-      )}
       {children}
     </AdContextProvider>
   );
