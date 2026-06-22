@@ -94,8 +94,22 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Directory Badges Section */}
+        <div className="border-t border-border mt-8 pt-8">
+          <h4 className="text-xs font-semibold tracking-wide uppercase text-text-primary mb-4">
+            Featured On
+          </h4>
+          <div className="flex flex-wrap gap-4 items-center">
+            {/* TheSaaSDir Badge - Add after submission */}
+            {/* <a href="https://thesaasdir.com/product/toolforge?ref=badge" rel="dofollow" target="_blank" rel="noopener noreferrer">
+              <img src="https://thesaasdir.com/badge/toolforge.svg" alt="Featured on TheSaaSDir" width="160" height="44" className="h-11 w-auto" />
+            </a> */}
+            {/* Add more directory badges here as you get approved */}
+          </div>
+        </div>
+
         {/* Lower Border & Copyright */}
-        <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-border mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-text-secondary">
             &copy; {currentYear} {siteConfig.name}. Built with privacy and speed.
           </p>
