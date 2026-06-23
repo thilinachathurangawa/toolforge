@@ -673,6 +673,616 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'ascii-art-generator', note: `Create text-based art for a different flavor of internet humor.` },
     ],
   },
+
+  // ── Batch 2: Developer tools (15) ───────────────────────────────────
+
+  'json-diff': {
+    intro: [
+      `When two versions of a JSON document should match but something has drifted, scanning them line by line is slow and error-prone. JSON Diff parses both sides and compares them structurally, then reports exactly which fields were added, removed, or changed — by their full path inside the object.`,
+      `That structural approach is what makes it useful where a plain text diff falls short: reformatting, reordered keys, or different indentation do not create false differences, because the tool compares parsed values rather than characters. API developers reach for it to spot what changed between a working response and a broken one; config owners use it to see which setting differs between staging and production.`,
+      `Arrays are compared by position and objects by key, so a change at users[2].email is reported precisely there rather than as a vague "something in this block changed".`,
+    ],
+    steps: [
+      `Paste your first JSON document into the "JSON 1 (Original)" box.`,
+      `Paste the version you want to compare into "JSON 2 (Modified)".`,
+      `The comparison runs automatically as you edit — no button to press.`,
+      `Read the results: each entry shows its path and whether it was added, removed, or modified, with the old and new values for changes.`,
+      `Use Copy to export the diff as a readable +/-/~ list for a pull request or bug report.`,
+    ],
+    why: [
+      `It compares parsed structure, not text, so reformatting or different indentation never shows up as a false change — only real value differences do.`,
+      `Every difference is reported with its full path (such as items[0].price), so you can jump straight to what changed instead of hunting through nested blocks.`,
+      `It distinguishes added, removed, and modified explicitly, including the before and after values for each change.`,
+      `Both documents are parsed and compared entirely in your browser, so unreleased API payloads and config never leave your machine.`,
+    ],
+    faqs: [
+      {
+        question: `How is this different from a normal text diff?`,
+        answer: `A text diff compares characters, so reordering keys or changing indentation registers as differences even when the data is identical. JSON Diff parses both documents first and compares the actual values, so it only flags genuine structural and value changes.`,
+      },
+      {
+        question: `Does the order of keys matter?`,
+        answer: `For objects, no — keys are matched by name, so {"a":1,"b":2} and {"b":2,"a":1} are treated as equal. For arrays, order does matter, because elements are compared by their index position.`,
+      },
+      {
+        question: `Why am I getting an "invalid JSON" error?`,
+        answer: `One of the two inputs is not valid JSON — often a trailing comma, a missing quote, or an unclosed bracket. Both sides must parse successfully before they can be compared; format each one in a JSON formatter first if you are unsure.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Clean up and validate each document before comparing them.` },
+      { slug: 'text-diff', note: `Comparing plain text or code rather than JSON? Use a line-based diff instead.` },
+      { slug: 'json-parse', note: `Re-indent a single document to inspect it on its own.` },
+    ],
+  },
+
+  'json-stringify': {
+    intro: [
+      `Turning a loose JavaScript object into a clean, properly quoted JSON string is a constant need when you are moving data from code into a config file, a test fixture, or an API request body. JSON Stringify does exactly that: paste an object and it returns a valid, indented JSON string.`,
+      `What sets it apart from a strict parser is tolerance for the way developers actually write objects. It accepts relaxed JavaScript syntax — unquoted keys, single quotes, trailing commas — and produces strict, double-quoted JSON from it, so you can copy an object straight out of your editor without first hand-fixing every quote.`,
+      `You control the indentation, anywhere from compact single-line output to a generously spaced eight-space layout, which is handy whether you are minifying for a request or making a fixture readable.`,
+    ],
+    steps: [
+      `Paste your JavaScript object into the "JavaScript Object" box — unquoted keys and single quotes are fine.`,
+      `Set the "Spacing" value (0 to 8) to control indentation; 0 produces compact single-line JSON, 2 is the common default.`,
+      `Read the formatted JSON string in the output.`,
+      `Click Copy to grab it, or Download to save it as a .json file.`,
+    ],
+    why: [
+      `It accepts relaxed JavaScript object syntax, not just strict JSON, so you can paste an object literal from your code without manually quoting every key first.`,
+      `Indentation is adjustable from 0 to 8 spaces, covering both minified output and human-readable fixtures from one control.`,
+      `Output can be copied or downloaded directly as a .json file, skipping the save-as dance.`,
+      `Conversion happens locally in your browser, so object data you paste is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between this and a JSON parser?`,
+        answer: `A parser takes a JSON string and reads it into structured data (or re-indents it). This tool goes the other direction: it takes a JavaScript object and produces a JSON string from it, conveniently accepting relaxed syntax like unquoted keys on the way in.`,
+      },
+      {
+        question: `Why does my output use double quotes when I typed single quotes?`,
+        answer: `That is correct behavior. The JSON specification requires double quotes around strings and keys, so the tool converts your single-quoted, possibly unquoted input into spec-compliant double-quoted JSON.`,
+      },
+      {
+        question: `What does a spacing of 0 do?`,
+        answer: `It produces minified JSON on a single line with no extra whitespace — ideal for embedding in a request body or a compact config. Increase the spacing to 2 or 4 when you want the output indented and easy to read.`,
+      },
+    ],
+    related: [
+      { slug: 'json-parse', note: `Going the other way — turn a JSON string back into formatted, validated data.` },
+      { slug: 'json-formatter', note: `Validate and pretty-print existing JSON with more formatting options.` },
+      { slug: 'json-escape', note: `Escape the resulting string so it can be embedded inside another JSON value.` },
+    ],
+  },
+
+  'json-parse': {
+    intro: [
+      `A minified or single-line JSON blob is valid but unreadable. JSON Parse takes that string, validates it, and re-emits it cleanly indented so you can actually see its structure — and tells you immediately if it is malformed.`,
+      `It is the tool you paste an API response into when it arrives as one dense line, or when you have copied JSON out of a log and need to confirm it is well-formed before trusting it. Because parsing either succeeds or fails loudly, it doubles as a quick validity check: if it formats, your JSON is valid; if it errors, you get the parser's message pointing at the problem.`,
+    ],
+    steps: [
+      `Paste your JSON string into the "JSON String" box.`,
+      `The tool parses it and outputs a clean, two-space-indented version.`,
+      `If the JSON is invalid, read the error message to find what needs fixing.`,
+      `Click Copy to grab the formatted result, or Download to save it as parsed.json.`,
+    ],
+    why: [
+      `It uses the browser's native JSON.parse, so validity here means validity everywhere — what passes is genuinely spec-compliant JSON.`,
+      `Invalid input produces the exact parser error message, turning the tool into a fast way to locate a stray comma or unclosed bracket.`,
+      `Formatted output can be copied or downloaded as a file in one click.`,
+      `Everything runs in your browser, so sensitive payloads pasted from logs or APIs stay private.`,
+    ],
+    faqs: [
+      {
+        question: `Why is my JSON invalid?`,
+        answer: `The most common causes are trailing commas, single quotes instead of double quotes, unquoted keys, or an unclosed bracket or brace. JSON is stricter than JavaScript object syntax — the error message shown here points to where parsing failed so you can fix it.`,
+      },
+      {
+        question: `Does this tool change my data?`,
+        answer: `No. It only re-formats the whitespace and indentation. The keys, values, and structure are preserved exactly; parsing and re-stringifying does not alter the actual data.`,
+      },
+      {
+        question: `Can I choose the indentation level?`,
+        answer: `This tool always formats with two-space indentation, the most common convention. If you need a different indentation width or minified output, use a JSON formatter or the stringify tool, which expose a spacing control.`,
+      },
+      {
+        question: `Can it parse JSON with comments (JSONC)?`,
+        answer: `No. Standard JSON does not allow comments, and this parser follows the strict specification, so a file with // or /* */ comments will be reported as invalid. Remove the comments first, or use a tool built specifically for JSONC if your config format permits them.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Need adjustable indentation or minify mode? Use the fuller formatter.` },
+      { slug: 'json-stringify', note: `Build a JSON string from a JavaScript object instead of parsing one.` },
+      { slug: 'json-path-finder', note: `Once it is readable, drill into a specific value by its path.` },
+    ],
+  },
+
+  'json-path-finder': {
+    intro: [
+      `Large JSON responses bury the one value you actually want under layers of nesting. JSON Path Finder lets you write a path expression and pulls that value straight out, so you do not have to scroll and count brackets.`,
+      `It is built for the everyday case of "I just need users[0].address.city out of this 400-line response." API developers use it to confirm where a field lives before writing code that reads it; testers use it to extract a single value to assert against. Quick-select buttons give you a starting point, and you refine the path from there.`,
+      `The supported syntax is the practical core of JSONPath: the root token, dot notation for nested keys, and bracket notation for array indices — enough to reach any specific value in a typical document.`,
+    ],
+    steps: [
+      `Paste your JSON into the "JSON Input" box.`,
+      `Type a path in the expression field — start from $ and use dot notation for keys and [n] for array indices, e.g. $.users[0].email.`,
+      `Use a quick-select button as a starting point if you want, then refine the expression.`,
+      `Click Find to extract the value at that path.`,
+      `Read the result (formatted as JSON) and Copy it; if the path does not exist, an error tells you where it failed.`,
+    ],
+    why: [
+      `It evaluates real path expressions — root, nested keys, and array indices — so you extract exactly one value instead of eyeballing a huge document.`,
+      `When a path does not resolve, it names the segment that failed, which helps you correct a typo or a wrong assumption about the structure.`,
+      `Results come back as formatted JSON with a copy button, ready to paste into a test or a request.`,
+      `Parsing and lookup run entirely in your browser, keeping response data private.`,
+    ],
+    faqs: [
+      {
+        question: `What path syntax does this support?`,
+        answer: `It supports the common core of JSONPath: $ for the root, dot notation for object keys (such as $.user.name), and bracket notation for array indices (such as $.items[0]). You can combine them, like $.data.items[2].id, to reach a deeply nested value.`,
+      },
+      {
+        question: `Does it support wildcards or filters?`,
+        answer: `No. Advanced JSONPath features such as wildcards (selecting every element of an array) and filter expressions are not supported here — the tool resolves a single, concrete path to one value. For selecting many matching items, use a JSON filtering tool.`,
+      },
+      {
+        question: `Why do I get "path not found"?`,
+        answer: `The expression points to a key or index that does not exist in your JSON — often a misspelled key, the wrong array index, or a level of nesting that is not there. The error names the segment it could not resolve so you can adjust the path.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Pretty-print the document first so you can see the paths you want to target.` },
+      { slug: 'json-filter', note: `Need to select many matching items rather than one path? Filter the data instead.` },
+      { slug: 'json-diff', note: `Compare two documents when you are tracking down where a value changed.` },
+    ],
+  },
+
+  'json-escape': {
+    intro: [
+      `Embedding one piece of JSON inside another — or stuffing a multi-line string into a single JSON value — breaks the moment a quote or newline is taken literally. JSON Escape converts a raw string into its safely escaped form, and reverses the process when you need the original back.`,
+      `Developers hit this whenever a string has to travel through a JSON field that is itself a string: storing a JSON snippet as a value, pasting a code block into a config, or preparing a multi-line message for an API. Escape mode turns the dangerous characters into their backslash equivalents; unescape mode restores them so you can read the content as it was written.`,
+    ],
+    steps: [
+      `Choose your direction with the Escape / Unescape toggle.`,
+      `In Escape mode, paste the raw string you want to make JSON-safe; in Unescape mode, paste the escaped string.`,
+      `Read the converted output as you type — quotes, backslashes, and whitespace characters are handled automatically.`,
+      `Click Copy to grab the result for your JSON value or your editor.`,
+    ],
+    why: [
+      `It handles the full set of characters that break JSON strings — quotes, backslashes, newlines, carriage returns, tabs, form feeds, and backspaces — not just quotes.`,
+      `The single Escape/Unescape toggle works both directions, so you can round-trip a value without switching tools.`,
+      `It processes any input without imposing a format, so you can escape a whole code block or a one-line string equally.`,
+      `Conversion is local to your browser, keeping whatever you paste private.`,
+    ],
+    faqs: [
+      {
+        question: `When do I need to escape a string for JSON?`,
+        answer: `Whenever a string value contains characters that have special meaning in JSON — most commonly double quotes and backslashes, or literal line breaks and tabs. Escaping them lets the string sit safely inside a JSON value without breaking the surrounding structure.`,
+      },
+      {
+        question: `What characters does escaping affect?`,
+        answer: `Backslash, double quote, newline, carriage return, tab, form feed, and backspace are converted to their backslash escape sequences (\\\\, \\", \\n, \\r, \\t, \\f, \\b). Unescape mode converts those sequences back into the original characters.`,
+      },
+      {
+        question: `Is escaping the same as encoding?`,
+        answer: `No. Escaping prepares a string for safe inclusion inside JSON by backslash-escaping special characters. Encoding schemes like Base64 or URL encoding serve different transport needs — use a dedicated encoder for those.`,
+      },
+      {
+        question: `Why did my escaped string come back wrong after unescaping?`,
+        answer: `Unescape expects input that was actually escaped — sequences like \\n and \\". If you unescape a string that contains a literal backslash that was never an escape sequence, the result can differ from what you expect. Make sure you are reversing genuinely escaped text, not raw input with stray backslashes.`,
+      },
+    ],
+    related: [
+      { slug: 'json-stringify', note: `Generate a full JSON string from an object, with strings already escaped.` },
+      { slug: 'json-parse', note: `Validate and read the JSON your escaped string ends up inside.` },
+      { slug: 'base64-encoder', note: `For a different kind of safe transport, encode the value as Base64.` },
+    ],
+  },
+
+  'json-schema-visualizer': {
+    intro: [
+      `Understanding the shape of an unfamiliar JSON document is half the battle when integrating an API. JSON Schema Visualizer reads your data and renders its structure as a color-coded tree — every key, its inferred type, and how the pieces nest — so you can grasp the shape at a glance instead of reading raw braces.`,
+      `It is most useful the first time you meet a payload: a developer pastes a sample response and immediately sees that data.items is an array of objects, each with a string id and a numeric price. Technical writers and analysts use it to document a structure without manually tracing every level.`,
+      `Types are inferred directly from the values — object, array, string, number, boolean, or null — and arrays are described by the type of their elements, giving you a readable map of the data rather than a formal validation schema.`,
+    ],
+    steps: [
+      `Paste a representative JSON sample into the "JSON Input" box.`,
+      `Click Visualize Schema.`,
+      `Explore the tree: each node shows its key, its inferred type, and (for arrays) what kind of items it holds.`,
+      `Follow the color coding to tell types apart at a glance, and Copy the structure if you want to keep it.`,
+    ],
+    why: [
+      `It infers and color-codes every type — object, array, string, number, boolean, and null — so the structure of an unfamiliar payload is readable instantly.`,
+      `Arrays are labeled by their element type (for example, "Array of object"), which is exactly what you need to know when writing code against a list.`,
+      `It renders the full nesting as an indented tree, turning a wall of braces into a navigable map.`,
+      `Your sample is analyzed in the browser and never uploaded, so you can paste real responses safely.`,
+    ],
+    faqs: [
+      {
+        question: `Does this generate a formal JSON Schema document?`,
+        answer: `No. It produces a readable, color-coded tree of your data's structure with inferred types — a visualization to help you understand the shape. It does not emit a formal JSON Schema (with $schema, required, and validation keywords) for use in automated validation.`,
+      },
+      {
+        question: `How are the types determined?`,
+        answer: `Types are inferred from the actual values in your sample. A quoted value is a string, a bare number is a number, true/false is a boolean, null is null, [...] is an array, and {...} is an object. For arrays, the element type is taken from the items present.`,
+      },
+      {
+        question: `Why does a large array only show a few items?`,
+        answer: `For readability, the visualizer previews the first several elements of an array rather than rendering thousands of identical nodes. The goal is to convey the structure — the element type and shape — not to reproduce the entire data set.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Pretty-print the raw JSON alongside its visualized structure.` },
+      { slug: 'json-path-finder', note: `Once you understand the shape, extract a specific value by its path.` },
+      { slug: 'json-diff', note: `Compare two payloads when their structures should match but do not.` },
+    ],
+  },
+
+  'json-to-csv': {
+    intro: [
+      `Spreadsheets speak CSV, APIs speak JSON, and the gap between them is a frequent chore. JSON to CSV converts an array of JSON objects into clean, spreadsheet-ready CSV — collecting every field into columns and lining up the rows.`,
+      `It is the quick bridge for getting data into Excel, Google Sheets, or a database import: exporting an API result for a non-technical colleague, turning a list of records into a report, or prepping a bulk upload. Nested objects are flattened into dot-notation columns, so {"user":{"name":"Ann"}} becomes a user.name column rather than an unreadable blob.`,
+    ],
+    steps: [
+      `Paste a JSON array of objects (or a single object) into the "JSON Input" box.`,
+      `The tool collects all keys across your objects to build the CSV header row.`,
+      `Read the generated CSV; nested object fields appear as dot-notation columns like address.city.`,
+      `Click Copy to paste into a sheet, or Download to save it as data.csv.`,
+    ],
+    why: [
+      `It flattens nested objects into dot-notation columns automatically, so structured records become a flat table without manual reshaping.`,
+      `It gathers the union of all keys across every object, so records with different fields still line up correctly, with blanks where a value is missing.`,
+      `Values containing commas, quotes, or line breaks are quoted and escaped following the standard CSV rules, so the output imports cleanly into Excel and Google Sheets.`,
+      `Conversion runs in your browser and the result downloads as a .csv file directly — no upload, no account.`,
+    ],
+    faqs: [
+      {
+        question: `What JSON structure does this expect?`,
+        answer: `An array of objects works best — each object becomes a row and each key becomes a column. A single object is also accepted and produces a one-row CSV. Deeply nested objects are flattened into dot-notation columns.`,
+      },
+      {
+        question: `How are nested objects handled?`,
+        answer: `Nested objects are flattened using dot notation, so {"user":{"name":"Ann","age":30}} becomes two columns, user.name and user.age. This keeps the structure visible while fitting into a flat table.`,
+      },
+      {
+        question: `Can I change the delimiter to a semicolon or tab?`,
+        answer: `This tool outputs standard comma-separated values. If your spreadsheet locale expects a semicolon, most spreadsheet apps let you choose the delimiter on import, or you can find-and-replace after pasting.`,
+      },
+      {
+        question: `What happens to values with commas in them?`,
+        answer: `They are automatically wrapped in double quotes, and any double quotes inside the value are doubled — the standard CSV escaping. This ensures a value like "Smith, John" stays in a single column when imported.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Validate and inspect the JSON before converting it to a table.` },
+      { slug: 'json-schema-visualizer', note: `See the structure first to know which columns you will get.` },
+      { slug: 'json-parse', note: `Clean up a minified JSON string so it is ready to convert.` },
+    ],
+  },
+
+  'regex-explainer': {
+    intro: [
+      `Reading someone else's regular expression — or your own from six months ago — can feel like decoding hieroglyphics. Regex Explainer breaks a pattern into its individual tokens and describes what each one does in plain language, turning a cryptic string into a readable list.`,
+      `It is a learning and code-review aid: a developer inherits a validation pattern and wants to know what it actually accepts; a student is building intuition for how quantifiers and character classes work; a reviewer needs to confirm a pattern does what its author claims. Instead of guessing, you get a token-by-token account.`,
+      `It recognizes the common building blocks — character classes, anchors, quantifiers, capturing and non-capturing groups, and escape sequences like \\d and \\w — and labels each as it appears in your pattern.`,
+    ],
+    steps: [
+      `Type or paste your regular expression into the "Regular Expression" field.`,
+      `Click Explain.`,
+      `Read the breakdown: each token in your pattern is listed with a description of what it matches.`,
+      `Use Copy to export the full explanation as text for documentation or a code comment.`,
+    ],
+    why: [
+      `It explains the pattern token by token — character classes, anchors, quantifiers, groups, and escapes — so you understand each piece rather than the whole at once.`,
+      `It validates the pattern as it reads it, so a syntactically broken regex is caught and reported instead of silently mis-explained.`,
+      `The breakdown copies out as plain text, which makes it easy to paste a regex explanation into a code comment or a review note.`,
+      `Analysis is entirely in-browser, so internal patterns stay private.`,
+    ],
+    faqs: [
+      {
+        question: `What do \\d, \\w, and \\s mean?`,
+        answer: `\\d matches any digit (0–9), \\w matches a word character (letters, digits, or underscore), and \\s matches whitespace (spaces, tabs, newlines). Their uppercase versions (\\D, \\W, \\S) match the opposite. The explainer labels each of these where they appear in your pattern.`,
+      },
+      {
+        question: `What is the difference between a capturing and a non-capturing group?`,
+        answer: `A capturing group (...) groups part of a pattern and remembers what it matched so you can reference it later. A non-capturing group (?:...) groups without storing the match, which is slightly more efficient when you only need the grouping for structure. The explainer identifies both.`,
+      },
+      {
+        question: `Will this tell me if my regex is wrong?`,
+        answer: `It will catch syntax errors — if the pattern cannot be compiled, it reports the problem rather than explaining it. It does not judge whether the pattern matches what you intended; pair it with a regex tester to check behavior against real input.`,
+      },
+    ],
+    related: [
+      { slug: 'regex-tester', note: `Test the explained pattern against real text to confirm it matches what you expect.` },
+      { slug: 'string-converter', note: `For simple transformations, a case conversion may be all you need instead of a regex.` },
+      { slug: 'text-diff', note: `Compare sample inputs to figure out what your pattern needs to capture.` },
+    ],
+  },
+
+  'uuid-generator': {
+    intro: [
+      `Unique identifiers are the quiet backbone of modern software — primary keys, request IDs, file names that must never collide. The UUID Generator produces version 4 UUIDs, the random variety, as many as you need at once.`,
+      `Developers grab them constantly: seeding a database with test records, generating a correlation ID to trace a request through logs, or creating a unique key for a new resource without round-tripping to a server. Because UUID v4 is built from random data, two generated values colliding is astronomically unlikely, which is exactly why it is the default choice for distributed systems.`,
+      `Need one or need a hundred — set the count and generate them in a single batch, then copy them all or download them as a file.`,
+    ],
+    steps: [
+      `Set the "Count" field to how many UUIDs you need (1 to 100).`,
+      `Click Generate.`,
+      `Read the list of version 4 UUIDs.`,
+      `Use an individual copy button for a single value, "Copy All" to grab the whole list, or Download to save them as uuids.txt.`,
+    ],
+    why: [
+      `It uses the browser's built-in crypto.randomUUID where available, so the values come from a cryptographically strong random source rather than a weak pseudo-random one, with a safe fallback for older browsers.`,
+      `You can generate up to 100 at once and export them with Copy All or as a downloadable text file — useful for seeding data in bulk.`,
+      `Generation is instant and local; no value is requested from or recorded by any server.`,
+      `It is free with no sign-up, so it fits straight into a scripting or testing workflow.`,
+    ],
+    faqs: [
+      {
+        question: `What is a version 4 UUID?`,
+        answer: `A version 4 UUID is a 128-bit identifier generated mostly from random numbers, written as 32 hexadecimal digits in five hyphen-separated groups. The "4" appears in a fixed position to mark the version. It is the most common UUID type because it needs no central coordination to stay unique.`,
+      },
+      {
+        question: `Are these UUIDs guaranteed to be unique?`,
+        answer: `Not literally guaranteed, but the probability of a collision is so vanishingly small that it is treated as unique for practical purposes. With 122 random bits, you would need to generate billions of UUIDs before a collision became remotely likely.`,
+      },
+      {
+        question: `Are the generated UUIDs random and private?`,
+        answer: `Yes. They are generated in your browser using a cryptographically secure random source where available, and no value is sent to or stored on any server, so the UUIDs you create are yours alone.`,
+      },
+      {
+        question: `Can I generate other UUID versions like v1 or v7?`,
+        answer: `This tool generates version 4 (random) UUIDs, which suit the large majority of use cases. Time-ordered versions like v1 or v7 are not produced here; if you specifically need sortable, timestamp-based identifiers, use a library that supports those versions.`,
+      },
+    ],
+    related: [
+      { slug: 'password-generator', note: `Need a random secret rather than an identifier? Generate a strong password.` },
+      { slug: 'hash-generator', note: `Produce a deterministic fingerprint of data with MD5 or SHA hashes.` },
+      { slug: 'jwt-decoder', note: `Inspect tokens that often carry a UUID as their subject or identifier.` },
+    ],
+  },
+
+  'html-viewer': {
+    intro: [
+      `Sometimes you just want to see what a snippet of HTML actually renders to — without spinning up a file, a server, or an editor. HTML Viewer takes your markup and shows the live result instantly, while checking that your tags are properly opened and closed.`,
+      `It is handy for quick checks: previewing the HTML a CMS or email template produced, sanity-checking a block of markup pasted from a colleague, or confirming that a structure renders the way you expect before committing it. The built-in tag validation catches the most common breakage — an unclosed or mismatched tag — and tells you which one is at fault.`,
+    ],
+    steps: [
+      `Paste your HTML into the "HTML Input" box.`,
+      `Click Preview to render it.`,
+      `Read the live preview of how the markup displays.`,
+      `If a tag is unclosed or mismatched, read the error that names the offending tag, fix it, and preview again; use Copy to grab your markup.`,
+    ],
+    why: [
+      `It renders your HTML live so you see the actual output, not a description of it.`,
+      `A tag-stack check flags unclosed or mismatched tags and names the specific tag, correctly ignoring void elements like img and br that need no closing tag.`,
+      `It works on any snippet without boilerplate — no need to wrap your markup in a full document first.`,
+      `Rendering happens locally in your browser, so nothing you paste is uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `Will this validate my HTML against the full standard?`,
+        answer: `It performs a practical structural check — making sure tags are opened and closed correctly and recognizing self-closing void elements — rather than a complete W3C conformance audit. It is designed to catch the common, render-breaking mistakes quickly, not to certify full spec compliance.`,
+      },
+      {
+        question: `Which tags count as self-closing?`,
+        answer: `Void elements such as img, br, hr, input, meta, link, area, base, col, embed, source, track, and wbr do not need a closing tag, and the validator treats them accordingly so they do not trigger false "unclosed tag" errors.`,
+      },
+      {
+        question: `Is it safe to paste any HTML here?`,
+        answer: `The markup is rendered in your own browser and nothing is uploaded, so your content stays private. Because it renders real HTML, only paste markup you trust — exactly as you would treat any code you run in your own browser.`,
+      },
+      {
+        question: `Why does my CSS or JavaScript not apply in the preview?`,
+        answer: `The preview renders your HTML structure, so inline styles and basic markup display, but external stylesheets and scripts referenced by the snippet are not loaded. To see a fully styled result, include the relevant CSS inline within the markup you paste.`,
+      },
+    ],
+    related: [
+      { slug: 'markdown-to-html', note: `Writing in Markdown? Convert it to HTML, then preview the result here.` },
+      { slug: 'code-minifier', note: `Strip whitespace and comments from your HTML once it renders correctly.` },
+      { slug: 'css-grid-generator', note: `Generate the CSS grid layout to drop into the markup you are previewing.` },
+    ],
+  },
+
+  'code-minifier': {
+    intro: [
+      `Every byte of whitespace and every comment ships to the browser unless you strip it first. Code Minifier removes the comments, redundant spacing, and line breaks from JavaScript, CSS, and HTML, then shows you exactly how many bytes you saved.`,
+      `It suits the quick optimization pass: shrinking an inline script or stylesheet before pasting it into a template, trimming a snippet for an embed, or just seeing how much fat a file is carrying. It works on three languages, and for JavaScript it is careful to preserve URLs while removing comments, so a // inside an http:// link does not accidentally eat the rest of the line.`,
+      `Smaller files mean fewer bytes over the wire and faster page loads, which is why minification is a standard step before code ships to production — and seeing the byte count drop makes the benefit concrete.`,
+    ],
+    steps: [
+      `Choose the language of your code: JavaScript, CSS, or HTML.`,
+      `Paste your code into the "Code Input" box.`,
+      `Click Minify.`,
+      `Read the minified output along with the before/after byte sizes and the percentage saved, then Copy the result.`,
+    ],
+    why: [
+      `It handles three languages — JavaScript, CSS, and HTML — each with rules tuned to that language's comment and whitespace conventions.`,
+      `For JavaScript it preserves URLs while stripping comments, avoiding the classic bug where removing // mangles a link.`,
+      `It reports the original and minified sizes with the percentage reduction, so you can see the payoff immediately.`,
+      `Minification runs entirely in your browser, so proprietary code is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `Is this a safe, full minifier like Terser or cssnano?`,
+        answer: `It is a lightweight minifier that removes comments and collapses whitespace, which is great for quick savings on simple snippets. It does not rename variables or perform the deep, AST-based transformations of build-tool minifiers, so for production bundles of complex code, use a dedicated build tool.`,
+      },
+      {
+        question: `Will minifying change how my code behaves?`,
+        answer: `For well-formed code, removing comments and excess whitespace does not change behavior. Because this tool uses pattern-based minification rather than full parsing, review the output for unusual code (such as whitespace-sensitive template strings) before shipping it.`,
+      },
+      {
+        question: `How much smaller will my file get?`,
+        answer: `It depends on how many comments and how much spacing the original contains — heavily commented, generously formatted code can shrink substantially, while already-compact code saves little. The tool shows the exact percentage so you can judge per file.`,
+      },
+    ],
+    related: [
+      { slug: 'html-viewer', note: `Confirm your HTML still renders correctly after minifying it.` },
+      { slug: 'css-grid-generator', note: `Generate grid CSS, then minify it before adding it to your stylesheet.` },
+      { slug: 'markdown-to-html', note: `Produce HTML from Markdown, then minify the output for delivery.` },
+    ],
+  },
+
+  'cron-builder': {
+    intro: [
+      `Cron's five-field syntax is compact but unforgiving, and most people end up looking up "what does 0 9 * * 1 mean again?" every single time. Cron Builder lets you set each field — minute, hour, day of month, month, day of week — and assembles the expression for you, with common schedules available as one-click presets.`,
+      `It is the helper you reach for when configuring a scheduled job, a backup, or a recurring task: pick "Every Monday at 9 AM" from the presets, or dial in custom values when your schedule is more specific. It also lists an approximate preview of upcoming run dates so you can sanity-check that you built the schedule you intended.`,
+    ],
+    steps: [
+      `Start from a preset — such as "Every day at midnight" or "Every Monday at 9 AM" — or skip straight to the fields.`,
+      `Set the five fields as needed: Minute (0–59), Hour (0–23), Day of Month (1–31), Month (1–12), and Day of Week (0–6).`,
+      `Click Build Expression to assemble the cron string.`,
+      `Review the approximate "next scheduled runs" preview, then Copy the expression into your crontab or scheduler.`,
+    ],
+    why: [
+      `Six presets cover the most common schedules, so routine cases like hourly or daily-at-midnight take a single click.`,
+      `Each of the five fields is labeled with its valid range, removing the guesswork about which position controls what.`,
+      `It shows an upcoming-runs preview, clearly marked approximate, so you can gut-check the schedule before deploying it.`,
+      `It runs in the browser with no sign-up, producing a standard five-field expression you can paste anywhere cron is used.`,
+    ],
+    faqs: [
+      {
+        question: `What do the five fields in a cron expression mean?`,
+        answer: `In order, they are minute (0–59), hour (0–23), day of the month (1–31), month (1–12), and day of the week (0–6, where 0 is Sunday). An asterisk in a field means "every" value for that position. So 0 9 * * 1 means 9:00 AM every Monday.`,
+      },
+      {
+        question: `How accurate is the "next runs" preview?`,
+        answer: `It is a rough approximation to help you visualize the schedule, not a precise cron evaluation. The expression itself is standard and will run exactly as your real cron daemon interprets it; treat the preview as a sanity check rather than an authoritative schedule.`,
+      },
+      {
+        question: `Does this support ranges, lists, or step values like */5?`,
+        answer: `The builder focuses on single values and presets per field. You can always edit the generated expression by hand to add advanced syntax such as */5 (every five), ranges (1-5), or lists (1,3,5), which standard cron supports.`,
+      },
+    ],
+    related: [
+      { slug: 'regex-tester', note: `Another compact syntax worth verifying before you rely on it.` },
+      { slug: 'css-grid-generator', note: `A similar generator that hands you ready-to-paste output from simple inputs.` },
+      { slug: 'json-formatter', note: `Tidy up the config files your scheduled jobs read.` },
+    ],
+  },
+
+  'css-grid-generator': {
+    intro: [
+      `CSS Grid is powerful, but writing grid-template-columns: repeat(...) by hand and guessing at gaps slows down quick layout work. CSS Grid Generator gives you simple controls for columns, rows, and gap, then hands back clean, copy-ready CSS alongside a live preview of the layout.`,
+      `It fits the prototyping moment: roughing out a gallery, a dashboard, or a card layout and wanting the boilerplate CSS without typing it from memory. Adjust the numbers, watch the preview grid update with numbered cells, and paste the generated rules straight into your stylesheet.`,
+    ],
+    steps: [
+      `Set the number of columns (1–12) and rows (1–12).`,
+      `Enter a gap value — any valid CSS length such as 16px or 1rem.`,
+      `Click Generate Grid.`,
+      `Check the live preview of the grid, then Copy the generated .grid-container CSS into your stylesheet.`,
+    ],
+    why: [
+      `A live preview renders the actual grid as you configure it, so you see the layout before touching your codebase.`,
+      `It outputs clean, standard grid CSS using repeat() and fractional units, ready to paste without editing.`,
+      `The gap field accepts any CSS length unit, so you are not locked into pixels.`,
+      `It runs entirely in the browser, free and without sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What does the fr unit in the generated CSS mean?`,
+        answer: `fr stands for "fraction" and distributes available space proportionally. repeat(3, 1fr) creates three columns that each take an equal share of the container's width, which is the most common way to build a responsive, evenly divided grid.`,
+      },
+      {
+        question: `Can I use rem or percentages for the gap?`,
+        answer: `Yes. The gap field accepts any valid CSS length, so 16px, 1rem, 2%, or similar all work. The value you enter is placed directly into the gap property of the generated CSS.`,
+      },
+      {
+        question: `How do I place items within the grid?`,
+        answer: `The generated CSS sets up the container and even columns and rows; items flow into cells automatically. To position a specific item across multiple cells, add grid-column or grid-row rules to that item — the generator gives you the container foundation to build on.`,
+      },
+      {
+        question: `Will this grid be responsive on mobile?`,
+        answer: `A fixed column count stays fixed at every screen size. To make it adapt, wrap the grid in a media query that reduces the column count on narrow screens, or replace repeat(N, 1fr) with repeat(auto-fit, minmax(...)) so columns wrap automatically — both build directly on the CSS this tool generates.`,
+      },
+    ],
+    related: [
+      { slug: 'html-viewer', note: `Preview the HTML markup that your grid CSS will style.` },
+      { slug: 'code-minifier', note: `Minify the generated CSS before adding it to production.` },
+      { slug: 'color-palette', note: `Pull a color scheme for your grid items from an image.` },
+    ],
+  },
+
+  'har-viewer': {
+    intro: [
+      `A HAR file is a complete recording of the network activity your browser captured — every request, its timing, and its response — but opened as raw JSON it is an unreadable wall of text. HAR Viewer parses that file and lays out a clean summary: how many requests were made, and for each one its method, URL, and response status.`,
+      `It is the tool you open when someone sends you a HAR export to debug a problem: a support engineer scanning which requests failed, a developer confirming the order calls fired in, or a tester verifying a 401 really did come back from the API. Upload the file or paste its contents and the noise becomes a readable list.`,
+    ],
+    steps: [
+      `Upload a .har file with the "Upload HAR" button, or paste its JSON contents into the text box.`,
+      `The tool parses it and shows a summary: HAR version, number of entries, and number of pages.`,
+      `Scan the request list — each row shows the HTTP method, the URL, and the response status.`,
+      `Use Copy to export the parsed data as formatted JSON for sharing or further inspection.`,
+    ],
+    why: [
+      `It accepts both file upload and pasted content, so you can open a HAR however it reached you.`,
+      `It surfaces the details that matter for debugging — method, URL, and response status per request — instead of making you scroll raw JSON.`,
+      `It validates that the file is a real HAR (checking for the log structure) and reports a clear error if it is not.`,
+      `Parsing happens entirely in your browser, which matters because HAR files often contain sensitive headers, cookies, and tokens that should never be uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is a HAR file and how do I create one?`,
+        answer: `A HAR (HTTP Archive) file is a JSON record of a browser session's network requests. You generate one from your browser's developer tools — in the Network tab, record activity and choose "Save all as HAR" (or "Export HAR"). The resulting file captures every request and response.`,
+      },
+      {
+        question: `Is it safe to open a HAR file here?`,
+        answer: `Yes — the file is parsed locally in your browser and never uploaded. This is important because HAR files frequently contain authentication headers, cookies, and other sensitive data, so keeping the parsing client-side protects that information.`,
+      },
+      {
+        question: `Why does it only show some of the requests?`,
+        answer: `For readability, the viewer lists the first batch of entries and indicates how many more exist, since real HAR files can contain hundreds of requests. The summary count tells you the total number of entries captured.`,
+      },
+    ],
+    related: [
+      { slug: 'security-header-analyzer', note: `Check whether the responses in your capture set the right security headers.` },
+      { slug: 'http-headers-checker', note: `Fetch and inspect the live headers a specific URL returns.` },
+      { slug: 'json-formatter', note: `Pretty-print the raw HAR JSON when you need the full detail.` },
+    ],
+  },
+
+  'security-header-analyzer': {
+    intro: [
+      `HTTP security headers are a frontline defense against attacks like cross-site scripting and clickjacking, yet they are easy to forget to configure. Security Header Analyzer reviews a set of response headers, checks for the ones that matter, rates how complete your coverage is, and explains what each missing header would protect against.`,
+      `It is built for a security or deployment review: paste the response headers from a site and instantly see whether Content-Security-Policy, Strict-Transport-Security, and the rest are present, with a score that summarizes your posture. Developers use it to harden a site before launch; auditors use it to document gaps with concrete recommendations.`,
+      `Note that it analyzes headers you paste in — it does not fetch a URL for you — so you control exactly which response is being assessed.`,
+    ],
+    steps: [
+      `Copy the response headers from your site (from your browser's network tab or a curl -I command).`,
+      `Paste them into the "HTTP Headers" box, one per line in Header-Name: value form.`,
+      `Click Analyze.`,
+      `Read the security score and the per-header results: which are present, their severity, and a recommendation for each, then Copy the summary.`,
+    ],
+    why: [
+      `It checks eight key security headers and assigns each a severity (from critical for Content-Security-Policy down to low), so you know which gaps to fix first.`,
+      `It produces a coverage score and a specific recommendation per header, turning a review into an actionable checklist.`,
+      `Because it analyzes headers you paste, you can assess any response — including staging environments or authenticated requests — that a URL-fetching scanner could not reach.`,
+      `Analysis is entirely client-side, so headers that may include sensitive values are never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `Which security headers does it check?`,
+        answer: `It evaluates eight: Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy, Permissions-Policy, and Cache-Control — each tied to a specific protection such as preventing XSS, enforcing HTTPS, or blocking clickjacking.`,
+      },
+      {
+        question: `Does this tool scan a website by URL?`,
+        answer: `No. It analyzes the headers you paste into it rather than fetching a site itself. That design lets you assess responses a public scanner cannot see — like internal environments or authenticated pages — but it means you need to supply the headers. To capture live headers from a URL, use an HTTP headers checker first.`,
+      },
+      {
+        question: `How is the security score calculated?`,
+        answer: `The score reflects how many of the eight checked headers are present in what you pasted, expressed as a percentage. It is a quick coverage indicator; the per-header severity and recommendations tell you which missing headers carry the most risk.`,
+      },
+      {
+        question: `Where do I find my site's response headers?`,
+        answer: `Open your browser's developer tools, go to the Network tab, reload the page, click the main document request, and read the Response Headers section. Alternatively, run curl -I https://yoursite.com from a terminal and copy the output.`,
+      },
+    ],
+    related: [
+      { slug: 'http-headers-checker', note: `Fetch the live response headers from a URL to feed into this analyzer.` },
+      { slug: 'har-viewer', note: `Inspect a full network capture to see headers across many requests.` },
+      { slug: 'ssl-certificate-checker', note: `Verify the HTTPS certificate that headers like HSTS depend on.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
