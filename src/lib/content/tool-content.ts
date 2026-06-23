@@ -1283,6 +1283,609 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'ssl-certificate-checker', note: `Verify the HTTPS certificate that headers like HSTS depend on.` },
     ],
   },
+
+  // ── Batch 3: Financial calculators (15) ─────────────────────────────
+
+  'discount-calculator': {
+    intro: [
+      `A discount calculator answers the one question every sale poster leaves out: what do I actually pay? Enter the original price and the discount percentage, and this tool returns the dollars knocked off and the final price, plus a clear "you save" line.`,
+      `It is the everyday companion for clearance racks, flash sales, and coupon codes — the moment you want to know whether "40% off" is the bargain it sounds like before committing. Budget-minded shoppers use it to compare two deals quickly; resellers use it to confirm a markdown still leaves room above cost.`,
+    ],
+    steps: [
+      `Enter the original price in the first field.`,
+      `Enter the discount percentage being offered.`,
+      `Read the discount amount and the final price you will pay.`,
+      `Check the "you save" line to see the saving in both dollars and percent, then Copy the result if you need it.`,
+    ],
+    why: [
+      `It shows the saving as a dollar figure alongside the percentage, so an abstract "40% off" becomes a concrete amount you can weigh.`,
+      `Input is validated — a percentage above 100 or a price of zero is rejected rather than producing a nonsense result.`,
+      `The math is instant and runs locally in your browser, so it works on a phone in a store aisle with no account.`,
+      `It stays deliberately focused on a single price and discount, which makes it faster than multi-field tools when you just need the bottom line.`,
+    ],
+    faqs: [
+      {
+        question: `How do I work out a discount in my head?`,
+        answer: `Convert the percentage to a decimal and multiply: 25% off a $80 item is 0.25 × 80 = $20 off, leaving $60. For trickier numbers, this calculator does it exactly, including the final price.`,
+      },
+      {
+        question: `Can I apply two discounts at once?`,
+        answer: `Discounts do not simply add together. To apply "20% off then an extra 15%", calculate the first discount here, then enter the resulting price and the second percentage for a second pass — that gives the true combined price.`,
+      },
+      {
+        question: `Does this add sales tax?`,
+        answer: `No, it works on the pre-tax price. Calculate the discount first, then run the final price through a sales tax calculator if you want the amount you will actually be charged at checkout.`,
+      },
+      {
+        question: `Is a higher discount percentage always the better deal?`,
+        answer: `Not necessarily — what matters is the dollars saved on the price you actually pay. 30% off an expensive item can save more than 50% off a cheap one. Use the "you save" figure here to compare the real saving rather than just the headline percentage.`,
+      },
+    ],
+    related: [
+      { slug: 'percent-off-calculator', note: `Calculating a discount across several units? This one totals the saving by quantity.` },
+      { slug: 'sales-tax-calculator', note: `Add tax to your discounted price to find the real checkout total.` },
+      { slug: 'tip-calculator', note: `Eating out with a coupon? Apply the discount, then sort the tip and split.` },
+    ],
+  },
+
+  'sales-tax-calculator': {
+    intro: [
+      `Sales tax turns a tidy shelf price into an awkward total at the register, and rates differ from one place to the next. This calculator takes a pre-tax price, a quantity, and a tax rate, and tells you the tax per item and the full amount due — so there are no surprises at checkout.`,
+      `Shoppers use it to budget before buying; small sellers and freelancers use it to add the correct tax to an invoice or quote. Because it multiplies by quantity, it is equally happy with a single purchase or a bulk order where the per-item tax needs to scale up.`,
+    ],
+    steps: [
+      `Enter the price of one item before tax.`,
+      `Enter the quantity you are buying.`,
+      `Enter your local sales tax rate as a percentage.`,
+      `Read the tax per item, the single-item total, and the grand total across all units, then Copy if needed.`,
+    ],
+    why: [
+      `It breaks out tax per item separately from the order total, so you can see both the unit cost and what a bulk purchase comes to.`,
+      `The quantity field scales everything correctly, which matters when you are pricing several units rather than one.`,
+      `Inputs are validated against zero and negative values, so the figures it returns are always sensible.`,
+      `It calculates instantly client-side with no sign-up, ready whenever you need a quick total.`,
+    ],
+    faqs: [
+      {
+        question: `How do I calculate sales tax on a purchase?`,
+        answer: `Multiply the price by the tax rate as a decimal: a 7% tax on a $50 item is 50 × 0.07 = $3.50, for a total of $53.50. Enter the price, quantity, and rate here and the calculator handles per-item and total amounts for you.`,
+      },
+      {
+        question: `What sales tax rate should I enter?`,
+        answer: `Use the combined rate for your location, which may stack state, county, and city taxes. Rates vary widely by jurisdiction, so check the rate that applies where the purchase happens and enter that single combined percentage.`,
+      },
+      {
+        question: `Is sales tax the same as VAT?`,
+        answer: `They are similar consumption taxes but work differently — sales tax is added once at the final sale, while VAT is collected at each stage of production. If you need to add or strip VAT from a price, use the dedicated VAT calculator instead.`,
+      },
+      {
+        question: `Are some items exempt from sales tax?`,
+        answer: `Often, yes. Many jurisdictions exempt or reduce tax on essentials like groceries, prescription medicine, or clothing, and rules vary by location. If an item is exempt, simply leave it out or enter a 0% rate for it; this calculator applies whatever rate you specify.`,
+      },
+    ],
+    related: [
+      { slug: 'vat-calculator', note: `Outside the US? Add or remove value-added tax instead of sales tax.` },
+      { slug: 'discount-calculator', note: `Apply a markdown to the price before tax is added.` },
+      { slug: 'tip-calculator', note: `Work out a tip on the pre- or post-tax amount of a bill.` },
+    ],
+  },
+
+  'margin-calculator': {
+    intro: [
+      `Profit margin and markup are easy to confuse, and mixing them up can quietly wreck your pricing. The Margin Calculator takes a cost price and a selling price and reports both numbers clearly: the profit in dollars, the profit margin as a percentage of the sale, and the markup as a percentage of the cost.`,
+      `It is a daily tool for anyone who sets prices — a shop owner deciding what to charge, a freelancer quoting a project, or a reseller checking that a deal still earns. Seeing margin and markup side by side makes the difference obvious: a 50% markup is only a 33% margin, and this tool spells that out instead of leaving you to guess.`,
+    ],
+    steps: [
+      `Enter your cost price — what the item or service costs you.`,
+      `Enter your selling price — what the customer pays.`,
+      `Read the profit amount, color-coded green for a gain or red for a loss.`,
+      `Compare the markup percentage (profit over cost) with the profit margin percentage (profit over selling price), then Copy the figures.`,
+    ],
+    why: [
+      `It reports margin and markup as distinct metrics, so you never accidentally treat one as the other when setting prices.`,
+      `Profit is color-coded — green when you are making money, red when the selling price is below cost — for an instant read.`,
+      `It handles the edge case of a zero selling price gracefully rather than dividing by zero.`,
+      `Calculations run in your browser with no account, so confidential cost data stays on your device.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between margin and markup?`,
+        answer: `Markup is profit as a percentage of your cost, while margin is profit as a percentage of the selling price. A product that costs $10 and sells for $15 has a 50% markup but a 33.3% margin. They describe the same profit from two different angles.`,
+      },
+      {
+        question: `How do I set a price for a target margin?`,
+        answer: `To hit a desired margin, divide your cost by (1 minus the margin as a decimal). For a 40% margin on a $12 cost, that is 12 ÷ 0.6 = $20. Enter cost and candidate prices here to check the margin each one produces.`,
+      },
+      {
+        question: `Why is my profit showing in red?`,
+        answer: `A red profit means your selling price is below your cost — you would lose money on the sale. Raise the selling price above the cost price to move into profit, which the calculator shows in green.`,
+      },
+    ],
+    related: [
+      { slug: 'break-even-calculator', note: `Find how many units you must sell to cover your fixed costs at this margin.` },
+      { slug: 'roi-calculator', note: `Measure the return on a purchase or investment rather than per-unit profit.` },
+      { slug: 'commission-calculator', note: `Factor a salesperson's cut into your pricing and earnings.` },
+    ],
+  },
+
+  'commission-calculator': {
+    intro: [
+      `For anyone paid on what they sell, knowing the commission before payday matters. This calculator takes a sales amount and a commission rate, adds any fixed base salary, and returns the commission earned and the total take-home.`,
+      `Salespeople use it to forecast a paycheck from a strong month; managers use it to model what a rate change would cost; recruiters use it to explain an offer's earning potential. Because it folds in an optional base salary, it works for pure-commission roles and for the common base-plus-commission structure alike.`,
+    ],
+    steps: [
+      `Enter the total sales amount the commission is based on.`,
+      `Enter your commission rate as a percentage.`,
+      `Optionally enter a fixed base salary to add on top.`,
+      `Read the commission earned and the combined total earnings, then Copy the breakdown.`,
+    ],
+    why: [
+      `It combines commission with an optional base salary, matching real base-plus-commission pay structures rather than commission alone.`,
+      `The result separates the commission from total earnings, so you can see exactly what your sales contributed.`,
+      `It validates against negative or zero inputs, so the earnings figure is always meaningful.`,
+      `Everything is calculated locally and instantly, with no sign-up — handy for a quick paycheck estimate.`,
+    ],
+    faqs: [
+      {
+        question: `How is sales commission calculated?`,
+        answer: `Multiply the sales amount by the commission rate as a decimal: 5% commission on $40,000 of sales is 40,000 × 0.05 = $2,000. If you also receive a base salary, the calculator adds it to give your total earnings.`,
+      },
+      {
+        question: `Does this handle tiered or graduated commission?`,
+        answer: `It calculates a single flat commission rate plus an optional base. For a tiered plan where different rates apply to different sales bands, calculate each band separately at its own rate and add the results together.`,
+      },
+      {
+        question: `Should commission be figured on revenue or profit?`,
+        answer: `That depends on your plan — some pay on gross sales revenue, others on profit or margin. Enter whichever figure your agreement is based on as the sales amount, and apply your contracted rate to it.`,
+      },
+      {
+        question: `What is a typical commission rate?`,
+        answer: `Rates vary widely by industry — retail and many sales roles sit in the low single digits, while real estate commissions are often around 5–6% and some high-value B2B deals run higher. Enter the rate your specific agreement specifies; this calculator works for any percentage.`,
+      },
+    ],
+    related: [
+      { slug: 'salary-calculator', note: `Convert your base salary between annual, monthly, and hourly figures.` },
+      { slug: 'margin-calculator', note: `Check the profit behind the sales your commission is paid on.` },
+      { slug: 'sales-tax-calculator', note: `Separate tax from the sale value before applying your rate.` },
+    ],
+  },
+
+  'future-value-calculator': {
+    intro: [
+      `Money today is worth more than the same money later, and the Future Value Calculator shows exactly how much more. Enter a present sum, an interest rate, and a time horizon, and it projects what that money will grow to with compounding — optionally adding a regular monthly deposit along the way.`,
+      `Savers use it to see where a nest egg lands in ten years; planners use it to test whether a savings habit reaches a goal. The compounding-frequency control lets you model daily, monthly, quarterly, or annual compounding on a lump sum, while the monthly-deposit option layers in steady contributions for a more realistic savings picture.`,
+    ],
+    steps: [
+      `Enter the present value — the amount you are starting with.`,
+      `Enter the annual interest rate and the time period in years.`,
+      `Choose a compounding frequency (daily, monthly, quarterly, or annually) for the lump sum.`,
+      `Optionally add a monthly deposit to model regular contributions.`,
+      `Read the projected future value, total contributions, and total interest earned, then Copy the result.`,
+    ],
+    why: [
+      `It models both a one-time lump sum and ongoing monthly deposits, so you can project realistic savings, not just idle capital.`,
+      `Four compounding frequencies let you match how your account actually compounds, which changes the result more than people expect.`,
+      `It separates total contributions from total interest, making it clear how much growth came from your money versus from compounding.`,
+      `It runs entirely client-side with no sign-up, so your financial figures stay private.`,
+    ],
+    faqs: [
+      {
+        question: `What is future value?`,
+        answer: `Future value is what a sum of money today will be worth at a later date once interest or returns have compounded. It is the core idea behind savings growth: a dollar invested now becomes more than a dollar later because it earns on itself over time.`,
+      },
+      {
+        question: `Why does compounding frequency change the result?`,
+        answer: `The more often interest is compounded, the sooner earned interest starts earning its own interest. Daily compounding produces slightly more than annual compounding at the same rate, because growth is credited and reinvested more frequently.`,
+      },
+      {
+        question: `What happens when I add a monthly deposit?`,
+        answer: `The calculator then treats your contributions as a monthly series compounded over the full term, on top of the growth of your starting balance. This models a regular savings habit rather than a single deposit left to grow.`,
+      },
+    ],
+    related: [
+      { slug: 'present-value-calculator', note: `Work backward to find what a future sum is worth in today's money.` },
+      { slug: 'investment-calculator', note: `Project an investment with contributions and see a year-by-year breakdown.` },
+      { slug: 'compound-interest-calculator', note: `Focus purely on how compounding grows a balance over time.` },
+    ],
+  },
+
+  'roi-calculator': {
+    intro: [
+      `Return on investment boils any venture down to one comparable number: how much you gained relative to what you put in. The ROI Calculator takes your initial investment and its final value and returns the ROI percentage and the profit or loss in dollars — and if you supply a time period, it also computes the annualized return.`,
+      `Investors use it to compare opportunities on equal footing; marketers use it to justify a campaign's spend; anyone weighing a purchase uses it to check whether the payoff was worth it. The annualized figure is what makes it genuinely useful for comparison: a 50% return over five years is far less impressive than 50% in one, and this tool surfaces that difference.`,
+    ],
+    steps: [
+      `Enter the initial investment — the amount you put in.`,
+      `Enter the final value — what it is worth now or what you sold it for.`,
+      `Optionally enter the investment period and choose its unit (days, months, or years).`,
+      `Read the ROI percentage and the profit or loss, color-coded, plus the annualized ROI when a period is given.`,
+    ],
+    why: [
+      `It computes annualized ROI (a CAGR-style figure) when you provide a time period, so returns over different durations can be compared fairly.`,
+      `Profit or loss is shown in dollars and color-coded, alongside the percentage, for an immediate read on the outcome.`,
+      `It accepts a loss scenario — a final value below the initial — rather than rejecting it, so down results are handled honestly.`,
+      `Calculations are instant and local, with no account required.`,
+    ],
+    faqs: [
+      {
+        question: `How is ROI calculated?`,
+        answer: `ROI is the profit divided by the initial investment, expressed as a percentage: a $2,000 gain on a $10,000 investment is a 20% ROI. The calculator computes this automatically and shows the underlying profit or loss.`,
+      },
+      {
+        question: `What is annualized ROI and why does it matter?`,
+        answer: `Annualized ROI expresses your total return as an equivalent yearly rate, accounting for how long the money was invested. It lets you compare a two-year investment with a five-year one fairly, since raw ROI alone hides the role of time.`,
+      },
+      {
+        question: `Can ROI be negative?`,
+        answer: `Yes. If the final value is less than what you invested, ROI is negative and represents a loss. This calculator accepts that case and shows the shortfall in red so the result is clear.`,
+      },
+    ],
+    related: [
+      { slug: 'investment-calculator', note: `Project future growth with regular contributions rather than a single return.` },
+      { slug: 'margin-calculator', note: `Measure per-sale profitability instead of investment return.` },
+      { slug: 'future-value-calculator', note: `See what a sum will grow to at a given rate over time.` },
+    ],
+  },
+
+  'vat-calculator': {
+    intro: [
+      `Value-added tax is baked into prices across much of the world, which means you sometimes need to add it and sometimes need to pull it back out. This VAT Calculator does both: switch to "Add VAT" to find the gross price from a net one, or "Remove VAT" to recover the net price hidden inside a VAT-inclusive total.`,
+      `Businesses use the reverse calculation constantly — recovering the net figure from a receipt for bookkeeping, or confirming the VAT element of a supplier invoice. Sellers use the forward mode to quote tax-inclusive prices. A quantity field scales either calculation across multiple units.`,
+    ],
+    steps: [
+      `Choose your mode: "Add VAT" to add tax to a net price, or "Remove VAT" to extract it from an inclusive price.`,
+      `Enter the price — net in Add mode, gross in Remove mode.`,
+      `Enter the quantity and the VAT rate as a percentage.`,
+      `Read the price excluding VAT, the VAT amount, the price including VAT, and the total across all units.`,
+    ],
+    why: [
+      `It works in both directions — adding VAT to a net price and reverse-calculating the net price from a VAT-inclusive total — which most simple tax tools cannot do.`,
+      `The reverse mode correctly divides by (1 + rate) rather than naively subtracting the percentage, so the recovered net figure is accurate.`,
+      `A quantity field scales either calculation, and inputs are validated against impossible rates.`,
+      `It runs locally with no sign-up, suitable for quick bookkeeping checks.`,
+    ],
+    faqs: [
+      {
+        question: `How do I remove VAT from a price?`,
+        answer: `You divide rather than subtract. To strip 20% VAT from a £120 inclusive price, divide by 1.20 to get £100 net, making the VAT £20. Subtracting 20% of £120 would be wrong — this calculator's "Remove VAT" mode handles it correctly.`,
+      },
+      {
+        question: `What is the difference between adding and removing VAT?`,
+        answer: `Adding VAT starts from a net (tax-free) price and calculates the gross price a customer pays. Removing VAT starts from a gross (tax-inclusive) price and works back to the net price and the tax within it. Pick the mode that matches the figure you already have.`,
+      },
+      {
+        question: `Is VAT the same everywhere?`,
+        answer: `No — VAT rates differ by country and sometimes by product category, and some regions use sales tax instead. Enter the rate that applies to your situation; the calculator is rate-agnostic and works for any percentage you provide.`,
+      },
+    ],
+    related: [
+      { slug: 'sales-tax-calculator', note: `In the US? Use sales tax, which is added only at the final sale.` },
+      { slug: 'discount-calculator', note: `Apply a markdown to the net price before tax is added.` },
+      { slug: 'margin-calculator', note: `Check the profit in a price once tax is separated out.` },
+    ],
+  },
+
+  'student-loan-calculator': {
+    intro: [
+      `Student debt rarely comes with a clear picture of the road ahead. This calculator takes a loan balance, an interest rate, and a repayment plan, then builds the full payoff story: your monthly payment, how long it takes, the total interest, and a month-by-month amortization schedule you can expand and inspect.`,
+      `Graduates use it to compare what Standard, Graduated, and Extended plans really cost over time; prospective borrowers use it to understand the long-term weight of a balance before signing. The detailed schedule is the standout — instead of a single payment figure, you can watch the balance fall and see how much of each payment is interest versus principal.`,
+    ],
+    steps: [
+      `Enter your student loan amount.`,
+      `Enter the annual interest rate.`,
+      `Choose a repayment plan: Standard (10-year fixed), Graduated (payments that rise over time), or Extended (25-year fixed).`,
+      `Read your monthly payment, payoff time, total interest, and total paid.`,
+      `Expand the payment schedule to see each month's principal, interest, and remaining balance.`,
+    ],
+    why: [
+      `It generates a full amortization schedule, so you can see exactly how each payment splits between interest and principal over the life of the loan.`,
+      `It models three distinct plans — including a graduated plan whose payments rise over time — rather than assuming one fixed structure.`,
+      `Payoff time is shown in plain years-and-months, and total interest is highlighted so the true cost of borrowing is unmistakable.`,
+      `All calculations are client-side, keeping your loan details private.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between Standard, Graduated, and Extended plans?`,
+        answer: `Standard spreads fixed payments over 10 years, the fastest and cheapest in total interest. Graduated starts with lower payments that increase over time, easing early budgets. Extended stretches payments over 25 years, lowering the monthly amount but raising total interest substantially.`,
+      },
+      {
+        question: `Why does a longer repayment plan cost more?`,
+        answer: `A longer term means the balance accrues interest for more years, so even with smaller monthly payments you pay more interest overall. The calculator's total-interest figure makes this trade-off between affordability and total cost concrete.`,
+      },
+      {
+        question: `Does paying extra each month help?`,
+        answer: `Yes — extra payments go straight to principal, shrinking the balance that future interest is charged on and shortening the term. While this tool models the standard plans, you can approximate the effect by entering a shorter term or comparing scenarios.`,
+      },
+    ],
+    related: [
+      { slug: 'loan-calculator', note: `Model a mortgage, auto, or personal loan with the same amortization detail.` },
+      { slug: 'debt-payoff-calculator', note: `See how a fixed monthly payment clears a debt and what interest it costs.` },
+      { slug: 'salary-calculator', note: `Convert your income to monthly figures to plan repayments against it.` },
+    ],
+  },
+
+  'investment-calculator': {
+    intro: [
+      `Investing is a long game, and seeing the trajectory makes it easier to stick with. The Investment Calculator combines a starting amount with regular monthly contributions and an expected annual return, then projects the final value — backed by a year-by-year table showing how the balance, contributions, and profit grow.`,
+      `It suits anyone building wealth steadily: someone modeling a retirement account, a parent saving toward college, or an investor sanity-checking whether a contribution rate meets a goal. Beyond the headline number, it reports total invested, total profit, simple ROI, and an annualized return, so you understand not just where you end up but how efficiently you got there.`,
+    ],
+    steps: [
+      `Enter your initial investment.`,
+      `Enter your monthly contribution.`,
+      `Enter the expected annual return as a percentage and the investment period in years.`,
+      `Read the final value, total invested, total profit, ROI, and annualized return.`,
+      `Expand the yearly projection to see the balance build year by year.`,
+    ],
+    why: [
+      `It pairs a lump sum with recurring monthly contributions and shows a full year-by-year projection, so compounding growth is visible rather than abstract.`,
+      `It reports both simple ROI and annualized return (CAGR), separating the headline gain from the time-adjusted rate.`,
+      `Total invested is shown next to total profit, making clear how much of the final value you contributed versus what the market added.`,
+      `Everything is computed locally and instantly, with no account or data sharing.`,
+    ],
+    faqs: [
+      {
+        question: `How is this different from a compound interest calculator?`,
+        answer: `A compound interest tool typically grows a single balance. This calculator adds regular monthly contributions on top of that growth and produces a year-by-year projection plus ROI and annualized-return metrics, modeling an ongoing investing habit rather than a one-time deposit.`,
+      },
+      {
+        question: `What return rate should I assume?`,
+        answer: `Returns are never guaranteed, but many long-term investors model broad stock-market averages in the range of roughly 6–8% annually before inflation. Use a rate you can justify for your strategy, and test a conservative figure alongside an optimistic one.`,
+      },
+      {
+        question: `Does this account for inflation or taxes?`,
+        answer: `No. The projection shows nominal growth before inflation and taxes. To gauge real purchasing power, mentally discount the result by your inflation assumption, and remember that taxes on gains depend on the account type and jurisdiction.`,
+      },
+      {
+        question: `How much should I contribute each month?`,
+        answer: `There is no universal figure — it depends on your goal, timeline, and income. The power of this calculator is showing how even modest, consistent contributions compound over years. Try a contribution you can sustain, then raise it to see how much sooner you reach your target.`,
+      },
+    ],
+    related: [
+      { slug: 'future-value-calculator', note: `Project a sum's growth with flexible compounding frequencies.` },
+      { slug: 'roi-calculator', note: `Measure the return on a single completed investment.` },
+      { slug: 'compound-interest-calculator', note: `Isolate the effect of compounding on a balance over time.` },
+    ],
+  },
+
+  'salary-calculator': {
+    intro: [
+      `Job offers and pay rates come in incompatible units — an hourly wage here, an annual figure there, a monthly number on a payslip — and comparing them means converting. The Salary Calculator translates any one of these into all the others: annual, monthly, bi-weekly, weekly, and hourly, at once.`,
+      `Job seekers use it to compare a salaried offer against contract hourly work; freelancers use it to set an hourly rate that matches a target annual income; anyone budgeting uses it to break a yearly salary into the per-paycheck reality. You can also tune the work schedule — hours per week and weeks per year — so the conversion fits part-time or non-standard arrangements.`,
+    ],
+    steps: [
+      `Choose what you are entering: annual salary, hourly wage, monthly, or weekly.`,
+      `Enter the amount.`,
+      `Adjust hours per week and weeks per year if your schedule differs from the standard 40 and 52.`,
+      `Read the equivalent annual, monthly, bi-weekly, weekly, and hourly figures, then Copy them.`,
+    ],
+    why: [
+      `It converts from any of four input types into five pay periods at once, so you can compare offers stated in different units instantly.`,
+      `Adjustable hours-per-week and weeks-per-year fields make it accurate for part-time, contract, and non-standard schedules, not just full-time work.`,
+      `It derives bi-weekly pay alongside the usual periods, matching how many employers actually run payroll.`,
+      `It works entirely in your browser with no sign-up, keeping your salary figures private.`,
+    ],
+    faqs: [
+      {
+        question: `How do I convert an annual salary to an hourly wage?`,
+        answer: `Divide the annual salary by the number of hours worked per year. At 40 hours a week for 52 weeks (2,080 hours), a $50,000 salary is about $24.04 an hour. The calculator does this and adjusts automatically if you change the hours or weeks.`,
+      },
+      {
+        question: `Does this show take-home pay after taxes?`,
+        answer: `No. It converts gross pay between periods before any deductions. Actual take-home depends on taxes, benefits, and withholdings specific to your location and situation, which this tool does not estimate.`,
+      },
+      {
+        question: `Why change the weeks-per-year value?`,
+        answer: `The default of 52 assumes you are paid for every week. If you take unpaid weeks off, or work a contract with fewer paid weeks, lowering this number gives a more accurate hourly-to-annual conversion.`,
+      },
+      {
+        question: `How many working hours are in a year?`,
+        answer: `A standard full-time schedule of 40 hours a week across 52 weeks is 2,080 hours a year. That figure is the basis for converting between hourly and annual pay; if your real hours differ, adjust the hours-per-week and weeks-per-year fields and the calculator recalculates.`,
+      },
+    ],
+    related: [
+      { slug: 'budget-calculator', note: `Split your salary into needs, wants, and savings with a budgeting rule.` },
+      { slug: 'commission-calculator', note: `Add sales commission on top of your base pay.` },
+      { slug: 'debt-payoff-calculator', note: `Plan repayments against your monthly take-home figure.` },
+    ],
+  },
+
+  'budget-calculator': {
+    intro: [
+      `A budget only works if the numbers add up to your income, and that is exactly what this calculator enforces. Enter your monthly income and pick a budgeting framework, and it splits your money into needs, wants, and savings — with visual bars so the balance is easy to grasp.`,
+      `It is aimed at anyone bringing order to their finances: someone starting their first budget, a household resetting spending after a raise, or a saver checking whether their targets are realistic. Choose a popular preset like the 50/30/20 rule, switch to 70/20/10, or set custom percentages when your priorities do not fit a template.`,
+    ],
+    steps: [
+      `Enter your monthly income.`,
+      `Choose a budgeting rule: 50/30/20, 70/20/10, or Custom.`,
+      `If you picked Custom, enter your own needs and wants percentages — savings is calculated as the remainder.`,
+      `Read the dollar amount and percentage allocated to needs, wants, and savings, shown as proportion bars.`,
+    ],
+    why: [
+      `It offers two established budgeting rules plus a custom option, so you can start from a proven framework or tailor your own split.`,
+      `Allocations are shown as both dollars and percentages with visual bars, turning an abstract rule into concrete monthly amounts.`,
+      `The custom mode validates that your percentages do not exceed 100, automatically assigning the remainder to savings.`,
+      `It runs locally with no sign-up, so your income figure never leaves your device.`,
+    ],
+    faqs: [
+      {
+        question: `What is the 50/30/20 budget rule?`,
+        answer: `It allocates 50% of after-tax income to needs (housing, food, utilities), 30% to wants (dining out, entertainment), and 20% to savings and debt repayment. It is a simple, popular starting framework that this calculator applies to your income instantly.`,
+      },
+      {
+        question: `What counts as a need versus a want?`,
+        answer: `Needs are essentials you cannot easily avoid — rent or mortgage, groceries, utilities, minimum debt payments. Wants are discretionary — dining out, subscriptions, hobbies. The line can be personal, which is why the custom mode lets you set your own split.`,
+      },
+      {
+        question: `Should I use my gross or net income?`,
+        answer: `Budgeting rules like 50/30/20 are typically based on net (take-home) income, since that is the money actually available to allocate. Enter your monthly take-home pay for the most realistic breakdown.`,
+      },
+      {
+        question: `What if my needs take up more than 50% of my income?`,
+        answer: `In high-cost areas that is common, and it simply means a textbook 50/30/20 split may not fit. Switch to the Custom rule and set a higher needs percentage that reflects reality; the calculator assigns the remainder to savings so you can see the trade-off clearly.`,
+      },
+    ],
+    related: [
+      { slug: 'salary-calculator', note: `Convert your salary to a monthly figure to feed into your budget.` },
+      { slug: 'savings-calculator', note: `Project how your monthly savings allocation grows over time.` },
+      { slug: 'debt-payoff-calculator', note: `Turn the debt portion of your budget into a payoff timeline.` },
+    ],
+  },
+
+  'debt-payoff-calculator': {
+    intro: [
+      `Watching a debt shrink is far more motivating when you can see the finish line. This calculator takes a balance, its interest rate, and the fixed monthly payment you can commit, then tells you how long until it is gone, the total interest you will pay, and the total amount paid.`,
+      `It is for anyone tackling a credit card, a personal loan, or any single balance and wanting a clear payoff date. By comparing different monthly payments, you can see how much faster — and cheaper — a bit more each month makes the journey. A minimum-payment field guards against the trap of paying so little that interest outruns your payment.`,
+    ],
+    steps: [
+      `Enter the debt balance you want to clear.`,
+      `Enter the annual interest rate.`,
+      `Enter the fixed monthly payment you plan to make.`,
+      `Enter the minimum payment for the account.`,
+      `Read the time to payoff, total interest, and total amount paid, then try a higher payment to compare.`,
+    ],
+    why: [
+      `It works the payoff out month by month, accruing interest on the falling balance, rather than using a rough average — so the timeline reflects reality.`,
+      `A minimum-payment field flags the dangerous case where your payment barely covers interest and the debt would never clear.`,
+      `It surfaces total interest separately from the balance, making the real cost of carrying the debt impossible to ignore.`,
+      `Calculations are private and instant, with no account required.`,
+    ],
+    faqs: [
+      {
+        question: `What is the debt snowball versus avalanche method?`,
+        answer: `Both are strategies for paying off multiple debts. The avalanche method targets the highest interest rate first to minimize total interest; the snowball method targets the smallest balance first for quick wins and motivation. This tool models one debt at a time — calculate each, then prioritize which to attack with extra payments.`,
+      },
+      {
+        question: `Why won't my debt pay off in the results?`,
+        answer: `If your monthly payment is not larger than the monthly interest, the balance never falls — interest consumes the whole payment. The calculator flags this; the fix is to pay more than the interest accruing each month, which is why a payment above the minimum matters.`,
+      },
+      {
+        question: `How much faster will paying extra clear my debt?`,
+        answer: `Every extra dollar goes to principal, reducing future interest and shortening the term, often dramatically. Run the calculator at your current payment, then again with a higher one to see the difference in months and total interest.`,
+      },
+    ],
+    related: [
+      { slug: 'credit-card-payoff-calculator', note: `Tailored to credit cards, where minimum payments and high rates bite hardest.` },
+      { slug: 'loan-calculator', note: `Model an installment loan with a full amortization schedule.` },
+      { slug: 'budget-calculator', note: `Carve out a realistic monthly payment from your income first.` },
+    ],
+  },
+
+  'break-even-calculator': {
+    intro: [
+      `Before a product can make money, it has to cover its costs — and the break-even point is exactly where that happens. This calculator takes your fixed costs, the variable cost per unit, and the selling price per unit, then tells you how many units you must sell to break even and the revenue that represents.`,
+      `Founders use it to pressure-test a business idea; product managers use it to set sales targets; anyone pricing a new offering uses it to know the threshold for profitability. It also reports the contribution margin — the profit each unit adds toward fixed costs — and warns you outright when the selling price is below the variable cost, a model that can never break even.`,
+    ],
+    steps: [
+      `Enter your total fixed costs (rent, salaries, and other costs that do not change with volume).`,
+      `Enter the variable cost to produce one unit.`,
+      `Enter the selling price per unit.`,
+      `Read the contribution margin, the break-even unit count, and the break-even revenue.`,
+      `Heed the warning if your selling price is at or below your variable cost.`,
+    ],
+    why: [
+      `It reports contribution margin as its own figure, the key number that determines how quickly sales chip away at fixed costs.`,
+      `It actively detects an unprofitable model — selling price at or below variable cost — and warns instead of returning a misleading number.`,
+      `It translates the break-even point into both units and revenue, so you get a sales target and a money target together.`,
+      `It runs locally with no sign-up, ideal for quick what-if pricing checks.`,
+    ],
+    faqs: [
+      {
+        question: `What is the break-even point?`,
+        answer: `It is the sales volume at which total revenue exactly equals total costs, so profit is zero. Below it you lose money; above it you profit. It is found by dividing fixed costs by the contribution margin per unit.`,
+      },
+      {
+        question: `What is contribution margin?`,
+        answer: `Contribution margin is the selling price minus the variable cost per unit — the amount each sale contributes toward covering fixed costs and, beyond break-even, toward profit. A higher contribution margin means you break even on fewer units.`,
+      },
+      {
+        question: `Why does it say the units are infinite or a loss?`,
+        answer: `That appears when your selling price is not above your variable cost, so every unit loses money and no quantity can cover fixed costs. The fix is to raise the price or cut the per-unit cost until the contribution margin is positive.`,
+      },
+    ],
+    related: [
+      { slug: 'margin-calculator', note: `Set a selling price that yields a healthy profit margin per unit.` },
+      { slug: 'roi-calculator', note: `Measure the return once your venture moves past break-even.` },
+      { slug: 'commission-calculator', note: `Factor sales commissions into the cost of moving each unit.` },
+    ],
+  },
+
+  'loan-calculator': {
+    intro: [
+      `Whether it is a mortgage, a car loan, or a personal loan, the questions are the same: what is the monthly payment, and how much will it cost in total? This Loan Calculator answers both, then lays out a complete amortization schedule so you can see every payment split between interest and principal.`,
+      `Home buyers use it to test what they can afford at different rates; car shoppers compare financing terms; borrowers of any kind use it to understand the true cost beyond the sticker. The amortization table is the centerpiece — it reveals how early payments are mostly interest and how the balance accelerates downward over time, which a single monthly figure can never show.`,
+    ],
+    steps: [
+      `Choose a loan type (mortgage, auto, personal, or other) to label your calculation.`,
+      `Enter the loan amount and the annual interest rate.`,
+      `Enter the loan term and choose whether it is in years or months.`,
+      `Read the monthly payment, total interest, and total cost.`,
+      `Expand the amortization schedule to see each payment's principal, interest, and remaining balance.`,
+    ],
+    why: [
+      `It generates a full amortization schedule, showing how each payment divides between interest and principal across the entire term.`,
+      `It accepts the term in either years or months, so it fits everything from a 30-year mortgage to a short personal loan.`,
+      `It handles a zero-interest loan correctly rather than breaking on the math, and validates inputs against impossible values.`,
+      `Everything is computed in your browser with no account, keeping loan figures private.`,
+    ],
+    faqs: [
+      {
+        question: `How is a monthly loan payment calculated?`,
+        answer: `It uses the standard amortization formula, which spreads principal and interest evenly so every payment is the same. The payment depends on the loan amount, the monthly interest rate, and the number of payments — all of which this calculator takes as input.`,
+      },
+      {
+        question: `Why is so much of my early payment interest?`,
+        answer: `Interest is charged on the outstanding balance, which is highest at the start. Early payments therefore go largely to interest, with more shifting to principal as the balance falls. The amortization schedule shows this crossover month by month.`,
+      },
+      {
+        question: `Does choosing a loan type change the result?`,
+        answer: `The loan-type selector is a label to help you organize your calculations; the math is the same standard amortization regardless of type. Rates and terms differ between loan types in the real world, so enter the actual rate and term for your specific loan.`,
+      },
+    ],
+    related: [
+      { slug: 'emi-calculator', note: `Calculating an Indian-style loan in rupees? Use the EMI version.` },
+      { slug: 'student-loan-calculator', note: `Compare student-loan repayment plans with their own schedules.` },
+      { slug: 'debt-payoff-calculator', note: `Model paying down a revolving balance with a fixed monthly amount.` },
+    ],
+  },
+
+  'emi-calculator': {
+    intro: [
+      `EMI — the Equated Monthly Installment — is how home, car, and education loans are quoted across India and much of South Asia, and this calculator is built around that convention. Enter the loan amount in rupees, the annual interest rate, and the tenure, and it returns your monthly EMI, the total interest, and the total payment, with figures formatted in the Indian numbering style.`,
+      `Borrowers use it to compare offers from different banks, check how a longer tenure lowers the monthly EMI (while raising total interest), and budget around a fixed installment. Alongside the headline EMI it shows a principal-versus-interest breakdown and a full repayment schedule, so the composition of every installment is visible.`,
+    ],
+    steps: [
+      `Choose your loan type (home, car, personal, education, or other) as a label.`,
+      `Enter the loan amount in rupees and the annual interest rate.`,
+      `Enter the tenure and choose years or months.`,
+      `Read your monthly EMI, total interest, and total payment, plus the principal-to-interest split.`,
+      `Expand the schedule to see how each installment is divided over the tenure.`,
+    ],
+    why: [
+      `It is built for the EMI convention with rupee currency and Indian-style number formatting, so the output matches how lenders present loans locally.`,
+      `It visualizes the principal-versus-interest split of your total payment, making the cost of borrowing immediately clear.`,
+      `A full installment schedule shows how each EMI divides between principal and interest as the balance reduces.`,
+      `It calculates instantly in your browser with no sign-up, keeping your loan details private.`,
+    ],
+    faqs: [
+      {
+        question: `What is an EMI?`,
+        answer: `EMI stands for Equated Monthly Installment — a fixed payment a borrower makes each month so that the loan is fully repaid by the end of its tenure. Each EMI covers both interest on the outstanding balance and a portion of the principal.`,
+      },
+      {
+        question: `How does loan tenure affect my EMI?`,
+        answer: `A longer tenure spreads the principal over more months, lowering each EMI but increasing the total interest paid, since interest accrues for longer. A shorter tenure raises the monthly EMI but reduces the overall interest cost.`,
+      },
+      {
+        question: `How is EMI different from the standard loan payment?`,
+        answer: `Mathematically the EMI formula and a standard amortized loan payment produce the same result; the difference is convention and presentation. This calculator uses rupee formatting, EMI and tenure terminology, and a principal-interest breakdown suited to South Asian lending.`,
+      },
+    ],
+    related: [
+      { slug: 'loan-calculator', note: `Prefer dollar amounts and "loan term" terminology? Use the standard loan calculator.` },
+      { slug: 'student-loan-calculator', note: `Compare education-loan repayment plans with detailed schedules.` },
+      { slug: 'compound-interest-calculator', note: `Understand the compounding that drives the interest on your loan.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
