@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Square, Copy, Check, Activity, Gauge } from 'lucide-react';
+import SpeedTest from '@cloudflare/speedtest';
 import { cn } from '@/lib/utils';
 
 interface SpeedTestResult {
@@ -20,9 +21,27 @@ export function InternetSpeedTest() {
   const [copied, setCopied] = useState(false);
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState<'idle' | 'download' | 'upload' | 'complete'>('idle');
-  const abortControllerRef = useRef<AbortController | null>(null);
+  const engineRef = useRef<SpeedTest | null>(null);
 
-  const runSpeedTest = async () => {
+  // Pause any in-flight test if the component unmounts.
+  useEffect(() => {
+    return () => {
+      try {
+        engineRef.current?.pause();
+      } catch {
+        /* ignore */
+      }
+    };
+  }, []);
+
+  const runSpeedTest = () => {
+    // Discard any previous run.
+    try {
+      engineRef.current?.pause();
+    } catch {
+      /* ignore */
+    }
+
     setIsRunning(true);
     setError(null);
     setProgress(0);
@@ -30,70 +49,73 @@ export function InternetSpeedTest() {
     setCurrentTest(null);
 
     try {
-      abortControllerRef.current = new AbortController();
-      const signal = abortControllerRef.current.signal;
+      // Real measurement against Cloudflare's speed-test endpoints.
+      // Telemetry logging is disabled so only the measurement traffic itself
+      // leaves the browser.
+      const engine = new SpeedTest({
+        autoStart: false,
+        logMeasurementApiUrl: null,
+        logAimApiUrl: null,
+      });
+      engineRef.current = engine;
 
-      // Simulate download test
-      const downloadSpeed = await simulateTest('download', signal);
-      if (signal.aborted) throw new Error('Aborted');
+      engine.onRunningChange = (running: boolean) => setIsRunning(running);
 
-      setPhase('upload');
-      setProgress(50);
-
-      // Simulate upload test
-      const uploadSpeed = await simulateTest('upload', signal);
-      if (signal.aborted) throw new Error('Aborted');
-
-      // Simulate latency and jitter
-      const latency = Math.floor(Math.random() * 30) + 10;
-      const jitter = Math.floor(Math.random() * 10) + 1;
-
-      const result: SpeedTestResult = {
-        downloadSpeed,
-        uploadSpeed,
-        latency,
-        jitter,
-        timestamp: new Date(),
+      // Advance a coarse progress indicator as each measurement phase reports in.
+      engine.onResultsChange = ({ type }: { type: string }) => {
+        if (type === 'latency') {
+          setPhase('download');
+          setProgress((p) => Math.max(p, 10));
+        } else if (type === 'download') {
+          setPhase('download');
+          setProgress((p) => Math.max(p, 45));
+        } else if (type === 'upload') {
+          setPhase('upload');
+          setProgress((p) => Math.max(p, 75));
+        } else if (type === 'packetLoss') {
+          setProgress((p) => Math.max(p, 90));
+        }
       };
 
-      setCurrentTest(result);
-      setHistory(prev => [result, ...prev].slice(0, 5));
-      setPhase('complete');
-      setProgress(100);
+      engine.onError = (message: string) => {
+        setError(message || 'Speed test failed. Please try again.');
+        setIsRunning(false);
+        setPhase('idle');
+      };
+
+      engine.onFinish = (results) => {
+        const summary = results.getSummary();
+        const toMbps = (bps?: number) =>
+          typeof bps === 'number' ? Math.round((bps / 1e6) * 10) / 10 : 0;
+
+        const result: SpeedTestResult = {
+          downloadSpeed: toMbps(summary.download),
+          uploadSpeed: toMbps(summary.upload),
+          latency: typeof summary.latency === 'number' ? Math.round(summary.latency) : 0,
+          jitter: typeof summary.jitter === 'number' ? Math.round(summary.jitter) : 0,
+          timestamp: new Date(),
+        };
+
+        setCurrentTest(result);
+        setHistory((prev) => [result, ...prev].slice(0, 5));
+        setPhase('complete');
+        setProgress(100);
+      };
+
+      engine.play();
     } catch (err) {
-      if (err instanceof Error && err.message === 'Aborted') {
-        setError('Test cancelled');
-      } else {
-        setError('Speed test failed. Please try again.');
-        console.error(err);
-      }
-    } finally {
+      setError('Speed test failed to start. Please try again.');
       setIsRunning(false);
+      setPhase('idle');
+      console.error(err);
     }
-  };
-
-  const simulateTest = async (type: 'download' | 'upload', signal: AbortSignal): Promise<number> => {
-    // Simulate speed test with realistic values
-    const baseSpeed = type === 'download' ? 50 : 20; // Mbps
-    const variance = Math.random() * 30;
-    const speed = baseSpeed + variance;
-
-    // Simulate progress
-    const steps = 10;
-    const stepDuration = 500; // ms
-
-    for (let i = 0; i < steps; i++) {
-      if (signal.aborted) throw new Error('Aborted');
-      await new Promise(resolve => setTimeout(resolve, stepDuration));
-      setProgress(type === 'download' ? (i + 1) * 5 : 50 + (i + 1) * 5);
-    }
-
-    return Math.round(speed * 10) / 10;
   };
 
   const stopTest = () => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
+    try {
+      engineRef.current?.pause();
+    } catch {
+      /* ignore */
     }
     setIsRunning(false);
     setPhase('idle');
