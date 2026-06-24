@@ -1886,6 +1886,632 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'compound-interest-calculator', note: `Understand the compounding that drives the interest on your loan.` },
     ],
   },
+
+  // ── Batch 4: Financial (5, finishes subcategory) + Health/Fitness (10) ──
+
+  'compound-interest-calculator': {
+    intro: [
+      `Compound interest is the reason a modest sum left alone can grow into something substantial — interest earns interest, and the effect snowballs over time. This calculator projects that growth from a principal amount, a rate, and a time horizon, and optionally layers in a monthly deposit so you can model a balance that you keep feeding.`,
+      `Savers use it to see what a deposit becomes in a decade; investors use it to compare how compounding frequency nudges the outcome. The year-by-year growth table is where it earns its keep, turning an abstract formula into a visible curve so you can watch the gap between contributions and earned interest widen each year.`,
+    ],
+    steps: [
+      `Enter your principal — the starting amount.`,
+      `Enter the annual interest rate and the number of years.`,
+      `Pick a compounding frequency: daily, monthly, quarterly, or annually.`,
+      `Optionally add a monthly deposit to model ongoing contributions.`,
+      `Read the final amount, total interest, and total deposits, and expand the year-by-year table to see the growth build.`,
+    ],
+    why: [
+      `It breaks results into final amount, total deposits, and total interest, so you can see precisely how much growth came from compounding versus from your own money.`,
+      `The year-by-year table makes the exponential curve concrete rather than leaving it as a single end figure.`,
+      `It supports four compounding frequencies for a lump sum, illustrating how more frequent compounding edges the total higher.`,
+      `Calculations are local and instant, so your figures stay on your device.`,
+    ],
+    faqs: [
+      {
+        question: `What is compound interest?`,
+        answer: `Compound interest is interest calculated on both your original principal and the interest already added to it. Unlike simple interest, which is charged only on the principal, compounding means your balance grows on itself, accelerating over time.`,
+      },
+      {
+        question: `How does compounding frequency affect growth?`,
+        answer: `More frequent compounding credits interest sooner, so it begins earning its own interest earlier. At the same annual rate, daily compounding produces slightly more than annual compounding — the difference is modest over short periods but adds up over many years.`,
+      },
+      {
+        question: `Does adding a monthly deposit change the calculation?`,
+        answer: `Yes. When you add a monthly deposit, the tool models your contributions as a monthly series growing alongside the principal, which reflects a regular saving habit rather than a single untouched sum. Total deposits are reported separately so you can see your contribution clearly.`,
+      },
+      {
+        question: `What is the rule of 72?`,
+        answer: `It is a quick mental shortcut: divide 72 by your annual interest rate to estimate the years it takes for money to double. At 6%, that is roughly 12 years. This calculator gives the exact figure, but the rule is a handy sanity check.`,
+      },
+    ],
+    related: [
+      { slug: 'simple-interest-calculator', note: `Compare against simple interest, where interest never compounds.` },
+      { slug: 'savings-calculator', note: `Model a savings goal built from steady monthly deposits.` },
+      { slug: 'investment-calculator', note: `Add return assumptions and see a full investment projection with ROI.` },
+    ],
+  },
+
+  'savings-calculator': {
+    intro: [
+      `Reaching a savings goal is mostly about consistency, and this calculator shows where that consistency lands you. Start with an initial balance, add a fixed monthly deposit, apply an interest rate, and it projects the future value of your savings along with a yearly breakdown of balance, contributions, and interest.`,
+      `It is the tool for goal-setting: building an emergency fund, saving toward a down payment, or checking whether $200 a month gets you where you want to be in five years. By separating what you contributed from what interest added, it shows how much of your goal your own discipline accomplishes versus how much the bank chips in.`,
+    ],
+    steps: [
+      `Enter your initial savings amount (zero is fine if starting fresh).`,
+      `Enter the monthly deposit you plan to make.`,
+      `Set the annual interest rate and how many years you plan to save.`,
+      `Read the future value, total contributions, and total interest earned.`,
+      `Expand the yearly breakdown to track the balance growing year by year.`,
+    ],
+    why: [
+      `It is built around regular monthly deposits, modeling a real saving habit rather than a one-time sum left to grow.`,
+      `The yearly breakdown separates your contributions from earned interest, so the role of consistent deposits is unmistakable.`,
+      `It compounds monthly throughout, matching how most savings accounts credit interest.`,
+      `It runs entirely in your browser with no sign-up, keeping your savings figures private.`,
+    ],
+    faqs: [
+      {
+        question: `How much should I save each month?`,
+        answer: `It depends on your goal and timeline rather than a fixed rule. Enter the deposit you can realistically sustain and see where it lands you; if it falls short of your target, the calculator shows how a higher deposit closes the gap.`,
+      },
+      {
+        question: `How does interest help my savings grow?`,
+        answer: `Each month, interest is added to your balance, and the next month's interest is calculated on that larger total. Over years this compounding meaningfully boosts your savings beyond the sum of your deposits — the "total interest earned" figure shows exactly how much.`,
+      },
+      {
+        question: `Is this the same as a compound interest calculator?`,
+        answer: `They overlap, but this tool is framed around a savings goal with required monthly deposits and a year-by-year balance view. A compound interest calculator focuses more on growing a principal and lets you vary the compounding frequency.`,
+      },
+      {
+        question: `Does this account for taxes on interest?`,
+        answer: `No. The projection shows gross growth before any tax on the interest earned. Depending on your account type and jurisdiction, some or all of that interest may be taxable, so treat the figure as a pre-tax estimate.`,
+      },
+    ],
+    related: [
+      { slug: 'compound-interest-calculator', note: `Vary the compounding frequency and see the year-by-year growth of a balance.` },
+      { slug: 'budget-calculator', note: `Decide how much of your income to route into savings each month.` },
+      { slug: 'future-value-calculator', note: `Project a lump sum or deposits to a target future value.` },
+    ],
+  },
+
+  'credit-card-payoff-calculator': {
+    intro: [
+      `Credit card debt is uniquely punishing because of how interest compounds against you each month, and minimum payments are designed to keep you paying for years. This calculator shows the real timeline: enter your balance, the interest rate, the payment you plan to make, and the minimum payment, and it tells you how long until you are free, the total interest you will pay, and how much you save by paying more than the minimum.`,
+      `Cardholders use it to break out of the minimum-payment trap — seeing in plain numbers that bumping a payment up shaves years and hundreds of dollars off the cost. It works the balance down month by month, so the timeline reflects how a card actually amortizes rather than a rough estimate.`,
+    ],
+    steps: [
+      `Enter your current credit card balance.`,
+      `Enter the card's annual interest rate (APR).`,
+      `Enter the monthly payment you intend to make.`,
+      `Enter the account's minimum payment.`,
+      `Read the payoff time, total interest, and — if you pay above the minimum — how much you save compared with minimum-only payments.`,
+    ],
+    why: [
+      `It directly compares your chosen payment against the minimum-only path, putting a dollar figure on the savings from paying more.`,
+      `It works month by month on the declining balance, so the payoff time and interest reflect real card amortization.`,
+      `It catches the dangerous case where your payment barely covers interest and warns instead of producing a misleading result.`,
+      `Total interest is highlighted so the true cost of carrying a balance is impossible to overlook, and everything stays on your device.`,
+    ],
+    faqs: [
+      {
+        question: `Why does paying only the minimum cost so much?`,
+        answer: `Minimum payments are typically a small percentage of the balance, so most of each one goes to interest while the principal barely moves. That stretches repayment over years and multiplies the interest paid — this calculator quantifies the difference against a larger payment.`,
+      },
+      {
+        question: `What if my payment doesn't cover the interest?`,
+        answer: `If your monthly payment is less than the interest accruing that month, the balance grows instead of shrinking and the debt never clears. The calculator detects this and stops, signaling that you need to pay more than the monthly interest to make progress.`,
+      },
+      {
+        question: `Is APR the same as the monthly interest rate?`,
+        answer: `No. APR is the annual rate; the monthly rate is roughly the APR divided by 12. Credit card interest is charged monthly on your balance, which is why a 20% APR translates to a meaningful charge every single month on what you owe.`,
+      },
+    ],
+    related: [
+      { slug: 'debt-payoff-calculator', note: `Model paying down any single debt with a fixed monthly amount.` },
+      { slug: 'loan-calculator', note: `Compare against an installment loan with a fixed term and schedule.` },
+      { slug: 'budget-calculator', note: `Free up room in your budget to put more toward the card each month.` },
+    ],
+  },
+
+  'present-value-calculator': {
+    intro: [
+      `A promise of $10,000 in five years is not worth $10,000 today — money loses value to time and opportunity cost. The Present Value Calculator answers "what is a future sum worth right now?" by discounting it back at a rate you choose, the foundational idea behind investment valuation and net present value analysis.`,
+      `Investors use it to decide whether a future payout justifies a price today; finance students use it to learn discounting; anyone weighing "money now versus money later" uses it to compare on equal terms. It is the mirror image of future value: instead of growing a sum forward, it shrinks a future amount back to today's dollars and shows the discount that time imposes.`,
+    ],
+    steps: [
+      `Enter the future value — the amount you expect to receive later.`,
+      `Enter the discount rate as a percentage.`,
+      `Enter the time period in years.`,
+      `Choose a compounding frequency: daily, monthly, quarterly, or annually.`,
+      `Read the present value and the discount amount — how much value time strips away.`,
+    ],
+    why: [
+      `It performs the discounting calculation correctly — dividing by the growth factor rather than naively subtracting a percentage — so the present value is accurate.`,
+      `It reports the discount amount separately, making the time-value gap between future and present explicit.`,
+      `Four compounding frequencies let you match the discounting convention your analysis requires.`,
+      `It runs locally and instantly, with no account, keeping your figures private.`,
+    ],
+    faqs: [
+      {
+        question: `What is present value?`,
+        answer: `Present value is what a future sum of money is worth in today's terms, after accounting for the rate of return you could otherwise earn. Because money can grow over time, a dollar received in the future is worth less than a dollar today, and present value quantifies exactly how much less.`,
+      },
+      {
+        question: `What discount rate should I use?`,
+        answer: `Use the rate of return you could realistically earn on the money elsewhere, sometimes called the opportunity cost of capital. A higher discount rate reflects more lucrative alternatives or more risk, and it shrinks the present value of a future amount more aggressively.`,
+      },
+      {
+        question: `How is this different from a future value calculator?`,
+        answer: `Future value grows a sum forward to find what it becomes; present value discounts a future sum backward to find what it is worth now. They are inverse operations — one multiplies by the growth factor, the other divides by it.`,
+      },
+    ],
+    related: [
+      { slug: 'future-value-calculator', note: `Run the opposite calculation — grow a present sum into the future.` },
+      { slug: 'investment-calculator', note: `Project an investment forward with contributions and returns.` },
+      { slug: 'compound-interest-calculator', note: `See how the same discount rate compounds growth over time.` },
+    ],
+  },
+
+  'simple-interest-calculator': {
+    intro: [
+      `Not all interest compounds. Simple interest is charged only on the original principal, which makes it the model for many short-term loans, bonds, and informal lending arrangements. This calculator applies the classic formula — interest equals principal times rate times time — and shows the working so the result is easy to verify.`,
+      `Students learning the fundamentals use it to check homework; borrowers and lenders use it for straightforward agreements where interest does not snowball. A time-unit selector handles years, months, or days, so it fits a multi-year note or a short-term advance equally, and the inline formula breakdown makes every figure transparent.`,
+    ],
+    steps: [
+      `Enter the principal amount (P).`,
+      `Enter the annual interest rate (R) as a percentage.`,
+      `Enter the time (T) and choose its unit: years, months, or days.`,
+      `Read the simple interest and the total amount due.`,
+      `Check the formula breakdown, which shows I = P × R × T with your numbers filled in.`,
+    ],
+    why: [
+      `It displays the full formula breakdown with your values substituted, so you can see and verify exactly how the interest was derived — a genuine learning aid.`,
+      `A time-unit selector accepts years, months, or days, converting automatically, which suits short-term agreements that other calculators force into years.`,
+      `It keeps to the linear simple-interest model rather than quietly compounding, so the result matches the kind of loan it is meant for.`,
+      `The math is instant and local, with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between simple and compound interest?`,
+        answer: `Simple interest is calculated only on the original principal, so the same amount is charged each period. Compound interest is calculated on the principal plus previously accumulated interest, so it grows faster. Over the same term and rate, simple interest always totals less.`,
+      },
+      {
+        question: `When is simple interest used?`,
+        answer: `It is common for short-term loans, some car loans, certain bonds, and informal personal lending — situations where interest is not reinvested or compounded. Many introductory finance problems also use it to teach the basics before introducing compounding.`,
+      },
+      {
+        question: `How do I calculate simple interest by hand?`,
+        answer: `Multiply the principal by the rate (as a decimal) by the time in years. For $5,000 at 6% for 3 years: 5000 × 0.06 × 3 = $900 interest. This calculator does the conversion and arithmetic for you and shows the steps.`,
+      },
+    ],
+    related: [
+      { slug: 'compound-interest-calculator', note: `See how the same principal grows when interest compounds instead.` },
+      { slug: 'loan-calculator', note: `Model an amortized loan where payments cover principal and interest.` },
+      { slug: 'savings-calculator', note: `Project savings that earn compounding interest over time.` },
+    ],
+  },
+
+  'bac-calculator': {
+    intro: [
+      `Blood alcohol concentration estimates how much alcohol is in your bloodstream, expressed as a percentage. This calculator uses the well-established Widmark formula, factoring in your sex, body weight, the number of standard drinks, and the time elapsed since you started drinking, and flags when the estimate crosses the common 0.08% legal driving limit.`,
+      `People use it to understand how drinks accumulate and how slowly alcohol clears — useful for planning a night out or appreciating why "just a couple" can still register hours later. It is strictly an educational estimate: individual metabolism, food, medication, and many other factors mean your true BAC can differ significantly, and no calculator can tell you it is safe to drive.`,
+    ],
+    steps: [
+      `Select your sex (it sets the body-water distribution constant in the formula).`,
+      `Provide your body weight in kilograms.`,
+      `Enter the number of standard drinks consumed (each counted as 14 grams of alcohol).`,
+      `Enter the hours elapsed since you began drinking.`,
+      `Read your estimated BAC, with a warning shown if it is at or above 0.08%.`,
+    ],
+    why: [
+      `It uses the Widmark method with sex-specific distribution constants (0.68 for men, 0.55 for women), the standard scientific approach to estimating BAC.`,
+      `It accounts for elimination over time, subtracting roughly 0.015% per hour, so it reflects how alcohol clears rather than just how much you drank.`,
+      `It defines a drink as 14 grams of pure alcohol, the standard-drink convention, so counts are consistent.`,
+      `It runs entirely in your browser — nothing about your drinking is uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How accurate is this BAC estimate?`,
+        answer: `It is an approximation. The Widmark formula uses population averages and cannot account for your individual metabolism, food in your stomach, medications, hydration, or health conditions. Your actual BAC may be higher or lower, so never treat the result as a green light to drive.`,
+      },
+      {
+        question: `What counts as one standard drink?`,
+        answer: `This calculator uses the common standard of 14 grams of pure alcohol per drink — roughly a 12 oz regular beer, a 5 oz glass of wine, or a 1.5 oz shot of spirits. Stronger or larger servings count as more than one drink.`,
+      },
+      {
+        question: `How long does it take for BAC to return to zero?`,
+        answer: `Alcohol leaves the bloodstream at roughly 0.015% per hour, and that rate cannot be sped up by coffee, water, or food. Depending on how much you drank, it can take many hours to reach zero, which is why a BAC can still be significant the morning after.`,
+      },
+      {
+        question: `Is it safe to drive below 0.08%?`,
+        answer: `Not necessarily. Impairment begins well before 0.08%, the limit is lower in many places and for commercial or young drivers, and any amount of alcohol can affect reaction time. This tool is educational only and is not a measure of fitness to drive.`,
+      },
+    ],
+    related: [
+      { slug: 'water-intake-calculator', note: `Plan your hydration, which alcohol depletes.` },
+      { slug: 'bmr-calculator', note: `Understand your baseline metabolism, which influences how your body processes energy.` },
+      { slug: 'calorie-calculator', note: `Account for the calories that alcoholic drinks add to your day.` },
+    ],
+  },
+
+  'bmr-calculator': {
+    intro: [
+      `Your basal metabolic rate is the number of calories your body burns at complete rest just to keep you alive — breathing, circulating blood, maintaining temperature. This calculator estimates it using the Mifflin-St Jeor equation, the modern standard, from your sex, age, weight, and height.`,
+      `BMR is the starting point for any calorie plan: it is the floor below which you should rarely eat, and the base that activity is added to in order to find your full daily needs. Anyone setting a weight-loss, maintenance, or muscle-gain target uses it as the anchor number before factoring in exercise.`,
+    ],
+    steps: [
+      `Select your sex.`,
+      `Enter your age in years.`,
+      `Enter your weight in kilograms.`,
+      `Enter your height in centimeters.`,
+      `Read your BMR in calories per day, then carry it into a TDEE calculator to factor in activity.`,
+    ],
+    why: [
+      `It uses the Mifflin-St Jeor equation, which research has found more accurate for most people than the older Harris-Benedict formula.`,
+      `It asks only for the four inputs the equation actually needs — sex, age, weight, height — keeping it fast and free of guesswork.`,
+      `The result is a clean daily calorie figure ready to feed into activity and goal calculations.`,
+      `It calculates locally and instantly, so your body metrics never leave your device.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between BMR and TDEE?`,
+        answer: `BMR is the calories you burn at complete rest. TDEE (total daily energy expenditure) is BMR multiplied by an activity factor to include movement and exercise. BMR is the baseline; TDEE is the fuller picture of what you burn in a typical day.`,
+      },
+      {
+        question: `Why does the Mifflin-St Jeor equation matter?`,
+        answer: `It is the equation this calculator uses because studies have shown it predicts resting metabolic rate more accurately for the general population than older formulas. It bases the estimate on sex, age, weight, and height.`,
+      },
+      {
+        question: `Should I eat at my BMR to lose weight?`,
+        answer: `Generally no. Eating below your BMR for long periods is not advised, because it is the energy your body needs at rest. Weight loss is usually pursued by eating below your TDEE — your activity-adjusted needs — not below your BMR.`,
+      },
+      {
+        question: `Does BMR change over time?`,
+        answer: `Yes. BMR tends to decline with age and changes with weight and body composition — more muscle raises it, and significant weight loss lowers it. Recalculate periodically as your stats change to keep your calorie targets accurate.`,
+      },
+    ],
+    related: [
+      { slug: 'tdee-calculator', note: `Multiply your BMR by an activity level to find your full daily calorie burn.` },
+      { slug: 'calorie-calculator', note: `Turn your needs into a target for losing, maintaining, or gaining weight.` },
+      { slug: 'macro-calculator', note: `Split your calorie target into protein, carbs, and fat.` },
+    ],
+  },
+
+  'body-fat-calculator': {
+    intro: [
+      `Body fat percentage tells you more about composition than weight or BMI ever can — two people at the same weight can carry very different amounts of fat and muscle. This calculator estimates yours using the US Navy circumference method, which needs only a tape measure rather than calipers or a scan.`,
+      `Fitness-minded people use it to track recomposition that the scale hides, when fat drops while muscle holds steady. Because the method relies on body measurements — neck, waist, and for women also the hips — alongside height, it gives a usable estimate at home without specialized equipment.`,
+    ],
+    steps: [
+      `Select your sex (this changes which measurements and formula are used).`,
+      `Enter your height in centimeters.`,
+      `Measure and enter your neck and waist circumference in centimeters.`,
+      `If you are female, also enter your hip circumference.`,
+      `Read your estimated body fat percentage, calculated with the US Navy method.`,
+    ],
+    why: [
+      `It uses the US Navy circumference formula, so all you need is a tape measure — no calipers, scales, or lab equipment.`,
+      `It applies the correct sex-specific equation, including hip circumference for women, rather than a one-size-fits-all estimate.`,
+      `It reports a body composition figure that BMI cannot, distinguishing fat from overall weight.`,
+      `Measurements are processed in your browser and never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How accurate is the US Navy body fat method?`,
+        answer: `It is a reasonable estimate for most people and tracks changes well over time, but it is not as precise as a DEXA scan or hydrostatic weighing. Accurate, consistent tape measurements matter — measure at the same spots each time for reliable trend tracking.`,
+      },
+      {
+        question: `Where exactly do I measure?`,
+        answer: `Measure the neck just below the larynx, the waist at the navel for men and at the narrowest point for women, and the hips at the widest point for women. Keep the tape snug but not compressing the skin, and stand relaxed.`,
+      },
+      {
+        question: `What is a healthy body fat percentage?`,
+        answer: `Healthy ranges differ by sex and age, but general fitness guidelines often cite roughly 10–20% for men and 18–28% for women, with athletes typically lower. These are broad references, not medical thresholds, so consider them alongside other health markers.`,
+      },
+      {
+        question: `Why does the female calculation need hip measurement?`,
+        answer: `The US Navy formula for women includes hip circumference because fat distribution differs by sex, and adding the hip measurement improves the estimate's accuracy. The male formula uses only neck and waist.`,
+      },
+    ],
+    related: [
+      { slug: 'bmi-calculator', note: `Compare with BMI, a quicker but composition-blind weight measure.` },
+      { slug: 'lean-body-mass-calculator', note: `Estimate the muscle and non-fat mass behind your body fat figure.` },
+      { slug: 'ideal-weight-calculator', note: `See a target weight range for your height to pair with composition.` },
+    ],
+  },
+
+  'ovulation-calculator': {
+    intro: [
+      `Knowing when ovulation is likely helps with both trying to conceive and understanding your cycle. This calculator estimates your ovulation date and fertile window from the start date of your last period and your average cycle length, using the standard luteal-phase model.`,
+      `People trying to conceive use it to identify the days that matter most; others use it simply to understand their cycle's rhythm. It estimates ovulation as roughly 14 days before the next period and marks a fertile window spanning the five days before ovulation through the day after — the span when conception is most likely. It is an estimate based on a regular cycle, not a guarantee or a form of contraception.`,
+    ],
+    steps: [
+      `Select the start date of your last period.`,
+      `Enter your average cycle length in days (28 is typical, but use your own).`,
+      `Read your estimated ovulation date.`,
+      `Note the highlighted fertile window — the range of days when conception is most likely.`,
+    ],
+    why: [
+      `It calculates ovulation using the standard 14-day luteal phase, the convention clinicians use for cycle estimates.`,
+      `It marks a six-day fertile window — five days before ovulation through one day after — reflecting how long sperm survive and the egg remains viable.`,
+      `It adapts to your own cycle length rather than assuming a fixed 28 days.`,
+      `All dates are computed in your browser, so your cycle information stays completely private.`,
+    ],
+    faqs: [
+      {
+        question: `How is the ovulation date estimated?`,
+        answer: `The calculator counts back roughly 14 days from your expected next period, based on the typical length of the luteal phase. It adds your cycle length to your last period's start date to project the next period, then subtracts 14 days.`,
+      },
+      {
+        question: `What is the fertile window?`,
+        answer: `It is the stretch of days when intercourse is most likely to lead to conception — here, the five days before ovulation plus the day of and after. Sperm can survive several days, so the window opens before the egg is released.`,
+      },
+      {
+        question: `Can I rely on this for birth control?`,
+        answer: `No. This is an estimate for awareness and conception planning, not a contraceptive method. Cycles vary month to month, ovulation can shift, and calendar-based prediction is not a reliable way to prevent pregnancy.`,
+      },
+      {
+        question: `What if my cycle is irregular?`,
+        answer: `The estimate assumes a fairly regular cycle of the length you enter. If your cycles vary widely, the predicted ovulation date becomes less reliable; tracking methods like basal body temperature or ovulation tests give more personalized signals.`,
+      },
+    ],
+    related: [
+      { slug: 'period-calculator', note: `Predict when your next periods are due based on your cycle.` },
+      { slug: 'due-date-calculator', note: `If you conceive, estimate your due date from your last period.` },
+    ],
+  },
+
+  'period-calculator': {
+    intro: [
+      `Knowing roughly when your next period will arrive makes planning easier, from travel to events to simply being prepared. This calculator projects your upcoming periods from the start date of your last one and your average cycle length, looking two cycles ahead.`,
+      `It is a simple tracking aid for anyone who wants a heads-up on their cycle without an app or account. By adding your cycle length to your last start date, it estimates the next period and the one after that. The projection assumes consistent cycles, so it works best when your periods are fairly regular.`,
+    ],
+    steps: [
+      `Pick the date your last period began.`,
+      `Enter your average cycle length in days.`,
+      `Read the predicted start date of your next period.`,
+      `Check the following cycle's estimated start date shown beneath it.`,
+    ],
+    why: [
+      `It projects two cycles ahead, not just one, so you can plan a little further out.`,
+      `It uses your own cycle length rather than assuming a standard 28 days, tailoring the estimate to you.`,
+      `It needs only two inputs and shows results instantly — no app install or account.`,
+      `Your dates are calculated locally and never leave your browser.`,
+    ],
+    faqs: [
+      {
+        question: `How does the calculator predict my next period?`,
+        answer: `It adds your average cycle length to the start date of your last period to estimate the next start date, then repeats once more for the following cycle. It assumes your cycle length stays consistent from month to month.`,
+      },
+      {
+        question: `Why is my actual period different from the prediction?`,
+        answer: `Cycle length naturally varies with stress, illness, travel, hormonal changes, and other factors, so a calendar projection is an estimate rather than a certainty. Tracking several cycles helps you find a more accurate average to enter.`,
+      },
+      {
+        question: `What counts as a normal cycle length?`,
+        answer: `Cycle length is commonly anywhere from about 21 to 35 days, measured from the first day of one period to the first day of the next. Use your own observed average for the most accurate prediction rather than a generic figure.`,
+      },
+      {
+        question: `Should I see a doctor about irregular cycles?`,
+        answer: `Occasional variation is normal, but consistently irregular, very long, very short, or absent cycles can have medical causes worth discussing with a healthcare provider. This tool is for general planning, not medical diagnosis.`,
+      },
+    ],
+    related: [
+      { slug: 'ovulation-calculator', note: `Estimate your fertile window and ovulation date within the cycle.` },
+      { slug: 'due-date-calculator', note: `Project a due date if you become pregnant.` },
+    ],
+  },
+
+  'tdee-calculator': {
+    intro: [
+      `Total daily energy expenditure is the number of calories you actually burn in a day once movement and exercise are added to your resting metabolism. This calculator takes your BMR and multiplies it by an activity factor to give that full-day figure — the number that drives any sensible eating plan.`,
+      `Anyone managing weight uses TDEE as the dividing line: eat below it to lose, around it to maintain, above it to gain. By keeping BMR as a separate input, the tool lets you slot in a value from a BMR calculation and instantly see how different activity levels change your daily burn.`,
+    ],
+    steps: [
+      `Enter your BMR in calories per day (calculate it first with a BMR calculator if you don't know it).`,
+      `Choose your activity level from the dropdown, from sedentary to extra active.`,
+      `Read your TDEE — the estimated calories you burn in a full day.`,
+      `Use it as your maintenance baseline, adjusting up or down for your goal.`,
+    ],
+    why: [
+      `It uses the standard activity multipliers — 1.2 sedentary, 1.375 lightly active, 1.55 moderately active, 1.725 very active, and 1.9 extra active — so the estimate follows established methodology.`,
+      `Each activity option spells out what it means (exercise frequency), so you can pick honestly rather than guessing.`,
+      `Taking BMR as a direct input keeps it flexible — pair it with any BMR source and compare activity scenarios instantly.`,
+      `It calculates locally with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How is TDEE calculated?`,
+        answer: `TDEE is your BMR multiplied by an activity multiplier that reflects how active you are. For example, a BMR of 1,600 at a moderately active level (×1.55) gives a TDEE of about 2,480 calories per day.`,
+      },
+      {
+        question: `Which activity level should I choose?`,
+        answer: `Be honest and account for your whole week. "Sedentary" suits desk jobs with little exercise; "moderately active" fits training three to five days a week; the highest levels are for daily hard training or physically demanding jobs. Overestimating activity is a common reason calorie plans stall.`,
+      },
+      {
+        question: `How do I use TDEE to lose or gain weight?`,
+        answer: `Eat below your TDEE to lose weight and above it to gain, with a moderate gap of a few hundred calories being sustainable for most people. Your TDEE is the maintenance point around which you set that deficit or surplus.`,
+      },
+      {
+        question: `Why does this ask for BMR instead of my height and weight?`,
+        answer: `This calculator focuses on the activity step and expects a BMR figure as input, which keeps it simple and lets you reuse a BMR from any source. Calculate your BMR first from your age, sex, height, and weight, then enter it here.`,
+      },
+    ],
+    related: [
+      { slug: 'bmr-calculator', note: `Calculate the BMR figure this tool needs as its starting point.` },
+      { slug: 'calorie-calculator', note: `Turn your TDEE into a goal-specific daily calorie target.` },
+      { slug: 'macro-calculator', note: `Divide your daily calories into protein, carbs, and fat.` },
+    ],
+  },
+
+  'macro-calculator': {
+    intro: [
+      `Hitting a calorie target is only half the story — how those calories split across protein, carbohydrates, and fat shapes your results. This Macro Calculator takes your daily calorie target and a diet style and converts it into grams of each macronutrient to aim for.`,
+      `People following a structured eating plan use it to translate a calorie goal into a shopping-and-cooking reality, whether they are eating balanced, cutting carbs, prioritizing protein, or going keto. Each diet preset carries its own ratio, and the tool does the calorie-to-gram math — accounting for the fact that protein and carbs carry 4 calories per gram while fat carries 9.`,
+    ],
+    steps: [
+      `Enter your daily calorie target (use a TDEE or calorie calculator to find it).`,
+      `Choose a diet type: Balanced, Low Carb, High Protein, or Keto.`,
+      `Read the grams of protein, carbs, and fat to aim for each day.`,
+      `Note the percentage split shown alongside each macro, then Copy the targets.`,
+    ],
+    why: [
+      `It offers four ready-made diet profiles — balanced, low-carb, high-protein, and keto — each with its split shown right in the option label.`,
+      `It correctly converts calories to grams using 4 calories per gram for protein and carbs and 9 for fat, so the gram targets are accurate.`,
+      `It shows all three macros at once with both grams and percentages, giving you a complete daily picture.`,
+      `Calculations are instant and client-side, with no account required.`,
+    ],
+    faqs: [
+      {
+        question: `What are macronutrients?`,
+        answer: `Macronutrients — protein, carbohydrates, and fat — are the three nutrients that provide energy. Protein and carbs supply about 4 calories per gram and fat about 9, which is why the same calorie target yields different gram amounts depending on the split.`,
+      },
+      {
+        question: `Which diet split should I pick?`,
+        answer: `It depends on your goal and preference. Balanced suits general health, higher protein supports muscle retention and satiety, low-carb appeals to some for fat loss, and keto pushes fat very high and carbs very low. There is no single best split — pick one you can sustain.`,
+      },
+      {
+        question: `How do I turn calories into grams of each macro?`,
+        answer: `Multiply your calorie target by each macro's percentage, then divide by that macro's calories per gram — 4 for protein and carbs, 9 for fat. This calculator runs that math automatically for the diet style you select.`,
+      },
+      {
+        question: `Do I need to hit my macros exactly?`,
+        answer: `Treat the numbers as targets to aim for, not strict rules. Getting reasonably close most days matters far more than perfection at every meal, and protein is usually the macro worth tracking most closely.`,
+      },
+    ],
+    related: [
+      { slug: 'calorie-calculator', note: `Set the daily calorie target that this tool splits into macros.` },
+      { slug: 'tdee-calculator', note: `Find your maintenance calories before choosing a deficit or surplus.` },
+      { slug: 'protein-calculator', note: `Dial in a protein target based on your body weight and goals.` },
+    ],
+  },
+
+  'one-rep-max-calculator': {
+    intro: [
+      `Your one-rep max — the most weight you can lift for a single repetition — is the benchmark strength training programs are built around, but testing it directly is risky and tiring. This calculator estimates it from a lighter set you have already done, using the weight lifted and the number of reps.`,
+      `Lifters use it to set training percentages, track progress without maxing out, and program their next cycle. It computes two well-known estimates side by side — the Epley and Brzycki formulas — so you can see how they compare on the same lift rather than trusting a single number.`,
+    ],
+    steps: [
+      `Enter the weight you lifted for the set.`,
+      `Enter the number of reps you completed with that weight.`,
+      `Read the Epley estimated one-rep max, shown prominently.`,
+      `Compare it against the Brzycki estimate shown alongside, and Copy the result.`,
+    ],
+    why: [
+      `It calculates two established formulas — Epley and Brzycki — at once, so you see the range rather than relying on one estimate.`,
+      `It lets you gauge your max from a submaximal set, avoiding the injury risk of a true one-rep attempt.`,
+      `The estimate works for any lift and any weight unit, since it depends only on reps and load.`,
+      `It runs instantly in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How is one-rep max estimated from multiple reps?`,
+        answer: `Formulas like Epley (weight × (1 + reps/30)) and Brzycki (weight ÷ (1.0278 − 0.0278 × reps)) use the relationship between the load you lifted and how many reps you managed to project the weight you could lift just once. Fewer reps give a more accurate estimate.`,
+      },
+      {
+        question: `Why do Epley and Brzycki give different numbers?`,
+        answer: `They are different mathematical models fitted to strength data, so they diverge slightly, especially at higher rep counts. Showing both gives you a realistic range rather than a single false-precision figure — your true max likely sits near them.`,
+      },
+      {
+        question: `How many reps should I use for the best estimate?`,
+        answer: `Estimates are most accurate from sets of around 2 to 6 reps. Beyond about 10 reps, fatigue and technique introduce more error, so the projection becomes less reliable. Use a challenging but clean set in the lower rep range.`,
+      },
+      {
+        question: `Should I actually test my true one-rep max?`,
+        answer: `Estimating is safer and sufficient for most training purposes. A true max attempt carries injury risk and requires proper warm-up, technique, and ideally a spotter, so many lifters rely on calculated estimates for programming instead.`,
+      },
+    ],
+    related: [
+      { slug: 'target-heart-rate-calculator', note: `Find your training heart-rate zones for conditioning work.` },
+      { slug: 'calories-burned-calculator', note: `Estimate the energy your strength sessions burn.` },
+      { slug: 'macro-calculator', note: `Set protein and calorie targets to support strength gains.` },
+    ],
+  },
+
+  'pace-calculator': {
+    intro: [
+      `Pace is the language of running — minutes per kilometer is how runners gauge effort, plan races, and compare workouts. This calculator turns a distance and a finishing time into your pace, expressed in the familiar minutes-and-seconds-per-kilometer format.`,
+      `Runners use it after a session to see how fast they actually moved, or before a race to check whether a goal time is realistic for their distance. Splitting time into hours, minutes, and seconds lets you enter anything from a short interval to a marathon precisely, and the result comes back in the clean M:SS format every running watch uses.`,
+    ],
+    steps: [
+      `Enter the distance covered in kilometers.`,
+      `Enter your time across the hours, minutes, and seconds fields.`,
+      `Read your pace in minutes and seconds per kilometer.`,
+      `Copy the pace to compare against past runs or a race target.`,
+    ],
+    why: [
+      `It accepts time as separate hours, minutes, and seconds, so you can enter a precise finishing time without converting anything.`,
+      `It returns pace in the standard M:SS per-kilometer format that matches running watches and race results.`,
+      `The math is exact and instant, handling everything from a sprint interval to a long-distance time.`,
+      `It runs locally in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How is running pace calculated?`,
+        answer: `Pace is your total time divided by the distance. The calculator converts your hours, minutes, and seconds into total seconds, divides by the distance in kilometers, then formats the result as minutes and seconds per kilometer.`,
+      },
+      {
+        question: `What is the difference between pace and speed?`,
+        answer: `Pace is time per unit distance (minutes per kilometer), while speed is distance per unit time (kilometers per hour). Runners usually think in pace because it directly answers "how long will each kilometer take?", which makes race planning easier.`,
+      },
+      {
+        question: `How do I use pace to plan a race?`,
+        answer: `Decide your goal finishing time, work out the pace it requires for the race distance, and check whether you can hold that pace in training. This calculator lets you test paces against distances so your target is grounded in reality.`,
+      },
+      {
+        question: `Does this work in miles?`,
+        answer: `This calculator works in kilometers, returning pace per kilometer. To approximate pace per mile, multiply your per-kilometer pace by about 1.609, or enter your distance converted to kilometers.`,
+      },
+    ],
+    related: [
+      { slug: 'calories-burned-calculator', note: `Estimate the calories your run burned based on duration and effort.` },
+      { slug: 'target-heart-rate-calculator', note: `Find the heart-rate zones to train at different intensities.` },
+      { slug: 'one-rep-max-calculator', note: `Track strength progress alongside your running.` },
+    ],
+  },
+
+  'water-intake-calculator': {
+    intro: [
+      `Hydration needs are personal — they depend on your body size and how much you move — yet most advice defaults to a flat "eight glasses a day." This calculator gives a tailored estimate, combining a baseline from your body weight with an added amount for the time you spend active.`,
+      `People use it to set a realistic daily water goal, especially around exercise when sweat losses climb. The formula adds roughly 35 millilitres per kilogram of body weight to extra water for each minute of activity, so an active day produces a higher target than a sedentary one — a more honest picture than a fixed number.`,
+    ],
+    steps: [
+      `Enter your weight in kilograms.`,
+      `Enter your daily active time in minutes.`,
+      `Read your recommended daily water intake in millilitres.`,
+      `Copy the goal and spread it across the day rather than drinking it all at once.`,
+    ],
+    why: [
+      `It personalizes the target with a two-part formula — a body-weight baseline plus an activity allowance — instead of a one-size-fits-all number.`,
+      `Factoring in active minutes accounts for the extra fluid you lose through exercise, which generic guidance ignores.`,
+      `It returns a precise millilitre figure you can track against a bottle of known size.`,
+      `It calculates instantly in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How much water should I drink a day?`,
+        answer: `It varies with body size, activity, climate, and health. This calculator estimates a baseline of about 35 ml per kilogram of body weight plus extra for active minutes, giving a personalized figure rather than the generic "eight glasses" rule.`,
+      },
+      {
+        question: `Does food and other drinks count toward this?`,
+        answer: `Yes. A meaningful share of daily fluid comes from food and other beverages, so you do not need to drink the entire figure as plain water. Use the number as a total fluid target, leaning on water for the bulk of it.`,
+      },
+      {
+        question: `Should I drink more on workout days?`,
+        answer: `Yes, which is why the calculator adds water for active minutes. Exercise increases fluid loss through sweat and breathing, so hydration needs rise with training volume, heat, and intensity.`,
+      },
+      {
+        question: `Can I drink too much water?`,
+        answer: `In rare cases, drinking excessive amounts very quickly can dangerously dilute blood sodium. For nearly everyone, spreading intake through the day and drinking to thirst alongside this target is safe — treat the figure as a guide, not a quota to force.`,
+      },
+    ],
+    related: [
+      { slug: 'calorie-calculator', note: `Set daily calorie needs to pair with your hydration goal.` },
+      { slug: 'bmr-calculator', note: `Understand your baseline metabolism, another body-size-driven figure.` },
+      { slug: 'calories-burned-calculator', note: `Gauge how much your active time burns, which also drives water needs.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
