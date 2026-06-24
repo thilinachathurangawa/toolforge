@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
   CATEGORIES,
+  CALCULATOR_SUBCATEGORIES,
   getToolsByCategory,
   type ToolCategory,
 } from '@/lib/constants/tools';
@@ -108,6 +109,38 @@ export default function CategoryPage({ params }: CategoryPageParams) {
             </p>
           )}
         </section>
+
+        {/* Calculator subcategory hubs */}
+        {category.value === 'calculator' && (
+          <section className="mb-8">
+            <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+              Browse by Type
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {CALCULATOR_SUBCATEGORIES.map((sub) => {
+                const count = tools.filter((t) => t.subcategory === sub.value).length;
+                if (count === 0) return null;
+                return (
+                  <Link
+                    key={sub.value}
+                    href={`/category/calculator/${sub.value}`}
+                    className="group flex items-center gap-3 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10 text-accent border border-accent/20">
+                      <DynamicIcon name={sub.icon} size={20} />
+                    </span>
+                    <span>
+                      <span className="block font-medium text-text-primary">{sub.label}</span>
+                      <span className="block text-xs text-text-secondary mt-0.5">
+                        {count} calculator{count !== 1 ? 's' : ''}
+                      </span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
         {/* Popular Tools in this Category */}
         {tools.filter(t => t.isPopular).length > 0 && (

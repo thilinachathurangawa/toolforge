@@ -1,6 +1,6 @@
 // src/app/sitemap.ts
 import { MetadataRoute } from 'next';
-import { TOOLS, CATEGORIES } from '@/lib/constants/tools';
+import { TOOLS, CATEGORIES, CALCULATOR_SUBCATEGORIES } from '@/lib/constants/tools';
 import { siteConfig } from '@/lib/constants/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -38,6 +38,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   CATEGORIES.forEach((cat) => {
     routes.push({
       url: `${baseUrl}/category/${cat.value}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    });
+  });
+
+  // 3b. Calculator subcategory hub pages
+  CALCULATOR_SUBCATEGORIES.forEach((sub) => {
+    routes.push({
+      url: `${baseUrl}/category/calculator/${sub.value}`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,

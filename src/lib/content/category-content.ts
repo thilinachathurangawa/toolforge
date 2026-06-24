@@ -242,3 +242,115 @@ export const CATEGORY_CONTENT: Record<string, CategoryLongContent> = {
 export function getCategoryContent(value: string): CategoryLongContent | undefined {
   return CATEGORY_CONTENT[value];
 }
+
+// ── Calculator subcategory landing-page content ──────────────────────
+// These power the mid-level hub pages at /category/calculator/<subcategory>,
+// grouping the 88 calculators into focused sections with their own editorial
+// copy and FAQs.
+
+export const SUBCATEGORY_CONTENT: Record<string, CategoryLongContent> = {
+  'financial-calculators': {
+    intro: [
+      `Money decisions hinge on numbers most people would rather not work out by hand — what a loan really costs, how savings compound, whether a price leaves enough margin. ToolForge's financial calculators cover that ground: loan and EMI payments with full amortization schedules, compound and simple interest, future and present value, investment growth, ROI, savings and budgeting, debt and credit-card payoff, plus everyday money math like discounts, tips, sales tax, VAT, margin, and commission.`,
+      `Borrowers compare loan terms before signing, savers project where a monthly deposit lands them, and small-business owners price products and plan budgets. The more involved tools show their working — amortization tables, year-by-year growth, and side-by-side comparisons — so you understand the trade-offs, not just the final figure. Every calculation runs privately in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between simple and compound interest?`,
+        answer: `Simple interest is charged only on the original principal, so the same amount accrues each period. Compound interest is charged on the principal plus previously earned interest, so it grows faster over time. The dedicated calculators let you compare both for the same figures.`,
+      },
+      {
+        question: `Are these financial calculators accurate enough for real decisions?`,
+        answer: `They use standard financial formulas and show their working, so the math is reliable. For major decisions like a mortgage, treat the output as a well-grounded estimate and confirm specifics with your lender, since real terms include fees and conditions a calculator cannot know.`,
+      },
+      {
+        question: `Is my financial information kept private?`,
+        answer: `Yes. Every financial calculator runs entirely in your browser, so the amounts you enter are never uploaded or stored on a server.`,
+      },
+    ],
+  },
+  'health-fitness-calculators': {
+    intro: [
+      `Fitness and nutrition advice is full of numbers — calories, macros, BMI, target heart rate — and getting them right starts with calculating them for your own body. ToolForge's health and fitness calculators cover the essentials: BMR and TDEE for your energy needs, calorie and macro targets, BMI, body fat, lean body mass and ideal weight, protein and water intake, calories burned, one-rep max, running pace, target heart-rate zones, plus age, due-date, and cycle estimates.`,
+      `People starting a weight goal use them to set a realistic daily calorie target, lifters and runners use them to program training and nutrition, and the health-curious use them to understand their own numbers. They apply recognized formulas — Mifflin-St Jeor for metabolism, the US Navy method for body fat, standard MET values for exercise — and run privately in your browser. They are educational estimates, not medical advice, so pair them with a professional for anything consequential.`,
+    ],
+    faqs: [
+      {
+        question: `How do BMR, TDEE, and calorie targets fit together?`,
+        answer: `BMR is the calories your body burns at rest. Multiply it by an activity factor to get your TDEE — your full daily burn. Then adjust your TDEE up or down for your goal to get a calorie target. The calculators are designed to be used in that sequence.`,
+      },
+      {
+        question: `Are these health calculators medically accurate?`,
+        answer: `They use established formulas and give solid estimates for planning, but they are not a substitute for professional advice. Individual factors like body composition, health conditions, and metabolism affect real results, so consult a clinician or dietitian for medical or significant decisions.`,
+      },
+      {
+        question: `Is my health and body data kept private?`,
+        answer: `Yes. Every health and fitness calculator runs locally in your browser, so the personal measurements you enter are never transmitted or stored.`,
+      },
+    ],
+  },
+  'math-calculators': {
+    intro: [
+      `Math problems are easy to get wrong in the small steps — a misplaced decimal, the wrong formula, an arithmetic slip. ToolForge's math calculators cover the common ground from arithmetic to statistics: percentages, fractions, ratios, averages, rounding, exponents and roots, factors, prime factorization, GCF and LCM, standard deviation, mean-median-mode-range, probability, permutations and combinations, area and volume, the Pythagorean theorem, quadratic equations, and scientific notation.`,
+      `Students check homework and learn the method, since most of these show step-by-step working, formulas, and breakdowns rather than just an answer. Teachers, engineers, and anyone facing a quick calculation use them too. Every tool runs instantly in your browser with no sign-up, and the worked steps make them as useful for understanding as for getting the result.`,
+    ],
+    faqs: [
+      {
+        question: `Do these calculators show the steps, not just the answer?`,
+        answer: `Most do. Tools like the fraction, percentage, standard deviation, and quadratic calculators display the formula and a step-by-step breakdown, which makes them genuine learning aids rather than black boxes.`,
+      },
+      {
+        question: `What is the difference between permutations and combinations?`,
+        answer: `Permutations count arrangements where order matters, while combinations count selections where it does not. The dedicated calculator computes both at once and shows the factorial formulas behind each so the distinction is clear.`,
+      },
+      {
+        question: `Can I use these for statistics homework?`,
+        answer: `Yes. The mean-median-mode-range, standard deviation, and probability calculators cover core introductory statistics, accept a list of numbers, and show the supporting figures and working you would be expected to demonstrate.`,
+      },
+    ],
+  },
+  'science-calculators': {
+    intro: [
+      `Physics and chemistry problems live or die by applying the right formula with the right units. ToolForge's science calculators handle the staples: velocity, force, kinetic energy, projectile motion, and density from physics; Ohm's law and resistor color codes from electronics; and pH, molarity, and the ideal gas law from chemistry.`,
+      `Students solve and check coursework, and anyone working with these relationships uses them to get a fast, reliable answer. Each calculator is built around the actual scientific formula — F = ma, v = d/t, PV = nRT — and supports the units these problems use, with results shown clearly. They run in your browser with no sign-up, making them handy for a quick check during study or lab work.`,
+    ],
+    faqs: [
+      {
+        question: `Which scientific formulas do these calculators use?`,
+        answer: `They apply the standard relationships directly — for example velocity as distance over time, force as mass times acceleration, the ideal gas law as PV = nRT, and Ohm's law as V = IR. Each tool is built around the real formula for its topic.`,
+      },
+      {
+        question: `Do they handle different units?`,
+        answer: `Yes. The science calculators accept the units these problems commonly use and convert as needed, so you can work in the units your textbook or experiment uses and read the result in sensible units.`,
+      },
+      {
+        question: `Can I solve for any variable in a formula?`,
+        answer: `Many of the calculators let you solve for whichever quantity is unknown by entering the others — for instance finding velocity, distance, or time from the other two. Where that applies, the tool's controls let you pick what to calculate.`,
+      },
+    ],
+  },
+  'other-calculators': {
+    intro: [
+      `Not every calculation fits a neat category — sometimes you need to count days to a deadline, total a timesheet, work out a GPA, estimate fuel for a trip, or figure out how much concrete a slab needs. ToolForge's everyday calculators cover that practical miscellany: date and time math, work hours with overtime, time-zone conversion, GPA and grades, fuel cost, random numbers and dice, shoe-size conversion, and home-project estimators for square footage, concrete, and tile.`,
+      `Students, professionals, travelers, and DIYers reach for these for the real-world arithmetic that crops up day to day. Whether you are planning a renovation, settling a schedule across time zones, or projecting a semester GPA, there is a focused tool for it. All of them run instantly in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What kinds of everyday calculations are covered here?`,
+        answer: `This group spans date and time math, work-hour and overtime tracking, time-zone conversion, academic GPA and grades, fuel cost, random number and dice generation, shoe-size conversion, and home-improvement estimates for square footage, concrete, and tile.`,
+      },
+      {
+        question: `Are the home-project estimators accurate enough to buy materials?`,
+        answer: `They give solid estimates and build in waste allowances where appropriate, which is the right approach for ordering. Because real spaces and jobs vary, treat the figures as a well-padded guide and confirm against your specific materials and layout.`,
+      },
+      {
+        question: `Do these calculators need an account or internet connection?`,
+        answer: `No account is required, and because they run in your browser, most work even offline once the page has loaded. Nothing you enter is uploaded or stored.`,
+      },
+    ],
+  },
+};
+
+export function getSubcategoryContent(value: string): CategoryLongContent | undefined {
+  return SUBCATEGORY_CONTENT[value];
+}
