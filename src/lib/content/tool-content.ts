@@ -5581,6 +5581,51 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'meme-sticker-studio', note: `Composite your illusion with text and stickers.` },
     ],
   },
+
+  // ── Follow-up: internet-speed-test (widget rewired to real measurement) ──
+
+  'internet-speed-test': {
+    intro: [
+      `How fast is your connection, really? The Internet Speed Test measures your actual download and upload speeds along with latency and jitter, by transferring real data to and from Cloudflare's global measurement network — the same backend behind speed.cloudflare.com.`,
+      `People run it to check whether they are getting the speeds their plan promises, to diagnose buffering and lag, or to compare Wi-Fi against a wired connection. Download and upload speeds tell you how much bandwidth you have, while latency (ping) and jitter reveal how responsive and stable the link is — the figures that matter most for video calls and gaming. Your last several results are kept so you can compare runs across the day or different rooms.`,
+      `Because measuring throughput means actually moving data, the test exchanges traffic with Cloudflare's servers; only that measurement traffic leaves your browser, with optional analytics logging turned off.`,
+    ],
+    steps: [
+      `Click Start Speed Test — for the most accurate result, close other downloads and streaming first.`,
+      `Watch the progress as it measures latency, then download, then upload speed.`,
+      `Read your download and upload speeds in Mbps, plus latency and jitter in milliseconds.`,
+      `Use Stop to cancel a run, and check the history to compare it against earlier tests; Copy saves the result.`,
+    ],
+    why: [
+      `It performs a genuine measurement against Cloudflare's worldwide network, so the download and upload figures reflect your real throughput — not an estimate or simulation.`,
+      `It reports latency and jitter alongside bandwidth, the responsiveness metrics that determine call and game quality, which simple speed tests often omit.`,
+      `It keeps a short history of recent runs so you can compare connections, rooms, or times of day.`,
+      `Analytics logging is disabled, so beyond the unavoidable measurement traffic to Cloudflare, nothing about your test is recorded, and there is no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `Why are my speeds lower than the plan I pay for?`,
+        answer: `Many factors sit between your plan's headline rate and a real-world result: Wi-Fi signal strength, other devices using the connection, your hardware, and network congestion. For the closest comparison to your plan, test on a wired connection with other activity paused.`,
+      },
+      {
+        question: `What do latency and jitter mean?`,
+        answer: `Latency, or ping, is the round-trip time for data in milliseconds — lower is better, and it governs how responsive browsing, calls, and games feel. Jitter is the variation in that latency; low, steady jitter means a stable connection, while high jitter causes stutter in real-time apps.`,
+      },
+      {
+        question: `What is a good internet speed?`,
+        answer: `It depends on use: roughly 25 Mbps download handles HD streaming for a household, while 4K, large downloads, and many simultaneous users benefit from 100 Mbps or more. Upload speed matters for video calls and uploading files; latency under about 50 ms is good for gaming.`,
+      },
+      {
+        question: `Does the test use my data, and is it private?`,
+        answer: `Yes, it transfers real data to measure throughput, so it consumes some of your data allowance — worth noting on a metered or mobile connection. The test runs against Cloudflare's network with extra analytics logging disabled, so only the measurement traffic itself leaves your browser.`,
+      },
+    ],
+    related: [
+      { slug: 'ping-tool', note: `Measure round-trip latency to a specific host over several requests.` },
+      { slug: 'website-status-checker', note: `Check whether a particular site is up and how fast it responds.` },
+      { slug: 'address-lookup', note: `See the IP address and ISP your connection is using.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
