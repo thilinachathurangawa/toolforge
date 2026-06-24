@@ -3142,6 +3142,639 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'probability-calculator', note: `Move from summarizing data to calculating likelihoods.` },
     ],
   },
+
+  // ── Batch 6: Math (13, finishes subcategory) + Other (2) ──
+
+  'fraction-calculator': {
+    intro: [
+      `Fraction arithmetic trips up students and adults alike, because adding or dividing fractions means juggling common denominators and then simplifying. This calculator does all of it: pick an operation, enter two fractions, and it returns the answer fully simplified, as a mixed number, and as a decimal — with the steps shown.`,
+      `It is a homework checker for students learning fractions and a quick utility for anyone scaling a recipe, splitting measurements, or working in trades where fractional inches are everyday. Because it shows the common-denominator step and the simplification, it teaches the method rather than just handing over a result.`,
+    ],
+    steps: [
+      `Choose an operation: add, subtract, multiply, or divide.`,
+      `Enter the numerator and denominator of the first fraction.`,
+      `Enter the numerator and denominator of the second fraction.`,
+      `Read the simplified result, its mixed-number form, and its decimal equivalent.`,
+      `Follow the step-by-step breakdown to see the common denominator and simplification.`,
+    ],
+    why: [
+      `It returns three forms at once — a simplified fraction, a mixed number, and a decimal — so you have whichever you need.`,
+      `It reduces the answer to lowest terms automatically using the greatest common divisor, and shows that simplification step.`,
+      `The worked steps reveal the common-denominator process, making it a genuine learning aid rather than a black box.`,
+      `All arithmetic runs locally with no account required.`,
+    ],
+    faqs: [
+      {
+        question: `How do you add fractions with different denominators?`,
+        answer: `You first rewrite both fractions over a common denominator, then add the numerators and keep that denominator, and finally simplify. This calculator finds the common denominator, performs the addition, and reduces the result, showing each step.`,
+      },
+      {
+        question: `What is a mixed number?`,
+        answer: `A mixed number combines a whole number with a proper fraction, like 1¾ instead of the improper fraction 7/4. The calculator shows the mixed-number form alongside the simplified fraction so you can use whichever your work calls for.`,
+      },
+      {
+        question: `How does the calculator simplify the result?`,
+        answer: `It divides both the numerator and denominator by their greatest common divisor, found with the Euclidean algorithm. That reduces the fraction to its lowest terms — for example, 6/8 becomes 3/4.`,
+      },
+      {
+        question: `How do I divide one fraction by another?`,
+        answer: `You multiply the first fraction by the reciprocal (the flip) of the second: dividing by 2/3 is the same as multiplying by 3/2. Choose the divide operation and the calculator applies this rule and simplifies the result automatically.`,
+      },
+    ],
+    related: [
+      { slug: 'percentage-calculator', note: `Convert between fractions and the percentages they represent.` },
+      { slug: 'ratio-calculator', note: `Simplify and scale ratios, a close cousin of fractions.` },
+      { slug: 'average-calculator', note: `Average a set of values once you have worked them out.` },
+    ],
+  },
+
+  'average-calculator': {
+    intro: [
+      `Finding the average of a list of numbers is one of the most common quick calculations there is — grades, expenses, scores, measurements. This calculator takes a list however you have it, separated by commas, spaces, or line breaks, and returns the mean along with the sum, count, minimum, maximum, and range.`,
+      `It saves the tedious tapping of adding a long column on a phone calculator. Teachers average marks, shoppers average prices, and anyone summarizing a quick data set gets the answer plus the supporting figures in one step. Pasting straight from a spreadsheet column works because it accepts line-separated values.`,
+    ],
+    steps: [
+      `Type or paste your numbers, separated by commas, spaces, or line breaks.`,
+      `Read the average (mean) immediately.`,
+      `Check the supporting figures: sum, count, minimum, maximum, and range.`,
+      `Review the parsed list of values shown as badges to confirm nothing was mistyped.`,
+    ],
+    why: [
+      `It accepts numbers separated by commas, spaces, or new lines, so you can paste a spreadsheet column straight in.`,
+      `Alongside the mean it reports sum, count, min, max, and range, giving a quick all-round summary from one entry.`,
+      `Non-numeric entries are filtered out automatically, so a stray label does not break the calculation.`,
+      `Everything is processed in your browser; nothing is uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between average and mean?`,
+        answer: `In everyday use they are the same thing — the arithmetic mean, found by adding all values and dividing by how many there are. "Average" can loosely refer to median or mode too, but this calculator computes the mean specifically.`,
+      },
+      {
+        question: `Can I paste numbers from a spreadsheet?`,
+        answer: `Yes. The calculator splits on commas, spaces, and line breaks, so a column copied from Excel or Google Sheets pastes in directly. Any non-numeric cells are ignored rather than causing an error.`,
+      },
+      {
+        question: `Does this give the median too?`,
+        answer: `No — this tool focuses on the mean plus sum, count, and range. If you need the median, mode, and range together, a mean-median-mode-range calculator covers all of those central-tendency measures.`,
+      },
+      {
+        question: `Does the order of the numbers matter?`,
+        answer: `Not for the average — the mean, sum, and count are the same regardless of order. The calculator does report the minimum and maximum, so it identifies the extremes for you without you needing to sort the list yourself.`,
+      },
+    ],
+    related: [
+      { slug: 'mean-median-mode-range-calculator', note: `Get the median and mode in addition to the mean.` },
+      { slug: 'standard-deviation-calculator', note: `Measure how spread out your numbers are around the average.` },
+      { slug: 'percentage-calculator', note: `Express an average as a percentage of a total.` },
+    ],
+  },
+
+  'root-calculator': {
+    intro: [
+      `Square roots, cube roots, and higher roots all answer the same question: what number, multiplied by itself a certain number of times, gives this value? This calculator finds any root you ask for — enter a number and a root degree, and it returns the result as a decimal and in radical notation.`,
+      `Students checking algebra and geometry work use it constantly, as do people working with formulas involving areas, volumes, or growth rates. Quick buttons cover the square, cube, and fourth roots for the most common cases, while the degree field handles any nth root you need.`,
+    ],
+    steps: [
+      `Enter the number you want the root of.`,
+      `Enter the root degree (2 for square root, 3 for cube root, and so on) — or tap a quick-root button.`,
+      `Read the decimal result.`,
+      `Check the radical-notation form and the step-by-step breakdown.`,
+    ],
+    why: [
+      `It computes any nth root, not just square roots, so cube and higher roots are one entry away.`,
+      `Quick buttons for the square, cube, and fourth roots cover the everyday cases without typing a degree.`,
+      `It displays the answer in proper radical notation alongside the decimal, reinforcing the math.`,
+      `Calculations happen instantly on your device with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What does the root degree mean?`,
+        answer: `The degree is how many times the result is multiplied by itself to get your number. A degree of 2 is a square root, 3 is a cube root, 4 is a fourth root, and so on. This calculator accepts any degree you enter.`,
+      },
+      {
+        question: `Can I take the root of a negative number?`,
+        answer: `Odd roots of negatives are real — the cube root of −8 is −2, for instance. Even roots of negative numbers, like the square root of −4, are not real numbers, so those will not return a valid decimal result here.`,
+      },
+      {
+        question: `What is radical form?`,
+        answer: `Radical form writes the operation with the root symbol, such as √64 or ³√27, rather than as a decimal. The calculator shows both so you can present the answer either way, which is handy for schoolwork.`,
+      },
+      {
+        question: `How is a root related to an exponent?`,
+        answer: `Taking the nth root is the same as raising to the power of 1/n — a square root is the power 0.5, a cube root is the power one-third. That is exactly how this calculator computes roots, which is why it handles any degree you enter.`,
+      },
+    ],
+    related: [
+      { slug: 'exponent-calculator', note: `Run the inverse — raise a number to a power instead of taking a root.` },
+      { slug: 'scientific-notation-calculator', note: `Express very large or small roots compactly.` },
+      { slug: 'pythagorean-theorem-calculator', note: `Square roots are central to finding triangle side lengths.` },
+    ],
+  },
+
+  'ratio-calculator': {
+    intro: [
+      `Ratios express how quantities relate — 3:2, 16:9, 1:4 — and working with them means simplifying, scaling, or solving for a missing part. This calculator simplifies a ratio to its lowest terms, scales it by any factor, and even handles three-part ratios.`,
+      `Cooks scale recipes, designers reason about aspect ratios, and students simplify ratios for homework. Builders and hobbyists use it for mixing ratios like paint or concrete. Because it accepts an optional third value and a scale factor, it goes beyond simple two-part reduction to the practical cases people actually meet.`,
+    ],
+    steps: [
+      `Enter the ratio values in fields A and B (and C for a three-part ratio).`,
+      `Read the simplified ratio, reduced to its lowest whole-number terms.`,
+      `Enter a scale factor to multiply the ratio up or down.`,
+      `Check the scaled ratio and, for two-part ratios, the fraction form, plus the step-by-step working.`,
+    ],
+    why: [
+      `It supports three-part ratios (A:B:C), not just two terms, covering mixes and proportions other tools cannot.`,
+      `It both simplifies and scales — reducing to lowest terms and multiplying by a factor — in one place.`,
+      `It shows the greatest-common-divisor steps behind the simplification, so the reduction is transparent.`,
+      `It runs entirely client-side with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How do you simplify a ratio?`,
+        answer: `You divide every term by their greatest common divisor, the same way you reduce a fraction. For 12:8, the GCD is 4, so it simplifies to 3:2. The calculator finds the GCD across all terms and shows the division.`,
+      },
+      {
+        question: `How do I scale a ratio up or down?`,
+        answer: `Multiply each term by the same factor. To double 3:2 you get 6:4; to triple it you get 9:6. Enter a scale factor and the calculator applies it to every part of the simplified ratio.`,
+      },
+      {
+        question: `What is the difference between a ratio and a fraction?`,
+        answer: `A ratio compares quantities (3:2 means three parts to two), while a fraction expresses a part of a whole (3/5). They are related — the calculator shows a two-part ratio as a fraction — but a ratio can have more than two terms, which a single fraction cannot.`,
+      },
+      {
+        question: `How do I keep a ratio the same when changing one quantity?`,
+        answer: `Multiply or divide every term by the same number so the proportion holds. If a 2:3 paint mix needs 6 units of the first color, scale by 3 to get 6:9. Enter your ratio and a scale factor and the calculator works out the matching amounts.`,
+      },
+    ],
+    related: [
+      { slug: 'fraction-calculator', note: `Work directly with the fraction form of a two-part ratio.` },
+      { slug: 'percentage-calculator', note: `Turn a ratio into a percentage of the whole.` },
+      { slug: 'gcf-lcm-calculator', note: `Find the greatest common factor used to simplify ratios.` },
+    ],
+  },
+
+  'rounding-calculator': {
+    intro: [
+      `Rounding seems simple until you need to round to a specific number of decimal places, or to the nearest ten, hundred, or thousand. This calculator rounds any number to the precision you choose and explains the decision — which digit it looked at and whether the value went up or down.`,
+      `Students learning rounding rules use it to check their work; anyone presenting figures uses it to tidy decimals to a consistent precision. Support for negative decimal places means you can round to tens or hundreds, not just to decimal positions, covering both ends of the precision scale.`,
+    ],
+    steps: [
+      `Enter the number you want to round.`,
+      `Enter the number of decimal places — use a negative value to round to tens, hundreds, and beyond.`,
+      `Read the rounded result.`,
+      `See which digit was examined and whether the value rounded up or down in the breakdown.`,
+    ],
+    why: [
+      `It accepts negative decimal places, so you can round to the nearest ten, hundred, or thousand, not just decimal positions.`,
+      `It shows the digit it examined and the direction it rounded, making the rounding rule explicit.`,
+      `It reports the original and rounded values side by side so the change is clear.`,
+      `It computes instantly in your browser, free and without sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What is the standard rounding rule?`,
+        answer: `Look at the digit just past your rounding position: if it is 5 or more, round up; if it is less than 5, round down. This calculator applies that rule and shows you the exact digit it checked.`,
+      },
+      {
+        question: `How do I round to the nearest hundred?`,
+        answer: `Enter a negative number of decimal places — −2 rounds to the nearest hundred, −1 to the nearest ten, and −3 to the nearest thousand. The calculator supports these negative positions directly.`,
+      },
+      {
+        question: `What does rounding to 2 decimal places mean?`,
+        answer: `It keeps two digits after the decimal point, rounding the rest away — so 3.14159 becomes 3.14. Entering 2 as the decimal places gives that result, with the breakdown showing why the third digit did not round it up.`,
+      },
+      {
+        question: `What is the difference between rounding and truncating?`,
+        answer: `Rounding adjusts the last kept digit based on what follows it, so 3.78 rounded to one decimal becomes 3.8. Truncating simply chops off the extra digits, giving 3.7. This calculator rounds; it does not merely cut the number off.`,
+      },
+    ],
+    related: [
+      { slug: 'scientific-notation-calculator', note: `Express rounded large or small numbers compactly.` },
+      { slug: 'percentage-error-calculator', note: `See how rounding affects accuracy against an exact value.` },
+      { slug: 'average-calculator', note: `Round the averages and sums you compute from a list.` },
+    ],
+  },
+
+  'gcf-lcm-calculator': {
+    intro: [
+      `The greatest common factor and least common multiple are workhorses of arithmetic — you need the GCF to simplify fractions and the LCM to add them. This calculator finds both for two or more numbers at once, and shows the prime factorizations and the Euclidean-algorithm steps behind the answers.`,
+      `Students use it throughout fraction work and number theory; it also turns up in scheduling problems, where the LCM tells you when repeating events coincide. Beyond the answers, it verifies them — confirming that GCF times LCM equals the product of the numbers — and lays out Euclid's method step by step.`,
+    ],
+    steps: [
+      `Enter two or more whole numbers, separated by commas.`,
+      `Read the GCF (greatest common factor) and the LCM (least common multiple).`,
+      `Review the prime factorization of each number.`,
+      `Follow Euclid's algorithm steps and the verification that GCF × LCM equals the product.`,
+    ],
+    why: [
+      `It computes both the GCF and the LCM together for any list of numbers, not just a pair.`,
+      `It shows each number's prime factorization and the full Euclidean-algorithm steps, making the method visible.`,
+      `It verifies the result by checking that GCF × LCM equals the product of the inputs, so you can trust the answer.`,
+      `It runs locally and instantly, with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between GCF and LCM?`,
+        answer: `The greatest common factor is the largest number that divides all your values evenly — used to simplify fractions. The least common multiple is the smallest number all your values divide into — used to find a common denominator. This calculator gives both.`,
+      },
+      {
+        question: `How does Euclid's algorithm find the GCF?`,
+        answer: `It repeatedly replaces the larger number with the remainder of dividing it by the smaller, until the remainder is zero; the last non-zero value is the GCF. The calculator shows each division step so you can follow the process.`,
+      },
+      {
+        question: `How are GCF and LCM related?`,
+        answer: `For any two numbers, their GCF multiplied by their LCM equals the product of the numbers themselves. The calculator uses this relationship as a verification check, marking the result correct when it holds.`,
+      },
+      {
+        question: `Where is the LCM used in real life?`,
+        answer: `The least common multiple answers "when do repeating cycles line up again?" — when two buses on different schedules next depart together, or when adding fractions with unlike denominators. The GCF, by contrast, shows up whenever you reduce a fraction to simplest form.`,
+      },
+    ],
+    related: [
+      { slug: 'prime-factorization-calculator', note: `See a single number broken into its prime building blocks.` },
+      { slug: 'factor-calculator', note: `List every factor of a number, not just the shared ones.` },
+      { slug: 'fraction-calculator', note: `Put the GCF and LCM to work simplifying and adding fractions.` },
+    ],
+  },
+
+  'factor-calculator': {
+    intro: [
+      `Every whole number can be broken down into the smaller numbers that divide it evenly — its factors. This calculator lists all of them, pairs them up, counts them, sums them, and tells you whether the number is prime, composite, or even a perfect number.`,
+      `Students use it across number theory and fraction work; puzzle solvers and programmers use it when divisibility matters. The factor pairs are especially handy for problems like finding rectangle dimensions for a given area, and the perfect-number check adds a touch of mathematical curiosity that pure factor lists miss.`,
+    ],
+    steps: [
+      `Enter a positive whole number.`,
+      `Read the full list of its factors.`,
+      `Review the factor pairs, each multiplying to your number.`,
+      `Check the extras: factor count, sum of factors, prime-or-composite type, and whether it is a perfect number.`,
+    ],
+    why: [
+      `It lists factor pairs with multiplication notation, not just a flat list, which suits problems like sizing rectangles for a given area.`,
+      `It classifies the number as prime or composite and flags perfect numbers, going beyond a bare factor list.`,
+      `It reports the count and sum of factors, useful shortcuts for many number-theory problems.`,
+      `All computation stays in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between factors and prime factors?`,
+        answer: `Factors are all the numbers that divide evenly into your number, including 1 and the number itself. Prime factors are only the prime numbers among them, which multiply together to make the number. This tool lists all factors; a prime factorization tool isolates the primes.`,
+      },
+      {
+        question: `What makes a number prime or composite?`,
+        answer: `A prime number has exactly two factors, 1 and itself. A composite number has more than two. The calculator counts the factors and labels the number accordingly — note that 1 is neither prime nor composite by definition.`,
+      },
+      {
+        question: `What is a perfect number?`,
+        answer: `A perfect number equals the sum of its proper divisors (all its factors except itself). The smallest is 6, since 1 + 2 + 3 = 6. They are rare, and the calculator flags one when you happen to enter it.`,
+      },
+      {
+        question: `How do factor pairs help with real problems?`,
+        answer: `Each pair multiplies to your number, so they map directly to questions like "what rectangle dimensions give this area?" or "how can I arrange this many items into equal rows?" The calculator lists every pair, saving you from testing divisors one by one.`,
+      },
+    ],
+    related: [
+      { slug: 'prime-factorization-calculator', note: `Break the number down specifically into its prime factors.` },
+      { slug: 'gcf-lcm-calculator', note: `Find common factors and multiples across several numbers.` },
+      { slug: 'root-calculator', note: `Check whether a number is a perfect square or cube.` },
+    ],
+  },
+
+  'prime-factorization-calculator': {
+    intro: [
+      `Every whole number above one is built from prime numbers multiplied together, and finding that unique combination is prime factorization. This calculator breaks any number into its prime factors, shown in exponent form, as a plain list, and as a visual factor tree.`,
+      `It is a staple of school number theory and a building block for finding greatest common factors and least common multiples. The factor tree makes the decomposition visual, which helps learners see how a number splits step by step, while the exponent form (like 2² × 3 × 7) gives the compact mathematical notation.`,
+    ],
+    steps: [
+      `Enter a whole number of 2 or more.`,
+      `Read the prime factorization in exponent form.`,
+      `See the same factors listed individually.`,
+      `Explore the factor tree and the trial-division steps, with a verification that the factors multiply back to your number.`,
+    ],
+    why: [
+      `It presents the factorization three ways — exponent form, a plain list, and a visual factor tree — suiting both quick reference and learning.`,
+      `It shows the trial-division steps and verifies that the primes multiply back to the original number.`,
+      `The factor-tree view makes the decomposition intuitive for students seeing the concept for the first time.`,
+      `Everything is computed locally with nothing uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is prime factorization?`,
+        answer: `It is expressing a number as a product of prime numbers. For example, 84 = 2 × 2 × 3 × 7, or 2² × 3 × 7 in exponent form. Every integer greater than 1 has exactly one such prime factorization.`,
+      },
+      {
+        question: `How does the calculator find the prime factors?`,
+        answer: `It uses trial division: it divides the number by the smallest prime that fits, repeats with the quotient, and works upward until only 1 remains. Each division is shown so you can follow the breakdown.`,
+      },
+      {
+        question: `What is a factor tree?`,
+        answer: `A factor tree is a diagram that splits a number into two factors, then splits those further until every branch ends in a prime. It is a common classroom method, and this calculator draws one for your number.`,
+      },
+      {
+        question: `Why does the exponent notation only show powers above one?`,
+        answer: `A prime that appears once is written plainly, while a repeated prime is condensed with an exponent — so 84 shows as 2² × 3 × 7 rather than 2² × 3¹ × 7¹. Dropping the unnecessary exponents of one keeps the notation clean and standard.`,
+      },
+    ],
+    related: [
+      { slug: 'factor-calculator', note: `List all factors of the number, not only the primes.` },
+      { slug: 'gcf-lcm-calculator', note: `Use prime factorizations to find common factors and multiples.` },
+      { slug: 'exponent-calculator', note: `Work with the powers that appear in the exponent form.` },
+    ],
+  },
+
+  'probability-calculator': {
+    intro: [
+      `Probability turns uncertainty into a number between 0 and 1, and the way you combine events changes the math entirely. This calculator handles the four core cases: a single event, two events both happening, either event happening, and one event given another.`,
+      `Students working through statistics problems use it to check answers; anyone reasoning about chance — dice, cards, risk — uses it to get the math right. It expresses each result as a decimal, a simplified fraction, and a percentage, and for single events it also gives the odds for and against, the format gamblers and bookmakers use.`,
+    ],
+    steps: [
+      `Choose the calculation type: P(A), P(A and B), P(A or B), or P(A given B).`,
+      `Enter the total number of possible outcomes.`,
+      `Enter the favorable outcomes for event A, and for event B if your calculation needs it.`,
+      `Read the probability as a decimal, fraction, and percentage — plus the odds for single events — with the steps shown.`,
+    ],
+    why: [
+      `It covers four probability types — single, intersection, union, and conditional — rather than only the basic single-event case.`,
+      `It expresses each answer three ways (decimal, simplified fraction, percentage) and adds odds for and against on single events.`,
+      `It shows the intermediate steps, so combined probabilities are easy to follow and learn from.`,
+      `It runs in your browser instantly, with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between P(A and B) and P(A or B)?`,
+        answer: `P(A and B), the intersection, is the chance both events occur. P(A or B), the union, is the chance at least one occurs, and it subtracts the overlap to avoid double-counting. The calculator handles each with the correct formula.`,
+      },
+      {
+        question: `What is conditional probability?`,
+        answer: `Conditional probability, written P(A given B), is the chance of A occurring when B is already known to have occurred. It is found by dividing the probability of both by the probability of B, which this calculator does for you.`,
+      },
+      {
+        question: `How are probability and odds different?`,
+        answer: `Probability compares favorable outcomes to all outcomes (say 1 in 4, or 0.25). Odds compare favorable to unfavorable outcomes (1 to 3). The calculator shows both for single events so you can switch between the two conventions.`,
+      },
+      {
+        question: `Can a probability be greater than 1?`,
+        answer: `No. A probability always falls between 0 (impossible) and 1 (certain), and equivalently between 0% and 100%. If a calculation seems to exceed 1, the favorable outcomes have been set higher than the total — check those two inputs.`,
+      },
+    ],
+    related: [
+      { slug: 'permutation-combination-calculator', note: `Count the arrangements and selections that feed probability problems.` },
+      { slug: 'mean-median-mode-range-calculator', note: `Summarize the data sets behind your probabilities.` },
+      { slug: 'percentage-calculator', note: `Convert a probability into a percentage of a total.` },
+    ],
+  },
+
+  'volume-calculator': {
+    intro: [
+      `Calculating volume means knowing the right formula for the shape in front of you, and there is a different one for a sphere, a cylinder, a cone, and so on. This calculator gathers six common 3D shapes into one tool and computes both their volume and surface area from the dimensions you enter.`,
+      `Students check geometry homework with it; in the real world people use it to size a tank, estimate how much water a container holds, or work out material for a project. Returning surface area alongside volume is a bonus that matters whenever you also need to know how much material wraps the outside.`,
+    ],
+    steps: [
+      `Select a shape: sphere, cube, cylinder, rectangular prism, cone, or square-based pyramid.`,
+      `Enter the dimensions the shape requires — the fields change to match.`,
+      `Read the volume in cubic units.`,
+      `Check the surface area and the formula breakdown shown with it.`,
+    ],
+    why: [
+      `It covers six 3D shapes with the correct volume formula for each, so you never have to look one up.`,
+      `It computes surface area as well as volume, useful whenever material or coating matters, not just capacity.`,
+      `It displays the formula with your values substituted and a step-by-step breakdown.`,
+      `It calculates locally and instantly without sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `Which shapes can this calculate?`,
+        answer: `Six: sphere, cube, cylinder, rectangular prism (box), cone, and square-based pyramid. Selecting a shape reveals only the dimension fields it needs, such as radius and height for a cylinder.`,
+      },
+      {
+        question: `What units is the volume in?`,
+        answer: `It is in cubic units of whatever units you enter — input centimeters and the volume is in cubic centimeters. Keep your dimensions in one consistent unit and read the result in the matching cubic unit.`,
+      },
+      {
+        question: `Why does it also show surface area?`,
+        answer: `Volume tells you capacity, but surface area tells you how much material covers the outside — paint, packaging, or sheet metal. Many real projects need both, so the calculator provides them together for each shape.`,
+      },
+      {
+        question: `How do I convert a volume into liters or gallons?`,
+        answer: `Compute the volume in cubic centimeters and divide by 1,000 for liters (1 liter is 1,000 cm³), or work in cubic inches and divide by 231 for US gallons. Keep your input dimensions in a matching unit first, then apply the conversion to the result.`,
+      },
+    ],
+    related: [
+      { slug: 'area-calculator', note: `Calculate flat, two-dimensional area for the same kinds of shapes.` },
+      { slug: 'square-footage-calculator', note: `Estimate floor or surface area for real-world projects.` },
+      { slug: 'pythagorean-theorem-calculator', note: `Find slant heights and diagonals needed for some volume formulas.` },
+    ],
+  },
+
+  'pythagorean-theorem-calculator': {
+    intro: [
+      `The Pythagorean theorem — a² + b² = c² — relates the three sides of a right triangle, and this calculator solves for whichever side you are missing. Tell it which side to find, enter the other two, and it returns the answer with the algebra and a triangle diagram.`,
+      `Students lean on it throughout geometry and trigonometry; in practice, carpenters, builders, and DIYers use it to check that corners are square and to find diagonal lengths. Because it solves for any side — not just the hypotenuse — it handles the full range of right-triangle problems, and the visual diagram makes clear which side is which.`,
+    ],
+    steps: [
+      `Choose which side to solve for: side a, side b, or the hypotenuse c.`,
+      `Enter the two sides you know.`,
+      `Read the calculated length of the missing side.`,
+      `Review the formula derivation and the triangle diagram that highlights the side you solved for.`,
+    ],
+    why: [
+      `It solves for any of the three sides, not just the hypotenuse, covering every right-triangle case.`,
+      `It includes a triangle diagram that updates to show which side you are finding, anchoring the algebra visually.`,
+      `It shows the full derivation, from squaring the known sides to the final square root.`,
+      `It runs entirely in your browser, free and private.`,
+    ],
+    faqs: [
+      {
+        question: `What is the Pythagorean theorem?`,
+        answer: `For a right triangle, the square of the hypotenuse (the longest side, opposite the right angle) equals the sum of the squares of the other two sides: a² + b² = c². It only applies to right triangles.`,
+      },
+      {
+        question: `How do I find a leg instead of the hypotenuse?`,
+        answer: `Rearrange the formula: a = √(c² − b²). Choose to solve for side a or b, enter the hypotenuse and the other leg, and the calculator subtracts and takes the square root for you.`,
+      },
+      {
+        question: `How is this used to check a square corner?`,
+        answer: `Builders use the 3-4-5 rule: if a corner's two sides measure 3 and 4 units, the diagonal should be exactly 5 for a true right angle. You can verify any such measurement by solving for the hypotenuse here.`,
+      },
+      {
+        question: `Does the theorem work for any triangle?`,
+        answer: `No — it applies only to right triangles, those with a 90-degree angle. For triangles without a right angle you need the law of cosines or law of sines instead. This calculator assumes a right triangle in every mode.`,
+      },
+    ],
+    related: [
+      { slug: 'area-calculator', note: `Find a triangle's area once you know its sides.` },
+      { slug: 'root-calculator', note: `The theorem relies on square roots, which you can compute separately.` },
+      { slug: 'quadratic-formula-calculator', note: `Solve other equations that involve squared terms.` },
+    ],
+  },
+
+  'quadratic-formula-calculator': {
+    intro: [
+      `The quadratic formula solves any equation of the form ax² + bx + c = 0, and this calculator applies it in full — including the cases where the answers are repeated or complex. Enter the three coefficients and it returns the roots, the discriminant, the vertex, and the axis of symmetry.`,
+      `It is a constant companion in algebra and precalculus, where solving quadratics and analyzing parabolas is bread-and-butter work. By computing the discriminant first, it correctly identifies whether you get two real roots, one repeated root, or a complex conjugate pair — and it shows the complex answers properly rather than just failing when the discriminant is negative.`,
+    ],
+    steps: [
+      `Enter coefficient a (it cannot be zero, or the equation is not quadratic).`,
+      `Enter coefficients b and c.`,
+      `Read the roots, with complex roots shown in proper a + bi form when the discriminant is negative.`,
+      `Check the discriminant, vertex, and axis of symmetry, along with the worked formula.`,
+    ],
+    why: [
+      `It handles all three discriminant cases — two real roots, one repeated root, and complex conjugate roots — instead of breaking on a negative discriminant.`,
+      `It computes the vertex and axis of symmetry too, so you can analyze the parabola, not just solve for x.`,
+      `It shows the discriminant and the full formula substitution, making the method clear.`,
+      `It runs locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What is the discriminant and why does it matter?`,
+        answer: `The discriminant is b² − 4ac, the part under the square root in the quadratic formula. Its sign tells you the nature of the roots: positive gives two real roots, zero gives one repeated root, and negative gives a pair of complex roots.`,
+      },
+      {
+        question: `What happens when the discriminant is negative?`,
+        answer: `The equation has no real solutions, but it has two complex conjugate roots. This calculator computes them and displays them in the form a + bi rather than simply reporting "no solution".`,
+      },
+      {
+        question: `What are the vertex and axis of symmetry?`,
+        answer: `The vertex is the turning point of the parabola the equation describes, and the axis of symmetry is the vertical line through it, at x = −b/(2a). The calculator reports both so you can sketch or analyze the curve.`,
+      },
+      {
+        question: `Why must coefficient a be non-zero?`,
+        answer: `If a is zero, the x² term disappears and the equation is linear, not quadratic — and the formula would divide by zero. The calculator requires a non-zero a; for a linear equation, solve bx + c = 0 directly instead.`,
+      },
+    ],
+    related: [
+      { slug: 'exponent-calculator', note: `Work with the squared terms at the heart of a quadratic.` },
+      { slug: 'root-calculator', note: `Compute the square roots the quadratic formula requires.` },
+      { slug: 'pythagorean-theorem-calculator', note: `Another classic equation built on squares.` },
+    ],
+  },
+
+  'scientific-notation-calculator': {
+    intro: [
+      `Very large and very small numbers are unwieldy in standard form, which is why science writes them as a value times a power of ten. This calculator converts numbers to and from scientific notation, and even performs arithmetic — add, subtract, multiply, or divide — directly on numbers in that form.`,
+      `Students and anyone working in science or engineering use it to move between 0.00000045 and 4.5 × 10⁻⁷ without miscounting zeros, and to combine such numbers correctly. The operate mode is the real time-saver: it handles the exponent bookkeeping and re-normalizes the result so the mantissa stays in the proper range.`,
+    ],
+    steps: [
+      `Choose a mode: Convert (between standard and scientific form) or Operate (arithmetic on two scientific numbers).`,
+      `In Convert mode, enter a standard number to see its scientific form, or a mantissa and exponent to see the standard value.`,
+      `In Operate mode, pick an operation and enter the mantissa and exponent of each number.`,
+      `Read the result in scientific notation and standard form, with the normalization steps shown.`,
+    ],
+    why: [
+      `It works both directions — converting standard numbers to scientific notation and back — in one place.`,
+      `Its operate mode does arithmetic on scientific-notation numbers and re-normalizes the result so the mantissa stays between 1 and 10.`,
+      `It shows the standard form with thousands separators alongside the scientific form for easy reading.`,
+      `Everything is computed in your browser instantly.`,
+    ],
+    faqs: [
+      {
+        question: `What is scientific notation?`,
+        answer: `Scientific notation writes a number as a mantissa between 1 and 10 multiplied by a power of ten — for example, 4,500 becomes 4.5 × 10³. It makes very large or very small numbers compact and easy to compare.`,
+      },
+      {
+        question: `How do I multiply numbers in scientific notation?`,
+        answer: `Multiply the mantissas and add the exponents, then normalize so the mantissa stays between 1 and 10. The operate mode does this automatically — enter both numbers and choose multiply.`,
+      },
+      {
+        question: `What does normalizing the mantissa mean?`,
+        answer: `After an operation the mantissa can fall outside the 1-to-10 range; normalizing shifts the decimal point and adjusts the exponent to bring it back. The calculator shows this step so the final notation is in proper form.`,
+      },
+      {
+        question: `How do I write a small number like 0.00045 in scientific notation?`,
+        answer: `Small numbers use a negative exponent: 0.00045 becomes 4.5 × 10⁻⁴, because the decimal point moves four places to the right to reach 4.5. Enter the standard number in Convert mode and the calculator produces the negative-exponent form for you.`,
+      },
+    ],
+    related: [
+      { slug: 'exponent-calculator', note: `Work directly with the powers of ten behind scientific notation.` },
+      { slug: 'root-calculator', note: `Take roots of very large or small values.` },
+      { slug: 'rounding-calculator', note: `Round a mantissa to a sensible number of significant figures.` },
+    ],
+  },
+
+  'time-calculator': {
+    intro: [
+      `Adding and subtracting times is fiddly because there are 60 minutes in an hour, not 100, so ordinary arithmetic gives wrong answers. This calculator handles time properly: add two durations, subtract one from another, or find the gap between two clock times, in 12-hour or 24-hour format.`,
+      `People use it to add up durations — total runtime of several recordings, combined task times — or to work out how far apart two moments are. The result comes back both as hours, minutes, and seconds and as decimal totals, which is handy when you need to feed the figure into something else.`,
+    ],
+    steps: [
+      `Choose a mode: Add, Subtract, or Difference.`,
+      `Pick 12-hour or 24-hour format.`,
+      `Enter the two times using the hour, minute, and second fields (and AM/PM in 12-hour mode).`,
+      `Read the result in HH:MM:SS, plus decimal totals in hours, minutes, and seconds.`,
+    ],
+    why: [
+      `It does time arithmetic correctly, respecting 60-minute hours so your totals are not thrown off by decimal math.`,
+      `It offers add, subtract, and difference modes and both 12- and 24-hour input.`,
+      `It returns the answer in HH:MM:SS and as decimal hours, minutes, and seconds, ready to reuse elsewhere.`,
+      `It runs locally with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `Why can't I just add times like normal numbers?`,
+        answer: `Because time is base-60, not base-10. Adding 1:45 and 0:30 as decimals would suggest 2:75, but the correct answer is 2:15, since 75 minutes is an hour and 15 minutes. This calculator handles that carry-over for you.`,
+      },
+      {
+        question: `What is the difference between the Subtract and Difference modes?`,
+        answer: `Both report the gap between two times as a positive amount. They behave the same way here, returning the absolute difference, so you can use whichever label fits how you are thinking about the problem.`,
+      },
+      {
+        question: `Can it convert a time to decimal hours?`,
+        answer: `Yes. Alongside the HH:MM:SS result, it shows the total as decimal hours (and minutes and seconds), so 2:30 also appears as 2.5 hours — useful for timesheets and further calculations.`,
+      },
+      {
+        question: `Can it add up more than two times at once?`,
+        answer: `This calculator works with two times per operation. To total several durations, add the first two, then add the running total to the next one, and so on. For tracking many daily entries at once, an hours calculator is the better fit.`,
+      },
+    ],
+    related: [
+      { slug: 'hours-calculator', note: `Track work hours across days, with breaks, overtime, and pay.` },
+      { slug: 'date-calculator', note: `Work with whole dates rather than times within a day.` },
+      { slug: 'time-zone-calculator', note: `Convert a time between different time zones.` },
+    ],
+  },
+
+  'hours-calculator': {
+    intro: [
+      `Working out a timesheet by hand — start time, end time, minus the lunch break, across several days — is exactly the kind of arithmetic that invites mistakes. This calculator adds it all up: enter each day's start and end times and break, and it totals your hours, splits them into regular and overtime, and can even compute your pay.`,
+      `Hourly workers use it to check a paycheck, freelancers to total billable time, and managers to tally a team member's week. It handles overnight shifts where the end time is earlier than the start, deducts break minutes per day, and applies a 1.5× rate to hours over your overtime threshold when you enter an hourly rate.`,
+    ],
+    steps: [
+      `Add a row for each day, entering its start time, end time, and break in minutes.`,
+      `Set your weekly overtime threshold (40 hours by default).`,
+      `Optionally enter your hourly rate to calculate pay.`,
+      `Read the total, regular, and overtime hours, plus regular, overtime, and total pay if a rate was given.`,
+    ],
+    why: [
+      `It tracks multiple days at once and sums the week, rather than making you total each day separately.`,
+      `It detects overnight shifts (end time before start) and adds the wraparound automatically, and deducts each day's break.`,
+      `It splits hours into regular and overtime at your threshold and applies a 1.5× overtime pay multiplier when you add a rate.`,
+      `All calculations run in your browser, so your work and pay details stay private.`,
+    ],
+    faqs: [
+      {
+        question: `How does it handle an overnight shift?`,
+        answer: `If the end time is earlier than the start time — say a shift from 22:00 to 06:00 — the calculator recognizes it crosses midnight and adds 24 hours so the duration comes out correctly rather than negative.`,
+      },
+      {
+        question: `How is overtime calculated?`,
+        answer: `Hours up to your weekly threshold (40 by default) count as regular; anything above counts as overtime. If you enter an hourly rate, overtime is paid at 1.5 times that rate, which is a common standard, while regular hours are paid at the base rate.`,
+      },
+      {
+        question: `Are breaks subtracted from my hours?`,
+        answer: `Yes. The break minutes you enter for each day are deducted from that day's worked time, so an 8-hour shift with a 30-minute unpaid break counts as 7.5 hours.`,
+      },
+      {
+        question: `Does it calculate pay automatically?`,
+        answer: `Only if you enter an hourly rate. Leave it blank and the calculator just totals your hours; add a rate and it works out regular pay, overtime pay at 1.5×, and the combined total.`,
+      },
+    ],
+    related: [
+      { slug: 'time-calculator', note: `Add or subtract individual times without the timesheet structure.` },
+      { slug: 'salary-calculator', note: `Convert your hourly rate to weekly, monthly, or annual pay.` },
+      { slug: 'time-zone-calculator', note: `Coordinate work hours across different time zones.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
