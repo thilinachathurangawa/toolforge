@@ -5495,6 +5495,92 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'image-converter', note: `Convert the finished image to another format.` },
     ],
   },
+
+  // ── Batch 10: Final creative tools (2) — completes all functional tools ──
+
+  'meme-sticker-studio': {
+    intro: [
+      `Where a basic meme maker gives you top and bottom text, this Sticker Studio is a layered canvas: stack an image, text, and emoji stickers, drag each one exactly where you want it, reorder them, and composite the whole thing into a single shareable picture. A library of dozens of emoji stickers means you can react, decorate, and annotate without leaving the page.`,
+      `Social media creators build reaction images and announcements, community moderators make custom stickers for chats, and anyone jazzing up a photo uses it to drop hearts, fire, or laughing faces wherever they like. Because it works in layers with full undo and redo, you can experiment freely — nudging a sticker, restyling text, or removing a layer — without starting over.`,
+    ],
+    steps: [
+      `Upload a base image, or start on the blank canvas.`,
+      `Add text layers and click emoji stickers from the library to drop them onto the canvas.`,
+      `Drag each layer to position it, then reorder, hide, or delete layers in the panel; use undo and redo freely.`,
+      `Download the finished composition as PNG, JPG, or WebP.`,
+    ],
+    why: [
+      `It is a true layer-based compositor — image, text, and sticker layers you can drag, reorder, hide, and delete — rather than a fixed two-caption template.`,
+      `A library of dozens of emoji stickers plus styled text (with outline) lets you decorate and annotate in one place.`,
+      `Full undo and redo make editing non-destructive, so you can experiment without fear of ruining your work.`,
+      `Everything composites on an in-browser canvas and exports to PNG, JPG, or WebP — your image is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How is this different from the basic meme generator?`,
+        answer: `The meme generator focuses on adding caption text to an image. The Sticker Studio is a fuller editor: it works in layers, includes an emoji sticker library, lets you drag and reorder every element, and supports undo and redo for non-destructive editing.`,
+      },
+      {
+        question: `Can I make a transparent sticker to use elsewhere?`,
+        answer: `Export as PNG, which supports transparency, to keep areas without a background see-through. Starting from the blank canvas and adding only the elements you want lets you build a sticker you can drop onto other images or chats.`,
+      },
+      {
+        question: `Will there be a watermark on my creation?`,
+        answer: `No. The canvas is composited and downloaded directly in your browser, so the file you save is clean — no watermark or branding is added.`,
+      },
+      {
+        question: `Are my uploaded images private?`,
+        answer: `Yes. Images are loaded and composited entirely within your browser and never sent to a server, so any personal photo you use as a base stays on your device.`,
+      },
+    ],
+    related: [
+      { slug: 'meme-generator', note: `For quick top-and-bottom caption memes, the simpler maker is faster.` },
+      { slug: 'image-cropper', note: `Crop your base image to the right framing before decorating it.` },
+      { slug: 'filter-effect-studio', note: `Apply filters and effects to the image before adding stickers.` },
+    ],
+  },
+
+  'optical-illusion-lab': {
+    intro: [
+      `Optical illusions are math made visible — spirals, interference patterns, and motion effects that trick the eye into seeing movement or depth that is not there. This lab renders five algorithmic illusions live and lets you bend their parameters in real time, then animate them so the effect comes alive.`,
+      `Teachers demonstrate perception and pattern in class, designers generate hypnotic backgrounds and visuals, and the curious simply play with mesmerizing geometry. You choose from an Archimedean or logarithmic spiral, a moiré pattern, a geometric illusion, or a motion illusion, then tune the density, size, rotation, and animation speed, and recolor it in grayscale, rainbow, or your own custom palette.`,
+    ],
+    steps: [
+      `Pick an illusion type: Archimedean spiral, logarithmic spiral, moiré pattern, geometric, or motion.`,
+      `Adjust the density, size, and rotation sliders to shape the pattern.`,
+      `Choose a color scheme — grayscale, rainbow, or two custom colors — and press play to animate, setting the speed.`,
+      `Download your creation as a PNG or JPG.`,
+    ],
+    why: [
+      `It generates five mathematically distinct illusions algorithmically, so you explore real parametric patterns rather than a handful of fixed presets.`,
+      `Real-time sliders for density, size, rotation, and speed let you reshape and animate the pattern and watch it respond instantly.`,
+      `Color schemes — grayscale, rainbow, or a custom two-color palette — change the whole mood of the illusion.`,
+      `Everything renders on an in-browser canvas and exports to an image, with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What kinds of optical illusions can I make?`,
+        answer: `Five: an Archimedean spiral (evenly spaced coils), a logarithmic spiral (coils that grow exponentially), a moiré pattern (interference from overlapping line sets), a geometric illusion built from arranged circles, and a motion illusion of concentric circles with a wave offset.`,
+      },
+      {
+        question: `How does the animation create a sense of motion?`,
+        answer: `Pressing play continuously rotates or shifts the pattern frame by frame, and at the right speed your visual system perceives flowing or pulsing movement. The speed slider controls how fast the rotation advances, changing the intensity of the effect.`,
+      },
+      {
+        question: `What do the density and size sliders change?`,
+        answer: `Density controls how many elements make up the pattern — the number of spiral turns, the line spacing in a moiré, or the count of shapes and circles — while size scales the geometric and motion illusions. Together they let you go from sparse and bold to dense and intricate.`,
+      },
+      {
+        question: `Can I use these illusions in my own projects?`,
+        answer: `Yes — download your creation as a PNG or JPG and use it as a background, graphic, or teaching aid. Since you generate it yourself from the parameters you choose, you can make as many unique variations as you like.`,
+      },
+    ],
+    related: [
+      { slug: 'ascii-art-generator', note: `Turn an image into character-based art for a different visual style.` },
+      { slug: 'filter-effect-studio', note: `Apply effects and color treatments to images you create.` },
+      { slug: 'meme-sticker-studio', note: `Composite your illusion with text and stickers.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
