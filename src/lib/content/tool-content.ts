@@ -2512,6 +2512,636 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'calories-burned-calculator', note: `Gauge how much your active time burns, which also drives water needs.` },
     ],
   },
+
+  // ── Batch 5: Health/Fitness (10, finishes subcategory) + Math (5) ──
+
+  'calorie-calculator': {
+    intro: [
+      `Whether you want to lose, maintain, or gain weight, it all comes down to one number: how many calories to eat each day. This calculator takes your total daily energy expenditure and adjusts it for your goal, giving you a clear daily intake target to aim for.`,
+      `It works as the final step after you know what your body burns. Someone aiming to lose weight gets a target set below their burn rate; someone building muscle gets one above it; someone holding steady gets their maintenance figure. Pairing it with a TDEE estimate turns "eat less" or "eat more" into an actual number you can plan meals around.`,
+    ],
+    steps: [
+      `Enter your daily TDEE in calories (find it with a TDEE calculator if you don't know it).`,
+      `Choose your goal: lose weight, maintain, or gain weight.`,
+      `Read your target daily calorie intake.`,
+      `Plan your meals around that figure, and recalculate as your weight or activity changes.`,
+    ],
+    why: [
+      `It applies a moderate, sustainable adjustment — a 500-calorie deficit for loss or surplus for gain — rather than an aggressive swing that is hard to maintain.`,
+      `By taking TDEE as input, it stays accurate for anyone, since your burn rate already reflects your size and activity.`,
+      `The output is a single, actionable number you can build a meal plan or food log around.`,
+      `It calculates instantly in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How big a calorie deficit should I aim for?`,
+        answer: `A deficit of around 500 calories a day — what this calculator applies for weight loss — targets roughly half a kilogram (about a pound) of fat loss per week, a pace most people can sustain. Larger deficits speed results but are harder to maintain and can cost muscle.`,
+      },
+      {
+        question: `Why does this need my TDEE instead of my height and weight?`,
+        answer: `It focuses on the goal-adjustment step and expects your total daily energy expenditure as input. Calculate your TDEE first — from your BMR and activity level — then enter it here to get a goal-specific target.`,
+      },
+      {
+        question: `Will eating at this target guarantee weight change?`,
+        answer: `Calorie targets are estimates, and real results depend on accurate tracking, consistency, and individual metabolism. Use the figure as a starting point, monitor your weight over a few weeks, and adjust if progress stalls or moves too fast.`,
+      },
+      {
+        question: `Should I eat the same calories every day?`,
+        answer: `A consistent daily target is simplest, but some people prefer to vary intake across the week while keeping the weekly total the same. Either approach works as long as your average lands near the target this calculator gives you.`,
+      },
+    ],
+    related: [
+      { slug: 'tdee-calculator', note: `Calculate the daily burn figure this tool adjusts for your goal.` },
+      { slug: 'macro-calculator', note: `Split your calorie target into protein, carbs, and fat.` },
+      { slug: 'bmr-calculator', note: `Find the resting metabolism that underpins your daily needs.` },
+    ],
+  },
+
+  'ideal-weight-calculator': {
+    intro: [
+      `There is no single "ideal weight", which is exactly why this calculator shows four. It runs your height and sex through the Devine, Robinson, Miller, and Hamwi formulas — the classic clinical estimates — and reports each result alongside their average, so you get a sensible range rather than one arbitrary figure.`,
+      `These formulas were developed for medical contexts like dosing and are widely used as healthy-weight references. Seeing all four together is the value here: they disagree slightly, and the spread between them is a more honest picture than any one number. Anyone setting a weight goal can use the range as a grounded target rather than chasing a single point.`,
+    ],
+    steps: [
+      `Select your sex.`,
+      `Enter your height in centimeters.`,
+      `Read the estimated average ideal weight.`,
+      `Compare the individual Devine, Robinson, Miller, and Hamwi results to see the range they suggest.`,
+    ],
+    why: [
+      `It computes four established formulas at once and averages them, giving a defensible range instead of a single, falsely precise number.`,
+      `Showing each named formula's result lets you see how much the methods differ for your height.`,
+      `It needs only height and sex, the inputs these formulas actually use, so it is quick and unambiguous.`,
+      `Everything is calculated locally, so your figures never leave your device.`,
+    ],
+    faqs: [
+      {
+        question: `Why are there four different ideal weight formulas?`,
+        answer: `The Devine, Robinson, Miller, and Hamwi formulas were developed at different times for clinical use and each weights height slightly differently. None is definitively "correct," so this calculator shows all four and their average to give you a realistic range.`,
+      },
+      {
+        question: `Is ideal weight the same as a healthy weight?`,
+        answer: `Not exactly. These formulas estimate a reference weight based only on height and sex; they do not account for muscle mass, frame size, or body composition. Treat the result as a guideline alongside measures like BMI and body fat percentage.`,
+      },
+      {
+        question: `Why doesn't it ask for my current weight?`,
+        answer: `The formulas estimate a target weight from height and sex alone — your current weight is not an input. Compare the result to your actual weight yourself to see how far above or below the estimated range you are.`,
+      },
+      {
+        question: `Do frame size and muscle affect the result?`,
+        answer: `The formulas ignore both, using only height and sex. A muscular or large-framed person may sit healthily above the estimate, while a small-framed person may sit below it — another reason to read the four-formula range alongside body composition rather than treating one number as a goal.`,
+      },
+    ],
+    related: [
+      { slug: 'bmi-calculator', note: `Check where your current weight sits relative to your height.` },
+      { slug: 'body-fat-calculator', note: `Estimate composition, which a weight target alone cannot capture.` },
+      { slug: 'lean-body-mass-calculator', note: `Separate muscle and non-fat mass from total body weight.` },
+    ],
+  },
+
+  'protein-calculator': {
+    intro: [
+      `Protein needs scale with your body weight and how hard you train, and "get enough protein" is useless without a number. This calculator gives you that number: enter your weight and pick the activity profile that matches you, and it returns a daily protein target in grams.`,
+      `It serves a spectrum of goals through four profiles — from a sedentary baseline of 0.8 grams per kilogram up to 2.2 grams for serious strength athletes. Someone recovering from training, a runner building endurance, or a lifter chasing muscle each gets a target grounded in their actual demand rather than a generic recommendation.`,
+    ],
+    steps: [
+      `Input your body weight in kilograms.`,
+      `Pick the profile that fits you, from sedentary to high training / bodybuilding.`,
+      `Read your recommended daily protein intake in grams.`,
+      `Spread that total across your meals through the day.`,
+    ],
+    why: [
+      `Four activity profiles map to established protein guidelines (0.8 to 2.2 g/kg), so the target reflects your real training demand, not a one-size figure.`,
+      `It bases the number on body weight, the variable that protein needs actually scale with.`,
+      `The result is a concrete daily gram target you can divide across meals.`,
+      `It runs instantly and locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How much protein do I need per day?`,
+        answer: `It depends on activity: roughly 0.8 g/kg of body weight for sedentary people, rising to around 1.6 g/kg for muscle gain and up to about 2.2 g/kg for intense strength training. This calculator applies the multiplier for the profile you choose.`,
+      },
+      {
+        question: `Can I eat too much protein?`,
+        answer: `For healthy people, intakes in the ranges this tool suggests are well tolerated. Very high intakes offer little extra benefit for most goals and displace other nutrients, so there is usually no reason to exceed the high-training range unless advised.`,
+      },
+      {
+        question: `Does it matter when I eat protein?`,
+        answer: `Total daily protein matters most, but spreading it across meals — rather than loading it all at once — helps your body use it efficiently for muscle repair. Aim to include a protein source at each meal to reach the daily target.`,
+      },
+      {
+        question: `Should I use my current or goal body weight?`,
+        answer: `Most guidelines use current body weight. If you carry significant excess fat, some prefer to base protein on a target or lean weight, but for general purposes entering your current weight gives a reasonable target.`,
+      },
+    ],
+    related: [
+      { slug: 'macro-calculator', note: `See protein in context alongside your carb and fat targets.` },
+      { slug: 'calorie-calculator', note: `Set the daily calorie goal your protein fits within.` },
+      { slug: 'one-rep-max-calculator', note: `Track the strength progress your protein intake supports.` },
+    ],
+  },
+
+  'target-heart-rate-calculator': {
+    intro: [
+      `Training by heart rate keeps your effort honest — too easy and you stall, too hard and you burn out. This calculator finds your personal training zones using the Karvonen method, which factors in your resting heart rate rather than relying on age alone, for ranges tailored to your fitness.`,
+      `Runners, cyclists, and gym-goers use it to train deliberately: staying in the fat-burning zone for steady cardio, or pushing into the aerobic zone to build endurance. By starting from your heart rate reserve — the gap between your maximum and resting rates — it gives more individualized targets than a simple percentage of max heart rate.`,
+    ],
+    steps: [
+      `Enter your age (used to estimate your maximum heart rate).`,
+      `Enter your resting heart rate in beats per minute.`,
+      `Read your estimated maximum heart rate.`,
+      `Use the fat-burning and aerobic zone ranges to guide your workout intensity.`,
+    ],
+    why: [
+      `It uses the Karvonen heart-rate-reserve method, which incorporates your resting heart rate for more personalized zones than an age-only formula.`,
+      `It reports concrete beats-per-minute ranges for the fat-burning and aerobic zones, so you know exactly what to aim for on a monitor.`,
+      `It estimates your maximum heart rate for you from your age, so you do not need to test it.`,
+      `Calculations are instant and run entirely in your browser.`,
+    ],
+    faqs: [
+      {
+        question: `What is the Karvonen method?`,
+        answer: `The Karvonen method calculates target heart rate using your heart rate reserve — the difference between your maximum and resting heart rates — rather than a flat percentage of maximum. Because it includes your resting rate, it produces zones tailored to your individual fitness level.`,
+      },
+      {
+        question: `How is maximum heart rate estimated?`,
+        answer: `This calculator uses the common estimate of 220 minus your age. It is a population average, so your true maximum may differ by several beats; for precision, a supervised stress test is the gold standard, but the estimate works well for everyday training.`,
+      },
+      {
+        question: `What is the difference between the fat-burning and aerobic zones?`,
+        answer: `The fat-burning zone (a lower-intensity range) emphasizes steady effort where a higher share of energy comes from fat. The aerobic zone is more intense, building cardiovascular endurance. Both are useful; the right one depends on your workout goal.`,
+      },
+      {
+        question: `Do I need a heart rate monitor to use these zones?`,
+        answer: `To train by them accurately, yes — a chest strap or wrist monitor lets you keep your heart rate within the target range during exercise. Without one, you can approximate effort using perceived exertion, but a monitor is far more precise.`,
+      },
+    ],
+    related: [
+      { slug: 'calories-burned-calculator', note: `Estimate the energy burned during a session at a given intensity.` },
+      { slug: 'pace-calculator', note: `Pair heart-rate zones with running pace for structured training.` },
+      { slug: 'one-rep-max-calculator', note: `Set strength-training loads to complement your cardio work.` },
+    ],
+  },
+
+  'sleep-calculator': {
+    intro: [
+      `Waking up groggy often is not about how long you slept but when in a sleep cycle your alarm went off. This calculator works with your body's roughly 90-minute cycles: tell it when you plan to fall asleep, and it suggests wake-up times that land at the end of a cycle rather than the middle of one.`,
+      `It is for anyone setting an alarm who wants to wake feeling refreshed — students timing an early start, shift workers planning rest, or anyone deciding between "a bit more sleep" options. It even allows about 15 minutes to actually drift off, so the suggested times reflect real bedtime rather than the moment you get into bed.`,
+    ],
+    steps: [
+      `Enter the time you plan to go to sleep.`,
+      `Review the suggested wake-up times, each set to complete a whole number of sleep cycles.`,
+      `Pick the option that gives you enough rest — the cards show 4.5, 6, 7.5, and 9 hours of sleep.`,
+      `Set your alarm for the chosen time.`,
+    ],
+    why: [
+      `It times wake-ups to the end of 90-minute sleep cycles, the principle behind waking less groggy than a mid-cycle alarm.`,
+      `It builds in roughly 15 minutes of sleep-onset latency, so the suggestions account for the time it takes to actually fall asleep.`,
+      `It presents several whole-cycle options (from 4.5 to 9 hours) so you can choose based on how much time you have.`,
+      `It runs instantly in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `Why does waking up at the end of a cycle feel better?`,
+        answer: `Sleep moves through stages, and waking during deep sleep tends to leave you groggy, an effect called sleep inertia. Cycles run about 90 minutes, so aligning your alarm to the end of one means waking from lighter sleep, which usually feels more refreshing.`,
+      },
+      {
+        question: `How long is a sleep cycle?`,
+        answer: `A full sleep cycle averages around 90 minutes, though it varies by person and across the night. This calculator uses the 90-minute average to suggest wake times at 3, 4, 5, or 6 complete cycles after you fall asleep.`,
+      },
+      {
+        question: `Why does it add 15 minutes?`,
+        answer: `Most people do not fall asleep instantly. The calculator allows about 15 minutes of sleep-onset latency so the suggested wake times are measured from when you actually drift off, not from the moment you lie down.`,
+      },
+      {
+        question: `How many cycles of sleep do I need?`,
+        answer: `Most adults do well on five to six cycles, roughly 7.5 to 9 hours. The calculator shows options across this range so you can pick what fits your schedule, but consistent, sufficient sleep matters more than hitting an exact cycle count.`,
+      },
+    ],
+    related: [
+      { slug: 'water-intake-calculator', note: `Another daily wellness baseline worth dialing in.` },
+      { slug: 'target-heart-rate-calculator', note: `Plan training intensity, which affects recovery and rest needs.` },
+      { slug: 'age-calculator', note: `Sleep needs shift with age — check yours precisely.` },
+    ],
+  },
+
+  'lean-body-mass-calculator': {
+    intro: [
+      `Lean body mass is everything in your body that is not fat — muscle, bone, organs, and water. Knowing it helps you understand body composition and set realistic goals, since it is the part of your weight you generally want to keep or build, not lose. This calculator splits your total weight into lean mass and fat mass from your weight and body fat percentage.`,
+      `Lifters use it to confirm a cut is shedding fat while preserving muscle; anyone tracking a recomposition uses it to see past the scale. Because it separates the two components, it reveals whether weight changes are coming from the right place.`,
+    ],
+    steps: [
+      `Enter your total body weight in kilograms.`,
+      `Enter your body fat percentage (estimate it first if you don't know it).`,
+      `Read your lean body mass in kilograms.`,
+      `Check the fat mass figure shown alongside it.`,
+    ],
+    why: [
+      `It breaks your weight into both lean mass and fat mass, so you see the full composition rather than a single total.`,
+      `The calculation is transparent — lean mass is simply your weight minus the fat portion — making the result easy to trust and reproduce.`,
+      `It pairs naturally with a body fat estimate, turning that percentage into concrete kilograms.`,
+      `Everything is computed locally with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What is lean body mass?`,
+        answer: `Lean body mass is your total weight minus your fat mass — it includes muscle, bone, organs, connective tissue, and body water. It is the metabolically active part of your body and the component most people aim to maintain or increase.`,
+      },
+      {
+        question: `Why track lean body mass instead of just weight?`,
+        answer: `Scale weight hides what is changing underneath. During a diet you might lose fat while keeping muscle, or lose both. Tracking lean mass and fat mass separately shows whether your training and nutrition are preserving the tissue you want to keep.`,
+      },
+      {
+        question: `How do I find my body fat percentage to enter here?`,
+        answer: `You can estimate it with a body fat calculator using tape measurements, or get a more precise reading from calipers, a smart scale, or a DEXA scan. The accuracy of your lean mass figure depends directly on the body fat percentage you provide.`,
+      },
+      {
+        question: `What is a typical lean body mass percentage?`,
+        answer: `It varies with sex and fitness, but lean mass commonly makes up around 75–85% of body weight in men and a somewhat lower share in women, who naturally carry more essential fat. Rather than chasing a number, most people aim to preserve or grow lean mass while reducing fat.`,
+      },
+    ],
+    related: [
+      { slug: 'body-fat-calculator', note: `Estimate the body fat percentage this calculator needs as input.` },
+      { slug: 'bmi-calculator', note: `Compare with BMI, which cannot distinguish muscle from fat.` },
+      { slug: 'protein-calculator', note: `Set a protein target to help preserve and build lean mass.` },
+    ],
+  },
+
+  'fat-intake-calculator': {
+    intro: [
+      `Dietary fat is essential, but how much you should eat is usually given as a percentage of calories rather than a number you can act on. This calculator converts your daily calorie target into a practical fat range in grams — and flags a separate limit for saturated fat.`,
+      `It suits anyone structuring a diet who wants their fat intake grounded in guidelines rather than guesswork. Using the widely cited 20–35% of calories for total fat, it returns a sensible daily gram range, and it calls out the recommendation to keep saturated fat under 10% with a clear warning figure.`,
+    ],
+    steps: [
+      `Enter your daily calorie target in kilocalories.`,
+      `Read your recommended total fat range in grams (based on 20–35% of calories).`,
+      `Note the separate saturated fat limit, highlighted as a cap to stay under.`,
+      `Use the range to plan your meals and fat sources.`,
+    ],
+    why: [
+      `It translates abstract percentage guidelines into grams of fat you can actually count, using the standard 20–35% of calories range.`,
+      `It separates a saturated-fat limit (under 10% of calories) and highlights it, since that is the type most guidelines urge you to restrict.`,
+      `It correctly converts calories to grams using fat's 9 calories per gram.`,
+      `It calculates instantly and locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How much fat should I eat per day?`,
+        answer: `Common dietary guidelines recommend total fat make up 20–35% of your daily calories. This calculator converts that range into grams for your specific calorie target — for a 2,000-calorie diet, that is roughly 44 to 78 grams of fat per day.`,
+      },
+      {
+        question: `Why is saturated fat shown separately?`,
+        answer: `Health guidelines advise keeping saturated fat — found in fatty meats, butter, and many processed foods — below about 10% of daily calories, because high intakes are linked to raised cholesterol. The calculator flags this limit separately so you can watch it alongside total fat.`,
+      },
+      {
+        question: `Are all fats bad for me?`,
+        answer: `No. Unsaturated fats from sources like olive oil, nuts, avocados, and fish are an important part of a healthy diet. The goal is usually to favor these while limiting saturated and trans fats, not to minimize fat overall.`,
+      },
+      {
+        question: `Why divide calories by 9?`,
+        answer: `Each gram of fat provides about 9 calories — more than the 4 calories per gram in protein or carbohydrates. To convert a calorie amount of fat into grams, you divide by 9, which is exactly what this tool does.`,
+      },
+    ],
+    related: [
+      { slug: 'macro-calculator', note: `See fat alongside your full protein and carbohydrate split.` },
+      { slug: 'calorie-calculator', note: `Set the daily calorie target your fat range is based on.` },
+      { slug: 'protein-calculator', note: `Balance fat with an appropriate daily protein intake.` },
+    ],
+  },
+
+  'body-surface-area-calculator': {
+    intro: [
+      `Body surface area is a measure clinicians rely on for things like medication dosing and assessing metabolic needs, because it reflects body size better than weight alone. This calculator computes it from your weight and height using the two most established equations — DuBois and Mosteller — side by side.`,
+      `Healthcare students and professionals use BSA where precise body-size scaling matters, such as chemotherapy dosing or estimating cardiac index. Showing both formulas lets you cross-check, since they can differ slightly, and gives confidence in the figure you carry forward.`,
+    ],
+    steps: [
+      `Enter your weight in kilograms.`,
+      `Enter your height in centimeters.`,
+      `Read the DuBois body surface area result in square meters.`,
+      `Compare it against the Mosteller result shown alongside.`,
+    ],
+    why: [
+      `It computes both the DuBois and Mosteller formulas at once, letting you compare the two standard methods rather than trusting one.`,
+      `It reports results in square meters to two decimals, the precision clinical use expects.`,
+      `It needs only weight and height, the inputs both formulas use, keeping it simple.`,
+      `All math runs locally in your browser, so the figures stay private.`,
+    ],
+    faqs: [
+      {
+        question: `What is body surface area used for?`,
+        answer: `BSA is used in medicine to scale things to body size — most notably dosing certain medications such as chemotherapy, and computing indices like cardiac output relative to body size. It often tracks physiological needs better than body weight alone.`,
+      },
+      {
+        question: `What is the difference between the DuBois and Mosteller formulas?`,
+        answer: `Both estimate BSA from height and weight but use different equations — DuBois employs exponents on height and weight, while Mosteller uses a simpler square-root formula. They usually agree closely; showing both lets you verify the estimate.`,
+      },
+      {
+        question: `Which BSA formula should I use?`,
+        answer: `Mosteller is popular for its simplicity and is widely used in clinical dosing, while DuBois is a long-standing standard. For most purposes they are interchangeable; follow whichever your institution or protocol specifies.`,
+      },
+      {
+        question: `Does body surface area change if I gain or lose weight?`,
+        answer: `Yes. Because both weight and height feed the formulas, a change in weight shifts your BSA — though less dramatically than it shifts weight itself, since BSA grows slowly with size. Recalculate after a significant weight change if you are using BSA for dosing or metabolic estimates.`,
+      },
+    ],
+    related: [
+      { slug: 'bmi-calculator', note: `Another height-and-weight measure, used for weight classification.` },
+      { slug: 'ideal-weight-calculator', note: `Estimate a healthy weight range for your height.` },
+      { slug: 'bmr-calculator', note: `Estimate resting energy needs, which also scale with body size.` },
+    ],
+  },
+
+  'age-calculator': {
+    intro: [
+      `"How old am I, exactly?" is harder to answer than it sounds once you go beyond whole years. This calculator takes your date of birth and returns your precise age broken into years, months, and days — accounting for the uneven lengths of months and for leap years.`,
+      `People use it for forms that demand an exact age, to settle the friendly debate over who is older by how much, or to work out age on a specific milestone. Because it reports the full year-month-day breakdown rather than rounding to years, it gives the exact answer those situations need.`,
+    ],
+    steps: [
+      `Select your date of birth from the date picker.`,
+      `Read your current age expressed as years, months, and days.`,
+      `Use the precise breakdown wherever an exact age is required.`,
+    ],
+    why: [
+      `It reports age as years, months, and days, not just whole years, so you get the exact figure rather than a rounded one.`,
+      `It correctly handles the differing lengths of months and leap years, borrowing days and months so the result is accurate.`,
+      `It needs only a birth date and updates instantly.`,
+      `The calculation happens entirely in your browser, so your birth date is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How does the calculator handle months of different lengths?`,
+        answer: `When the day of the month you were born is later than today's day, it borrows days from the previous month using that month's actual length, then adjusts the months and years accordingly. This keeps the years-months-days breakdown accurate rather than assuming every month is 30 days.`,
+      },
+      {
+        question: `Does it account for leap years?`,
+        answer: `Yes. Because it works from the actual calendar dates rather than a fixed day count, leap years are naturally included in the day-by-day calculation, so the result stays correct across February 29ths.`,
+      },
+      {
+        question: `Can I calculate age at a past or future date?`,
+        answer: `This calculator computes your age as of today from your date of birth. To find an age difference between two specific dates, a dedicated date-difference calculator is the better tool.`,
+      },
+      {
+        question: `Why does my exact age differ from just subtracting birth year from this year?`,
+        answer: `Subtracting years alone assumes your birthday has already passed this year, which is only true for part of the year. This calculator checks the actual month and day, so before your birthday it correctly shows one year less than the simple subtraction would.`,
+      },
+    ],
+    related: [
+      { slug: 'due-date-calculator', note: `Estimate a pregnancy due date from a last-period date.` },
+      { slug: 'date-calculator', note: `Find the exact span between any two dates.` },
+      { slug: 'sleep-calculator', note: `Sleep needs change with age — plan your rest accordingly.` },
+    ],
+  },
+
+  'due-date-calculator': {
+    intro: [
+      `For expectant parents, the estimated due date is the anchor everything else is planned around. This calculator applies Naegele's rule — the standard method clinicians use — adding 280 days to the first day of your last menstrual period to estimate when your baby is due.`,
+      `It gives a quick, recognized estimate for early planning, appointments, and counting down the weeks. While an ultrasound and your healthcare provider give the most accurate dating, the last-period method this tool uses is the widely accepted starting point and matches how due dates are first calculated.`,
+    ],
+    steps: [
+      `Select the first day of your last menstrual period.`,
+      `Read your estimated due date, calculated as 280 days later.`,
+      `Use it as a planning anchor, and confirm timing with your healthcare provider.`,
+    ],
+    why: [
+      `It uses Naegele's rule (last period plus 280 days), the standard method clinicians use to estimate due dates.`,
+      `It needs just one date and returns the estimate immediately, with no forms or sign-up.`,
+      `The result is a clear calendar date you can plan around.`,
+      `Your information is processed locally and never leaves your browser.`,
+    ],
+    faqs: [
+      {
+        question: `How is a due date calculated?`,
+        answer: `The common method, Naegele's rule, adds 280 days (40 weeks) to the first day of your last menstrual period. This calculator applies that rule directly. It assumes a regular 28-day cycle, which is why a provider may adjust the date.`,
+      },
+      {
+        question: `How accurate is the estimated due date?`,
+        answer: `It is an estimate — only about 1 in 20 babies arrive exactly on their due date, and most are born within a couple of weeks either side. An early ultrasound often refines the date, especially if your cycle is irregular.`,
+      },
+      {
+        question: `What if I don't know my last period date or have irregular cycles?`,
+        answer: `The last-period method is less reliable with irregular cycles or an uncertain date. In those cases, dating is usually based on ultrasound measurements, so check with your healthcare provider for a more accurate estimate.`,
+      },
+      {
+        question: `Can the due date change later in pregnancy?`,
+        answer: `Yes. Providers often refine the date after an early ultrasound, which measures the baby directly and can be more accurate than the last-period estimate, especially with irregular cycles. The figure here is a starting point, not a fixed appointment.`,
+      },
+    ],
+    related: [
+      { slug: 'ovulation-calculator', note: `Estimate your fertile window and likely conception timing.` },
+      { slug: 'period-calculator', note: `Track your cycle and predict upcoming periods.` },
+      { slug: 'age-calculator', note: `Once the baby arrives, track their exact age in months and days.` },
+    ],
+  },
+
+  'standard-deviation-calculator': {
+    intro: [
+      `Standard deviation measures how spread out a set of numbers is — whether they cluster tightly around the average or scatter widely. This calculator computes it from a list of values and, crucially, lets you choose between the population and sample formulas, which give different answers and are easy to confuse.`,
+      `Students check statistics homework with it; analysts use it to quantify variability in data; anyone summarizing measurements uses it to describe consistency. Beyond the standard deviation itself, it shows the variance, mean, count, sum, and the sum of squared differences, with the steps laid out so you can follow exactly how the result was built.`,
+    ],
+    steps: [
+      `Paste or type your numbers into the box, separated by commas, spaces, or new lines.`,
+      `Choose whether your data is a full population or a sample.`,
+      `Read the standard deviation and variance.`,
+      `Review the supporting figures — mean, count, sum, and sum of squared differences — and the step-by-step breakdown.`,
+    ],
+    why: [
+      `It offers both population and sample standard deviation, dividing by n or by n−1 respectively, so you get the statistically correct figure for your situation.`,
+      `It shows the full working — mean, variance, and the sum of squared differences — turning a single number into a transparent calculation you can verify or learn from.`,
+      `It accepts numbers separated however you have them, by commas, spaces, or lines.`,
+      `Everything is computed in your browser, so your data is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between population and sample standard deviation?`,
+        answer: `Population standard deviation divides by the number of values (n) and is used when your data covers the entire group. Sample standard deviation divides by n−1 and is used when your data is a sample meant to represent a larger population. The sample version is slightly larger and corrects for sampling bias.`,
+      },
+      {
+        question: `Which one should I use?`,
+        answer: `Use population standard deviation only when your numbers represent every member of the group you care about. If they are a subset drawn to estimate a wider population — which is most real-world cases — use the sample version.`,
+      },
+      {
+        question: `What does standard deviation actually tell me?`,
+        answer: `It describes spread. A small standard deviation means the values sit close to the mean; a large one means they are widely dispersed. It is expressed in the same units as your data, which makes it easy to interpret.`,
+      },
+      {
+        question: `What is variance, and how does it relate?`,
+        answer: `Variance is the average of the squared differences from the mean, and standard deviation is its square root. Variance is shown here too, but standard deviation is usually more intuitive because it shares the units of your original data.`,
+      },
+    ],
+    related: [
+      { slug: 'mean-median-mode-range-calculator', note: `Get the central-tendency stats that pair with spread.` },
+      { slug: 'average-calculator', note: `Quickly find the mean of a list of numbers on its own.` },
+      { slug: 'percentage-error-calculator', note: `Measure how far a value deviates from an expected one.` },
+    ],
+  },
+
+  'percentage-error-calculator': {
+    intro: [
+      `Percentage error tells you how far off a measurement or estimate is from the true value, as a proportion — the standard way to express accuracy in science and engineering. This calculator takes the exact value and the approximate value and returns the percentage error, along with the absolute and relative error behind it.`,
+      `Students use it to grade the accuracy of lab measurements; anyone comparing an estimate to a known figure uses it to quantify how close they got. By breaking out absolute and relative error too, it shows the full chain from raw difference to final percentage, and it handles the awkward case where the exact value is zero gracefully.`,
+    ],
+    steps: [
+      `Enter the exact (true) value.`,
+      `Enter the approximate (measured or estimated) value.`,
+      `Read the percentage error.`,
+      `Review the absolute error and relative error shown in the step-by-step breakdown.`,
+    ],
+    why: [
+      `It reports all three related figures — percentage error, absolute error, and relative error — so you see how the final percentage is derived.`,
+      `It uses the standard formula, taking the absolute difference over the true value, so signs never distort the result.`,
+      `It handles a zero exact value gracefully, showing the absolute error rather than producing a division error.`,
+      `Calculations are instant and run locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How is percentage error calculated?`,
+        answer: `It is the absolute difference between the approximate and exact values, divided by the absolute exact value, multiplied by 100. For an exact value of 100 and an approximate of 95, the percentage error is |95−100| ÷ 100 × 100 = 5%.`,
+      },
+      {
+        question: `What is the difference between absolute and relative error?`,
+        answer: `Absolute error is the raw difference between the measured and true values, in the original units. Relative error is that difference divided by the true value, a unitless ratio. Percentage error is simply the relative error expressed as a percentage.`,
+      },
+      {
+        question: `Why can't I use an exact value of zero?`,
+        answer: `Percentage and relative error require dividing by the exact value, and division by zero is undefined. When the exact value is zero, this calculator shows the absolute error instead, since a meaningful percentage cannot be computed.`,
+      },
+      {
+        question: `What counts as a good percentage error?`,
+        answer: `It depends entirely on context — a low percentage error means the approximation is close to the true value. Many school labs treat under 5% as good, but precision fields demand far smaller errors, while rough estimates may tolerate more. Lower is always better.`,
+      },
+    ],
+    related: [
+      { slug: 'percentage-calculator', note: `Work out any percentage relationship between two numbers.` },
+      { slug: 'standard-deviation-calculator', note: `Measure the spread and consistency of repeated measurements.` },
+      { slug: 'rounding-calculator', note: `Round measured values cleanly before comparing them.` },
+    ],
+  },
+
+  'exponent-calculator': {
+    intro: [
+      `Raising a number to a power is everywhere in math and science, from compound growth to scientific notation, but large exponents quickly exceed what you can do in your head. This calculator computes any base raised to any exponent and shows the result in expanded form and scientific notation where it helps.`,
+      `Students use it to check powers and understand what an exponent represents; anyone working with very large or small numbers uses the scientific-notation output to keep them readable. For small whole-number exponents it even writes out the full multiplication chain, making the concept concrete rather than abstract.`,
+    ],
+    steps: [
+      `Enter the base number.`,
+      `Enter the exponent (the power to raise it to).`,
+      `Read the result.`,
+      `Check the expanded multiplication form (for small whole exponents) and the scientific-notation version in the breakdown.`,
+    ],
+    why: [
+      `It shows the expanded multiplication chain for small whole-number exponents, making clear that an exponent is just repeated multiplication.`,
+      `It converts large or small results into scientific notation, keeping otherwise unwieldy numbers readable.`,
+      `It accepts decimal bases and exponents, not just whole numbers, so it handles roots and growth rates too.`,
+      `Results compute instantly in the browser, with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `What does raising a number to a power mean?`,
+        answer: `An exponent tells you how many times to multiply the base by itself. For example, 2 to the power of 5 means 2 × 2 × 2 × 2 × 2 = 32. This calculator shows that expanded chain for small whole exponents so the idea is clear.`,
+      },
+      {
+        question: `Can I use decimal or negative exponents?`,
+        answer: `Yes. A decimal exponent represents a root (for instance, raising to the power 0.5 is a square root), and a negative exponent represents a reciprocal. The calculator accepts decimals and negatives and computes the result accordingly.`,
+      },
+      {
+        question: `Why is the answer shown in scientific notation?`,
+        answer: `Powers grow or shrink fast, producing numbers with many digits. Scientific notation expresses them compactly as a value between 1 and 10 multiplied by a power of ten, which is far easier to read and compare than a long string of digits.`,
+      },
+      {
+        question: `What is any number raised to the power of zero?`,
+        answer: `Any non-zero number raised to the power of zero equals 1 — a rule that keeps the laws of exponents consistent. The calculator returns 1 for a zero exponent, and you can verify it by noticing that dividing a power by itself leaves the base to the power zero.`,
+      },
+    ],
+    related: [
+      { slug: 'root-calculator', note: `Run the inverse operation — find roots instead of powers.` },
+      { slug: 'scientific-notation-calculator', note: `Convert numbers to and from scientific notation directly.` },
+      { slug: 'prime-factorization-calculator', note: `Break a number into the prime powers that make it up.` },
+    ],
+  },
+
+  'area-calculator': {
+    intro: [
+      `Finding the area of a shape means remembering the right formula, and there is a different one for every shape. This calculator collects seven of the most common — rectangle, square, circle, triangle, trapezoid, parallelogram, and ellipse — into one tool that picks the right formula and does the math once you choose a shape and enter its dimensions.`,
+      `Students use it to check geometry homework; people planning real projects use it to size a room, a garden bed, or a piece of material. It returns not just the area but the perimeter (or circumference, for a circle) and shows the formula and steps, so the result is something you can learn from rather than just copy.`,
+    ],
+    steps: [
+      `Choose your shape from the dropdown (rectangle, square, circle, triangle, trapezoid, parallelogram, or ellipse).`,
+      `Enter the dimensions the chosen shape requires — the input fields change to match.`,
+      `Read the calculated area in square units.`,
+      `Check the perimeter or circumference and the formula breakdown shown with it.`,
+    ],
+    why: [
+      `One tool covers seven shapes with the correct formula for each, so you do not need to look any of them up.`,
+      `Input fields adapt to the chosen shape, asking only for the dimensions that shape needs.`,
+      `It returns perimeter or circumference alongside area, and shows the formula and steps for learning and verification.`,
+      `Everything is computed locally and instantly with no account.`,
+    ],
+    faqs: [
+      {
+        question: `Which shapes can this calculate?`,
+        answer: `Seven: rectangle (length × width), square (side²), circle (π × radius²), triangle (½ × base × height), trapezoid (½ × (base1 + base2) × height), parallelogram (base × height), and ellipse (π × semi-major × semi-minor). The required inputs change with your selection.`,
+      },
+      {
+        question: `What units does the area come out in?`,
+        answer: `The area is in square units of whatever units you enter — if you input centimeters, the area is in square centimeters. The calculator does not assume a unit, so keep your inputs consistent and interpret the result in matching square units.`,
+      },
+      {
+        question: `Does it also give the perimeter?`,
+        answer: `Yes. Along with the area, it reports the perimeter for straight-sided shapes and the circumference for a circle, so you get both measurements from a single calculation.`,
+      },
+      {
+        question: `How do I find the area of a shape that isn't listed?`,
+        answer: `Break it into shapes that are. Most irregular outlines can be split into rectangles, triangles, and circle segments; calculate each piece here and add the areas together. Subtract pieces for cut-outs, such as a circular hole in a rectangular panel.`,
+      },
+    ],
+    related: [
+      { slug: 'volume-calculator', note: `Move from flat area to the volume of three-dimensional shapes.` },
+      { slug: 'pythagorean-theorem-calculator', note: `Find a missing triangle side before computing its area.` },
+      { slug: 'square-footage-calculator', note: `Calculate floor area in square feet for real-world projects.` },
+    ],
+  },
+
+  'mean-median-mode-range-calculator': {
+    intro: [
+      `The four basic statistics — mean, median, mode, and range — each describe a data set in a different way, and together they give a quick, rounded summary. This calculator computes all four at once from a list of numbers, plus the count, sum, minimum, and maximum, and shows your data sorted.`,
+      `Students use it to work through statistics problems; anyone summarizing a set of values — test scores, prices, measurements — uses it to capture the center and spread in one go. It handles the tricky details properly: averaging the two middle values for an even count, listing every mode when several tie, and reporting "no mode" when every value is unique.`,
+    ],
+    steps: [
+      `Enter your numbers in the box, separated by commas, spaces, or new lines.`,
+      `Read the mean, median, mode, and range together.`,
+      `Check the extra figures — count, sum, minimum, and maximum.`,
+      `Review the automatically sorted list of your values shown beneath.`,
+    ],
+    why: [
+      `It computes all four core statistics — mean, median, mode, and range — in a single pass, plus count, sum, min, and max.`,
+      `It handles edge cases correctly: it averages the two middle numbers for an even-sized set, lists multiple modes when there is a tie, and reports "no mode" when all values are unique.`,
+      `It sorts and displays your numbers, which makes the median and range easy to verify by eye.`,
+      `All processing happens locally, so your data stays private.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between mean, median, and mode?`,
+        answer: `The mean is the arithmetic average (sum divided by count). The median is the middle value when the numbers are sorted. The mode is the value that appears most often. Each can tell a different story, especially when a few extreme values skew the mean.`,
+      },
+      {
+        question: `What happens if there is no mode?`,
+        answer: `If every number appears exactly once, there is no value that repeats, so the calculator reports "no mode." When several values tie for the most frequent, it lists all of them, since a data set can legitimately have more than one mode.`,
+      },
+      {
+        question: `How is the median found for an even number of values?`,
+        answer: `With an even count there is no single middle value, so the median is the average of the two middle numbers after sorting. The calculator sorts your list and does this automatically.`,
+      },
+      {
+        question: `What does the range tell me?`,
+        answer: `The range is the difference between the largest and smallest values, a simple measure of spread. A large range signals widely scattered data, though it only reflects the extremes — for a fuller picture of spread, look at standard deviation.`,
+      },
+    ],
+    related: [
+      { slug: 'standard-deviation-calculator', note: `Measure spread more precisely than the range alone.` },
+      { slug: 'average-calculator', note: `Compute just the mean when that is all you need.` },
+      { slug: 'probability-calculator', note: `Move from summarizing data to calculating likelihoods.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
