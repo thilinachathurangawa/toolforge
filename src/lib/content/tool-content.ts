@@ -4280,6 +4280,638 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'calories-burned-calculator', note: `Estimate the toll of exercising in challenging weather.` },
     ],
   },
+
+  // ── Batch 8: SEO (9, finishes category) + Developer (6, finishes category) ──
+
+  'readability-checker': {
+    intro: [
+      `Content that is hard to read loses readers and rankings alike. The Readability Checker scores your text against six established formulas at once — Flesch Reading Ease, Flesch-Kincaid Grade Level, Gunning Fog, Coleman-Liau, SMOG, and the Automated Readability Index — so you can see how demanding your writing is and roughly what reading level it suits.`,
+      `Writers, marketers, and editors use it to pitch content at the right audience: simplifying a help article that scores at college level, or confirming a landing page reads easily on a phone. It also reports the underlying statistics — word and sentence counts, average sentence length, reading time — and offers concrete suggestions, like trimming long sentences or cutting complex words.`,
+    ],
+    steps: [
+      `Paste or type your text into the input box.`,
+      `Click Analyze.`,
+      `Read the six readability scores and the grade level each implies.`,
+      `Review the statistics and suggestions, then copy a summary or download the full report.`,
+    ],
+    why: [
+      `It runs six readability formulas together, so you get a rounded view instead of trusting a single score that can mislead.`,
+      `It pairs the scores with actionable suggestions — flagging over-long sentences and a high share of complex words — rather than just grading you.`,
+      `It reports supporting statistics like reading time and average sentence length, useful for shaping content to an audience.`,
+      `All analysis happens in your browser, so unpublished drafts never leave your device.`,
+    ],
+    faqs: [
+      {
+        question: `What is a good Flesch Reading Ease score?`,
+        answer: `Higher is easier. Scores of 60–70 are considered plain English suitable for a wide audience, 70–80 reads easily, and below 50 is fairly difficult, typically college level. Many web writers aim for 60 or above so content is accessible to most readers.`,
+      },
+      {
+        question: `Why does it show several different scores?`,
+        answer: `Each formula weighs sentence length and word complexity differently, and some target US grade levels while others estimate ease. Looking at all six together gives a more reliable picture than any single formula, which can be thrown off by unusual text.`,
+      },
+      {
+        question: `How can I make my text more readable?`,
+        answer: `Shorten long sentences, prefer common words over jargon, break content into shorter paragraphs, and use active voice. The checker's suggestions point to the specific issues in your text, and re-analyzing shows the scores improve as you edit.`,
+      },
+      {
+        question: `Is the syllable count exact?`,
+        answer: `Syllable counting uses an approximation algorithm, since English syllables are irregular and hard to count perfectly by rule. It is accurate enough for reliable readability scoring, but treat the scores as well-grounded estimates rather than precise measurements.`,
+      },
+    ],
+    related: [
+      { slug: 'keyword-density-checker', note: `Check which terms dominate your text alongside its readability.` },
+      { slug: 'word-counter', note: `Get detailed word, character, and sentence counts for the same content.` },
+      { slug: 'title-description-length-checker', note: `Make sure your title and meta description fit search-result limits.` },
+    ],
+  },
+
+  'url-parameter-cleaner': {
+    intro: [
+      `Links pick up clutter — tracking tags like utm_source, fbclid, and gclid that make a URL long, ugly, and full of analytics breadcrumbs. The URL Parameter Cleaner strips those parameters out, leaving a tidy link safe to share, bookmark, or paste into a document.`,
+      `Marketers clean campaign URLs before sharing them publicly, privacy-minded users remove the tracking that follows them around the web, and anyone who hates a 300-character link uses it to get back to the essentials. It recognizes the common tracking parameters automatically and lets you fine-tune with your own whitelist of params to keep and blacklist of params to remove.`,
+    ],
+    steps: [
+      `Paste the cluttered URL into the input box.`,
+      `Review the detected parameters — tracking ones are flagged — and use Select Tracking, Select All, or the individual checkboxes.`,
+      `Optionally add your own whitelist (params to always keep) and blacklist (params to always remove).`,
+      `Click Clean URL and copy the tidied result, with a count of what was removed.`,
+    ],
+    why: [
+      `It auto-detects around twenty common tracking parameters (utm_*, fbclid, gclid, session IDs, and more) and flags them, so you do not have to know them by name.`,
+      `Whitelist and blacklist fields let you keep functional parameters while stripping only the tracking ones, rather than blunt removal.`,
+      `Per-parameter checkboxes give you precise control over exactly what stays and what goes.`,
+      `Cleaning happens entirely in your browser — the URL is never sent anywhere.`,
+    ],
+    faqs: [
+      {
+        question: `What are UTM parameters and why remove them?`,
+        answer: `UTM parameters (utm_source, utm_medium, utm_campaign, and others) are tags marketers append to track where traffic comes from. They are useful for analytics but clutter shared links and can leak campaign details, so removing them produces a cleaner, more private URL.`,
+      },
+      {
+        question: `Will removing parameters break the link?`,
+        answer: `Tracking parameters are safe to remove — the page loads the same without them. Functional parameters (like a product ID or page number) do matter, which is why the whitelist lets you protect those while stripping only the tracking clutter.`,
+      },
+      {
+        question: `What is the difference between the whitelist and blacklist?`,
+        answer: `The whitelist names parameters to always keep, even if they look like tracking; the blacklist names parameters to always remove. Together they give you fine control when the automatic detection does not exactly match what you want.`,
+      },
+      {
+        question: `Does cleaning a URL affect my own analytics?`,
+        answer: `Only for the cleaned link you share. If you strip UTM tags from a link before posting it, visits through that link will not carry those campaign tags into your analytics — so clean links you want to attribute, and keep the tags on links whose source you need to track.`,
+      },
+    ],
+    related: [
+      { slug: 'url-encoder-decoder', note: `Encode or decode the cleaned URL for safe use elsewhere.` },
+      { slug: 'meta-tag-generator', note: `Set the canonical and social tags for the clean page URL.` },
+      { slug: 'serp-snippet-preview', note: `Preview how the tidy URL appears in a search result.` },
+    ],
+  },
+
+  'robots-txt-generator': {
+    intro: [
+      `A robots.txt file tells search engine crawlers which parts of your site they may and may not visit, and a single typo can accidentally hide your whole site or expose pages you meant to block. This generator builds a correct robots.txt visually, so you set rules without memorizing the syntax.`,
+      `Site owners and developers use it when launching a site, blocking admin or staging areas, or pointing crawlers at a sitemap. Presets cover the common cases — allow everything, block everything, or a WordPress-tuned setup — while custom mode lets you define rules per user-agent, reorder them, and add crawl delays.`,
+    ],
+    steps: [
+      `Start from a preset (Allow All, Block All, or WordPress) or build from scratch.`,
+      `For each user-agent, add Allow or Disallow rules with their paths, reordering them as needed.`,
+      `Add more user-agents if you need different rules for specific crawlers.`,
+      `Add your sitemap URL, generate the file, and copy it into your site's root as robots.txt.`,
+    ],
+    why: [
+      `Presets for Allow All, Block All, and WordPress cover the most common setups, while custom mode handles anything specific.`,
+      `It supports multiple user-agents with reorderable rules and optional crawl-delay directives, matching the full robots.txt spec.`,
+      `It appends your sitemap reference, the line crawlers look for to discover your URLs.`,
+      `It generates the file locally with no account; you simply copy it to your site root.`,
+    ],
+    faqs: [
+      {
+        question: `What is a robots.txt file for?`,
+        answer: `It is a plain-text file at your site's root that tells search engine crawlers which paths they may or may not request. It guides crawling, but note it is not a security measure — disallowed pages can still be accessed directly and may appear in results if linked elsewhere.`,
+      },
+      {
+        question: `What is the difference between Allow and Disallow?`,
+        answer: `Disallow tells a crawler not to request a path, while Allow explicitly permits one — useful for carving out an exception inside a disallowed directory. The generator lets you mix both per user-agent and order them so the right rule wins.`,
+      },
+      {
+        question: `Where do I put the generated file?`,
+        answer: `Save it as robots.txt in the root of your domain, so it is reachable at yoursite.com/robots.txt. Crawlers look for it there specifically; placed anywhere else, it will be ignored.`,
+      },
+      {
+        question: `Should I block pages with robots.txt or noindex?`,
+        answer: `To keep a page out of search results, a noindex meta tag is more reliable, because robots.txt only controls crawling, not indexing. Use robots.txt to manage crawler load and access; use noindex when the goal is to keep something out of the index.`,
+      },
+    ],
+    related: [
+      { slug: 'sitemap-generator', note: `Create the sitemap.xml you reference from robots.txt.` },
+      { slug: 'meta-tag-generator', note: `Add noindex and other robots directives at the page level.` },
+      { slug: 'url-parameter-cleaner', note: `Tidy the URLs you submit to search engines.` },
+    ],
+  },
+
+  'sitemap-generator': {
+    intro: [
+      `An XML sitemap lists your site's important pages for search engines, along with how often each changes and how important it is. This generator builds a valid sitemap from a list of URLs you provide, letting you set the priority, change frequency, and last-modified date for each.`,
+      `Site owners submit sitemaps to Google Search Console to help pages get discovered and crawled, especially on new sites or large ones with deep pages. Rather than crawling your site, this tool builds the sitemap from URLs you add one by one or paste in bulk — giving you full control over exactly which pages are included and how they are weighted.`,
+    ],
+    steps: [
+      `Add a URL with its priority and change frequency, or paste many URLs at once into bulk import.`,
+      `Adjust each entry's priority, change frequency, and last-modified date as needed.`,
+      `Watch invalid or duplicate URLs get flagged so your list stays clean.`,
+      `Generate the XML, then copy it or download sitemap.xml to upload to your site and submit to search engines.`,
+    ],
+    why: [
+      `It builds from a URL list you control — typed or bulk-pasted — so you decide exactly which pages are included rather than relying on an automated crawl.`,
+      `Each URL gets its own priority, change frequency, and last-modified date, following the sitemap protocol precisely.`,
+      `It validates URLs and flags duplicates, and outputs a properly structured XML file you can download.`,
+      `Everything is generated in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What is an XML sitemap?`,
+        answer: `It is a file listing the URLs you want search engines to know about, optionally with metadata like last-modified date, change frequency, and priority. Submitting one helps search engines discover and crawl your pages, particularly those not well linked internally.`,
+      },
+      {
+        question: `Does this tool crawl my website automatically?`,
+        answer: `No. It builds the sitemap from URLs you add or paste in, which gives you precise control over what is included. If you need to crawl a large site automatically, a dedicated crawler is the right tool; this generator is ideal for curated or smaller URL lists.`,
+      },
+      {
+        question: `What do priority and change frequency mean?`,
+        answer: `Priority (0.0 to 1.0) signals a page's relative importance on your site, and change frequency hints how often it updates. Search engines treat both as hints rather than commands, so set them honestly to reflect your real content.`,
+      },
+      {
+        question: `How do I submit my sitemap?`,
+        answer: `Upload the generated sitemap.xml to your site's root, then submit its URL in Google Search Console (and Bing Webmaster Tools). Referencing it in your robots.txt file also helps crawlers find it automatically.`,
+      },
+    ],
+    related: [
+      { slug: 'robots-txt-generator', note: `Reference your sitemap from robots.txt so crawlers find it.` },
+      { slug: 'meta-tag-generator', note: `Set per-page SEO tags for the URLs in your sitemap.` },
+      { slug: 'serp-snippet-preview', note: `Preview how those pages will look in search results.` },
+    ],
+  },
+
+  'open-graph-image-generator': {
+    intro: [
+      `When a link is shared on social media, the preview image does much of the work of earning a click — and the standard size for it is 1200×630 pixels. This generator creates that Open Graph image right in your browser: choose a background, add a title and description, drop in a logo, and download a ready-to-use PNG or JPG.`,
+      `Bloggers, marketers, and site owners use it to give every page a polished share image without opening design software. Templates for blog posts, products, and articles give you a fast starting point, and you control the fonts, colors, gradients, text alignment, and logo placement to match your brand.`,
+    ],
+    steps: [
+      `Pick a template (Custom, Blog Post, Product, or Article) as a starting point.`,
+      `Set the background — a solid color, a gradient, or an uploaded image.`,
+      `Enter your title and description, adjusting font, size, color, and alignment, and optionally add a logo.`,
+      `Regenerate the preview, then download the 1200×630 image as PNG or JPG.`,
+    ],
+    why: [
+      `It renders the image entirely on an in-browser canvas at the exact 1200×630 Open Graph size — no design tool and no upload required.`,
+      `Templates plus full control over background, fonts, colors, gradients, and logo position let you match your brand quickly.`,
+      `It exports as PNG or JPG and can copy the image straight to your clipboard.`,
+      `Because rendering is local, your images and branding never leave your device.`,
+    ],
+    faqs: [
+      {
+        question: `What size should an Open Graph image be?`,
+        answer: `The recommended size is 1200×630 pixels, a roughly 1.91:1 ratio that displays well across Facebook, LinkedIn, and Twitter. This generator works at exactly that size, so your image fits without awkward cropping.`,
+      },
+      {
+        question: `Where do I use the generated image?`,
+        answer: `Upload it to your site and reference it in your page's og:image meta tag (and twitter:image). When the page is shared, platforms read that tag and display your image in the link preview.`,
+      },
+      {
+        question: `Do I need design software for this?`,
+        answer: `No. Everything is done in the browser with templates and simple controls for text, color, and layout. It is built so non-designers can produce a clean, correctly sized share image in a couple of minutes.`,
+      },
+      {
+        question: `Should I download PNG or JPG?`,
+        answer: `PNG preserves sharp text and solid colors without compression artifacts, which suits most share images, while JPG produces a smaller file that can be better for photographic backgrounds. If in doubt, choose PNG for crisp text and logos.`,
+      },
+    ],
+    related: [
+      { slug: 'open-graph-preview-generator', note: `Preview how your image and tags will look when shared.` },
+      { slug: 'meta-tag-generator', note: `Generate the og:image and related meta tags to reference it.` },
+      { slug: 'image-resizer', note: `Resize an existing image to the right dimensions instead.` },
+    ],
+  },
+
+  'url-encoder-decoder': {
+    intro: [
+      `URLs can only contain certain characters, so spaces, ampersands, and accented letters must be percent-encoded to travel safely — and decoded to be read. This tool encodes and decodes URLs, and goes further with SEO-friendly slug options that turn a messy string into a clean, search-friendly path.`,
+      `Developers and SEOs use it to encode query values, decode a tracking link to see what is inside, or generate a tidy URL slug from a page title. Beyond standard encoding, it can lowercase text, replace spaces with hyphens, strip special characters, and remove common stop words — and it validates the input as a real URL and lists out its query parameters.`,
+    ],
+    steps: [
+      `Choose Encode, Decode, or Auto-detect.`,
+      `Paste your URL or string into the input.`,
+      `For a clean slug, tick the SEO suggestions (lowercase, hyphens, remove special characters or stop words) and apply them.`,
+      `Read the encoded or decoded output, see any extracted query parameters, and copy the result.`,
+    ],
+    why: [
+      `Beyond standard percent-encoding, it generates SEO-friendly slugs — lowercasing, hyphenating, and removing stop words and special characters.`,
+      `It validates that your input is a real URL and lists its query parameters separately, which a generic encoder does not.`,
+      `An auto-detect mode figures out whether to encode or decode based on the input.`,
+      `All processing is local, so the URLs you work with stay private.`,
+    ],
+    faqs: [
+      {
+        question: `When does a URL need to be encoded?`,
+        answer: `Whenever it contains characters that are not allowed raw in a URL — spaces, ampersands, question marks inside a value, or non-ASCII letters. Encoding replaces them with percent-codes (a space becomes %20) so the URL is transmitted and interpreted correctly.`,
+      },
+      {
+        question: `What makes a URL slug SEO-friendly?`,
+        answer: `Short, lowercase, hyphen-separated words that describe the page, without special characters or filler stop words. This tool's suggestions apply exactly those transformations, turning "The Best Guide to SEO!" into something like "best-guide-seo".`,
+      },
+      {
+        question: `How is this different from the basic URL encoder?`,
+        answer: `The basic encoder simply percent-encodes or decodes any text. This tool is URL-focused: it validates the URL, extracts its query parameters, and adds SEO slug generation, making it the better choice when you are working specifically with web addresses.`,
+      },
+      {
+        question: `Why are query parameters listed separately?`,
+        answer: `When you enter a valid URL, the tool parses out its query string and shows each parameter as a key-value pair, which makes it easy to see what data a link is carrying. It is handy for inspecting tracking or campaign links at a glance.`,
+      },
+    ],
+    related: [
+      { slug: 'url-encoder', note: `For plain percent-encoding of any text, use the simpler encoder.` },
+      { slug: 'url-parameter-cleaner', note: `Strip tracking parameters from the URL you are working with.` },
+      { slug: 'base64-encoder', note: `Encode data as Base64 for a different transport need.` },
+    ],
+  },
+
+  'serp-snippet-preview': {
+    intro: [
+      `Before a page goes live, it helps to see how it will actually appear in Google's results — the blue title, the green-ish URL, the gray description. The SERP Snippet Preview renders that listing live as you type your title, description, and URL, and shows where Google is likely to truncate each one.`,
+      `SEOs and content writers use it to craft titles and descriptions that display in full and read well, on both desktop and mobile. Because search results truncate around set lengths, seeing the preview — complete with favicon, site name, and date — prevents the common mistake of writing a title that gets cut off mid-phrase.`,
+    ],
+    steps: [
+      `Toggle between Desktop and Mobile preview.`,
+      `Enter your title tag and meta description, watching the character counters change color near the limits.`,
+      `Add your URL, site name, and optionally a favicon, and choose whether to show a date.`,
+      `Review the live snippet to confirm nothing important is truncated, then copy your text.`,
+    ],
+    why: [
+      `It renders a realistic Google snippet — favicon, site name, URL, title, description, and date — rather than just counting characters.`,
+      `A desktop/mobile toggle shows how the listing differs across devices, where truncation points vary.`,
+      `Live, color-coded character counters warn you before your title or description crosses the length where Google cuts it off.`,
+      `Everything renders locally, so unpublished page details stay private.`,
+    ],
+    faqs: [
+      {
+        question: `How long should my title and description be for Google?`,
+        answer: `Titles are typically shown up to around 60 characters and descriptions up to around 160 before truncation. The preview marks these thresholds with color and trims the snippet so you can see exactly what will display.`,
+      },
+      {
+        question: `Why does my title look different on mobile?`,
+        answer: `Mobile results have a narrower width, so titles and descriptions can wrap or truncate differently than on desktop. The device toggle lets you check both, since a title that fits on desktop may be cut short on a phone.`,
+      },
+      {
+        question: `Does writing a good snippet improve rankings?`,
+        answer: `The snippet itself is not a direct ranking factor, but a clear, compelling title and description improve click-through rate, which reflects how useful searchers find your result. Better snippets mean more clicks from the same ranking position.`,
+      },
+      {
+        question: `Will Google always use the title and description I set?`,
+        answer: `Not necessarily. Google may rewrite a title or pull a different description from the page if it judges another version more relevant to the query. Writing a strong, accurate title and description makes it more likely your chosen text is used.`,
+      },
+    ],
+    related: [
+      { slug: 'title-description-length-checker', note: `Check titles and descriptions against character and pixel limits.` },
+      { slug: 'meta-tag-generator', note: `Generate the title and description tags behind the snippet.` },
+      { slug: 'readability-checker', note: `Make sure the page content lives up to its snippet.` },
+    ],
+  },
+
+  'open-graph-preview-generator': {
+    intro: [
+      `How your link looks when shared on Facebook, LinkedIn, or Twitter comes down to your Open Graph tags — and getting them wrong means a broken or unappealing preview. This tool lets you enter your OG title, description, image, and other fields, then shows side-by-side previews of how the card will render on each platform, and generates the meta tags to copy into your page.`,
+      `Marketers and developers use it to fine-tune a share card before publishing, checking that the title is not truncated and the image displays. Seeing all three platforms at once catches differences between them, and the generated meta tags drop straight into your page's head.`,
+    ],
+    steps: [
+      `Enter your OG title and description, watching the character counters near the recommended limits.`,
+      `Add an image URL or upload an image, then set the URL, site name, and OG type.`,
+      `Review the live Facebook, LinkedIn, and Twitter previews side by side.`,
+      `Copy the generated Open Graph meta tags into your page's head section.`,
+    ],
+    why: [
+      `It renders three real platform previews — Facebook, LinkedIn, and Twitter — at once, so you catch how each treats your title, description, and image.`,
+      `It generates clean, copyable Open Graph meta tags from your inputs, not just a preview.`,
+      `Color-coded character counters flag titles and descriptions that risk truncation.`,
+      `It works entirely in your browser; your inputs and uploaded images stay on your device.`,
+    ],
+    faqs: [
+      {
+        question: `What are Open Graph tags?`,
+        answer: `Open Graph tags are meta tags (og:title, og:description, og:image, and others) that tell social platforms how to display your link. Without them, platforms guess from page content, often producing a poor or broken preview.`,
+      },
+      {
+        question: `Can this fetch the Open Graph tags from an existing URL?`,
+        answer: `No — this tool builds and previews tags from the fields you enter manually rather than fetching them from a live page. Enter your title, description, and image to see the previews and generate the tags to add to your site.`,
+      },
+      {
+        question: `Why does my preview differ between platforms?`,
+        answer: `Each platform lays out cards differently — Facebook shows the site name, LinkedIn and Twitter emphasize the image and title differently, and truncation lengths vary. Previewing all three helps you write a card that works everywhere.`,
+      },
+      {
+        question: `Where do the generated tags go?`,
+        answer: `Paste them inside the <head> of your HTML page. Once deployed, social platforms read them when your link is shared and render the preview accordingly; you can re-scrape with each platform's debugging tool to refresh a cached preview.`,
+      },
+    ],
+    related: [
+      { slug: 'open-graph-image-generator', note: `Create the 1200×630 share image your tags point to.` },
+      { slug: 'meta-tag-generator', note: `Generate a full set of SEO and social meta tags together.` },
+      { slug: 'serp-snippet-preview', note: `Preview how the same page appears in search results.` },
+    ],
+  },
+
+  'title-description-length-checker': {
+    intro: [
+      `Search engines cut off titles and descriptions that run too long, and they measure by pixel width, not just character count — so a title full of wide letters can be truncated sooner than the character count suggests. This checker measures both: it counts characters and calculates the actual pixel width, then shows a truncated preview of how your snippet will appear.`,
+      `SEOs and writers use it to make every title and description display in full. By measuring real rendered width with the same approach a browser uses, it catches cases that a simple character counter misses, and color-coded status makes it obvious when you are within range, close to the limit, or over.`,
+    ],
+    steps: [
+      `Choose your target search engine.`,
+      `Enter your title tag and watch the character count, pixel width, and status update live.`,
+      `Enter your meta description and check the same metrics against its limits.`,
+      `Read the truncated preview and the suggestions, then copy your finalized text.`,
+    ],
+    why: [
+      `It measures actual pixel width using the font metrics a browser renders, catching truncation that a character count alone would miss.`,
+      `It checks both title and description against character and pixel limits, with color-coded status from optimal to over.`,
+      `A truncated preview shows exactly where the text would be cut, and suggestions advise when to shorten.`,
+      `All measurement happens locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `Why measure pixels instead of just characters?`,
+        answer: `Search engines truncate by the rendered width of the text, and characters vary in width — a "w" is far wider than an "i". Two titles with the same character count can truncate differently, so pixel width is a more accurate guide to what will actually display.`,
+      },
+      {
+        question: `What are the recommended limits?`,
+        answer: `As a guide, titles fit comfortably within about 60 characters (around 600 pixels) and descriptions within about 160 characters (around 920 pixels). The checker flags you as you approach and exceed these thresholds.`,
+      },
+      {
+        question: `Do different search engines have different limits?`,
+        answer: `In practice the major engines truncate at similar lengths, and this tool applies the same widely used limits across the engine options. Optimizing for the common thresholds keeps your snippet readable across Google, Bing, and others.`,
+      },
+      {
+        question: `What happens if my title or description is too long?`,
+        answer: `The search engine cuts it off, usually with an ellipsis, so the end of your text is hidden from searchers. Front-load the important words and keep within the limits so your full message — and any call to action — stays visible.`,
+      },
+    ],
+    related: [
+      { slug: 'serp-snippet-preview', note: `See the full search-result snippet rendered, not just the limits.` },
+      { slug: 'meta-tag-generator', note: `Generate the title and description tags you are checking.` },
+      { slug: 'readability-checker', note: `Ensure the page behind the snippet reads clearly.` },
+    ],
+  },
+
+  'text-diff': {
+    intro: [
+      `Spotting what changed between two versions of text — a contract clause, a config file, a paragraph of copy — is slow and error-prone by eye. Text Diff compares two blocks line by line and highlights exactly which lines were added, removed, or left unchanged.`,
+      `Writers compare draft revisions, developers eyeball changes outside of version control, and anyone reviewing edits uses it to see precisely what moved. It marks each line with a clear +, −, or space prefix and line numbers, so the differences read like a familiar code diff without needing any tooling.`,
+    ],
+    steps: [
+      `Paste the original version into the "Original Text" box.`,
+      `Paste the updated version into the "Modified Text" box.`,
+      `Read the line-by-line diff: additions, removals, and unchanged lines are color-coded.`,
+      `Copy the diff with its +/− markers to share or save.`,
+    ],
+    why: [
+      `It compares line by line and color-codes additions, removals, and unchanged lines, so changes are obvious at a glance.`,
+      `It numbers the lines and marks empty lines explicitly, so you can pinpoint exactly where a change sits.`,
+      `It needs no setup or version control — just paste two versions and compare.`,
+      `Both texts are compared in your browser and never uploaded, which matters for confidential documents.`,
+    ],
+    faqs: [
+      {
+        question: `Does this compare line by line or word by word?`,
+        answer: `It works at the line level: each line in the original is compared against the corresponding line in the modified text. A line that changed shows as a removal of the old line and an addition of the new one, which makes structural changes easy to follow.`,
+      },
+      {
+        question: `Can I compare code with it?`,
+        answer: `Yes. Because it diffs plain text by line, it works well for code, configuration files, and data as well as prose. For ongoing code work, a version-control diff offers more, but this is ideal for a quick one-off comparison.`,
+      },
+      {
+        question: `Is my text kept private?`,
+        answer: `Yes. The comparison runs entirely in your browser and neither block of text is sent anywhere, so you can safely diff sensitive contracts, drafts, or configuration.`,
+      },
+      {
+        question: `Why is a whole line shown as both removed and added when I only changed a word?`,
+        answer: `Because the comparison works line by line, any change within a line is represented as the old line being removed and the new line added. This keeps the diff simple and unambiguous; reading the pair side by side shows you the word that changed.`,
+      },
+    ],
+    related: [
+      { slug: 'json-diff', note: `Compare two JSON documents by structure rather than by line.` },
+      { slug: 'string-converter', note: `Transform text case and format before or after comparing.` },
+      { slug: 'code-minifier', note: `Strip whitespace so formatting differences do not obscure real changes.` },
+    ],
+  },
+
+  'json-filter': {
+    intro: [
+      `When a JSON array holds hundreds of records but you only care about some of them, scrolling to find the matches is tedious. JSON Filter narrows an array down to the items you want by a key — optionally matching a specific value — and returns the filtered result, neatly formatted.`,
+      `Developers use it to pull just the active users, the orders over a threshold, or the records that have a particular field set, straight out of an API response. It is a quick, no-code way to slice a dataset: give it a key to filter on and, if you like, a value to match, and it hands back only the items that qualify.`,
+    ],
+    steps: [
+      `Paste your JSON array (or a single object) into the input.`,
+      `Enter the key to filter on.`,
+      `Optionally enter a value to match against that key.`,
+      `Apply the filter and read the matching items, formatted and ready to copy.`,
+    ],
+    why: [
+      `It filters by a key and an optional value with a simple, no-syntax interface — no query language to learn.`,
+      `Value matching is a case-insensitive substring search, so partial matches are caught without exact casing.`,
+      `It accepts either an array or a single object and always returns cleanly formatted JSON.`,
+      `Filtering runs in your browser, so API data you paste is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How does the filtering work?`,
+        answer: `It keeps every item in the array that has the key you specify. If you also give a value, it keeps only items whose value for that key contains your text, matched case-insensitively. The rest are dropped from the output.`,
+      },
+      {
+        question: `Can I filter on nested fields?`,
+        answer: `The filter matches on a top-level key of each item. For deeply nested data, extract the relevant level first with a JSON path tool, then filter the result here.`,
+      },
+      {
+        question: `What if no items match?`,
+        answer: `You get an empty result, which simply means no item had that key or matched your value. Check the key spelling and that your value text appears in the data — remember the value match is a partial, case-insensitive one.`,
+      },
+      {
+        question: `Can I filter on a numeric range, like price over 100?`,
+        answer: `The filter does substring matching on the value rather than numeric comparison, so it cannot express "greater than". To keep items with a field present, filter by the key alone; for range conditions, post-process the filtered output in a spreadsheet or script.`,
+      },
+    ],
+    related: [
+      { slug: 'json-path-finder', note: `Drill into a specific nested value rather than filtering a list.` },
+      { slug: 'json-formatter', note: `Pretty-print and validate the JSON before filtering it.` },
+      { slug: 'json-to-csv', note: `Turn your filtered records into a spreadsheet-ready table.` },
+    ],
+  },
+
+  'url-encoder': {
+    intro: [
+      `Percent-encoding is how text travels safely inside a URL — spaces become %20, ampersands become %26, and so on. This URL Encoder converts any text to its percent-encoded form and decodes it back, with an auto-detect mode that picks the right direction for you.`,
+      `Developers use it constantly: encoding a value before dropping it into a query string, or decoding an encoded parameter to read what it contains. It works on any text, not just full URLs, and shows live character counts for input and output so you can see how encoding expands a string.`,
+    ],
+    steps: [
+      `Choose Encode, Decode, or Auto-detect.`,
+      `Enter the text or value you want to convert.`,
+      `In Encode or Decode mode, click Process; in Auto-detect, the output updates as you type.`,
+      `Copy the result, using the character counts to confirm the change.`,
+    ],
+    why: [
+      `Auto-detect mode recognizes whether your input is already encoded and converts the right way automatically.`,
+      `It uses encodeURIComponent and decodeURIComponent, so it correctly handles the full set of characters that need escaping, including non-ASCII.`,
+      `Live character counters for input and output show how much encoding changes the length.`,
+      `It runs entirely client-side, so the text you paste is never transmitted.`,
+    ],
+    faqs: [
+      {
+        question: `What is URL encoding?`,
+        answer: `URL encoding, or percent-encoding, replaces characters that are unsafe or reserved in a URL with a percent sign followed by their hexadecimal code — a space becomes %20. This lets arbitrary text, including spaces and symbols, sit safely inside a web address.`,
+      },
+      {
+        question: `What is the difference between encoding the whole URL and just a value?`,
+        answer: `Encoding a complete URL must preserve its structure (the slashes and colons), while encoding a single value escapes everything. This tool uses component-style encoding, which is right for individual query values; encoding an entire URL this way would escape the separators too.`,
+      },
+      {
+        question: `When should I use auto-detect?`,
+        answer: `Use it when you are not sure whether a string is already encoded. The tool checks for percent-codes and decodes if it finds them, or encodes if it does not — handy for quickly flipping a value either way.`,
+      },
+      {
+        question: `Why did my text get longer after encoding?`,
+        answer: `Each special character is replaced by a percent sign and two hex digits, so a single space becomes three characters (%20). Text with many spaces or symbols expands noticeably, which the live character counters let you see at a glance.`,
+      },
+    ],
+    related: [
+      { slug: 'url-encoder-decoder', note: `For URL-specific work with SEO slug options and parameter extraction.` },
+      { slug: 'base64-encoder', note: `Encode binary or text data as Base64 instead of percent-encoding.` },
+      { slug: 'json-escape', note: `Escape strings for safe inclusion inside JSON.` },
+    ],
+  },
+
+  'sql-formatter': {
+    intro: [
+      `A SQL query crammed onto one line is hard to read and harder to debug. The SQL Formatter reflows it into a clean, indented layout — each major clause on its own line, keywords aligned — so the structure of even a complex query becomes clear at a glance.`,
+      `Developers and analysts paste queries copied from logs, ORMs, or a colleague to make sense of them, or to tidy a query before committing it. It puts SELECT, FROM, WHERE, JOIN, and other major clauses on their own lines, indents nested parentheses, and can uppercase keywords so they stand out from table and column names.`,
+    ],
+    steps: [
+      `Paste your SQL query into the input box.`,
+      `Set the indent size (1 to 8 spaces) and choose whether to uppercase keywords.`,
+      `Click Format.`,
+      `Read the reformatted query and copy it back into your editor.`,
+    ],
+    why: [
+      `It places major clauses on their own lines and indents nested parentheses, turning a dense one-liner into a readable structure.`,
+      `An uppercase-keywords option makes SQL keywords stand out clearly from your tables and columns.`,
+      `Indent size is adjustable from one to eight spaces to match your team's style.`,
+      `Formatting runs in your browser, so your queries — which can reveal schema details — are never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `Does formatting change what my query does?`,
+        answer: `No. It only changes whitespace, line breaks, and optionally the casing of keywords — the query's logic and results are untouched. Formatting is purely about readability.`,
+      },
+      {
+        question: `Should SQL keywords be uppercase?`,
+        answer: `It is a common convention because uppercase keywords (SELECT, FROM, WHERE) stand out from lowercase table and column names, making queries easier to scan. It is a style choice, though, so the formatter lets you turn it off.`,
+      },
+      {
+        question: `Does it work with any SQL dialect?`,
+        answer: `It formats based on common SQL keywords and structure, so it handles standard queries across most databases. Highly dialect-specific syntax may not format perfectly, but the core clauses and indentation will still be applied.`,
+      },
+      {
+        question: `Can it format a minified or single-line query?`,
+        answer: `Yes — that is exactly its strength. It normalizes the spacing first, then rebuilds the query with each major clause on its own line and proper indentation, turning a dense one-liner back into something readable.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Format and validate JSON, such as data returned from your queries.` },
+      { slug: 'code-minifier', note: `Strip whitespace from code once you are done reading it.` },
+      { slug: 'regex-tester', note: `Build and test patterns for searching or validating query results.` },
+    ],
+  },
+
+  'base64-encoder': {
+    intro: [
+      `Base64 encoding turns binary data or text into a plain-text string of safe characters, which is how images get embedded in CSS, how files ride inside JSON, and how data URLs work. This encoder converts text, files, and images to Base64 and back, with a URL-safe variant for use in links and tokens.`,
+      `Developers use it to embed a small image as a data URI, decode a Base64 blob from an API, or encode credentials and payloads. Three tabs handle the common cases — paste text, upload a file, or drop in an image with a live preview — and the tool correctly handles UTF-8 so accented and non-Latin characters survive the round trip.`,
+    ],
+    steps: [
+      `Pick a tab: Text, File, or Image.`,
+      `For text, choose Encode, Decode, or Auto and optionally tick URL-safe; for file or image, upload your file.`,
+      `Read the Base64 output (or decoded text), with a preview shown for images.`,
+      `Copy the result or download it.`,
+    ],
+    why: [
+      `Three modes — text, file, and image — cover encoding a string, a whole file, or an image with a live preview, in one tool.`,
+      `A URL-safe option swaps the characters that break in URLs and tokens, so the output drops straight into a link or JWT.`,
+      `It handles UTF-8 correctly, so accented and non-Latin text encodes and decodes without corruption.`,
+      `Files are read with the browser's FileReader and never uploaded, keeping your data private.`,
+    ],
+    faqs: [
+      {
+        question: `What is Base64 used for?`,
+        answer: `Base64 represents binary data as text, so it can travel through systems built for text — embedding images directly in HTML or CSS as data URIs, attaching files in JSON or email, and encoding tokens. It is encoding, not encryption, so it does not secure data.`,
+      },
+      {
+        question: `What is URL-safe Base64?`,
+        answer: `Standard Base64 uses + and / characters and = padding, which have special meaning in URLs. URL-safe Base64 replaces + with -, / with _, and drops the padding, so the string can be used safely in a URL or a JWT. Tick the URL-safe option to produce it.`,
+      },
+      {
+        question: `Does Base64 make my data secure?`,
+        answer: `No. Base64 is reversible by anyone — it only changes the representation, not the secrecy. Never treat Base64 as encryption; if you need to protect data, encrypt it before encoding.`,
+      },
+      {
+        question: `Why is my decoded text garbled?`,
+        answer: `Usually the input was not valid Base64, or it was URL-safe Base64 decoded without the URL-safe option (or vice versa). Make sure the mode matches how the data was encoded; this tool handles UTF-8 correctly when the input is valid.`,
+      },
+    ],
+    related: [
+      { slug: 'url-encoder', note: `Percent-encode text for URLs, a different safe-transport scheme.` },
+      { slug: 'hash-generator', note: `Produce a one-way hash when you need a fingerprint rather than reversible encoding.` },
+      { slug: 'jwt-decoder', note: `Decode JSON Web Tokens, whose segments are Base64URL-encoded.` },
+    ],
+  },
+
+  'markdown-to-html': {
+    intro: [
+      `Markdown is quick to write, but the web speaks HTML. This converter turns Markdown into clean HTML markup — headings, bold and italic, links, images, code blocks, and more — ready to paste into a page, an email template, or a CMS that expects raw HTML.`,
+      `Writers and developers use it to publish Markdown notes as web content, to generate HTML for a newsletter, or just to see the tags a snippet produces. It covers the everyday Markdown syntax with a lightweight converter, so common documents translate cleanly without pulling in a heavy library.`,
+    ],
+    steps: [
+      `Paste or type your Markdown into the input box.`,
+      `Click Convert.`,
+      `Read the generated HTML markup.`,
+      `Copy the HTML into your page, template, or CMS.`,
+    ],
+    why: [
+      `It converts the common Markdown elements — headings, bold, italic, links, images, inline code, and code blocks — covering most everyday documents.`,
+      `It is lightweight and instant, producing raw HTML you can paste anywhere that accepts markup.`,
+      `It outputs the tags directly so you can see and adjust the HTML, not just a rendered result.`,
+      `Conversion happens entirely in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `What Markdown features does it support?`,
+        answer: `It handles headings (levels one through six), bold and italic (with asterisks or underscores), combined bold-italic, inline code, fenced code blocks, links, images, and line breaks — the syntax that covers most everyday Markdown.`,
+      },
+      {
+        question: `Is the generated HTML safe to publish directly?`,
+        answer: `The converter outputs your Markdown as raw HTML without sanitizing it, so if your source contains untrusted input, sanitize the output before publishing to avoid injecting unwanted markup. For your own trusted content, it is ready to use.`,
+      },
+      {
+        question: `Does it support tables or other extended syntax?`,
+        answer: `It focuses on core Markdown elements rather than extended additions like tables or task lists. For documents relying on those, a full-featured Markdown processor will convert them, but for standard content this lightweight converter is faster and simpler.`,
+      },
+      {
+        question: `How is this different from a Markdown previewer?`,
+        answer: `A previewer shows you the rendered result as it will look; this tool gives you the underlying HTML markup to copy and reuse. Use the previewer to check appearance, and this converter when you need the actual HTML.`,
+      },
+    ],
+    related: [
+      { slug: 'markdown-previewer', note: `See your Markdown rendered live instead of as raw HTML.` },
+      { slug: 'html-viewer', note: `Preview the HTML this converter produces.` },
+      { slug: 'code-minifier', note: `Minify the generated HTML before shipping it.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
