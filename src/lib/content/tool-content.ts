@@ -4912,6 +4912,589 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'code-minifier', note: `Minify the generated HTML before shipping it.` },
     ],
   },
+
+  // ── Batch 9: Network (7) + Image (4) + Security (1) + Creative (2) ──
+  // NOTE: internet-speed-test is intentionally omitted — its widget returns
+  // simulated (random) values, so accurate content cannot be written until it
+  // is wired to a real measurement (e.g. the installed @cloudflare/speedtest).
+
+  'address-lookup': {
+    intro: [
+      `Every device on the internet has an IP address, and that address can reveal a surprising amount — the approximate city, the internet provider, the time zone. This IP Address Lookup takes an IP (or your own, at the click of a button) and returns its geolocation and network details.`,
+      `Developers use it to check where a server or visitor is located, support teams use it to verify a user's region, and the curious use it to see what their own connection reveals. It reports the city, region, and country, the ISP or organization behind the address, the time zone, the approximate latitude and longitude, and the postal code.`,
+      `One thing to know: the lookup is performed by the ipapi.co service, so the IP address you enter is sent to that third party to be resolved.`,
+    ],
+    steps: [
+      `Enter an IP address (or a domain) in the input, or click "My IP" to use your own.`,
+      `Click Lookup.`,
+      `Read the location, ISP, time zone, coordinates, and postal code returned for that address.`,
+      `Copy the full result if you need to record or share it.`,
+    ],
+    why: [
+      `A one-click "My IP" button instantly shows your own public address and location with no input needed.`,
+      `It returns a full picture in one lookup — city, region, country, ISP, time zone, coordinates, and postal code.`,
+      `It accepts a domain as well as an IP, resolving the lookup for either.`,
+      `It is free with no sign-up; note that lookups are resolved via the ipapi.co service, so the address you query is sent there.`,
+    ],
+    faqs: [
+      {
+        question: `How accurate is IP geolocation?`,
+        answer: `It is usually accurate to the city or region level, but not to a precise street address. IP location is derived from databases mapping address ranges to areas, so results can be off, especially for mobile networks, VPNs, or corporate connections that route through distant data centers.`,
+      },
+      {
+        question: `Can someone find my exact home address from my IP?`,
+        answer: `No. An IP reveals an approximate area and your internet provider, not your street address or identity. Only your ISP can link an address to a subscriber, and that requires legal process — so the location shown here is deliberately coarse.`,
+      },
+      {
+        question: `Is my IP address kept private?`,
+        answer: `The lookup sends the IP you enter to the ipapi.co geolocation service to retrieve its data, so it is not a purely on-device operation. The tool itself does not store your queries, but the address does leave your browser to be resolved.`,
+      },
+      {
+        question: `Why does my location look wrong?`,
+        answer: `If you use a VPN or proxy, the lookup reflects that server's location, not yours. Even without one, the underlying database may place you in a nearby city or your ISP's regional hub rather than your actual town.`,
+      },
+    ],
+    related: [
+      { slug: 'whois-lookup', note: `Find the registration details behind a domain name.` },
+      { slug: 'dns-lookup', note: `See the DNS records that map a domain to its addresses.` },
+      { slug: 'ssl-certificate-checker', note: `Check the security certificate of a site at that address.` },
+    ],
+  },
+
+  'ssl-certificate-checker': {
+    intro: [
+      `An expired or misconfigured SSL certificate breaks trust instantly — browsers throw warnings and visitors flee. This checker analyzes a domain's certificate and TLS setup through the respected SSL Labs service, returning an overall security grade plus the certificate's issuer, validity dates, and how many days remain before it expires.`,
+      `Site owners use it to catch a certificate before it lapses, developers verify a new deployment's HTTPS, and security-minded users check that a site is properly protected. The letter grade gives an at-a-glance verdict, while the expiry countdown — color-coded as it approaches — is the detail that prevents the dreaded surprise outage.`,
+      `Because the analysis is performed by the SSL Labs API, the domain you check is sent to that service, and a fresh scan can take a few moments to complete.`,
+    ],
+    steps: [
+      `Enter the domain name you want to check.`,
+      `Click Check SSL.`,
+      `If the analysis is still running, wait a few seconds and try again — fresh scans take a moment.`,
+      `Read the grade, issuer, validity dates, days until expiry, and protocol, then copy the summary.`,
+    ],
+    why: [
+      `It surfaces a full SSL Labs grade, the same in-depth analysis security professionals rely on, rather than a simple valid/invalid check.`,
+      `The days-until-expiry figure is color-coded (red under 30 days, amber under 90), so a looming renewal is impossible to miss.`,
+      `It reports the issuer, subject, validity window, and protocol together for a complete certificate picture.`,
+      `It is free and needs no sign-up; note the domain is analyzed via the SSL Labs API rather than in your browser.`,
+    ],
+    faqs: [
+      {
+        question: `What does the SSL grade mean?`,
+        answer: `The grade (from A down to F) summarizes the strength of a site's certificate and TLS configuration — protocol versions, cipher strength, and known vulnerabilities. An A means a well-configured, secure setup; lower grades flag weaknesses worth fixing.`,
+      },
+      {
+        question: `Why does the check sometimes say "analysis in progress"?`,
+        answer: `A fresh, thorough scan of a server takes time. When the SSL Labs service is still analyzing, the tool reports that it is in progress; wait a few seconds and check again to get the completed results.`,
+      },
+      {
+        question: `How early should I renew my certificate?`,
+        answer: `Renew well before expiry — ideally a couple of weeks ahead — to avoid any gap. The color-coded countdown here warns you as the date nears, with red signaling under 30 days, the point at which renewal becomes urgent.`,
+      },
+      {
+        question: `Is the domain I check kept private?`,
+        answer: `The analysis is carried out by the external SSL Labs service, so the domain name is sent there to be scanned. That is necessary because a real TLS handshake cannot be performed from within your browser; the tool itself does not retain your queries.`,
+      },
+    ],
+    related: [
+      { slug: 'http-headers-checker', note: `Inspect the security headers a site returns over HTTPS.` },
+      { slug: 'security-header-analyzer', note: `Grade those headers against best-practice protections.` },
+      { slug: 'whois-lookup', note: `Check the domain's registration and expiry alongside its certificate.` },
+    ],
+  },
+
+  'whois-lookup': {
+    intro: [
+      `WHOIS records hold the public registration details of a domain — who the registrar is, when it was created, and crucially, when it expires. This WHOIS Lookup retrieves that information for any domain and lays it out clearly, including a countdown to expiry.`,
+      `Investors checking a domain's age and history, businesses monitoring their own renewal dates, and anyone researching who is behind a site use it for a quick, readable record. It returns the registrar, the creation, update, and expiry dates, the domain's status flags, the name servers, and any available registrant organization and country.`,
+      `The data comes from a WHOIS API service, so the domain you look up is sent to that provider; note also that privacy-protection services now mask many registrant contact details.`,
+    ],
+    steps: [
+      `Enter the domain name you want to look up.`,
+      `Click Lookup WHOIS.`,
+      `Read the registrar, key dates, status flags, and name servers.`,
+      `Note the days-until-expiry countdown, and copy the record if you need it.`,
+    ],
+    why: [
+      `It presents the WHOIS record in a clean, readable layout rather than the raw, cryptic text a registry returns.`,
+      `A color-coded days-until-expiry figure makes it easy to track when a domain (yours or one you are watching) lapses.`,
+      `It surfaces status flags and name servers, useful for spotting transfer locks or where a domain is hosted.`,
+      `It is free with no sign-up; the lookup is resolved through a WHOIS API service, so the domain is sent there.`,
+    ],
+    faqs: [
+      {
+        question: `What information is in a WHOIS record?`,
+        answer: `Typically the registrar, the dates a domain was created, last updated, and expires, its status codes, the name servers, and — where not hidden by privacy protection — the registrant's organization and country. It is the public registration footprint of a domain.`,
+      },
+      {
+        question: `Why are the registrant's details hidden?`,
+        answer: `Many registrars now offer WHOIS privacy (and regulations like GDPR restrict publishing personal data), so contact details are often replaced with a privacy service or omitted. You will usually still see the registrar, dates, and status even when personal details are masked.`,
+      },
+      {
+        question: `What do the domain status codes mean?`,
+        answer: `Status flags like "clientTransferProhibited" describe locks and states set on the domain — often protective measures preventing unauthorized transfers or deletions. They are normal for active, well-managed domains.`,
+      },
+      {
+        question: `How is WHOIS different from a DNS lookup?`,
+        answer: `WHOIS tells you about a domain's registration — who owns it and when it expires. A DNS lookup tells you how the domain resolves — which servers it points to. They answer different questions, which is why both tools exist.`,
+      },
+    ],
+    related: [
+      { slug: 'dns-lookup', note: `See how the domain resolves to servers and addresses.` },
+      { slug: 'address-lookup', note: `Geolocate the IP a domain's records point to.` },
+      { slug: 'ssl-certificate-checker', note: `Check the domain's HTTPS certificate and expiry.` },
+    ],
+  },
+
+  'website-status-checker': {
+    intro: [
+      `Is a website actually up, or is it just you? This Website Status Checker pings a URL from your browser and reports whether it responded, how quickly, and — with auto-refresh — keeps watching over time, building a small uptime history.`,
+      `People reach for it during an outage to confirm a site is down for everyone, before reporting a problem, or to keep an eye on a service while waiting for it to recover. It measures the response time and labels the site up, slow, or down, and the auto-refresh option turns it into a lightweight monitor.`,
+      `A technical note: browsers cannot read the response of a cross-origin request, so the checker detects reachability and timing rather than the site's true HTTP status code.`,
+    ],
+    steps: [
+      `Enter the website URL (a protocol is added if you leave it off).`,
+      `Click Check Status.`,
+      `Read whether the site is up, slow, or down, along with its response time.`,
+      `Turn on auto-refresh to re-check every 30 seconds and build an uptime history.`,
+    ],
+    why: [
+      `It runs from your own browser with no account, giving an instant "is it up for me?" answer from your vantage point.`,
+      `An auto-refresh mode re-checks every 30 seconds and tracks an uptime percentage over recent checks.`,
+      `It distinguishes a slow response from a healthy one using measured response time, not just up or down.`,
+      `It is honest about browser limits: it confirms reachability and timing rather than claiming to read a status code it cannot access cross-origin.`,
+    ],
+    faqs: [
+      {
+        question: `Does this tell me the exact HTTP status code?`,
+        answer: `Not reliably. Browser security hides the response details of cross-origin requests, so the checker infers that a site is reachable from whether the request succeeds, and measures how long it takes. It is a real availability and speed check, not a true status-code reader.`,
+      },
+      {
+        question: `Why might a site show as down when it works in my browser?`,
+        answer: `Some servers block the kind of background request this tool makes, even though they serve pages normally to a browser tab. That can register as "down" here, so treat a single result alongside actually opening the site.`,
+      },
+      {
+        question: `What does the uptime percentage mean?`,
+        answer: `With auto-refresh on, the tool records each check and shows the share that succeeded. It reflects availability during your monitoring session only — it is not a long-term uptime guarantee like a dedicated monitoring service provides.`,
+      },
+      {
+        question: `What counts as a "slow" response?`,
+        answer: `The checker labels a site slow when its response takes longer than about a second, and up when it responds faster. Response time depends on the server, your connection, and distance to the host, so occasional slow readings are normal.`,
+      },
+    ],
+    related: [
+      { slug: 'http-headers-checker', note: `Inspect the actual response headers the site returns.` },
+      { slug: 'url-redirect-tracer', note: `See whether the URL redirects before it loads.` },
+      { slug: 'ping-tool', note: `Measure round-trip latency to the host over several requests.` },
+    ],
+  },
+
+  'http-headers-checker': {
+    intro: [
+      `Every web response carries HTTP headers that reveal how a site is configured — its caching rules, security protections, server software, and more. This HTTP Headers Checker fetches a URL's response headers and lays them out, grouped so you can quickly scan the security and caching directives.`,
+      `Developers debugging cache behavior, SEOs checking for the right directives, and security reviewers auditing protections all use it to see what a server actually sends. It highlights the key security headers, lets you filter to just security or caching headers, and shows the response status.`,
+      `To bypass the browser's cross-origin restrictions, it fetches the target URL through a public CORS proxy (allorigins.win), which means the URL you check is sent to that third-party service.`,
+    ],
+    steps: [
+      `Enter the URL whose headers you want to inspect.`,
+      `Click Check Headers.`,
+      `Use the All / Security / Caching / Other filters to focus on the headers you care about.`,
+      `Read each header's name and value — security headers are highlighted — and copy the set you need.`,
+    ],
+    why: [
+      `It groups headers into security, caching, and other, and highlights the security ones, so an audit takes seconds rather than scrolling raw output.`,
+      `Filter tabs let you narrow to exactly the category you are checking.`,
+      `It works on any public URL from the browser by routing through a CORS proxy, with no backend of your own required.`,
+      `It is transparent that the target URL is sent to the allorigins.win proxy to retrieve the headers, since the browser cannot read them cross-origin directly.`,
+    ],
+    faqs: [
+      {
+        question: `What are HTTP response headers?`,
+        answer: `They are metadata a server sends with each response, describing things like content type, caching policy, security rules, and the server software. They are not visible on the page itself but govern how browsers and crawlers treat it.`,
+      },
+      {
+        question: `Why does this need a proxy to read headers?`,
+        answer: `Browser security blocks a page from reading the headers of a response from another origin. To work around that, the tool routes the request through a public CORS proxy, which fetches the URL and returns the headers — so the URL you enter is sent to that proxy service.`,
+      },
+      {
+        question: `Which security headers should a site have?`,
+        answer: `Common ones include Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, and X-Content-Type-Options. This tool highlights them so you can see at a glance which are present; a dedicated analyzer can grade how complete your coverage is.`,
+      },
+    ],
+    related: [
+      { slug: 'security-header-analyzer', note: `Grade the security headers and get specific recommendations.` },
+      { slug: 'website-status-checker', note: `Check whether the site is reachable and how fast it responds.` },
+      { slug: 'ssl-certificate-checker', note: `Verify the HTTPS certificate behind those headers.` },
+    ],
+  },
+
+  'url-redirect-tracer': {
+    intro: [
+      `A single link can quietly bounce through several redirects before landing on its final page — and each hop costs time and can leak or lose information. This URL Redirect Tracer follows that chain step by step, showing every URL, its status code, and where it points next, until it reaches the destination.`,
+      `SEOs use it to find redirect chains that dilute link value, marketers verify that a shortened or campaign link ends where it should, and the cautious use it to see where a suspicious link actually leads before clicking through. It numbers each hop, color-codes the status codes, and reports the total number of redirects and the time the chain took.`,
+    ],
+    steps: [
+      `Enter the starting URL.`,
+      `Click Trace Redirects.`,
+      `Follow the numbered chain — each step shows its URL, status code, and the location it redirects to.`,
+      `Read the final destination, the total redirect count, and the overall time, then copy the chain.`,
+    ],
+    why: [
+      `It reveals the full hop-by-hop chain with each status code, so you can spot unnecessary redirects that slow a page and weaken SEO.`,
+      `It resolves relative redirect locations correctly and caps the trace at a sensible limit to avoid infinite loops.`,
+      `It reports the total number of redirects and cumulative time, quantifying the cost of the chain.`,
+      `It runs from your browser following redirects manually; no third-party service is involved in the trace.`,
+    ],
+    faqs: [
+      {
+        question: `Why do redirect chains matter for SEO?`,
+        answer: `Each redirect adds latency and can dilute the ranking signal passed to the final page, and long chains risk being crawled less thoroughly. Collapsing a chain so a link points directly to its destination improves speed and preserves more value.`,
+      },
+      {
+        question: `What is the difference between a 301 and a 302 redirect?`,
+        answer: `A 301 is a permanent redirect, signaling that a page has moved for good and passing most ranking value to the new URL. A 302 is temporary, telling browsers and search engines the original may return. The tracer shows each status code so you can tell which is in use.`,
+      },
+      {
+        question: `Can it trace any link?`,
+        answer: `It follows standard HTTP redirects from the browser. Some destinations restrict cross-origin requests, which can cut a trace short, and redirects performed by JavaScript after the page loads are not visible to it — it follows server-level redirects.`,
+      },
+    ],
+    related: [
+      { slug: 'website-status-checker', note: `Confirm the final destination is actually up.` },
+      { slug: 'http-headers-checker', note: `Inspect the headers, including Location, at each hop.` },
+      { slug: 'url-parameter-cleaner', note: `Strip tracking parameters the redirects may append.` },
+    ],
+  },
+
+  'port-checker': {
+    intro: [
+      `Knowing whether a particular port is reachable on a host is the first step in diagnosing many connection problems — a web server on 443, a database on 3306, an SSH service on 22. This Port Checker tests whether a host responds on a given port and identifies the service that usually runs there.`,
+      `Developers checking that a service is exposed, and people troubleshooting why they cannot connect, use it for a fast reachability test. Quick-select buttons cover the common ports, and the result distinguishes between an open port, a closed one, and a timeout, with the response time shown.`,
+      `An important limitation: a browser cannot open raw TCP sockets, so this checks reachability by attempting an HTTP/HTTPS connection to the port rather than performing a true low-level port scan.`,
+    ],
+    steps: [
+      `Enter the host or IP address.`,
+      `Enter the port number, or tap a common-port quick-select button (80, 443, 22, 3306, and more).`,
+      `Click Check Port.`,
+      `Read whether the port is open, closed, or timed out, with the detected service and response time.`,
+    ],
+    why: [
+      `Quick-select buttons for ten common ports — web, SSH, FTP, databases, mail — let you check the usual suspects in one tap.`,
+      `It distinguishes a timeout from a closed port, which helps tell a firewall-dropped connection from a refused one.`,
+      `It identifies the service typically associated with the port, adding context to the result.`,
+      `It is honest about scope: because browsers cannot probe raw TCP, it tests reachability via an HTTP/HTTPS connection rather than a full port scan.`,
+    ],
+    faqs: [
+      {
+        question: `Is this a real port scanner?`,
+        answer: `Not in the traditional sense. A true port scanner opens raw TCP connections, which browsers cannot do. This tool attempts an HTTP/HTTPS request to the host and port and infers the result, so it works best for web-style ports and is a reachability check rather than a full scan.`,
+      },
+      {
+        question: `What is the difference between closed and timeout?`,
+        answer: `A closed result means the connection was actively refused or failed quickly, while a timeout means no response came back within the wait period — often a sign of a firewall silently dropping the request. The distinction can help narrow down a connection issue.`,
+      },
+      {
+        question: `What are the common ports used for?`,
+        answer: `Port 80 and 443 serve web traffic (HTTP and HTTPS), 22 is SSH, 21 is FTP, 25 is email (SMTP), 3306 is MySQL, and 8080 is a common alternate web port. The quick-select buttons label each so you can check the right one.`,
+      },
+      {
+        question: `Why might an open port show as closed here?`,
+        answer: `If a port runs a non-web service (like a raw database or SSH), the browser's HTTP request will fail even though the port is genuinely open, so it can read as closed. This tool is most reliable for web-facing HTTP/HTTPS ports.`,
+      },
+    ],
+    related: [
+      { slug: 'ping-tool', note: `Measure round-trip latency to the host before checking ports.` },
+      { slug: 'website-status-checker', note: `Confirm a web service on the host is responding.` },
+      { slug: 'dns-lookup', note: `Resolve the host to an IP before testing its ports.` },
+    ],
+  },
+
+  'image-converter': {
+    intro: [
+      `The right image format depends on where it is going — WebP for fast-loading web pages, PNG for transparency, JPG for photos. This Image Converter changes an image from one format to another right in your browser, across JPG, PNG, WebP, and GIF, with a quality control for the formats that support it.`,
+      `Web developers convert photos to WebP to shrink page weight, designers move between PNG and JPG depending on transparency needs, and anyone with an image in the wrong format fixes it here. Because conversion runs on a canvas locally, there is no upload, and a batch can be downloaded as a single ZIP.`,
+    ],
+    steps: [
+      `Upload one or more images (JPG, PNG, WebP, or GIF) by dragging or clicking.`,
+      `Choose the target format from the dropdown.`,
+      `For JPG or WebP, set the quality with the slider.`,
+      `Download each converted image, or grab them all as a ZIP.`,
+    ],
+    why: [
+      `It converts between four formats — JPG, PNG, WebP, and GIF — with a quality slider for the lossy ones, all on an in-browser canvas.`,
+      `When converting to JPG, it fills transparency with white so the result looks correct rather than showing black edges.`,
+      `Multiple images convert at once and download together as a ZIP, via in-browser zipping.`,
+      `Nothing is uploaded — your images are processed entirely on your device, so private photos stay private.`,
+    ],
+    faqs: [
+      {
+        question: `Which image format should I use?`,
+        answer: `WebP offers the best compression for the web and supports transparency, making it ideal for most online images. PNG is best when you need lossless quality or transparency and WebP is not an option; JPG suits photographs where small file size matters more than perfect fidelity.`,
+      },
+      {
+        question: `Why does converting a transparent PNG to JPG change the background?`,
+        answer: `JPG does not support transparency, so transparent areas must be filled with a solid color. This converter fills them with white, which keeps the image looking clean rather than producing black or distorted edges.`,
+      },
+      {
+        question: `Are my images uploaded anywhere?`,
+        answer: `No. Conversion happens on a canvas inside your browser, and the files never leave your device. That makes it safe to convert personal photos, screenshots, or confidential images.`,
+      },
+      {
+        question: `Does converting between formats reduce quality?`,
+        answer: `Converting to a lossless format like PNG preserves quality, while converting to JPG or WebP applies compression you control with the quality slider. Repeatedly re-saving a photo as JPG can gradually degrade it, so convert from the original when you can.`,
+      },
+    ],
+    related: [
+      { slug: 'image-compressor', note: `Shrink the file size further after converting.` },
+      { slug: 'image-resizer', note: `Change the pixel dimensions as well as the format.` },
+      { slug: 'image-cropper', note: `Trim the image to the framing you want first.` },
+    ],
+  },
+
+  'image-resizer': {
+    intro: [
+      `An image is rarely the right size out of the camera or screenshot tool — too large for a web page, the wrong dimensions for a social profile. This Image Resizer scales images to exact pixel dimensions, a percentage of the original, or a ready-made social media size, while optionally locking the aspect ratio so nothing stretches.`,
+      `Bloggers shrink photos so pages load fast, social media managers hit the exact dimensions each platform wants, and anyone preparing an avatar or banner gets it sized correctly. Presets for Instagram, Facebook, Twitter, and YouTube remove the guesswork, and resizing happens locally with no upload.`,
+    ],
+    steps: [
+      `Upload one or more images.`,
+      `Set the width and height, choose a percentage, or pick a social media preset.`,
+      `Keep "maintain aspect ratio" checked to scale proportionally, or uncheck it to set exact dimensions.`,
+      `Download each resized image, or all of them as a ZIP.`,
+    ],
+    why: [
+      `It resizes by exact pixels, by percentage, or to built-in social presets (Instagram, Facebook, Twitter, YouTube), covering precise and quick needs alike.`,
+      `An aspect-ratio lock prevents distortion by adjusting the other dimension automatically as you type.`,
+      `It processes several images and bundles the results into a ZIP for download.`,
+      `Resizing runs on a canvas in your browser, so your images are never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What does maintaining aspect ratio do?`,
+        answer: `It keeps the image's width-to-height proportion fixed, so when you change one dimension the other adjusts automatically. This prevents the stretched or squashed look that comes from setting both dimensions independently.`,
+      },
+      {
+        question: `Will resizing reduce image quality?`,
+        answer: `Scaling down generally looks fine, since you are discarding pixels. Scaling up beyond the original size cannot add real detail, so enlarged images can look soft. For best results, resize down from a high-resolution original.`,
+      },
+      {
+        question: `What size should I use for social media?`,
+        answer: `Each platform has its own ideal — square for an Instagram post, wide for a YouTube thumbnail, and so on. The built-in presets fill in the recommended dimensions for Instagram, Facebook, Twitter, and YouTube so you do not have to look them up.`,
+      },
+      {
+        question: `Are my images uploaded when I resize them?`,
+        answer: `No. Resizing is done on a canvas in your browser and the files never leave your device, so personal photos and screenshots stay private throughout.`,
+      },
+    ],
+    related: [
+      { slug: 'image-batch-resizer', note: `Resize a large batch of images to the same size at once.` },
+      { slug: 'image-compressor', note: `Reduce the file size after setting the dimensions.` },
+      { slug: 'image-cropper', note: `Crop to a shape before resizing to exact pixels.` },
+    ],
+  },
+
+  'image-metadata-remover': {
+    intro: [
+      `Photos carry hidden metadata — the camera model, the date, software used, and often the exact GPS coordinates where the shot was taken. Before sharing an image publicly, stripping that data protects your privacy. This Image Metadata Remover detects the EXIF data in your images and removes it, letting you choose which categories to clear.`,
+      `Anyone posting photos online uses it to avoid leaking their home location through GPS tags, journalists and sources use it to protect sensitive material, and privacy-conscious users clean images as a habit. It reads the metadata, shows which images contain it, and lets you target camera info, GPS, date/time, software, or copyright before exporting clean copies.`,
+    ],
+    steps: [
+      `Upload one or more images (JPG, PNG, or WebP).`,
+      `Review which files contain metadata — flagged as you upload — and choose the categories to remove.`,
+      `Remove the selected metadata.`,
+      `Download each cleaned image, or all of them as a ZIP.`,
+    ],
+    why: [
+      `It detects and reports the EXIF metadata in each image, so you can see exactly what would otherwise be exposed — including GPS coordinates.`,
+      `You choose which categories to strip — camera, GPS, date, software, or copyright — rather than an all-or-nothing wipe.`,
+      `It removes metadata by redrawing the image on a canvas, producing a genuinely clean copy.`,
+      `Everything happens in your browser; sensitive photos are never uploaded to a server.`,
+    ],
+    faqs: [
+      {
+        question: `What is EXIF metadata and why remove it?`,
+        answer: `EXIF is data embedded in photos by cameras and phones — including the device model, timestamp, settings, and frequently the GPS location. Removing it before sharing protects your privacy, since a posted photo can otherwise reveal where and when it was taken.`,
+      },
+      {
+        question: `Does removing metadata change how the image looks?`,
+        answer: `No. The visible image is unchanged; only the hidden data attached to the file is stripped. The tool redraws the pixels onto a clean canvas, so the picture looks identical while the embedded information is gone.`,
+      },
+      {
+        question: `Do social media sites already remove this?`,
+        answer: `Many platforms strip some metadata on upload, but not all do, and not consistently — and you may share images by email, messaging, or direct download where nothing is removed. Clearing it yourself first guarantees the data is gone.`,
+      },
+      {
+        question: `Are my photos uploaded to do this?`,
+        answer: `No. The metadata is read and removed entirely within your browser, and the images never leave your device — which is exactly what you want for a privacy tool handling potentially sensitive photos.`,
+      },
+    ],
+    related: [
+      { slug: 'image-compressor', note: `Reduce file size, which also discards metadata as a side effect.` },
+      { slug: 'image-converter', note: `Change the format of your cleaned image.` },
+      { slug: 'image-resizer', note: `Resize the image after stripping its metadata.` },
+    ],
+  },
+
+  'image-batch-resizer': {
+    intro: [
+      `Resizing one image is easy; resizing fifty to the same dimensions is a chore. This Image Batch Resizer applies one set of dimensions across an entire batch at once, with a "skip if smaller" option so you never accidentally upscale images that are already small, and a toggle for how the output files are named.`,
+      `Photographers preparing a gallery, e-commerce sellers standardizing product shots, and anyone with a folder of images to normalize use it to process the whole set in one pass. Like the single resizer it offers presets, percentages, and an aspect-ratio lock, but it is built for volume — and downloads everything as a ZIP.`,
+    ],
+    steps: [
+      `Upload all the images you want to resize.`,
+      `Set the target dimensions, a percentage, or a social preset, and choose whether to lock the aspect ratio.`,
+      `Optionally enable "skip if smaller" to avoid upscaling, and choose whether to add a "_resized" suffix.`,
+      `Process the batch and download the results as a ZIP.`,
+    ],
+    why: [
+      `It applies one target size across an entire batch in a single pass, instead of resizing images one at a time.`,
+      `A "skip if smaller" option leaves already-small images untouched, preventing quality-destroying upscaling, and labels which were skipped.`,
+      `A filename-suffix toggle lets you keep original names or mark the resized copies, useful for organized exports.`,
+      `All processing is local on a canvas, with the batch delivered as a single ZIP — nothing is uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How is this different from the standard image resizer?`,
+        answer: `Both resize to dimensions, percentages, or presets, but the batch resizer is geared for processing many images to the same size at once and adds bulk-focused options: skipping images already smaller than the target, and controlling the output filename suffix.`,
+      },
+      {
+        question: `What does "skip if smaller" do?`,
+        answer: `When enabled, any image whose dimensions are already at or below your target is left at its original size rather than being enlarged. This avoids the blurry result of upscaling and is useful when standardizing a mixed set where some images are already small.`,
+      },
+      {
+        question: `Can the images be different sizes to start with?`,
+        answer: `Yes. You can upload images of any sizes, and they will all be resized toward the same target dimensions (subject to the aspect-ratio and skip-smaller settings). The results download together as a ZIP.`,
+      },
+    ],
+    related: [
+      { slug: 'image-resizer', note: `Resize a single image with the same presets and controls.` },
+      { slug: 'image-compressor', note: `Compress the batch to reduce file sizes after resizing.` },
+      { slug: 'image-converter', note: `Convert the resized images to another format.` },
+    ],
+  },
+
+  'hash-generator': {
+    intro: [
+      `A hash is a fixed-length fingerprint of data — the same input always produces the same hash, but you cannot reverse it back to the original. This Hash Generator computes MD5, SHA-1, SHA-256, and SHA-512 hashes of any text, so you can verify integrity, compare values, or generate checksums.`,
+      `Developers use it to verify that text or a value matches an expected checksum, to generate digests for caching keys, or to learn how the algorithms differ. You can compute several algorithms at once, have them update automatically as you type, and copy any result with a click.`,
+    ],
+    steps: [
+      `Type or paste your text into the input box.`,
+      `Select the hash algorithms you want — MD5, SHA-1, SHA-256, or SHA-512.`,
+      `Read the generated hashes, which update automatically as you type unless you turn that off.`,
+      `Toggle uppercase if you need it, and copy any hash to the clipboard.`,
+    ],
+    why: [
+      `It generates four algorithms — MD5, SHA-1, SHA-256, and SHA-512 — side by side, so you can produce or compare several at once.`,
+      `The SHA family is computed with the browser's built-in Web Crypto API, giving correct, standard results.`,
+      `It auto-generates as you type and offers uppercase output, with one-click copy for each hash.`,
+      `Hashing happens entirely in your browser, so the text you hash is never transmitted.`,
+    ],
+    faqs: [
+      {
+        question: `What is a hash used for?`,
+        answer: `Hashing turns data into a fixed-length fingerprint used to verify integrity (confirming a file or message has not changed), to compare values without storing the original, and as a building block in checksums and caching. It is one-way: you cannot recover the input from the hash.`,
+      },
+      {
+        question: `Which hash algorithm should I use?`,
+        answer: `For integrity and general use, SHA-256 is the modern default. SHA-512 is stronger still. MD5 and SHA-1 are fast and fine for non-security checksums, but both are considered broken for security purposes and should not be used to protect passwords or signatures.`,
+      },
+      {
+        question: `Is hashing the same as encryption?`,
+        answer: `No. Encryption is reversible with a key, so the original data can be recovered; hashing is one-way and cannot be reversed. Hashing verifies and fingerprints data, while encryption protects and later restores it.`,
+      },
+      {
+        question: `Can I hash a file with this?`,
+        answer: `This tool hashes text you type or paste, not uploaded files. For checksums of text, configuration, or any string it works directly; to hash a file's contents, you would need a file-hashing tool instead.`,
+      },
+    ],
+    related: [
+      { slug: 'password-generator', note: `Create strong random passwords to protect, then hash separately.` },
+      { slug: 'base64-encoder', note: `Encode data reversibly when you need to recover it, unlike a hash.` },
+      { slug: 'uuid-generator', note: `Generate unique identifiers rather than content fingerprints.` },
+    ],
+  },
+
+  'ascii-art-generator': {
+    intro: [
+      `ASCII art turns a picture into text — an image rebuilt entirely from characters, the kind of thing that looks great in a code comment, a terminal banner, or a retro README. This generator converts an uploaded image into ASCII by mapping the brightness of each part of the picture to a character, from dense symbols for dark areas to spaces for light ones.`,
+      `Developers drop ASCII versions of a logo into project files, hobbyists make text art for forums and chat, and the nostalgic recreate a classic internet aesthetic. You control the output width and pick from several character sets — including solid block characters for a bolder look — and can invert the mapping for light-on-dark backgrounds.`,
+    ],
+    steps: [
+      `Upload an image (JPG, PNG, or GIF).`,
+      `Choose a character set — Standard, Simple, Complex, or Blocks — and set the output width.`,
+      `Tick "invert colors" if your background is dark.`,
+      `Generate the art, then copy it or download it as a text file.`,
+    ],
+    why: [
+      `It offers four character ramps, from a simple set to a dense complex one and solid block characters, for different levels of detail and style.`,
+      `An adjustable output width lets you balance detail against how wide the art needs to fit, and it corrects for the tall shape of text characters so the image is not stretched.`,
+      `An invert option flips the brightness mapping for dark-background displays like terminals.`,
+      `Conversion runs on a canvas in your browser, so your image is never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `How does an image become ASCII art?`,
+        answer: `The image is sampled into a grid, and the brightness of each cell is measured. Darker areas map to dense characters and lighter areas to sparse ones or spaces, so the arrangement of characters recreates the light and shadow of the original picture.`,
+      },
+      {
+        question: `What does the character set choice change?`,
+        answer: `Each set is a different ramp from dark to light. The complex set uses many characters for fine gradation and detail, the simple set is cleaner, and the blocks set uses solid shading characters for a bold, high-contrast look. Pick the one that suits your image and where it will be displayed.`,
+      },
+      {
+        question: `Why does my ASCII art look best in a monospace font?`,
+        answer: `ASCII art relies on every character occupying the same width so the grid lines up. In a proportional font the columns shift and the picture distorts, so display it in a monospace font — as code editors and terminals use — to keep it aligned.`,
+      },
+    ],
+    related: [
+      { slug: 'meme-generator', note: `Add text captions over an image instead of converting it to text.` },
+      { slug: 'image-converter', note: `Convert your source image's format before generating art.` },
+      { slug: 'filter-effect-studio', note: `Boost contrast first for a clearer ASCII result.` },
+    ],
+  },
+
+  'filter-effect-studio': {
+    intro: [
+      `Good photo editing is often just the right adjustments — a brightness nudge, more contrast, a vintage tint. The Filter Effect Studio applies a wide range of effects to an image in real time: core adjustments like brightness, contrast, and saturation, color treatments like grayscale and sepia, plus creative touches like blur, vignette, film grain, pixelation, and edge detection.`,
+      `Casual editors fix and stylize a photo before posting, designers prototype a look, and the curious experiment with effects without installing software. Every change previews live, you can flip back to the original to compare, and the finished image downloads as a PNG or JPG — all processed locally.`,
+    ],
+    steps: [
+      `Upload an image (JPG, PNG, or WebP).`,
+      `Adjust the sliders — brightness, contrast, saturation, exposure, hue, blur, vignette, grain, pixelate, edge detection — and toggle grayscale, sepia, or invert.`,
+      `Use "show original" to compare before and after, and "reset all" to start over.`,
+      `Download the result as PNG or JPG.`,
+    ],
+    why: [
+      `It combines standard adjustments with creative effects — vignette, film grain, pixelation, and edge detection — that simple filter tools usually lack.`,
+      `Every adjustment previews in real time on a canvas, with a one-tap toggle to compare against the original.`,
+      `It exports to PNG or JPG, and resets cleanly when you want to start fresh.`,
+      `All editing happens in your browser, so your photos are never uploaded.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between brightness, exposure, and contrast?`,
+        answer: `Brightness and exposure both lighten or darken the whole image, while contrast changes the gap between the lightest and darkest areas — raising it makes shadows deeper and highlights brighter. Adjusting them together gives you control over both overall lightness and the punchiness of the image.`,
+      },
+      {
+        question: `What does the vignette effect do?`,
+        answer: `A vignette darkens the edges and corners of the image, drawing the eye toward the center. It is a classic photographic and cinematic touch that adds focus and a slightly vintage feel, and the slider lets you control how strong it is.`,
+      },
+      {
+        question: `Will applying many effects reduce quality?`,
+        answer: `Effects are applied to the image as displayed, and exporting as PNG keeps the result lossless. Heavy effects like strong blur or pixelation deliberately alter detail, but the tool does not degrade the image beyond the effects you choose to apply.`,
+      },
+      {
+        question: `Are my photos uploaded to apply filters?`,
+        answer: `No. All filtering is done on a canvas within your browser, and the image never leaves your device, so you can edit personal photos privately.`,
+      },
+    ],
+    related: [
+      { slug: 'image-cropper', note: `Crop and straighten the image before styling it.` },
+      { slug: 'meme-generator', note: `Add captions to your filtered image.` },
+      { slug: 'image-converter', note: `Convert the finished image to another format.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
