@@ -9,6 +9,7 @@ import {
 } from '@/lib/constants/tools';
 import { siteConfig } from '@/lib/constants/site';
 import { buildCategoryJsonLd } from '@/lib/seo/json-ld';
+import { getCategoryContent } from '@/lib/content/category-content';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 import { ToolCard } from '@/components/shared/ToolCard';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
@@ -59,7 +60,8 @@ export default function CategoryPage({ params }: CategoryPageParams) {
   }
 
   const tools = getToolsByCategory(slug as ToolCategory);
-  const jsonLd = buildCategoryJsonLd(category, tools);
+  const content = getCategoryContent(category.value);
+  const jsonLd = buildCategoryJsonLd(category, tools, content?.faqs);
 
   return (
     <>
@@ -94,9 +96,17 @@ export default function CategoryPage({ params }: CategoryPageParams) {
           <h2 className="font-display text-xl font-bold text-text-primary mb-3">
             About {category.label}
           </h2>
-          <p className="text-sm text-text-secondary leading-relaxed">
-            {category.description}
-          </p>
+          {content ? (
+            <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
+              {content.intro.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-text-secondary leading-relaxed">
+              {category.description}
+            </p>
+          )}
         </section>
 
         {/* Popular Tools in this Category */}
@@ -150,6 +160,22 @@ export default function CategoryPage({ params }: CategoryPageParams) {
               Browse All Tools
             </Link>
           </div>
+        )}
+
+        {content && content.faqs.length > 0 && (
+          <section className="mt-10">
+            <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-4">
+              {content.faqs.map((faq, index) => (
+                <div key={index} className="border border-border rounded-lg p-4 bg-surface">
+                  <h3 className="font-medium text-text-primary mb-2">{faq.question}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </div>
