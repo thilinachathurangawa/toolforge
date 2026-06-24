@@ -3775,6 +3775,511 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'time-zone-calculator', note: `Coordinate work hours across different time zones.` },
     ],
   },
+
+  // ── Batch 7: Other calculators (12, finishes all 88 calculators) ──
+
+  'date-calculator': {
+    intro: [
+      `Counting the days between two dates by hand means wrestling with month lengths and leap years, and it is easy to be off by one. This calculator takes a start and end date and tells you the span in days, weeks, months, and years — and can count only working days when weekends should not count.`,
+      `People use it to find how many days until a deadline, how long ago something happened, or how many business days a project window actually contains. The working-days option is what sets it apart for anyone planning around a Monday-to-Friday schedule, and an "include end date" toggle handles whether the final day counts.`,
+    ],
+    steps: [
+      `Pick the start date.`,
+      `Pick the end date (use the swap button if you entered them in the wrong order).`,
+      `Toggle "include end date" if the final day should count, and "working days only" to exclude weekends.`,
+      `Read the span in days, weeks, months, and years, plus the working-day count when enabled.`,
+    ],
+    why: [
+      `It can count working days only, excluding Saturdays and Sundays — useful for business and project timelines, not just raw calendar days.`,
+      `It expresses the gap four ways at once (days, weeks, months, years), so you get the unit you need without extra math.`,
+      `An "include end date" toggle and a swap button handle the off-by-one and wrong-order mistakes that trip up manual counting.`,
+      `It works entirely in your browser, so your dates stay private.`,
+    ],
+    faqs: [
+      {
+        question: `Does the calculation include both the start and end dates?`,
+        answer: `By default it counts the gap between the dates, not the end date itself. Turn on "include end date" to count the final day too — useful when you want the total number of days in a range rather than the difference between them.`,
+      },
+      {
+        question: `How are working days counted?`,
+        answer: `With "working days only" enabled, the calculator steps through each day in the range and counts only Mondays through Fridays, skipping weekends. Note that it does not account for public holidays, which vary by country and region.`,
+      },
+      {
+        question: `Why might the months figure look approximate?`,
+        answer: `Months vary in length, so the calculator derives months from the total day count using an average year length. For exact calendar-month differences, the day count is the most precise figure to rely on.`,
+      },
+      {
+        question: `Can I count down to a future event?`,
+        answer: `This calculator measures the span between two chosen dates. To count down to an event, set the start to today and the end to the event date; the day count tells you how long remains, and the working-days option shows the business days left.`,
+      },
+    ],
+    related: [
+      { slug: 'age-calculator', note: `Calculate an exact age in years, months, and days from a birth date.` },
+      { slug: 'time-calculator', note: `Work with times within a day rather than whole dates.` },
+      { slug: 'hours-calculator', note: `Total worked hours across a set of days.` },
+    ],
+  },
+
+  'gpa-calculator': {
+    intro: [
+      `Your GPA condenses a semester of grades into a single number, but calculating it means weighting each course by its credit hours — and weighting honors or AP classes higher still. This calculator handles all of that: enter each course's grade, credits, and type, and it computes your semester GPA, with an option to roll in your previous record for a cumulative figure.`,
+      `Students use it to project a semester before grades are final, to see how one class will move their average, or to confirm a registrar's number. Support for weighted course types and a 4.0 or 5.0 scale means it works for standard transcripts and weighted honors systems alike.`,
+    ],
+    steps: [
+      `Choose the 4.0 or 5.0 GPA scale.`,
+      `Add each course with its grade, credit hours, and type (regular, honors, AP, or IB).`,
+      `Optionally enter your previous GPA and total credits for a cumulative result.`,
+      `Read your semester GPA, cumulative GPA, total credits, and a grade breakdown.`,
+    ],
+    why: [
+      `It weights honors, AP, and IB courses above regular ones, reflecting how weighted GPAs are actually calculated rather than treating every course equally.`,
+      `It supports both the 4.0 and 5.0 scales and computes a cumulative GPA when you supply prior credits.`,
+      `It shows total quality points and a per-grade breakdown, so you can see exactly how the average was built.`,
+      `Calculations happen in your browser with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How is GPA calculated?`,
+        answer: `Each course's grade is converted to grade points, multiplied by its credit hours (and a weight for honors or AP), to give quality points. GPA is the total quality points divided by the total credits, so higher-credit courses count more toward the average.`,
+      },
+      {
+        question: `What is the difference between weighted and unweighted GPA?`,
+        answer: `An unweighted GPA treats every course on the same scale, while a weighted GPA gives extra points to harder courses like honors, AP, or IB. This calculator applies those weights when you mark a course's type, raising its contribution to the average.`,
+      },
+      {
+        question: `How do I calculate my cumulative GPA?`,
+        answer: `Enter your previous cumulative GPA and the total credits it covers, alongside this semester's courses. The calculator combines the prior quality points with the new ones to produce an updated cumulative GPA across all credits.`,
+      },
+      {
+        question: `What GPA scale should I use?`,
+        answer: `Use the scale your school reports on — 4.0 is the most common unweighted scale, while 5.0 scales are often used where weighted honors and AP grades can exceed 4.0. The toggle lets you match whichever your institution uses.`,
+      },
+    ],
+    related: [
+      { slug: 'grade-calculator', note: `Work out your grade in a single class from its assignments.` },
+      { slug: 'percentage-calculator', note: `Convert raw scores into the percentages behind your grades.` },
+      { slug: 'average-calculator', note: `Average a set of scores without credit weighting.` },
+    ],
+  },
+
+  'grade-calculator': {
+    intro: [
+      `Knowing your current grade in a class — and what each assignment contributes — takes more than averaging scores, because categories like exams, homework, and projects usually carry different weights. This calculator builds that weighted picture: set up your categories and their weights, enter your assignments, and it computes your overall grade and letter.`,
+      `Students use it to track where they stand mid-semester and to figure out what they need on a final to hit a target. The per-category "drop lowest" option mirrors real syllabi that forgive your worst quiz or homework, giving a grade that matches how the class is actually scored.`,
+    ],
+    steps: [
+      `Create your grading categories (such as Homework, Exams, Projects) and set each one's weight.`,
+      `Add the assignments within each category, entering the grade and weight for each.`,
+      `Enable "drop lowest grade" on any category that forgives your worst score.`,
+      `Read your current overall grade as a percentage and letter, with a per-category breakdown.`,
+    ],
+    why: [
+      `It models weighted categories with nested assignments, matching syllabi where exams and homework count differently rather than averaging everything flat.`,
+      `A per-category "drop lowest" option reflects classes that discard your worst score, so the result matches your real standing.`,
+      `It converts the weighted percentage to a letter grade and breaks the total down by category.`,
+      `Everything is computed locally, so your grades stay private.`,
+    ],
+    faqs: [
+      {
+        question: `How is a weighted grade calculated?`,
+        answer: `Each category's average is multiplied by its weight, and those weighted values are summed and divided by the total weight. So if exams are 50% of your grade and you average 90 on them, exams contribute 45 points toward your overall percentage.`,
+      },
+      {
+        question: `What does "drop the lowest grade" do?`,
+        answer: `When enabled for a category, the calculator removes that category's single lowest-scoring assignment before averaging it. This mirrors syllabi that drop your weakest quiz or homework, which usually raises the category average.`,
+      },
+      {
+        question: `How do I figure out what I need on the final exam?`,
+        answer: `Enter your current grades and the final as an assignment in its category, then try different scores for it to see how each moves your overall grade. Adjust until the result reaches your target to find the score you need.`,
+      },
+      {
+        question: `What is the difference between weighted and points-based grading?`,
+        answer: `Weighted grading assigns each category a percentage of the final grade regardless of how many points it contains, while points-based grading simply totals points earned over points possible. This calculator uses the weighted approach, which most syllabi with categories like "exams 50%, homework 20%" follow.`,
+      },
+    ],
+    related: [
+      { slug: 'gpa-calculator', note: `Combine your class grades into a semester or cumulative GPA.` },
+      { slug: 'percentage-calculator', note: `Turn points earned into a percentage for any single assignment.` },
+      { slug: 'average-calculator', note: `Average scores quickly when no weighting is involved.` },
+    ],
+  },
+
+  'fuel-cost-calculator': {
+    intro: [
+      `Before a road trip or a daily commute, it helps to know what the fuel will actually cost. This calculator works it out from your distance, your vehicle's efficiency, and the price of fuel, and it can compare several vehicles to show which is cheapest to drive.`,
+      `Travelers budget trips with it, commuters weigh the running cost of one car against another, and anyone deciding whether to drive or take another option puts a number on the journey. It works in both imperial (miles, gallons, MPG) and metric (kilometers, liters, L/100km) units, with a round-trip toggle so you do not have to double the distance yourself.`,
+    ],
+    steps: [
+      `Choose imperial or metric units.`,
+      `Enter the distance, and tick "round trip" if you are returning.`,
+      `Enter your vehicle's fuel efficiency and the price of fuel.`,
+      `Read the total cost, fuel needed, and cost per mile or kilometer — and add vehicles to compare their running costs.`,
+    ],
+    why: [
+      `It supports both imperial (MPG) and metric (L/100km) units with the correct conversions, so it works wherever you are.`,
+      `A vehicle-comparison feature ranks multiple cars by running cost and shows the savings between the cheapest and priciest.`,
+      `A round-trip toggle and a cost-per-distance figure give you the numbers that matter for budgeting a journey.`,
+      `It runs entirely in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How do I calculate the fuel cost of a trip?`,
+        answer: `Divide the distance by your fuel efficiency to find how much fuel you need, then multiply by the price per unit. The calculator does this in either unit system — for metric it uses the L/100km method instead of dividing.`,
+      },
+      {
+        question: `What is the difference between MPG and L/100km?`,
+        answer: `MPG (miles per gallon) measures distance per unit of fuel, so higher is better. L/100km measures fuel per fixed distance, so lower is better. They run in opposite directions, which is why the calculator handles each with its own formula.`,
+      },
+      {
+        question: `How does the vehicle comparison work?`,
+        answer: `Add each vehicle with its fuel efficiency, and the calculator computes the trip cost for all of them at the same distance and fuel price, then ranks them and shows how much you save by choosing the most efficient one.`,
+      },
+      {
+        question: `Does this include tolls, parking, or wear and tear?`,
+        answer: `No — it estimates fuel cost only. The true cost of driving also includes tolls, parking, maintenance, and depreciation, so treat the result as the fuel portion of a trip rather than its total cost.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert between miles and kilometers or gallons and liters.` },
+      { slug: 'time-zone-calculator', note: `Plan arrival times when your trip crosses time zones.` },
+      { slug: 'percentage-calculator', note: `Work out the percentage savings between two vehicles.` },
+    ],
+  },
+
+  'random-number-generator': {
+    intro: [
+      `Whether you are drawing a raffle winner, picking lottery numbers, or seeding a simulation, you need randomness you can trust. This generator produces random numbers within any range you set, using your browser's cryptographically secure random source rather than a basic, predictable one.`,
+      `It is built for the full spread of needs: generate one number or up to a thousand, allow or forbid duplicates, sort the output, and even produce decimals to a set number of places. Teachers randomize, contest runners draw winners, and developers grab quick test data, then copy the results or download them as a CSV.`,
+    ],
+    steps: [
+      `Set the minimum and maximum of your range.`,
+      `Choose how many numbers to generate (1 to 1,000) and how many decimal places, if any.`,
+      `Tick "unique numbers only" to forbid duplicates, and "sort results" to order them.`,
+      `Generate, then copy the numbers or download them as a CSV; recent generations are kept in history.`,
+    ],
+    why: [
+      `It draws from your browser's cryptographically secure random source (crypto.getRandomValues), not the weaker Math.random, so the results are genuinely unpredictable.`,
+      `It can enforce unique numbers, sort the output, and produce decimals — covering draws, sampling, and simulation in one tool.`,
+      `Results export as CSV or copy to the clipboard, and a history keeps your last several generations.`,
+      `Everything runs locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `Are these numbers truly random?`,
+        answer: `They are cryptographically secure pseudo-random numbers from your browser's crypto API, which is far less predictable than ordinary random functions. For raffles, sampling, and general use this is effectively random; it is not, however, certified for regulated gambling.`,
+      },
+      {
+        question: `How do I draw numbers without repeats?`,
+        answer: `Enable "unique numbers only". The generator then ensures no value appears twice — useful for raffles or lottery picks. Just make sure your range is at least as large as the count you request, or unique numbers cannot fill it.`,
+      },
+      {
+        question: `Can it generate decimals, not just whole numbers?`,
+        answer: `Yes. Set the number of decimal places above zero and the generator returns decimal values within your range, rounded to that precision — handy for simulations or random measurements.`,
+      },
+      {
+        question: `Are the minimum and maximum included in the range?`,
+        answer: `Yes. For whole numbers the range is inclusive of both ends, so a range of 1 to 10 can produce both 1 and 10. Set the bounds to exactly the smallest and largest values you want to allow.`,
+      },
+    ],
+    related: [
+      { slug: 'dice-roller', note: `Roll virtual dice for games using the same secure randomness.` },
+      { slug: 'uuid-generator', note: `Generate unique identifiers rather than numbers in a range.` },
+      { slug: 'password-generator', note: `Produce strong random passwords from a secure source.` },
+    ],
+  },
+
+  'dice-roller': {
+    intro: [
+      `Lost your dice, or need a fistful of them for a tabletop game? This dice roller covers the standard polyhedral set — D4, D6, D8, D10, D12, and D20 — plus any custom-sided die you define, and rolls them with cryptographically secure randomness so every result is fair.`,
+      `Tabletop and role-playing gamers use it to roll attack and damage dice, board gamers use it when the physical dice go missing, and teachers use it for classroom games. You can stack multiple dice of different types, roll them all at once, and see each individual result alongside the totals.`,
+    ],
+    steps: [
+      `Tap the standard dice (D4 through D20) to add them, or define a custom die by sides and count.`,
+      `Adjust the count for any die in your selection.`,
+      `Click "roll dice" to roll everything at once.`,
+      `Read each die's individual results and per-type sum, plus the grand total; recent rolls are kept in history.`,
+    ],
+    why: [
+      `It uses cryptographically secure randomness (crypto.getRandomValues), so rolls are genuinely fair rather than subtly biased.`,
+      `It supports the full standard polyhedral set plus custom-sided dice, and lets you roll many at once.`,
+      `It shows every individual roll and the sums, with a history of recent rolls for reference.`,
+      `Rolls happen instantly in your browser, with nothing to sign up for.`,
+    ],
+    faqs: [
+      {
+        question: `What do D6, D20, and similar notations mean?`,
+        answer: `The D stands for "die" and the number is how many sides it has — a D6 is a standard six-sided cube, a D20 is the twenty-sided die common in role-playing games. You can add any of these or define a custom number of sides.`,
+      },
+      {
+        question: `Can I roll several dice at the same time?`,
+        answer: `Yes. Add as many dice as you need, of mixed types, set the count for each, and roll them together. The results show each die's individual values, the sum per die type, and the overall total.`,
+      },
+      {
+        question: `Are the rolls fair?`,
+        answer: `They are generated with your browser's cryptographically secure random source, giving each face an equal chance — fairer than many simple random functions and free from the slight imbalances a physical die can have.`,
+      },
+      {
+        question: `Can I create a die with an unusual number of sides?`,
+        answer: `Yes. Beyond the standard set, the custom-dice option lets you define any number of sides — a D100 for percentile rolls, or a D3, D7, or whatever a game calls for — and roll any quantity of them alongside the standard dice.`,
+      },
+    ],
+    related: [
+      { slug: 'random-number-generator', note: `Generate random numbers in any range, not just dice values.` },
+      { slug: 'probability-calculator', note: `Work out the odds of a particular dice result.` },
+      { slug: 'permutation-combination-calculator', note: `Count the possible outcomes across multiple dice.` },
+    ],
+  },
+
+  'shoe-size-converter': {
+    intro: [
+      `Buying shoes from another country means decoding a different sizing system, and a US 9 is not a UK 9 or an EU 9. This converter translates a shoe size between US, UK, EU, and centimeter scales, with separate formulas for men, women, and kids.`,
+      `Online shoppers use it when a store lists only one region's sizes, travelers use it abroad, and parents use the kids setting for fast-growing feet. By converting through the underlying foot length in centimeters, it keeps the cross-region results consistent rather than relying on a rough lookup.`,
+    ],
+    steps: [
+      `Select the wearer: men, women, or kids.`,
+      `Enter a size and choose which region it is in (US, EU, UK, or CM).`,
+      `Read the equivalent sizes in all the other systems.`,
+      `Use the centimeter figure as the most reliable cross-check when buying online.`,
+    ],
+    why: [
+      `It uses separate conversion formulas for men, women, and kids, since the same number means different lengths across those categories.`,
+      `It converts through actual foot length in centimeters, which keeps US, UK, and EU results consistent with one another.`,
+      `It shows all four systems at once, so one entry answers whichever region a store uses.`,
+      `It runs locally and instantly with no account.`,
+    ],
+    faqs: [
+      {
+        question: `Why isn't a US size the same as a UK size?`,
+        answer: `The US and UK scales start counting from different points, so the same foot maps to different numbers — a US men's size is roughly half a size larger than the UK equivalent. EU sizing uses an entirely different scale based on length. That is why a converter is needed.`,
+      },
+      {
+        question: `Which measurement is most reliable for ordering online?`,
+        answer: `The centimeter measurement of your foot length is the most dependable, because it does not depend on a brand's interpretation of a size number. Measure your foot, convert here, and compare against a retailer's size chart in centimeters when possible.`,
+      },
+      {
+        question: `Do men's and women's sizes really differ?`,
+        answer: `Yes. For the same foot length, men's and women's size numbers differ by roughly one and a half sizes in the US system, which is why this converter asks you to select the wearer before converting.`,
+      },
+      {
+        question: `Are converted sizes exact across every brand?`,
+        answer: `No conversion is perfect, because brands cut shoes differently and some run large or small. Use the result as a strong starting point, then check the specific brand's size guide and reviews, especially when you cannot try the shoes on.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert the underlying foot length between centimeters and inches.` },
+      { slug: 'time-zone-calculator', note: `Another tool for navigating differences across regions when shopping abroad.` },
+    ],
+  },
+
+  'time-zone-calculator': {
+    intro: [
+      `Scheduling across time zones is where good plans fall apart — a call set for "3 PM" means little without knowing whose 3 PM. This calculator converts a date and time from one zone to another and shows the exact offset, and it can line up several cities at once.`,
+      `Remote teams use it to find a meeting time that works across continents, travelers use it to know what time it is back home, and anyone coordinating a livestream or call uses it to avoid the classic off-by-an-hour mistake. It covers twelve major world zones and stays accurate through daylight saving changes by using your browser's built-in time-zone data.`,
+    ],
+    steps: [
+      `Set the date and time you want to convert.`,
+      `Choose the "from" time zone and the "to" time zone.`,
+      `Read the converted time and the offset in hours between the two zones.`,
+      `Add more cities to compare several zones against the same moment at once.`,
+    ],
+    why: [
+      `It is daylight-saving aware, using your browser's native time-zone database rather than fixed offsets that go stale when clocks change.`,
+      `It can compare multiple cities against one moment, which is what you actually need to schedule across a team.`,
+      `It shows the precise hour offset between zones alongside the converted time.`,
+      `It runs entirely in your browser with no network calls or account.`,
+    ],
+    faqs: [
+      {
+        question: `Does this account for daylight saving time?`,
+        answer: `Yes. It uses your browser's built-in time-zone information, which knows each region's daylight-saving rules, so conversions stay correct whether or not the cities involved are currently observing summer time.`,
+      },
+      {
+        question: `Which time zones are supported?`,
+        answer: `It covers twelve major zones spanning the Americas, Europe, Asia, the Middle East, and Oceania — including New York, London, Paris, Tokyo, Shanghai, Dubai, Sydney, and Auckland — enough to coordinate most international schedules.`,
+      },
+      {
+        question: `Why is the offset between two cities not a whole number sometimes?`,
+        answer: `Some regions use half-hour or 45-minute offsets, and daylight-saving transitions can shift the gap between two cities. The calculator reports the actual offset for the date you choose, so it reflects these real-world quirks.`,
+      },
+      {
+        question: `Why set a specific date rather than just convert "now"?`,
+        answer: `Because the offset between two cities can change on different dates as each enters or leaves daylight saving at different times. Choosing the actual date of your meeting or trip ensures the conversion is correct for that day, not just for today.`,
+      },
+    ],
+    related: [
+      { slug: 'time-calculator', note: `Add or subtract times once you know the zone difference.` },
+      { slug: 'date-calculator', note: `Count the days between dates across your schedule.` },
+      { slug: 'hours-calculator', note: `Total work hours for teams spread across zones.` },
+    ],
+  },
+
+  'square-footage-calculator': {
+    intro: [
+      `Whether you are buying flooring, ordering paint, or listing a property, you need the area of a space in square feet — and rooms are rarely a single simple rectangle. This calculator totals the area across multiple rooms, handles rectangular, circular, and triangular shapes, and even estimates the flooring and paint you will need.`,
+      `Homeowners and renters measure rooms for renovations, real-estate agents total a floor plan, and DIYers size a project before buying materials. Adding rooms one by one and summing them means an L-shaped space or a whole apartment is handled in one calculation, with a built-in material estimate to take to the store.`,
+    ],
+    steps: [
+      `Choose your units: feet, meters, or yards.`,
+      `Add each room, pick its shape (rectangle, circle, or triangle), and enter its dimensions.`,
+      `Read the total area across all rooms, plus the perimeter of rectangular rooms.`,
+      `Use the flooring and paint estimates, which add waste and coats, when buying materials.`,
+    ],
+    why: [
+      `It sums multiple rooms of different shapes in one go, so an irregular layout does not need separate calculations.`,
+      `It estimates materials — flooring with a 10% waste allowance and paint for two coats — turning area into a shopping list.`,
+      `It supports feet, meters, and yards and reports rectangular perimeters alongside area.`,
+      `It calculates locally with no account.`,
+    ],
+    faqs: [
+      {
+        question: `How do I calculate the square footage of a room?`,
+        answer: `For a rectangular room, multiply length by width. For circular or triangular spaces the formulas differ, which is why this calculator lets you pick the shape. Add each room and it totals the combined area for you.`,
+      },
+      {
+        question: `How much extra flooring should I buy for waste?`,
+        answer: `A common rule is to add about 10% for cuts, mistakes, and future repairs, which is exactly the allowance this calculator's flooring estimate uses. For complex layouts or diagonal patterns, you may want to add more.`,
+      },
+      {
+        question: `How do I measure an L-shaped or irregular room?`,
+        answer: `Divide it into simple rectangles, add each as a separate room here, and the calculator sums them. Any outline can be broken into rectangles, circles, and triangles this way to get an accurate total.`,
+      },
+      {
+        question: `Why does the paint estimate assume two coats?`,
+        answer: `One coat rarely gives even, full coverage, so painters typically apply two — which is why the paint estimate doubles the area. If you are using a primer or a one-coat paint, you can scale the figure down accordingly.`,
+      },
+    ],
+    related: [
+      { slug: 'tile-calculator', note: `Turn the area into the number of tiles you need to buy.` },
+      { slug: 'concrete-calculator', note: `Estimate concrete volume and bags for slabs and footings.` },
+      { slug: 'area-calculator', note: `Calculate the area of a single shape with more options.` },
+    ],
+  },
+
+  'concrete-calculator': {
+    intro: [
+      `Order too little concrete and a pour stalls; order too much and you have paid for waste. This calculator estimates the volume your project needs and converts it into the number of bags to buy, handling slabs, footings, columns, and tubes.`,
+      `Contractors and serious DIYers use it before pouring a patio, setting fence posts, or filling form tubes. It works out the volume in cubic yards, adds a waste factor, and tells you how many 40, 60, or 80-pound bags that comes to — with an optional cost estimate so you can budget the trip to the supplier.`,
+    ],
+    steps: [
+      `Choose your measurement units and the bag size you plan to buy (40, 60, or 80 lb).`,
+      `Set a waste factor (5% by default) and, optionally, the price per bag.`,
+      `Add each pour, choosing its shape — slab, footing, column, or tube — and entering the dimensions.`,
+      `Read the total volume, cubic yards, bags needed for each bag size, and the estimated cost.`,
+    ],
+    why: [
+      `It handles four pour types — slabs, footings, columns, and tubes — including the hollow-tube calculation that subtracts the inner void.`,
+      `It converts volume into bag counts for all three common bag weights and applies an adjustable waste factor.`,
+      `It estimates total cost when you enter a price per bag, so you can budget before buying.`,
+      `It computes everything in your browser with no sign-up.`,
+    ],
+    faqs: [
+      {
+        question: `How much concrete do I need?`,
+        answer: `Multiply the length, width, and depth of a slab to get its volume, then convert to cubic yards (dividing cubic feet by 27). Columns and tubes use circular formulas. This calculator does the conversion and adds a waste margin automatically.`,
+      },
+      {
+        question: `Why add a waste factor?`,
+        answer: `Some concrete is always lost to spillage, uneven subgrade, and over-excavation, so ordering exactly the calculated volume risks coming up short. A 5–10% waste factor — adjustable here — gives a practical buffer.`,
+      },
+      {
+        question: `How many bags of concrete are in a cubic yard?`,
+        answer: `It depends on bag size: it takes more small bags than large ones to fill the same volume. The calculator uses standard coverage for 40, 60, and 80-pound bags and shows the count for each so you can choose.`,
+      },
+      {
+        question: `When should I order ready-mix instead of bags?`,
+        answer: `Bags suit small jobs like post holes and small slabs, but for large pours the number of bags becomes impractical and ready-mix delivery is usually cheaper and faster. The bag count here is a good gauge — if it runs into the dozens, price up ready-mix too.`,
+      },
+    ],
+    related: [
+      { slug: 'square-footage-calculator', note: `Measure the slab area before calculating its volume.` },
+      { slug: 'tile-calculator', note: `Plan the tiling that goes over a finished slab.` },
+      { slug: 'volume-calculator', note: `Calculate the volume of other three-dimensional shapes.` },
+    ],
+  },
+
+  'tile-calculator': {
+    intro: [
+      `Tiling a floor or wall starts with one question: how many tiles do I buy? This calculator answers it from the area you are covering and the size of your tile, then adds a waste allowance for cuts and breakages so you do not run short mid-job.`,
+      `DIYers and renovators use it before a bathroom or kitchen project, and it handles several areas at once so a room plus a backsplash can be totaled together. Enter your tile dimensions, set a waste percentage, and it returns the base tile count, the count including waste, and an optional cost estimate.`,
+    ],
+    steps: [
+      `Choose your measurement units and enter your tile's length and width.`,
+      `Set a waste factor (10% by default) and, optionally, a price per tile.`,
+      `Add each area you are tiling with its length and width.`,
+      `Read the total area, the base tile count, the count including waste, and the estimated cost.`,
+    ],
+    why: [
+      `It builds in an adjustable waste allowance, so the count reflects the extra tiles real installations need for cuts and breakages.`,
+      `It totals several areas at once, letting you combine a floor and a backsplash, or multiple rooms, in one estimate.`,
+      `It returns both the base count and the with-waste count, plus a cost estimate when you add a price.`,
+      `It works in your browser with nothing to install.`,
+    ],
+    faqs: [
+      {
+        question: `How many tiles do I need?`,
+        answer: `Divide the area you are covering by the area of a single tile, then round up and add a waste margin. This calculator does that automatically — enter your area and tile size and it returns the count including extra for waste.`,
+      },
+      {
+        question: `How much waste should I allow for tiling?`,
+        answer: `Around 10% is typical for straight layouts, which is the default here. Add more — 15% or higher — for diagonal patterns, lots of cuts around fixtures, or large-format tiles where breakages are costlier.`,
+      },
+      {
+        question: `Does the calculator account for grout spacing?`,
+        answer: `It sizes the count from the tile dimensions and the area, not from grout-line spacing, so for tight estimates allow for grout joints and your specific layout. Keeping the standard waste margin generally absorbs the small difference grout lines make.`,
+      },
+      {
+        question: `Should I buy extra tiles beyond the estimate?`,
+        answer: `It is wise to keep a few spare tiles from the same batch, on top of the waste allowance, for future repairs — dye lots vary between production runs, so a matching replacement bought later may look slightly different.`,
+      },
+    ],
+    related: [
+      { slug: 'square-footage-calculator', note: `Measure the area you plan to tile.` },
+      { slug: 'concrete-calculator', note: `Estimate the slab or base beneath your tiling.` },
+      { slug: 'area-calculator', note: `Calculate the area of an unusually shaped surface.` },
+    ],
+  },
+
+  'wind-chill-heat-index-calculator': {
+    intro: [
+      `The thermometer rarely tells the whole story — wind makes the cold bite harder, and humidity makes the heat more dangerous. This calculator computes the "feels like" temperature using the official NOAA wind chill formula in cold conditions and the Rothfusz heat index in hot, humid ones, and adds a safety warning for the result.`,
+      `People use it to dress for a winter walk, judge whether outdoor exercise is safe on a humid afternoon, or understand a weather warning. It automatically applies the right formula based on the temperature, wind, and humidity you enter, and translates the number into a plain-language risk level from "safe" to "extreme danger".`,
+    ],
+    steps: [
+      `Enter the temperature and choose Fahrenheit or Celsius.`,
+      `Enter the wind speed (for cold conditions) and the relative humidity (for hot conditions).`,
+      `Read the "feels like" temperature.`,
+      `Heed the safety warning, which describes the frostbite or heat-illness risk at that level.`,
+    ],
+    why: [
+      `It uses the official formulas — the NOAA wind chill equation and the Rothfusz heat index regression — rather than a rough approximation.`,
+      `It applies the correct formula automatically: wind chill in the cold, heat index in the heat, and the actual temperature in between.`,
+      `It pairs the result with tiered safety warnings, so the number translates into real-world risk and precautions.`,
+      `All processing happens on your device, free to use.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between wind chill and heat index?`,
+        answer: `Wind chill is how cold it feels when wind strips heat from your skin, used in cold weather. Heat index is how hot it feels when humidity limits your body's ability to cool by sweating, used in hot weather. This tool computes whichever applies to your conditions.`,
+      },
+      {
+        question: `When does wind chill apply?`,
+        answer: `The wind chill formula is valid only when the temperature is at or below 50°F and the wind is at least 3 mph. Outside those conditions wind chill is not meaningful, so the calculator switches to the heat index or the actual temperature instead.`,
+      },
+      {
+        question: `When does the heat index apply?`,
+        answer: `The heat index is calculated when the temperature is at or above 80°F and relative humidity is at least 40%. Below those thresholds humidity has little effect on perceived temperature, so the calculator reports the actual temperature.`,
+      },
+      {
+        question: `Why does humidity make heat more dangerous?`,
+        answer: `Your body cools itself by evaporating sweat. When humidity is high, sweat evaporates poorly, so cooling is less effective and the heat feels worse and stresses the body more — which is exactly what the heat index quantifies.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert temperatures and wind speeds between unit systems.` },
+      { slug: 'water-intake-calculator', note: `Plan hydration for hot or strenuous conditions.` },
+      { slug: 'calories-burned-calculator', note: `Estimate the toll of exercising in challenging weather.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
