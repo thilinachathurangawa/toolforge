@@ -9,8 +9,10 @@ import {
 } from '@/lib/constants/tools';
 import { siteConfig, adConfig } from '@/lib/constants/site';
 import { buildToolJsonLd } from '@/lib/seo/json-ld';
+import { getToolContent } from '@/lib/content/tool-content';
 import { Breadcrumb } from '@/components/shared/Breadcrumb';
 import { RelatedTools } from '@/components/shared/RelatedTools';
+import { ToolContent } from '@/components/shared/ToolContent';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
 import { ToolPlaceholder } from '@/components/tools/ToolPlaceholder';
 import { AdBanner, AdInArticle, AdSidebar } from '@/components/ads';
@@ -635,6 +637,42 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'color-converter': dynamic(() => import('@/components/tools/ColorConverter').then(mod => ({ default: mod.ColorConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'temperature-converter': dynamic(() => import('@/components/tools/TemperatureConverter').then(mod => ({ default: mod.TemperatureConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'number-base-converter': dynamic(() => import('@/components/tools/NumberBaseConverter').then(mod => ({ default: mod.NumberBaseConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'data-storage-converter': dynamic(() => import('@/components/tools/DataStorageConverter').then(mod => ({ default: mod.DataStorageConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'timezone-converter': dynamic(() => import('@/components/tools/TimezoneConverter').then(mod => ({ default: mod.TimezoneConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'roman-numeral-converter': dynamic(() => import('@/components/tools/RomanNumeralConverter').then(mod => ({ default: mod.RomanNumeralConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'currency-converter': dynamic(() => import('@/components/tools/CurrencyConverter').then(mod => ({ default: mod.CurrencyConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'cooking-measurement-converter': dynamic(() => import('@/components/tools/CookingMeasurementConverter').then(mod => ({ default: mod.CookingMeasurementConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'number-to-words': dynamic(() => import('@/components/tools/NumberToWords').then(mod => ({ default: mod.NumberToWords })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
@@ -681,7 +719,20 @@ export default function ToolPage({ params }: ToolPageParams) {
 
   const relatedTools = getRelatedTools(slug);
   const category = CATEGORIES.find((c) => c.value === tool.category);
-  const jsonLd = buildToolJsonLd(tool, tool.faqs);
+  const content = getToolContent(slug);
+
+  // Resolve the rich content's related links (slug -> Tool + note) for rendering.
+  const contentRelated = content
+    ? content.related
+        .map(({ slug: relSlug, note }) => {
+          const relTool = getTool(relSlug);
+          return relTool ? { tool: relTool, note } : null;
+        })
+        .filter((r): r is { tool: NonNullable<ReturnType<typeof getTool>>; note: string } => r !== null)
+    : [];
+
+  // Prefer the long-form FAQs for structured data when present.
+  const jsonLd = buildToolJsonLd(tool, content?.faqs ?? tool.faqs);
 
   return (
     <>
@@ -730,81 +781,88 @@ export default function ToolPage({ params }: ToolPageParams) {
 
             <AdInArticle adsterraKey={adConfig.adsterraBannerKey} />
 
-            <section className="prose-tool">
-              <h2 className="font-display text-xl font-bold text-text-primary mb-3">
-                How to Use
-              </h2>
-              <ol className="list-decimal list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
-                {tool.howToUse && tool.howToUse.length > 0 ? (
-                  tool.howToUse.map((step, index) => <li key={index}>{step}</li>)
-                ) : (
-                  <>
-                    <li>Open {tool.name} on this page — no account or install required.</li>
-                    <li>Provide your input (paste text, upload a file, or adjust settings depending on the tool).</li>
-                    <li>Run the tool — processing happens entirely in your browser.</li>
-                    <li>Copy or download the result when you are done.</li>
-                  </>
-                )}
-              </ol>
-            </section>
+            {content ? (
+              /* Long-form, unique editorial content (intro, steps, why, FAQ, related) */
+              <ToolContent tool={tool} content={content} related={contentRelated} />
+            ) : (
+              <>
+                <section className="prose-tool">
+                  <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+                    How to Use
+                  </h2>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
+                    {tool.howToUse && tool.howToUse.length > 0 ? (
+                      tool.howToUse.map((step, index) => <li key={index}>{step}</li>)
+                    ) : (
+                      <>
+                        <li>Open {tool.name} on this page — no account or install required.</li>
+                        <li>Provide your input (paste text, upload a file, or adjust settings depending on the tool).</li>
+                        <li>Run the tool — processing happens entirely in your browser.</li>
+                        <li>Copy or download the result when you are done.</li>
+                      </>
+                    )}
+                  </ol>
+                </section>
 
-            <section>
-              <h2 className="font-display text-xl font-bold text-text-primary mb-3">
-                About This Tool
-              </h2>
-              {tool.aboutContent ? (
-                <p className="text-sm text-text-secondary leading-relaxed">{tool.aboutContent}</p>
-              ) : (
-                <p className="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
-              )}
-              {!tool.aboutContent && (
-                <p className="text-sm text-text-secondary leading-relaxed mt-3">
-                  ToolForge runs {tool.name.toLowerCase()} client-side so your data never leaves your
-                  device. It is free, requires no sign-up, and works on desktop and mobile browsers.
-                </p>
-              )}
-              {tool.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {tool.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-md bg-muted text-[11px] font-medium text-text-secondary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </section>
-
-            {tool.faqs && tool.faqs.length > 0 && (
-              <section>
-                <h2 className="font-display text-xl font-bold text-text-primary mb-4">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-4">
-                  {tool.faqs.map((faq, index) => (
-                    <div key={index} className="border border-border rounded-lg p-4 bg-surface">
-                      <h3 className="font-medium text-text-primary mb-2">{faq.question}</h3>
-                      <p className="text-sm text-text-secondary leading-relaxed">{faq.answer}</p>
+                <section>
+                  <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+                    About This Tool
+                  </h2>
+                  {tool.aboutContent ? (
+                    <p className="text-sm text-text-secondary leading-relaxed">{tool.aboutContent}</p>
+                  ) : (
+                    <p className="text-sm text-text-secondary leading-relaxed">{tool.description}</p>
+                  )}
+                  {!tool.aboutContent && (
+                    <p className="text-sm text-text-secondary leading-relaxed mt-3">
+                      ToolForge runs {tool.name.toLowerCase()} client-side so your data never leaves your
+                      device. It is free, requires no sign-up, and works on desktop and mobile browsers.
+                    </p>
+                  )}
+                  {tool.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {tool.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 rounded-md bg-muted text-[11px] font-medium text-text-secondary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </section>
-            )}
+                  )}
+                </section>
 
-            {/* Related tools — visible on mobile; sidebar shows on desktop */}
-            {relatedTools.length > 0 && (
-              <section className="lg:hidden">
-                <h2 className="font-display text-xl font-bold text-text-primary mb-4">
-                  Related Tools
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {relatedTools.map((related) => (
-                    <ToolCard key={related.slug} tool={related} />
-                  ))}
-                </div>
-              </section>
+                {tool.faqs && tool.faqs.length > 0 && (
+                  <section>
+                    <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+                      Frequently Asked Questions
+                    </h2>
+                    <div className="space-y-4">
+                      {tool.faqs.map((faq, index) => (
+                        <div key={index} className="border border-border rounded-lg p-4 bg-surface">
+                          <h3 className="font-medium text-text-primary mb-2">{faq.question}</h3>
+                          <p className="text-sm text-text-secondary leading-relaxed">{faq.answer}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* Related tools — visible on mobile; sidebar shows on desktop */}
+                {relatedTools.length > 0 && (
+                  <section className="lg:hidden">
+                    <h2 className="font-display text-xl font-bold text-text-primary mb-4">
+                      Related Tools
+                    </h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {relatedTools.map((related) => (
+                        <ToolCard key={related.slug} tool={related} />
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </>
             )}
           </div>
 
@@ -814,7 +872,8 @@ export default function ToolPage({ params }: ToolPageParams) {
               adseraRectKey={adConfig.adseraSidebarRectKey}
               adseraSkyscraperKey={adConfig.adseraSidebarSkyscraperKey}
             />
-            <RelatedTools tools={relatedTools} />
+            {/* When rich content is present, its related block renders in the main column. */}
+            {!content && <RelatedTools tools={relatedTools} />}
           </div>
         </div>
 

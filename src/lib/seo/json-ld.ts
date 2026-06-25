@@ -73,13 +73,12 @@ export function buildToolJsonLd(tool: Tool, faqs?: FAQ[]) {
 
 export function buildCategoryJsonLd(
   category: { value: string; label: string; icon: string },
-  tools: Tool[]
+  tools: Tool[],
+  faqs?: FAQ[]
 ) {
   const url = `${siteConfig.url}/category/${category.value}`;
 
-  return {
-    '@context': 'https://schema.org',
-    '@graph': [
+  const graph: any[] = [
       {
         '@type': 'CollectionPage',
         name: category.label,
@@ -118,6 +117,24 @@ export function buildCategoryJsonLd(
           },
         ],
       },
-    ],
+  ];
+
+  if (faqs && faqs.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
   };
 }
