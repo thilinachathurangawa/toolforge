@@ -637,6 +637,42 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'color-converter': dynamic(() => import('@/components/tools/ColorConverter').then(mod => ({ default: mod.ColorConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'temperature-converter': dynamic(() => import('@/components/tools/TemperatureConverter').then(mod => ({ default: mod.TemperatureConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'number-base-converter': dynamic(() => import('@/components/tools/NumberBaseConverter').then(mod => ({ default: mod.NumberBaseConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'data-storage-converter': dynamic(() => import('@/components/tools/DataStorageConverter').then(mod => ({ default: mod.DataStorageConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'timezone-converter': dynamic(() => import('@/components/tools/TimezoneConverter').then(mod => ({ default: mod.TimezoneConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'roman-numeral-converter': dynamic(() => import('@/components/tools/RomanNumeralConverter').then(mod => ({ default: mod.RomanNumeralConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'currency-converter': dynamic(() => import('@/components/tools/CurrencyConverter').then(mod => ({ default: mod.CurrencyConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'cooking-measurement-converter': dynamic(() => import('@/components/tools/CookingMeasurementConverter').then(mod => ({ default: mod.CookingMeasurementConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'number-to-words': dynamic(() => import('@/components/tools/NumberToWords').then(mod => ({ default: mod.NumberToWords })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {

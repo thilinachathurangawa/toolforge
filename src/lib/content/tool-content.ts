@@ -5626,6 +5626,383 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'address-lookup', note: `See the IP address and ISP your connection is using.` },
     ],
   },
+
+  // ── Converter Tools ───────────────────────────────────────────────────────────
+
+  'color-converter': {
+    intro: [
+      `Every screen, printer, and design application speaks a slightly different color dialect. HEX codes power the web, RGB drives monitors and digital displays, HSL gives designers an intuitive way to adjust hue and lightness, and CMYK governs the inks used in offset printing. Jumping between them manually means running through formulas that are easy to get wrong — this converter keeps all four formats in sync simultaneously, updating every field the moment you change any one of them.`,
+      `Front-end developers reach for it when a designer hands them a CMYK swatch from a brand guide and they need the HEX code for a stylesheet. Print designers need it when a client approves a web color and they must verify the CMYK build before sending to press. Illustrators and UI designers use the HSL view to tweak lightness without losing the hue. The live preview swatch lets you see the actual color immediately, so you know the conversion is correct before you copy anything.`,
+      `All math runs entirely in your browser — no image files, no sign-up, no external service. Conversions use direct mathematical formulas: RGB to HSL via the max/min channel algorithm, RGB to CMYK via the standard ink-key calculation, and back again. The result is exact, not an approximation.`,
+    ],
+    steps: [
+      `Choose the format you are starting from and type or paste the value into that row — HEX as a six-digit code, RGB as three numbers 0–255, HSL as hue 0–360 and saturation/lightness 0–100%, or CMYK as four percentages 0–100%.`,
+      `All other format fields update instantly as you type.`,
+      `Watch the color swatch at the top to confirm the color looks correct.`,
+      `Click any Copy button to copy that format to your clipboard.`,
+    ],
+    why: [
+      `True two-way conversion across all four formats in one step — changing any field syncs HEX, RGB, HSL, and CMYK simultaneously rather than requiring separate roundtrips.`,
+      `All conversion math runs in-browser with no external calls, so private brand colors and client work never leave your machine.`,
+      `The live color preview swatch gives instant visual confirmation that the color is correct before you copy it into a design file or stylesheet.`,
+      `No libraries required — the pure JavaScript formulas guarantee accuracy without dependency version drift.`,
+    ],
+    faqs: [
+      {
+        question: `Why does my CMYK not match what I expected?`,
+        answer: `CMYK values calculated mathematically from RGB are "device-independent" — the real ink output depends on the print profile and paper. This tool gives you the mathematical CMYK equivalent, which is the right starting point, but always proof-print or use an ICC-profiled workflow for exact press results.`,
+      },
+      {
+        question: `What is the difference between HSL and HSB/HSV?`,
+        answer: `HSL (Hue, Saturation, Lightness) and HSB/HSV (Hue, Saturation, Brightness/Value) are related but different. In HSL, 50% lightness is a pure color while 100% is white; in HSB, 100% brightness is a pure saturated color. This tool converts to HSL, which CSS and most design tools understand directly.`,
+      },
+      {
+        question: `Is my color data private?`,
+        answer: `Yes. All conversion happens locally in your browser — no color values are sent to any server. The tool works offline once the page has loaded.`,
+      },
+      {
+        question: `Why are HEX codes six digits?`,
+        answer: `Each pair of hex digits represents one channel: the first pair is Red, the second Green, the third Blue. Hexadecimal (base 16) fits each channel's 0–255 range into exactly two characters (00 to FF), making HEX codes compact and universally understood in web and design contexts.`,
+      },
+    ],
+    related: [
+      { slug: 'color-palette', note: `Extract the dominant color palette from any uploaded image.` },
+      { slug: 'unit-converter', note: `Convert other measurement types including length, weight, and temperature.` },
+    ],
+  },
+
+  'temperature-converter': {
+    intro: [
+      `Celsius and Fahrenheit coexist in daily life in a way almost no other unit pair does — weather apps switch between them depending on where you are, recipes cross the Atlantic, and scientific contexts demand Kelvin. Converting between them by memory (multiply by 9/5, add 32, subtract 32, multiply by 5/9) is doable but error-prone, especially for Kelvin where the offset is 273.15.`,
+      `Cooks converting a European recipe to a US oven temperature, travelers checking the forecast in an unfamiliar country, students working through a chemistry problem in Kelvin, and lab technicians standardizing readings across instruments all run into the same friction. The preset buttons for Absolute Zero, Freezing, Room Temperature, Body Temperature, and Boiling Point are shortcuts for the reference values people look up most often — type a Celsius value and instantly see Fahrenheit and Kelvin, or tap a preset to verify you remember the equivalent correctly.`,
+      `The companion table shows a dozen common reference temperatures in all three scales side by side. It is the kind of quick-glance chart that used to hang on a refrigerator door — now searchable and always current.`,
+    ],
+    steps: [
+      `Type a value in the Celsius, Fahrenheit, or Kelvin field — any of the three updates the other two immediately.`,
+      `Or click a quick-preset button (Absolute Zero, Freezing, Room Temp, Body Temp, Boiling) to jump to a standard reference point.`,
+      `Use the Copy button next to any field to copy that value to your clipboard.`,
+      `Refer to the reference table below for a quick overview of common temperatures in all three scales.`,
+    ],
+    why: [
+      `Instant three-way sync means editing any one field automatically updates both others — no clicking Convert.`,
+      `Preset buttons for the five most-referenced temperatures (Absolute Zero through Boiling) save typing when you need a quick sanity check.`,
+      `The reference table presents twelve real-world temperature landmarks in all three scales for at-a-glance comparison.`,
+      `All conversions use exact formulas (F = C × 9/5 + 32; K = C + 273.15) with no rounding until display, so results are accurate to multiple decimal places.`,
+    ],
+    faqs: [
+      {
+        question: `What is the formula to convert Celsius to Fahrenheit?`,
+        answer: `F = C × 9/5 + 32. For example, 100°C (boiling water) is 100 × 9/5 + 32 = 212°F. To convert Fahrenheit back to Celsius: C = (F − 32) × 5/9.`,
+      },
+      {
+        question: `What is Absolute Zero and why does it matter?`,
+        answer: `Absolute Zero is the lowest theoretically possible temperature: −273.15°C, −459.67°F, or 0 K. It is the point where particles have minimum thermal energy. Kelvin is measured from this point, which is why 0 K equals −273.15°C, and scientific calculations in thermodynamics and chemistry often use Kelvin.`,
+      },
+      {
+        question: `What is normal body temperature in Fahrenheit?`,
+        answer: `The classic figure is 98.6°F (37°C / 310.15 K), derived from a 19th-century German study. Modern research shows average body temperature is closer to 97.9°F (36.6°C), and it varies by individual, time of day, and measurement method.`,
+      },
+      {
+        question: `Why does Kelvin not use a degree symbol?`,
+        answer: `Kelvin is an absolute thermodynamic scale, not a relative "degree" scale. The SI system officially dropped the degree symbol for Kelvin in 1967 to reflect this — you write 373.15 K, not 373.15°K.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert length, weight, speed, volume, and other measurement categories.` },
+      { slug: 'wind-chill-heat-index-calculator', note: `Calculate how temperature actually feels with wind chill or humidity factored in.` },
+    ],
+  },
+
+  'number-base-converter': {
+    intro: [
+      `Binary, octal, decimal, and hexadecimal are not four separate number systems — they are four different ways of writing the same integer. Computers work in binary (base 2) internally, memory addresses and color codes appear in hexadecimal (base 16), Unix file permissions are conventionally written in octal (base 8), and decimal (base 10) is what most humans think in. Moving fluidly between them is a fundamental skill for programmers, network engineers, and computer science students.`,
+      `A front-end developer might start with the hex color code #1A73E8, want to see its decimal RGB channels, and then check the binary representation of each channel to understand bit-masking. A student debugging a microcontroller might need to convert a decimal sensor reading to binary to verify individual bit flags. An admin reading octal chmod permissions like 0755 needs to understand which read/write/execute bits are set. This converter shows all four representations at once and updates live as you type in any one of them.`,
+      `Real-time validation highlights illegal characters for the selected base — you cannot type the digit 2 in binary mode, and letters beyond F are flagged red in hex — so you know immediately if your input is valid.`,
+    ],
+    steps: [
+      `Type your number into the Binary, Octal, Decimal, or Hexadecimal input field.`,
+      `All other bases update instantly. Invalid characters are highlighted in red with a message explaining what is allowed.`,
+      `Hexadecimal values are displayed in uppercase (A–F).`,
+      `Click Copy on any field to copy that representation to your clipboard.`,
+    ],
+    why: [
+      `All four bases display simultaneously — you see the number in every representation at once without toggling between modes.`,
+      `Per-field character validation prevents illegal input for each base (e.g., 2–9 are flagged red in binary) so you catch errors while typing.`,
+      `Uses JavaScript's built-in parseInt(n, base).toString(base) for reliable, spec-compliant conversion across all supported bases.`,
+      `No libraries, no upload, no account — works offline once the page loads.`,
+    ],
+    faqs: [
+      {
+        question: `What does "base" mean in number systems?`,
+        answer: `The base (or radix) tells you how many unique digits the system uses before cycling to the next position. Binary (base 2) uses only 0 and 1; decimal (base 10) uses 0–9; hexadecimal (base 16) uses 0–9 plus A–F for values ten through fifteen.`,
+      },
+      {
+        question: `Why do programmers use hexadecimal so often?`,
+        answer: `One hex digit represents exactly 4 binary bits (a "nibble"), and two hex digits represent a full byte (8 bits). That tight mapping makes hex far more compact than binary while still being directly convertible — which is why memory addresses, color codes, and cryptographic hashes are expressed in hex.`,
+      },
+      {
+        question: `What is the largest number this converter handles?`,
+        answer: `The converter works up to JavaScript's Number.MAX_SAFE_INTEGER (2^53 − 1 = 9,007,199,254,740,991 in decimal). Beyond that, floating-point precision limits make integer results unreliable. For very large integers, use BigInt-based tools instead.`,
+      },
+      {
+        question: `Why does my hex input need to be uppercase?`,
+        answer: `It does not — the converter accepts both uppercase (A–F) and lowercase (a–f) hex input. Output is normalized to uppercase, which is the most common convention in technical documentation, memory dumps, and color codes.`,
+      },
+    ],
+    related: [
+      { slug: 'base64-encoder', note: `Encode binary data to Base64 text for safe transport in URLs and JSON.` },
+      { slug: 'unit-converter', note: `Convert measurement units across length, weight, temperature, and more.` },
+    ],
+  },
+
+  'data-storage-converter': {
+    intro: [
+      `File size units are one of those things that trip people up constantly: is a gigabyte 1,000 megabytes or 1,024? For this tool — and for operating systems, RAM specifications, and most technical contexts — the answer is 1,024, the base-2 (binary) standard. So 1 KB = 1,024 bytes, 1 MB = 1,048,576 bytes, and so on up to petabytes. Paste in any value in any unit and every other unit appears immediately.`,
+      `Cloud storage shoppers comparing plans in terabytes with file sizes in megabytes use it to figure out how many photos actually fit. Sysadmins converting server disk quotas between gigabytes and terabytes, developers sizing database limits expressed in bytes, and students answering "how many gigabytes in a terabyte?" on a homework problem all hit the same need: see the value in every unit without doing the math by hand.`,
+      `The converter shows the full ladder from bytes to petabytes in a single view — type 1.5 GB and instantly see it rendered as 1,610,612,736 bytes, 1,572,864 KB, 1,536 MB, 0.00146 TB, and 0.00000143 PB, formatted to a sensible number of significant digits.`,
+    ],
+    steps: [
+      `Type your file size value in the input field and choose its unit from the dropdown (B, KB, MB, GB, TB, or PB).`,
+      `All other units appear immediately in the result grid below.`,
+      `Click Copy next to any row to copy that value to your clipboard.`,
+    ],
+    why: [
+      `Shows all six units simultaneously — bytes through petabytes — in one grid so you can compare without switching back and forth.`,
+      `Uses strict base-2 (1024) multipliers, the standard for OS file sizes, RAM, and most technical specifications.`,
+      `Smart formatting applies appropriate precision: very small values show more decimal places, very large ones trim to significant figures so results stay readable.`,
+      `Runs entirely in your browser with no network calls.`,
+    ],
+    faqs: [
+      {
+        question: `Is 1 KB 1,000 bytes or 1,024 bytes?`,
+        answer: `In the binary (base-2) standard used by operating systems, RAM, and most hardware specs, 1 KB = 1,024 bytes. Hard drive manufacturers often use decimal (1 KB = 1,000 bytes) to make capacities appear larger, which is why a "500 GB" drive shows up as about 465 GB in Windows. This converter uses the binary 1,024 standard.`,
+      },
+      {
+        question: `How many gigabytes are in a terabyte?`,
+        answer: `1 TB = 1,024 GB in the binary standard. So 1 terabyte holds 1,024 gigabytes, or 1,048,576 megabytes. In the decimal system used by drive manufacturers, 1 TB = 1,000 GB.`,
+      },
+      {
+        question: `What is a petabyte?`,
+        answer: `A petabyte is 1,024 terabytes (about 1.1 quadrillion bytes). Hyperscale data centers and major cloud providers measure storage in petabytes. One petabyte could hold roughly 250,000 hours of HD video.`,
+      },
+      {
+        question: `Why does my operating system show a different size than the label on a drive?`,
+        answer: `Drive manufacturers label capacity using decimal (1 GB = 10^9 bytes) while operating systems like Windows and Linux report using binary (1 GiB = 2^30 bytes). A drive sold as 1 TB therefore shows about 931 GiB in Windows. This converter uses the binary standard.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert other measurement categories including length, weight, and speed.` },
+      { slug: 'number-base-converter', note: `Convert between binary, octal, decimal, and hexadecimal representations.` },
+    ],
+  },
+
+  'timezone-converter': {
+    intro: [
+      `Scheduling across time zones without getting it wrong requires knowing both the current offset and whether each city is observing daylight saving time right now. A fixed UTC offset is not enough — New York shifts from UTC−5 to UTC−4 in March, and Sydney does the opposite in April. This converter uses your browser's built-in time-zone database (via the Intl.DateTimeFormat API), so the offsets it shows are always correct for the specific date you pick.`,
+      `Remote engineering teams use it to find a stand-up time that works from San Francisco to Berlin to Singapore. Event organizers post a livestream time and then verify it in half a dozen attendee cities. Travelers confirm what time their connecting flight boards in local time. Freelancers working with international clients know at a glance whether their counterpart is reachable or asleep. You can add up to eight comparison time zones simultaneously and switch between 12-hour and 24-hour display to match what the other person expects to see.`,
+    ],
+    steps: [
+      `Set the base date and time using the date/time picker — it defaults to right now.`,
+      `Choose the base time zone (the one your time is already in) from the dropdown.`,
+      `The preset comparison zones appear below. Click Add Zone to add more, or the × button on any card to remove one.`,
+      `Toggle 12hr / 24hr to match your preference. Each card shows the local time, date, and UTC offset for that zone.`,
+    ],
+    why: [
+      `Uses the browser's native Intl.DateTimeFormat time-zone database — daylight saving transitions are handled automatically, with no manual offset table to maintain.`,
+      `Supports up to eight comparison zones simultaneously, so a single view covers an entire distributed team.`,
+      `A curated list of nineteen commonly needed IANA zones (from UTC to Pacific/Auckland) covers the major world cities without overwhelming you with hundreds of choices.`,
+      `Works entirely client-side — no API call is needed, so it works offline once the page has loaded.`,
+    ],
+    faqs: [
+      {
+        question: `Does this handle daylight saving time correctly?`,
+        answer: `Yes. It uses the Intl.DateTimeFormat API backed by your browser's IANA time-zone database, which encodes every region's daylight-saving rules. If you pick a date in January for New York, you get EST (UTC−5); pick a date in July and you get EDT (UTC−4) automatically.`,
+      },
+      {
+        question: `What is the difference between EST and EDT?`,
+        answer: `EST (Eastern Standard Time) is UTC−5 and applies during winter. EDT (Eastern Daylight Time) is UTC−4 and applies during summer when daylight saving is in effect. The same applies to other time zones — PST/PDT for the US West Coast, BST/GMT for the UK, and so on.`,
+      },
+      {
+        question: `Why use IANA timezone names instead of offsets like UTC+5:30?`,
+        answer: `Fixed offsets become wrong when daylight saving kicks in. IANA names like "Asia/Kolkata" encode the full history of rules for a region, including exactly when clocks change. A named zone is always correct; a fixed offset is only correct for part of the year in many regions.`,
+      },
+      {
+        question: `Can I convert a specific meeting time rather than the current time?`,
+        answer: `Yes — change the date and time in the base picker to any date and time you like. The comparison cards update immediately, giving you the correct local time for that specific moment in each zone.`,
+      },
+    ],
+    related: [
+      { slug: 'time-zone-calculator', note: `A simpler zone converter for quick current-time lookups across twelve major zones.` },
+      { slug: 'unit-converter', note: `Convert measurement units across length, weight, temperature, and other categories.` },
+    ],
+  },
+
+  'roman-numeral-converter': {
+    intro: [
+      `Roman numerals appear in places decimal numbers do not: movie copyright years (MMXXIV), clock faces, Super Bowl titles (Super Bowl LVIII), chapter headings in formal documents, and the regnal numbers of monarchs. Converting them manually means memorizing M=1000, D=500, C=100, L=50, X=10, V=5, I=1 and applying the subtractive rule — IV is 4 because I before V means subtract. This converter handles both directions in real time.`,
+      `Trivia players verifying the year on an old film title, students writing a term paper in formal numbering, designers adding chapter numbers in a book layout, and anyone who wants to know what year MCMLXXXIV is all use a Roman numeral converter. The two-way interface accepts an integer in the left box and shows the Roman form instantly, or accepts a Roman string in the right box and shows the decimal integer — useful when reading an inscription or a tattooed year and wanting the decimal equivalent.`,
+      `The tool handles the full classical range of 1 to 3999 (I to MMMCMXCIX). Inputs outside this range or containing invalid Roman characters are flagged with clear error messages rather than silently producing a wrong result.`,
+    ],
+    steps: [
+      `To convert a number to Roman: type an integer (1–3999) in the left input box. The Roman numeral appears on the right instantly.`,
+      `To convert Roman to integer: type the Roman numeral string (e.g., MMXXIV) in the right input box. The decimal integer appears on the left.`,
+      `Invalid input (out-of-range numbers or unrecognized Roman characters) shows a red error message under the relevant field.`,
+      `Use Copy to send the result to your clipboard.`,
+    ],
+    why: [
+      `Real-time two-way conversion means you can work in either direction without toggling a mode or clicking Convert.`,
+      `Input validation catches both out-of-range integers and invalid Roman character sequences, so you get an error rather than a silently wrong result.`,
+      `Pure JavaScript lookup-table logic — no external libraries — keeps the tool fast and entirely private, running with no network calls.`,
+      `Covers the full canonical range 1–3999, which is the standard limit for classical Roman numerals before the system breaks down.`,
+    ],
+    faqs: [
+      {
+        question: `Why do Roman numerals stop at 3999?`,
+        answer: `The classical system uses M as the largest single symbol (1000), and conventionally repeats symbols no more than three times (MMM = 3000). The next step would require a symbol for 5000 that the standard system does not include. Extended systems exist for larger numbers (e.g., a bar over a letter multiplies by 1000) but are rarely used.`,
+      },
+      {
+        question: `What is the subtractive rule in Roman numerals?`,
+        answer: `When a smaller value symbol appears before a larger one, it is subtracted rather than added. IV = 4 (5 − 1), IX = 9 (10 − 1), XL = 40, XC = 90, CD = 400, CM = 900. Only specific pairs are valid — IL (49) is not standard Roman, for example, which is why the converter validates the input.`,
+      },
+      {
+        question: `Is MMXXIV correct for the year 2024?`,
+        answer: `Yes. MM = 2000, XX = 20, IV = 4, total 2024. You will see this on film copyright notices and formal publications. The tool confirms it: enter 2024 and the result is MMXXIV.`,
+      },
+      {
+        question: `Are Roman numerals case-sensitive?`,
+        answer: `Conventionally Roman numerals are written in uppercase (MCMLXXXIV), but this converter accepts lowercase input (mcmlxxxiv) and normalizes it to uppercase for output.`,
+      },
+    ],
+    related: [
+      { slug: 'number-base-converter', note: `Convert numbers between binary, octal, decimal, and hexadecimal.` },
+      { slug: 'number-to-words', note: `Spell out any integer as English words, including cheque-writing format.` },
+    ],
+  },
+
+  'currency-converter': {
+    intro: [
+      `Exchange rates change every day, and published static charts are outdated the moment they are printed. This converter fetches live rates directly from the Frankfurter open-source API, so the rate you see is what the market set today — not last week. Rates are sourced from the European Central Bank reference rates, which cover the major global currencies.`,
+      `Travelers estimating how much local cash to carry, online shoppers comparing prices in foreign storefronts, freelancers invoicing international clients, and anyone receiving a wire transfer in a foreign currency all need a current rate rather than a memorized approximation. The searchable currency menus let you find any currency quickly by code (USD, EUR, LKR) or name, and the swap button reverses the direction in one click. If the network is unavailable, the converter shows a clear error rather than silently displaying a stale rate.`,
+      `Because live rates are retrieved from Frankfurter's servers, your selected currency code leaves your browser in the API request. No personal data is transmitted — only the currency code you choose. The converter discloses this openly so you know exactly what data is and is not sent.`,
+    ],
+    steps: [
+      `Enter the amount you want to convert in the input field.`,
+      `Choose the source currency (the one you have) from the first dropdown — type to search by code or name.`,
+      `Choose the target currency (the one you want) from the second dropdown.`,
+      `The converted amount and current rate appear instantly. Use the swap button (⇄) to reverse the direction.`,
+    ],
+    why: [
+      `Live rates from the Frankfurter API (European Central Bank reference rates) mean you see today's market rate, not a cached or static figure.`,
+      `Searchable dropdowns let you find currencies by typing a code (LKR, JPY) or a partial name, covering 30+ major global currencies.`,
+      `The swap button reverses source and target in one click, making it easy to check the rate in both directions.`,
+      `Honest disclosure: the converter clearly states that your currency code is sent to api.frankfurter.app to retrieve rates, so there are no surprises about what leaves your browser.`,
+    ],
+    faqs: [
+      {
+        question: `How current are the exchange rates?`,
+        answer: `Rates come from the Frankfurter API, which publishes European Central Bank reference rates. ECB rates are updated on business days, typically around 16:00 CET. Weekend and holiday rates remain at the last published value. For forex trading where seconds matter, use a brokerage platform; for everyday conversions, these rates are accurate and current.`,
+      },
+      {
+        question: `Does the converter send my data anywhere?`,
+        answer: `It sends only the base currency code (e.g., "USD") to api.frankfurter.app to retrieve the latest rates. No amount you type, no personal information, and no history is transmitted. The Frankfurter API is open-source and does not require an account or API key.`,
+      },
+      {
+        question: `What do I see if I am offline or the API is unavailable?`,
+        answer: `The converter shows a clear error message: "Unable to fetch exchange rates. Please check your connection." It does not display stale data as if it were current. Reload the page once you have connectivity to fetch fresh rates.`,
+      },
+      {
+        question: `Why might the rate differ from my bank or card rate?`,
+        answer: `Banks and card networks apply a spread (markup) on top of the mid-market rate and may add foreign transaction fees. This converter shows the mid-market ECB reference rate, which is roughly the rate you see on financial news sites — the "true" rate before any fees are applied.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert measurement units including length, weight, and temperature.` },
+      { slug: 'tip-calculator', note: `Calculate tips and split bills, useful when dining abroad.` },
+    ],
+  },
+
+  'cooking-measurement-converter': {
+    intro: [
+      `Baking is unforgiving about measurements: add 20% too much flour and a cake is dense, too little butter and cookies spread too thin. The challenge is that European recipes measure in grams while American ones use cups and tablespoons, and the conversion is not the same for every ingredient — a cup of flour weighs about 120 g, but a cup of butter weighs about 227 g because they have different densities. This converter handles that correctly by letting you choose the ingredient first, then converts between cups, tablespoons, teaspoons, milliliters, grams, and fluid ounces using the right density for each.`,
+      `Home bakers adapting a European pastry recipe, cooks scaling a dish from a metric cookbook to US measures, and meal preppers computing per-serving quantities in a unit their scale can read all face this problem. The ingredient selector covers the most common baking staples — flour, sugar, butter, water, milk, honey, salt, rice, and oats. Volume-to-volume conversions (cups to tablespoons, for example) are ingredient-independent and always exact; mass-to-volume conversions use the ingredient-specific density.`,
+    ],
+    steps: [
+      `Select the ingredient from the dropdown (All-Purpose Flour, White Sugar, Butter, Water, Milk, Honey, Salt, Rice, or Rolled Oats).`,
+      `Enter your value in the input field and choose its unit from the unit selector.`,
+      `All equivalent quantities appear in the result grid — cups, tablespoons, teaspoons, milliliters, grams, and fluid ounces — simultaneously.`,
+      `Copy any row to your clipboard with the Copy button.`,
+    ],
+    why: [
+      `Ingredient-aware density lookup means the gram/cup conversion is correct for each ingredient rather than using a generic water-density figure that would be wrong for flour, butter, and most other foods.`,
+      `Covers six units (cups, tablespoons, teaspoons, ml, grams, fl oz) and nine common baking staples in a single tool.`,
+      `All conversions are pure JavaScript math — no network calls, no account, works offline.`,
+      `The full result grid shows every unit simultaneously, so you can choose whichever your scale or measuring cup accommodates.`,
+    ],
+    faqs: [
+      {
+        question: `Why do cups of flour and cups of sugar weigh different amounts?`,
+        answer: `Density. Flour is light and airy; sugar is denser. One cup of all-purpose flour weighs about 120 g, while one cup of white sugar weighs about 200 g. That is why a fixed cups-to-grams ratio only works for one specific ingredient — this tool stores each ingredient's density separately.`,
+      },
+      {
+        question: `How many tablespoons are in a cup?`,
+        answer: `Exactly 16 tablespoons = 1 cup, which is also 48 teaspoons or about 236.6 ml. This volume relationship is the same regardless of the ingredient, so tablespoon-to-cup and teaspoon-to-ml conversions are ingredient-independent.`,
+      },
+      {
+        question: `Is the flour density in this tool for sifted or unsifted flour?`,
+        answer: `The 120 g/cup figure used here is for unsifted all-purpose flour spooned into the cup and leveled off — the most common home-baking method. Sifted flour can weigh as little as 100 g/cup because sifting aerates it. If a recipe specifies sifted flour, the converted gram weight will be slightly less than what this tool shows.`,
+      },
+      {
+        question: `Can I convert honey or sticky liquids the same way?`,
+        answer: `Yes. Honey has a density of about 340 g/cup, which is much heavier than water (237 g/cup) because it is significantly denser. The converter uses the honey-specific density for accurate mass↔volume conversion.`,
+      },
+    ],
+    related: [
+      { slug: 'unit-converter', note: `Convert general measurement units including volume and weight for non-cooking contexts.` },
+      { slug: 'number-to-words', note: `Spell out recipe quantities as words for publishing or accessibility purposes.` },
+    ],
+  },
+
+  'number-to-words': {
+    intro: [
+      `Writing a cheque correctly requires spelling out the amount in words on the second line — "One Thousand Two Hundred Thirty-Four Dollars and 56/100 Cents" — while the figures go on the first line. Get it wrong and the bank honors the written words over the numbers, or refuses the cheque entirely. This converter handles that specific formatting automatically, along with standard English word conversion for any integer up to the quadrillions.`,
+      `Accounts-payable staff who write checks by hand, small business owners printing payment slips, legal document drafters writing out contract values, teachers generating word-form exercises, and anyone double-checking a large number they are about to write on a cheque all reach for this tool. The standard mode converts a number to plain English (1,234,567 → "One Million Two Hundred Thirty-Four Thousand Five Hundred Sixty-Seven"). Cheque mode adds the currency formatting, handling both the integer dollar amount and the cents as a fraction.`,
+      `Conversion uses a pure recursive JavaScript algorithm — no libraries. It handles scale words (thousand, million, billion, trillion, quadrillion), the correct hyphenation of compound tens (Twenty-One through Ninety-Nine), and the "and" connector before hundreds that bank style guides require.`,
+    ],
+    steps: [
+      `Type your number in the input field. For cheque mode with cents, use a decimal point (e.g., 1234.56).`,
+      `Select Standard or Cheque mode using the toggle at the top.`,
+      `The English word output appears instantly in the text area below.`,
+      `Click Copy to send the result to your clipboard, ready to paste into a document or payment form.`,
+    ],
+    why: [
+      `Cheque mode formats the output exactly as banks expect — integer words followed by "and XX/100 Cents" — so you can paste directly without reformatting.`,
+      `Handles numbers up to 999 quadrillion, covering any practical financial or scientific figure.`,
+      `Pure recursive JavaScript logic processes everything in your browser, so sensitive financial figures never leave your device.`,
+      `Standard mode output is fully hyphenated (Twenty-One, not Twenty One) per standard English style, suitable for legal documents and formal writing.`,
+    ],
+    faqs: [
+      {
+        question: `How do I write a cheque amount correctly?`,
+        answer: `Write the dollar amount in words on the "Pay to the order of" line, then add "and XX/100" for the cents — for example, "One Hundred Fifty Dollars and 75/100". Draw a line through any remaining space to prevent alteration. The written words are legally authoritative if they differ from the numeral box.`,
+      },
+      {
+        question: `What is the largest number this tool converts?`,
+        answer: `The converter handles integers up to 999,999,999,999,999 (999 quadrillion) — well beyond any everyday financial or scientific figure. Beyond that, JavaScript integer precision limits apply.`,
+      },
+      {
+        question: `Why are the tens hyphenated (Twenty-One vs Twenty One)?`,
+        answer: `The Chicago Manual of Style, AP Style Guide, and most grammar authorities require a hyphen in compound numbers from twenty-one to ninety-nine. "Twenty-One" is the correct written form; "Twenty One" is non-standard. The cheque format especially requires this, as handwriting ambiguity could otherwise alter the meaning.`,
+      },
+      {
+        question: `Does this work for currencies other than USD?`,
+        answer: `The cheque mode outputs "Dollars and XX/100 Cents" by default, which is the US banking convention. For other currencies, use Standard mode to get the plain words and then add your own currency label — the word conversion itself (e.g., "One Thousand Two Hundred") is currency-neutral.`,
+      },
+    ],
+    related: [
+      { slug: 'roman-numeral-converter', note: `Convert integers to Roman numerals for formal headings or year annotations.` },
+      { slug: 'number-base-converter', note: `Convert numbers between binary, octal, decimal, and hexadecimal representations.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {
