@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "validate:content": "node scripts/validate-tool-content.cjs"
   },
   "dependencies": {
     "@cloudflare/speedtest": "^1.10.1",
