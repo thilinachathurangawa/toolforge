@@ -15,6 +15,10 @@ until it has a `TOOL_CONTENT` entry with all five sections.
 
 **Full standard + copy-paste template: [docs/specs/ADDING_A_TOOL.md](docs/specs/ADDING_A_TOOL.md). Read it before adding a tool.**
 
+**Shortcut: run the `/add-tool <name or description>` slash command** — it drives
+the entire Definition of Done below (component → registry → wiring → content →
+validation) following the standard.
+
 ### Definition of Done for a new tool
 1. Component → `src/components/tools/<Name>/index.tsx` (client-side; process locally where possible).
 2. Register it in `TOOLS` → `src/lib/constants/tools.ts`.

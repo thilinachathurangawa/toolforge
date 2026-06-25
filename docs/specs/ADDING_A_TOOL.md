@@ -10,6 +10,9 @@ pages that caused the rejection.
 > TL;DR: build the widget → register it → wire the dynamic import → **write a
 > `TOOL_CONTENT` entry with all 5 sections** → run `npm run validate:content`
 > and `npm run type-check`.
+>
+> **Fastest path:** run the **`/add-tool <name or description>`** slash command
+> (`.claude/commands/add-tool.md`) and it walks the whole checklist below for you.
 
 ---
 
