@@ -6725,6 +6725,411 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'case-converter', note: `Normalize your text's case before encoding it.` },
     ],
   },
+
+  // ── New image batch ──────────────────────────────────────────────────
+
+  'social-media-image-resizer': {
+    intro: [
+      `Every social platform publishes exact pixel dimensions for posts, stories, covers and headers — and if your image doesn't match, the platform crops, stretches or compresses it in ways you didn't intend. The Social Media Image Resizer takes any JPG, PNG or WebP and outputs a new file at the precise dimensions a specific platform slot demands, so what you see in preview is what followers actually see.`,
+      `Content creators, social media managers and small-business owners use it most: swapping a landscape product shot into Instagram's 4:5 portrait post frame before a campaign launches, squeezing a team photo into a LinkedIn banner without it looking squashed, or preparing a Twitter/X header that won't be auto-cropped on mobile. The tool covers Instagram (Square 1080×1080, Portrait 1080×1350, Story/Reel 1080×1920), Facebook (Cover 820×312, Feed Post 1200×630), Twitter/X (Header 1500×500, Post 1600×900) and LinkedIn (Profile Banner 1584×396, Feed Post 1200×627).`,
+      `Two fit modes give you creative control once a preset is chosen. Cover scales the image until it fills the frame and crops the overflow from the center — ideal when you want an edge-to-edge look and don't mind losing a sliver of the sides. Contain fits the whole image inside the frame and pads the empty space with a background color you pick — useful for logos or infographics where nothing should be cut off. The preview updates in real time on a canvas, and the download produces a clean PNG or JPG at the exact target resolution. Nothing is uploaded; all processing happens in your browser.`,
+    ],
+    steps: [
+      `Upload your image by clicking the upload zone or dragging a JPG, PNG or WebP file onto it.`,
+      `Click the platform tab — Instagram, Facebook, Twitter/X or LinkedIn — to load its preset sizes.`,
+      `Choose the specific size you need from the dropdown (post, story, cover, header or banner).`,
+      `Select Cover to fill the frame (cropping overflow) or Contain to fit the whole image with a background color.`,
+      `If using Contain, click the color swatch to choose a background that matches your brand.`,
+      `Click Download PNG or Download JPG — the file is generated at the exact preset pixel dimensions.`,
+    ],
+    why: [
+      `Exact platform dimensions on every export — no guessing, no post-upload re-cropping by the platform algorithm.`,
+      `Cover and Contain modes let you decide whether to fill the frame or preserve the full image, instead of having the platform decide for you.`,
+      `Real-time canvas preview shows exactly how the crop or padding will look before you download.`,
+      `Entirely browser-based — your photos are never sent to a server, which matters when working with unreleased products or private portraits.`,
+    ],
+    faqs: [
+      {
+        question: `Why does my image look zoomed in on Instagram even after resizing?`,
+        answer: `Instagram applies its own viewport crop on some placements. For a square post set to 1080×1080, the safe zone for faces and important content is roughly the central 80%. Use Cover mode and keep key elements away from the edges, or switch to Contain to see the whole image.`,
+      },
+      {
+        question: `What is the difference between Cover and Contain?`,
+        answer: `Cover scales the image until every pixel of the frame is filled, then crops whatever overflows the edges from the center outward — the whole frame is image, but some of the original may be hidden. Contain scales the image until it fits entirely inside the frame and fills the remaining space with your chosen background color — nothing is cropped, but there may be padding bars.`,
+      },
+      {
+        question: `Are the platform dimensions up to date?`,
+        answer: `The presets reflect the recommended upload dimensions as of mid-2025: Instagram Square 1080×1080, Portrait 1080×1350, Story 1080×1920; Facebook Cover 820×312, Post 1200×630; Twitter/X Header 1500×500, Post 1600×900; LinkedIn Banner 1584×396, Post 1200×627. Platform guidelines do change — check the official help center if a campaign has strict requirements.`,
+      },
+      {
+        question: `Can I download as both PNG and JPG?`,
+        answer: `Yes — both buttons are shown once an image is loaded and a preset is selected. PNG is lossless and best for graphics or images with transparency areas (when using Contain with a white background). JPG at 92% quality is smaller and best for photographs.`,
+      },
+      {
+        question: `Is my image uploaded to a server?`,
+        answer: `No. The entire resize happens on an HTML5 canvas in your browser. Your file stays on your device at all times, which is particularly useful for unreleased product images, client work under NDA, or any photo you'd prefer not to pass through a third-party server.`,
+      },
+    ],
+    related: [
+      { slug: 'image-resizer', note: `Resize to any custom pixel dimensions, not just platform presets.` },
+      { slug: 'image-cropper', note: `Manually crop to a specific region or aspect ratio before resizing.` },
+      { slug: 'image-splitter', note: `Split one wide image into a numbered grid for an Instagram carousel post.` },
+    ],
+  },
+
+  'heic-to-jpg': {
+    intro: [
+      `iPhones and iPads shoot in HEIC (High Efficiency Image Container), a format that packs excellent quality into roughly half the storage of an equivalent JPEG. The problem arises the moment you try to share that photo with someone on Windows, upload it to a website, or attach it to an email — most software outside the Apple ecosystem simply cannot open a HEIC file. The HEIC to JPG Converter decodes your photos to standard JPEG or PNG entirely in your browser, with no server involved.`,
+      `The most common scenario is the iPhone owner who plugs in to a Windows PC and finds a folder full of files that Windows Photos refuses to display, or who tries to attach a HEIC to a web form that only accepts JPG. Designers and editors also reach for it when clients send unprocessed iPhone shots that their editing software won't ingest. The tool handles batch conversion: add as many HEIC files as you like, choose JPG or PNG, set a quality level for JPEG, and click Convert — a progress indicator tracks each file as the HEIC decoder runs. When everything is done, download files individually or grab them all in a single ZIP.`,
+      `Conversion uses the open-source heic2any library, which runs the full HEIC decode in your browser's JavaScript engine. Because there is no server upload step, even private or sensitive photos — medical images, legal documents photographed on an iPhone — stay entirely on your device. The output JPEG at 90% quality is visually indistinguishable from the original while producing a universally compatible file.`,
+    ],
+    steps: [
+      `Drop your HEIC or HEIF files onto the large upload zone, or click to browse and select one or more .heic files.`,
+      `Choose the output format — JPG (smaller, universally supported) or PNG (lossless, larger).`,
+      `For JPG, move the quality slider to balance file size against image sharpness (90% is a good default).`,
+      `Click Convert and watch the progress counter as each file is decoded.`,
+      `Download converted images individually with the Download button, or click Download All (.zip) to get everything in one archive.`,
+    ],
+    why: [
+      `Batch conversion with per-file progress — you can queue a full camera roll and walk away while it runs rather than converting one file at a time.`,
+      `100% private: files never leave your browser, which matters when the HEIC photos contain sensitive content.`,
+      `Graceful error handling — a single corrupt file does not abort the batch; it shows an error for that file and continues with the rest.`,
+      `No app installation or sign-up required; works in any modern desktop or mobile browser.`,
+    ],
+    faqs: [
+      {
+        question: `Why can't Windows open HEIC files directly?`,
+        answer: `HEIC uses the HEVC codec for compression, which requires a licensed decoder. Windows 10 and 11 can open HEIC files only if you install the HEIF Image Extensions from the Microsoft Store (free) or the HEVC Video Extensions (paid). If you'd rather not install anything, converting to JPG solves the problem permanently.`,
+      },
+      {
+        question: `Will I lose quality converting HEIC to JPG?`,
+        answer: `At 90% quality the visual difference from the HEIC original is imperceptible in almost all photos. JPEG is a lossy format, so technically some data is discarded, but the perceptual quality is very high. If you need a truly lossless output, choose PNG — the file will be larger but identical in quality to the source.`,
+      },
+      {
+        question: `How long does conversion take?`,
+        answer: `HEIC decoding is computationally heavier than reading a JPEG because it runs a full video codec in JavaScript. A single 12-megapixel iPhone photo typically takes 1–4 seconds on a modern laptop. A batch of 20 photos may take 30–60 seconds depending on your device's CPU speed. The progress bar tracks each file so you know where things stand.`,
+      },
+      {
+        question: `Are my photos uploaded anywhere?`,
+        answer: `No. The heic2any library decodes entirely in your browser's JavaScript engine. Your photos never leave your device, which is important when converting personal or confidential images.`,
+      },
+    ],
+    related: [
+      { slug: 'image-converter', note: `Convert between JPG, PNG, WebP and GIF formats.` },
+      { slug: 'image-compressor', note: `Reduce the file size of the converted JPGs without visible quality loss.` },
+      { slug: 'image-resizer', note: `Resize the converted photos to specific dimensions after conversion.` },
+    ],
+  },
+
+  'passport-photo-maker': {
+    intro: [
+      `Official passport and visa photos have strict requirements: exact physical dimensions, a plain background, and the subject's head filling a specific portion of the frame. Getting these right at a print shop costs money and requires a trip out. The Passport Photo Maker lets you crop your own portrait to the correct size in your browser, with a head-position guide that helps you frame the shot the way government photo standards specify.`,
+      `The tool supports the most common international standards — US Passport and Visa at 2×2 inches (51×51 mm), UK, EU and Schengen at 35×45 mm, Canada at 50×70 mm, India at 35×45 mm, and Australia at 35×45 mm — all rendered at 300 DPI so the output is print-quality. Once you have cropped the single photo, you can generate a 4×6 inch print sheet that tiles as many copies as fit with small guides between them, formatted for standard photo lab printing — the same sheet format a photo-booth machine produces, printable at any pharmacy or online lab.`,
+      `The cropper works by dragging to pan and using a zoom slider to scale the photo within a fixed frame matching the chosen standard's exact aspect ratio. A blue oval guide marks where the head should sit, and two horizontal lines show the crown and chin limits described in most passport photo regulations. A background color option lets you switch to the white, light grey, or light blue backgrounds required by different countries. Everything happens on a canvas in your browser; your portrait is never uploaded.`,
+    ],
+    steps: [
+      `Upload a clear, front-facing portrait photo (JPG, PNG or WebP).`,
+      `Choose the country standard from the dropdown — US 2×2 in, UK/EU 35×45 mm, Canada 50×70 mm, India or Australia.`,
+      `Pick a print resolution (300 DPI for standard quality, 600 DPI for high-resolution labs) and a background color.`,
+      `Drag inside the preview to pan your face within the frame, and use the zoom slider to scale until your head fills the guide oval.`,
+      `Click Download Photo to save the cropped image at the correct pixel dimensions for your chosen standard.`,
+      `Optionally click Generate 4×6 Print Sheet to create a tiled sheet you can print at any photo lab and cut into individual photos.`,
+    ],
+    why: [
+      `Prints at true 300 DPI — the output pixel dimensions match the physical size exactly, so a 2×2 inch photo at 300 DPI outputs at 600×600 pixels, the correct resolution for print quality.`,
+      `Head-position guide overlay takes the guesswork out of framing — the oval and crown/chin lines reflect the proportions described in US, UK and EU photo regulations.`,
+      `The 4×6 print sheet means you can produce a full set of photos for a fraction of what a photo booth charges, using any photo-printing service.`,
+      `Nothing is uploaded — your portrait stays on your device throughout, which matters when the photo contains a face or identity document.`,
+    ],
+    faqs: [
+      {
+        question: `Will this produce a photo that meets official requirements?`,
+        answer: `The tool outputs the correct pixel dimensions and aspect ratio for each standard at 300 DPI, and the guide overlay helps you position your head within the proportions most governments specify. However, requirements also cover lighting, expression, glasses, and background uniformity. Always check the exact rules for the issuing country before submitting — the tool handles sizing, not lighting or composition.`,
+      },
+      {
+        question: `What background color do I need for a passport photo?`,
+        answer: `Most countries require a plain white or off-white background. The US requires a white background. UK and EU Schengen countries require a light grey or plain white background. Australia allows white or light grey. The tool provides white, light grey and light blue options — use white for US and a light grey for EU applications if in doubt.`,
+      },
+      {
+        question: `How does the 4×6 print sheet work?`,
+        answer: `After cropping your photo, click Generate 4×6 Print Sheet. The tool tiles as many copies of the cropped photo as fit on a 4×6 inch canvas at 300 DPI (1200×1800 pixels) with small gaps between each copy. Download the sheet and print it at actual size (4×6, no scaling) at any photo lab or on a home printer with photo paper, then cut along the guides.`,
+      },
+      {
+        question: `Can I use a photo taken with my phone?`,
+        answer: `Yes, as long as it is a recent front-facing portrait with a reasonably plain background. A busy or dark background may not meet official requirements even if the dimensions are correct, so try to photograph against a white or light-coloured wall in good natural light.`,
+      },
+    ],
+    related: [
+      { slug: 'image-cropper', note: `Crop to a custom aspect ratio when you need something other than a passport-standard frame.` },
+      { slug: 'image-resizer', note: `Resize the finished photo to a different pixel size if a specific upload portal demands it.` },
+      { slug: 'image-compressor', note: `Reduce the file size of the exported photo if an online form has a file-size limit.` },
+    ],
+  },
+
+  'image-collage-maker': {
+    intro: [
+      `Combining several photos into one image is a staple of social media, real-estate listings, event recaps, and product showcases — but most collage apps either slap a watermark across the finished piece or require a paid subscription to remove it. The Image Collage Maker composites photos into a grid on a canvas in your browser, exports a clean PNG or JPG with no watermark, and sends nothing to a server.`,
+      `Choose from seven layouts: 2×1 side by side, 1×2 stacked, 2×2 four-cell grid, 3×1 row, 1×3 column, 3×3 nine-cell grid, or an uneven split with one large cell and two smaller cells alongside it. Each cell accepts a photo by clicking to upload or dragging an image directly onto it. Photos are scaled with cover-fit — the cell is always filled edge to edge, cropping overflow from the center — so the collage looks intentional rather than letterboxed. A border thickness slider (0–60 px) and a border color picker let you add a frame between cells, whether a thin white gap or a thick colored boundary.`,
+      `Three canvas shapes are available: Square (1080×1080), Landscape (1350×1080) and Portrait (1080×1350), matching the most common Instagram output sizes. The live preview redraws as you swap layouts, add images or adjust the border, so you can see the final result before downloading. This makes it equally useful for quick social posts and for polished print-ready composites.`,
+    ],
+    steps: [
+      `Pick a layout from the buttons — 2×2, 3×3, uneven split, or any of the other grid options.`,
+      `Choose a canvas shape: Square, Landscape or Portrait.`,
+      `Click an empty cell in the preview (or drag a photo onto it) to add an image to that slot.`,
+      `Hover over a filled cell and click the ✕ to swap it out or clear it.`,
+      `Move the border thickness slider and click the border color swatch to frame the cells.`,
+      `Click Download PNG or Download JPG to export the finished collage at the full canvas resolution.`,
+    ],
+    why: [
+      `No watermark on the export — ever. Other free collage tools add branding to the image or require account creation to remove it.`,
+      `Cover-fit per cell means every photo fills its slot edge to edge with no awkward letterbox bars.`,
+      `Live canvas preview updates in real time as you change layout, photos, or borders — what you see is what you download.`,
+      `Entirely browser-based with no file upload, so private photos — family events, client work — stay on your device.`,
+    ],
+    faqs: [
+      {
+        question: `Can I use photos of different sizes and orientations?`,
+        answer: `Yes. Each cell applies cover-fit scaling independently, so a landscape photo and a portrait photo placed side by side both fill their cells fully. If important content (faces, text) is near the edges of a photo, it may be cropped — center it in the original image first, or use a layout where the cell's aspect ratio already matches your photo.`,
+      },
+      {
+        question: `What is the output resolution?`,
+        answer: `Square exports at 1080×1080 px, Landscape at 1350×1080 px, and Portrait at 1080×1350 px — the same dimensions recommended by Instagram for posts. These are suitable for social media publishing or printing at small sizes. If you need a higher-resolution export for large-format print, the canvas size options can be extended in a future version.`,
+      },
+      {
+        question: `Can I swap a photo in an existing slot?`,
+        answer: `Click any filled cell — it opens the file picker so you can choose a replacement. The previous image is discarded and the new photo is drawn into the same cell immediately. Alternatively, hover the cell and click the ✕ to clear it to empty, then click to add a fresh photo.`,
+      },
+      {
+        question: `Is there a watermark on the downloaded image?`,
+        answer: `No — the download is a clean PNG or JPG with no ToolForge branding. The canvas is exported directly to a file with no overlay added.`,
+      },
+    ],
+    related: [
+      { slug: 'image-splitter', note: `Do the reverse — slice one image into a numbered grid for an Instagram carousel.` },
+      { slug: 'social-media-image-resizer', note: `Resize the finished collage to an exact platform dimension like a Facebook cover.` },
+      { slug: 'image-resizer', note: `Scale individual photos to a consistent size before placing them in the collage.` },
+    ],
+  },
+
+  'image-to-pdf': {
+    intro: [
+      `Emailing a set of scanned pages, receipts, or product photos as a bunch of loose image files is awkward for the recipient. A single PDF is far easier to open, read and archive — and creating one does not require Word, Acrobat, or any installed software. The Image to PDF Converter assembles JPG, PNG and WebP files into a multi-page PDF entirely in your browser, with no files ever sent to a server.`,
+      `The tool handles the common document-assembly scenarios: a freelancer scanning multiple receipts to submit in one PDF expense report, a designer compiling mockup screenshots into a presentation, or an individual photographing ID documents to email to a landlord. Upload as many images as you need, then drag them up or down in the list to set the page order before generating. A4 and US Letter page sizes are both available, and a Fit to Image option creates a page sized precisely to each image — handy when the images vary in size and you want no white borders. Margin options (None, Small, Large) let you add breathing room around each image, and the tool automatically picks portrait or landscape orientation based on whether the image is taller or wider than it is.`,
+      `PDF generation uses the jsPDF library running entirely client-side. Images are encoded as base64 data URLs and embedded directly into the PDF — no server round-trip, no account, no file size cap imposed by an upload limit. The download appears instantly as a single .pdf file.`,
+    ],
+    steps: [
+      `Upload your images by dropping them onto the zone or clicking to browse — JPG, PNG and WebP are accepted, multiple at a time.`,
+      `Use the ▲ ▼ arrows next to each image to reorder the pages, and ✕ to remove any you don't need.`,
+      `Choose a page size: A4, US Letter, or Fit to Image (page sized to match each individual image).`,
+      `Set a margin — None for edge-to-edge, Small for a comfortable border, or Large for a document-style look.`,
+      `Click Generate PDF to build and immediately download the multi-page document.`,
+    ],
+    why: [
+      `No file size cap from an upload limit — because no upload happens, you can include as many large images as your browser can handle.`,
+      `Reorderable page list before generation — unlike drag-to-upload tools that lock in the order images are selected, you can rearrange freely before committing.`,
+      `Automatic portrait/landscape orientation per page — the tool picks the orientation that wastes the least white space for each image, rather than forcing all pages to the same orientation.`,
+      `Free with no sign-up or watermark on the generated PDF.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between A4, Letter, and Fit to Image?`,
+        answer: `A4 (210×297 mm) and US Letter (216×279 mm) create uniformly sized pages regardless of image dimensions — the image is centered inside the page with your chosen margin. Fit to Image creates a page exactly as large as each image (in points, 1 px = 1 pt), so there are no white borders and every page may have a different size. Use Fit to Image for photo books or when the images vary widely in size.`,
+      },
+      {
+        question: `Can I combine PNG, JPG and WebP images in the same PDF?`,
+        answer: `Yes. The tool accepts all three formats and can mix them within the same document — each image is converted to a base64 data URL and embedded on its own page regardless of format.`,
+      },
+      {
+        question: `Is there a limit on how many images or how large they can be?`,
+        answer: `There is no hard cap built into the tool — the limit is your browser's available memory. Very large images (20+ megapixels each) or very many images (50+) may slow down generation on low-memory devices. If the browser tab becomes unresponsive, try splitting the job into two smaller PDFs.`,
+      },
+      {
+        question: `Does this tool send my photos to a remote server?`,
+        answer: `No. jsPDF runs entirely in your browser and the images are read from local memory using FileReader. Nothing is transmitted; the finished PDF is generated in memory and offered as a local download.`,
+      },
+    ],
+    related: [
+      { slug: 'pdf-to-image', note: `Go the other direction — extract PDF pages as individual JPG or PNG images.` },
+      { slug: 'image-compressor', note: `Reduce image file sizes before including them in the PDF to keep the document small.` },
+      { slug: 'image-resizer', note: `Resize images to a consistent resolution before assembling them into a document.` },
+    ],
+  },
+
+  'pdf-to-image': {
+    intro: [
+      `Sometimes what you need from a PDF is not the text but the visual — a chart on page 3, a diagram buried on page 12, or a slide you want to post as an image rather than share as a link. The PDF to Image Converter renders every page of a PDF to a high-resolution JPG or PNG using Mozilla's PDF.js library, directly in your browser, with no server upload involved.`,
+      `After selecting a PDF, the tool renders a thumbnail grid of all pages — useful for visually navigating long documents. You can tick individual pages or use Select All, choose JPG or PNG output, set a render scale (1×, 2× or 3× — higher scale means sharper images and larger files), and download one page or a ZIP of all selected pages. A 2× scale on a typical A4 document produces an image around 1654×2339 pixels, which is sharp enough for screen display and light print use. At 3×, output reaches 2480×3508 pixels, suitable for most print applications.`,
+      `Because pdf.js runs in the browser and the worker is bundled locally (no external CDN is used), the PDF never leaves your device. This is particularly relevant for confidential business documents, legal contracts, or medical reports that you need to extract an image from without exposing the file to a remote server.`,
+    ],
+    steps: [
+      `Drop a PDF onto the upload zone or click to browse for the file.`,
+      `Choose the output format — JPG for smaller files, PNG for lossless quality — and a render scale (2× is a good all-round choice).`,
+      `Wait while the pages render into the thumbnail grid; a counter shows progress.`,
+      `Tick the pages you want (or use Select All) and click Download Selected (.zip) to get them all, or hover a thumbnail and click the download icon for a single page.`,
+    ],
+    why: [
+      `Renders at up to 3× scale — the highest resolution option produces images at roughly A4 @300 DPI equivalent, sharp enough for most print needs.`,
+      `Per-page selection with a visual thumbnail grid — you can pick exactly the pages you need rather than downloading the whole document.`,
+      `No server upload: pdf.js runs locally with a bundled worker, so confidential documents stay on your device.`,
+      `Handles multi-page PDFs of any length — all pages are available for selection even in long documents.`,
+    ],
+    faqs: [
+      {
+        question: `What scale should I choose?`,
+        answer: `1× renders each page at screen resolution (72 DPI equivalent) — small files, fine for digital sharing. 2× doubles the pixel dimensions and gives roughly 144 DPI, suitable for most on-screen and light print uses. 3× gives roughly 216 DPI and is the best choice when you need to zoom into fine detail or print at moderate size. Higher scales take longer and produce larger files.`,
+      },
+      {
+        question: `Why does my PDF show a blank page or fail to render?`,
+        answer: `Password-protected and encrypted PDFs cannot be rendered — the file must be unlocked first. Very old PDFs using Type 1 fonts or obscure encoding may also fail. Some PDFs that are actually scanned images render correctly but any text in them will be embedded in the image as a bitmap, not searchable text.`,
+      },
+      {
+        question: `Is my PDF uploaded to a server?`,
+        answer: `No. The PDF is read from your local file system using the browser File API and decoded entirely by a locally bundled pdf.js worker. Nothing is transmitted to any server. This is verified by the absence of any network requests during rendering — your browser's network inspector will show none.`,
+      },
+      {
+        question: `Can I extract just one specific page from a 100-page document?`,
+        answer: `Yes. After rendering, all pages appear in the thumbnail grid. Untick every page except the one you want, then click Download Selected (.zip) — you will get a zip with a single image inside. Alternatively, hover the thumbnail and click the download icon to save just that page without using the zip.`,
+      },
+    ],
+    related: [
+      { slug: 'image-to-pdf', note: `Go the other direction — combine a set of images into a single PDF document.` },
+      { slug: 'image-compressor', note: `Reduce the file size of the exported page images before sharing them.` },
+      { slug: 'image-converter', note: `Convert the exported images between formats if you need WebP or GIF.` },
+    ],
+  },
+
+  'image-splitter': {
+    intro: [
+      `The seamless Instagram carousel — where a single panoramic image scrolls across multiple posts, each one ending exactly where the next begins — and the 3×3 grid takeover that reveals itself as a mosaic when you visit someone's profile page both rely on one technique: splitting a single image into a precise grid of numbered tiles. The Image Splitter does exactly that, slicing any JPG, PNG or WebP into columns and rows and packaging the pieces as a numbered ZIP.`,
+      `Content creators use the 3×1 preset for carousel posts — a wide image split into three equal vertical strips that a viewer swipes through in order, creating a seamless horizontal pan effect. The 3×3 preset is for a grid takeover: nine tiles that, when posted as three sets of three in reverse order, form a 3×3 mosaic on a profile page. Custom column and row counts support any other split — a 2×2 for a simple four-panel layout or a 4×1 for a longer carousel. A live grid overlay on the preview shows exactly where the cuts will fall before you download.`,
+      `Pieces are named part_1, part_2, … sequentially left-to-right, top-to-bottom, which is the correct posting order for a seamless carousel. The ZIP is generated on a canvas in your browser and no image data is uploaded.`,
+    ],
+    steps: [
+      `Upload the image you want to split — JPG, PNG or WebP.`,
+      `Pick a preset (3×1 carousel, 3×3 grid takeover, 2×2, 1×3) or enter your own column and row numbers.`,
+      `Check the grid overlay on the preview to confirm the cuts land where you expect.`,
+      `Choose JPG or PNG output format.`,
+      `Click Download pieces (.zip) to get all tiles in a single archive named part_1, part_2, … in posting order.`,
+    ],
+    why: [
+      `Grid overlay preview shows exactly where each cut will fall before you commit to the download, preventing surprises.`,
+      `Numbered naming in left-to-right, top-to-bottom posting order means you can upload the ZIP pieces to a scheduler in order without manual renaming.`,
+      `Custom columns and rows support any grid size from 1×2 up to 10×10 — not just the four presets.`,
+      `Entirely client-side canvas slicing — no upload, no watermark on the pieces.`,
+    ],
+    faqs: [
+      {
+        question: `What order should I post the tiles for a seamless Instagram carousel?`,
+        answer: `Post part_1 first (the leftmost column for a 3×1), then part_2, then part_3. Viewers swipe left through the posts in the order they appear in the carousel, so the file numbered 1 is what appears first when someone lands on the post.`,
+      },
+      {
+        question: `Why don't the pieces line up perfectly when I upload them?`,
+        answer: `The tile width and height are calculated as floor(imageWidth / columns) and floor(imageHeight / rows). If the image dimensions are not exactly divisible by the number of columns or rows, a small strip of pixels at the right or bottom edge is discarded. Start with an image whose dimensions are evenly divisible by your column and row counts for a perfect seamless result.`,
+      },
+      {
+        question: `Can I use this for a 3×3 Instagram profile grid takeover?`,
+        answer: `Yes — choose the 3×3 preset. However, note that Instagram fills a profile grid from right to left, bottom to top. That means to display the mosaic correctly you need to post the tiles starting from the bottom-right (part_9) and work backward to part_1 last. The final post (part_1, top-left) is what most followers will see first in their feed.`,
+      },
+      {
+        question: `What image format should I use for the output?`,
+        answer: `JPG is smaller and suited to photographs. PNG is lossless and better for graphics, illustrations or images with text where you need sharp edges. Instagram recompresses both formats on upload regardless.`,
+      },
+    ],
+    related: [
+      { slug: 'social-media-image-resizer', note: `Resize the source image to the correct aspect ratio for your target platform before splitting.` },
+      { slug: 'image-collage-maker', note: `Do the reverse — combine multiple photos into a single grid image.` },
+      { slug: 'image-cropper', note: `Crop to the exact area you want before slicing into tiles.` },
+    ],
+  },
+
+  'sprite-sheet-generator': {
+    intro: [
+      `Every time a web page or game loads a separate image file for each icon, button state or animation frame, the browser or engine sends a separate HTTP request. For a set of thirty sprites, that is thirty requests — thirty round-trips of latency before anything renders. Combining them all into a single sprite sheet (also called a texture atlas) cuts that to one request, and the JSON frame map tells the engine exactly where each sprite lives in the combined image so it can draw only that region when needed.`,
+      `Web developers use sprite sheets to deliver icon sets or UI elements in one optimized PNG, referencing each icon with a CSS background-position offset. Game developers pack animation frames and tile sets into atlases that the GPU can load as a single texture, dramatically reducing draw calls. The Sprite Sheet Generator packs your individual PNG, JPG or WebP images into rows under a maximum sheet width, with configurable padding between sprites and an optional scale factor. It exports two files at once: the packed PNG atlas, and a JSON frame map that gives each sprite's name, x, y, width and height.`,
+      `Packing happens with a shelf algorithm: sprites are placed left to right; when the next sprite would exceed the max width, a new row begins below the tallest sprite in the current row. This is not the globally optimal packing algorithm (that would be a bin-packing NP-hard problem), but it is fast, predictable, and works well for sprites of similar heights — the most common real-world case. All processing happens on a canvas in your browser with no upload.`,
+    ],
+    steps: [
+      `Drop your sprite images onto the upload zone — PNG is recommended to preserve transparency, but JPG and WebP are accepted.`,
+      `Set the max sheet width in pixels (e.g. 512 for a 512×N sheet). Sprites wider than this value will still be placed but will extend the sheet beyond the limit.`,
+      `Adjust the padding between sprites (a few pixels prevents sprites from bleeding into each other when using linear texture filtering in a game engine).`,
+      `Choose a scale factor to uniformly upscale or downscale all sprites — useful for generating @2x or @0.5x variants.`,
+      `Click Download PNG to save the packed atlas, and Download JSON to save the frame map with x, y, width, height for every sprite.`,
+    ],
+    why: [
+      `Exports both the PNG atlas and the JSON frame map simultaneously — other simple packers give you the image but make you hand-write the coordinates.`,
+      `Scale factor lets you generate multiple resolution tiers (@1x, @2x) from the same set of source images without resizing each file manually.`,
+      `Checkerboard background in the preview makes transparency visible so you can confirm alpha channels are preserved before downloading.`,
+      `No upload: sprites remain on your device, which matters when the assets are unreleased game content or proprietary UI.`,
+    ],
+    faqs: [
+      {
+        question: `What format should I use for the JSON in my project?`,
+        answer: `The exported JSON has a frames object keyed by sprite name (filename without extension), each with x, y, w, h properties, plus a meta object with the full sheet width and height. This structure is similar to what TexturePacker and Phaser expect. For CSS usage, divide x and y by the sheet width and height to get background-position percentages, or use the pixel values directly with background-position in px.`,
+      },
+      {
+        question: `Why is there a gap at the right edge of some rows?`,
+        answer: `The shelf packer places sprites left to right and wraps to a new row when the next sprite would overflow the max width. If the sprites in a row don't add up to exactly the max width, there is empty space at the right of that row. This is normal and expected — the frame map positions are accurate regardless of the empty space.`,
+      },
+      {
+        question: `Does it support transparency (alpha channel)?`,
+        answer: `Yes — the sheet canvas uses a transparent background by default, and PNG export preserves the alpha channel. Each sprite's transparency is maintained in the atlas. If you export sprites that have transparent areas as JPG they will be composited on a white background, so always use PNG for transparency-dependent sprites.`,
+      },
+      {
+        question: `Is there a limit on how many sprites I can pack?`,
+        answer: `There is no hard limit built into the tool. Very large numbers of sprites (hundreds of high-resolution images) may produce a very tall sheet or run slowly due to canvas memory limits. For large atlases, consider reducing the scale or splitting into multiple sheets.`,
+      },
+    ],
+    related: [
+      { slug: 'image-collage-maker', note: `Compose images into a simple grid layout for social media or presentations.` },
+      { slug: 'image-resizer', note: `Resize individual sprite images to a consistent size before packing.` },
+      { slug: 'image-compressor', note: `Reduce the file size of the exported PNG atlas for faster loading.` },
+    ],
+  },
+
+  'image-watermark': {
+    intro: [
+      `Sharing images on the web without any attribution is an invitation for them to be reused without credit. A watermark — whether a copyright line of text or a small logo in the corner — ties the image back to its creator even after it has been downloaded, screenshotted, or reposted. The Image Watermark Tool applies text or image watermarks to photos directly in your browser, with controls for position, opacity, scale and rotation, and outputs the result as a clean download with no extra branding added.`,
+      `Photographers use it to protect portfolio shots before sending them to clients for approval, adding a semi-transparent name in the bottom-right corner so the image is viewable but not print-ready. Small businesses use it to stamp a logo on product photos before publishing them to an online store or social media, deterring unauthorized use. The tool processes multiple images in one run and bundles the results in a ZIP — so a batch of 20 product photos can all be watermarked with the same settings and downloaded together.`,
+      `Switch between Text Watermark and Image Watermark with a single click. For text, configure the font family, size, color, bold, italic, opacity, rotation (0–360°) and a nine-point anchor grid (top-left through bottom-right) with fine-grained X and Y offsets. For an image watermark, upload a logo PNG, set its scale relative to the base image width, and place it anywhere on the same nine-point grid. All watermarking happens on a canvas in your browser; your photos are never uploaded.`,
+    ],
+    steps: [
+      `Upload one or more photos to watermark by dropping them onto the zone or clicking to browse.`,
+      `Click Text to type a watermark (copyright line, name, URL) or Image to upload a logo file.`,
+      `For text: set font family, size, color, bold, italic, and opacity. For image: upload your logo and adjust the scale percentage.`,
+      `Choose a position from the nine-point grid (e.g. Bottom Right) and set X/Y offset to fine-tune the placement.`,
+      `Adjust the rotation slider if you want a diagonal or tilted watermark.`,
+      `Click Add Watermark to process all uploaded images, then download individually or use Download All as ZIP.`,
+    ],
+    why: [
+      `Nine-point anchor grid with pixel-level offset control gives precise placement without needing to calculate coordinates manually.`,
+      `Supports both text and logo (image) watermarks in the same session with a single toggle.`,
+      `Batch processing — watermark an entire folder of photos with identical settings and download them all as one ZIP.`,
+      `Browser-only processing with no upload: original high-resolution photos stay on your device even while being watermarked.`,
+    ],
+    faqs: [
+      {
+        question: `What opacity setting makes a watermark visible but not distracting?`,
+        answer: `A value between 30% and 50% is the most common range for protecting images while keeping the subject clearly visible. At 50% the watermark is obvious but not harsh. Below 20% it may be too easy to clone-stamp out in an image editor. For preview watermarks you want to be clearly unremovable, 70–80% opacity is more appropriate.`,
+      },
+      {
+        question: `Can I watermark a transparent PNG with a logo?`,
+        answer: `Yes — upload the PNG and choose Image watermark mode, then upload your logo. The output preserves the original file type (PNG for PNG sources), keeping any existing transparency intact.`,
+      },
+      {
+        question: `What font families are available for text watermarks?`,
+        answer: `The tool provides seven system fonts: Arial, Helvetica, Times New Roman, Georgia, Verdana, Courier New and Impact. These are standard fonts guaranteed to render consistently across browsers without needing a font download.`,
+      },
+      {
+        question: `Is my image uploaded to a server when I watermark it?`,
+        answer: `No. All watermarking is done on an HTML5 canvas in your browser. Your photos are read from local memory and the watermarked result is saved back to your device as a local download. No data is transmitted to any server.`,
+      },
+    ],
+    related: [
+      { slug: 'image-compressor', note: `Reduce the watermarked image's file size before publishing online.` },
+      { slug: 'image-resizer', note: `Resize your photos to the right dimensions before adding a watermark.` },
+      { slug: 'image-converter', note: `Convert the watermarked image to a different format such as WebP.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

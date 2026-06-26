@@ -741,6 +741,42 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'social-media-image-resizer': dynamic(() => import('@/components/tools/SocialMediaImageResizer').then(mod => ({ default: mod.SocialMediaImageResizer })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'heic-to-jpg': dynamic(() => import('@/components/tools/HeicToJpg').then(mod => ({ default: mod.HeicToJpg })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'passport-photo-maker': dynamic(() => import('@/components/tools/PassportPhotoMaker').then(mod => ({ default: mod.PassportPhotoMaker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'image-collage-maker': dynamic(() => import('@/components/tools/ImageCollageMaker').then(mod => ({ default: mod.ImageCollageMaker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'image-to-pdf': dynamic(() => import('@/components/tools/ImageToPdf').then(mod => ({ default: mod.ImageToPdf })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'pdf-to-image': dynamic(() => import('@/components/tools/PdfToImage').then(mod => ({ default: mod.PdfToImage })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'image-splitter': dynamic(() => import('@/components/tools/ImageSplitter').then(mod => ({ default: mod.ImageSplitter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'sprite-sheet-generator': dynamic(() => import('@/components/tools/SpriteSheetGenerator').then(mod => ({ default: mod.SpriteSheetGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'image-watermark': dynamic(() => import('@/components/tools/ImageWatermark').then(mod => ({ default: mod.ImageWatermark })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
