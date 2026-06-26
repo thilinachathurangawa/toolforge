@@ -6387,6 +6387,344 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'json-to-csv', note: `Convert between the JSON and CSV shapes of your test data.` },
     ],
   },
+
+  // ── Text tools ───────────────────────────────────────────────────────
+
+  'case-converter': {
+    intro: [
+      `Retyping a heading because it came in all caps, or fixing a title that someone wrote in lowercase, is the kind of tiny task that interrupts real work. The Case Converter takes whatever is in the box and rewrites it into the case you need with a single button — no retyping, no find-and-replace gymnastics.`,
+      `It offers eight transformations: UPPERCASE and lowercase for the obvious flips, Title Case and Sentence case for prose, and camelCase, PascalCase, snake_case, and kebab-case for code and identifiers. A writer pasting a messy headline, a student normalizing notes, and a developer turning "User Profile Settings" into userProfileSettings all reach for the same box. A live counter under the text keeps a running tally of words and characters as you edit.`,
+      `Because the transformation replaces the text in place, you can chain edits — uppercase it, decide that is too loud, and switch to Title Case — then copy the final version to your clipboard in one click.`,
+    ],
+    steps: [
+      `Type or paste your text into the box.`,
+      `Click the case you want: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, or kebab-case.`,
+      `Glance at the word and character counts below to confirm the length.`,
+      `Click "Copy to Clipboard" to grab the result, or "Clear" to start fresh.`,
+    ],
+    why: [
+      `The whole transformation runs locally in your browser, so nothing you paste is sent anywhere — fine for confidential drafts and internal copy.`,
+      `Eight cases live behind one textarea, covering both everyday writing (Title and Sentence case) and the programming conventions developers need.`,
+      `Edits apply in place and stack, so you can experiment between cases without losing your text or re-pasting.`,
+      `The live word and character count doubles as a quick length check for headlines, meta descriptions, or tweet-length copy.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between Title Case and Sentence case?`,
+        answer: `Title Case capitalizes the first letter of every word, the way many headlines are styled. Sentence case capitalizes only the first letter of each sentence and leaves the rest lowercase, which reads more naturally in body text. This tool offers both as separate buttons.`,
+      },
+      {
+        question: `When should I use snake_case, kebab-case, or camelCase?`,
+        answer: `snake_case (words joined by underscores) is common for Python variables and database columns. kebab-case (joined by hyphens) suits URLs, CSS classes, and file names. camelCase and PascalCase join words without separators and are typical for JavaScript variables and class names respectively.`,
+      },
+      {
+        question: `Does converting to camelCase work on a whole sentence?`,
+        answer: `Yes — it splits your text on spaces and common separators, then joins the words with the first letter of each (after the first) capitalized. It works best on short phrases meant to become a single identifier rather than long paragraphs.`,
+      },
+      {
+        question: `Is my text uploaded to a server?`,
+        answer: `No. All case conversion happens in your browser with plain JavaScript, so the text never leaves your device.`,
+      },
+    ],
+    related: [
+      { slug: 'word-counter', note: `When you need a deeper breakdown — sentences and paragraphs, not just words and characters.` },
+      { slug: 'string-converter', note: `For converting between two specific naming formats with a chosen From and To.` },
+      { slug: 'find-and-replace', note: `Fix recurring words or phrases across the same block of text.` },
+    ],
+  },
+
+  'text-to-speech': {
+    intro: [
+      `Sometimes it is easier to hear text than to read it — proofreading a paragraph out loud catches clumsy phrasing, and listening to an article while doing something else is just more comfortable. This Text to Speech reader speaks any text you type using the voices already built into your device.`,
+      `It taps the browser's native speech synthesis, so you can pick from the system voices your operating system provides, then fine-tune how they sound: pitch from low to high and speed from a slow, deliberate pace to a brisk one. Students reviewing notes, writers checking the flow of a draft, and anyone who simply prefers listening can paste text and press play. Play, Pause, Resume, and Stop give you full control over playback.`,
+      `Because it uses the platform's own engine, there is no audio file to download — the text is spoken live through your speakers. That also keeps it instant and free, with no character quota to watch.`,
+    ],
+    steps: [
+      `Type or paste the text you want read aloud into the box.`,
+      `Choose a voice from the dropdown — the list comes from your operating system.`,
+      `Adjust the Pitch and Speed sliders to taste.`,
+      `Press Play to start; use Pause and Resume to hold and continue, or Stop to end.`,
+    ],
+    why: [
+      `It uses your device's built-in speech engine, so it is free, instant, and has no length limit imposed by a paid API.`,
+      `Separate pitch and speed controls let you slow a voice down for clarity or speed it up to skim, and shape its tone.`,
+      `Full transport controls — play, pause, resume, stop — mean you can follow along and stop exactly where you need to.`,
+      `Nothing is sent to ToolForge; the text is handed to the speech engine already present in your browser and operating system.`,
+    ],
+    faqs: [
+      {
+        question: `Why are there different voices on different devices?`,
+        answer: `The voice list comes from your operating system and browser, not from this tool. Windows, macOS, iOS, Android, and Chrome each ship their own set of voices, so the options — and their quality — vary from one device to the next.`,
+      },
+      {
+        question: `Why is the voice dropdown empty at first?`,
+        answer: `Some browsers load voices asynchronously, so the list can be momentarily empty when the page opens and then populate a second later. If it stays empty, your browser may not expose any speech voices; try a Chromium-based browser or a different device.`,
+      },
+      {
+        question: `Can I download the speech as an audio file?`,
+        answer: `No. The browser's speech synthesis API plays audio live but does not give web pages access to the underlying audio stream, so there is no MP3 or WAV to save. For a downloadable file you would need a dedicated TTS service.`,
+      },
+      {
+        question: `Does my text get sent anywhere?`,
+        answer: `The text is passed to your browser and operating system's speech engine, not to ToolForge. Depending on the voice you pick, your platform may render it on-device or via its own online voices — that part is controlled by your OS.`,
+      },
+    ],
+    related: [
+      { slug: 'speech-to-text', note: `The reverse — dictate with your voice and get text back.` },
+      { slug: 'word-counter', note: `Check how long a passage is before you have it read aloud.` },
+      { slug: 'case-converter', note: `Tidy up the capitalization of your text before listening to it.` },
+    ],
+  },
+
+  'speech-to-text': {
+    intro: [
+      `Typing slows you down when ideas are flowing, and some thoughts are just easier to say than to type. This Speech to Text tool turns your spoken words into written text in real time, so you can capture a note, draft an email, or dictate a paragraph hands-free.`,
+      `It uses your browser's built-in speech recognition. Press the microphone button and the transcript fills in as you talk, with words appearing live before they are finalized. You can pick the recognition language — US or UK English, Spanish, French, German, Hindi, and more — so it understands your accent and vocabulary. Journalers, people with repetitive-strain concerns, and anyone brainstorming out loud use it to get words down fast, then copy the transcript or clear it and start again.`,
+      `It is worth knowing how this works under the hood: browser speech recognition typically sends your audio to an online service for transcription, so this is best for everyday notes rather than confidential material.`,
+    ],
+    steps: [
+      `Pick your spoken language from the dropdown.`,
+      `Click the large microphone button and allow microphone access when prompted.`,
+      `Speak naturally — your words appear in the transcript as you talk, with the pulsing button showing it is listening.`,
+      `Click the button again to stop, then use "Copy Transcript" or "Clear".`,
+    ],
+    why: [
+      `Live interim results show your words as you speak, so you can see it is working and catch mistakes immediately.`,
+      `Multiple recognition languages mean it adapts to your accent and the language you are actually speaking.`,
+      `Clear error handling tells you when the microphone is blocked, missing, or unsupported, instead of failing silently.`,
+      `It runs in the browser with no app to install and no account to create.`,
+    ],
+    faqs: [
+      {
+        question: `Which browsers support voice typing?`,
+        answer: `Speech recognition works in Chrome, Edge, and other Chromium-based browsers, and in Safari. Firefox does not currently implement the Web Speech Recognition API, so the tool shows an unsupported message there.`,
+      },
+      {
+        question: `Is my voice processed privately on my device?`,
+        answer: `Usually not. Most browsers, including Chrome, send your audio to an online service (Google's, in Chrome's case) to perform the transcription, so the audio leaves your device. Because of that, avoid dictating passwords or sensitive personal information.`,
+      },
+      {
+        question: `Why does it stop listening on its own?`,
+        answer: `Browsers may end a recognition session after a pause in speech or after a period of silence. Just click the microphone again to resume — your existing transcript is kept, and new speech is appended to it.`,
+      },
+      {
+        question: `Why is nothing being transcribed?`,
+        answer: `Check that you granted microphone permission, that the correct input device is selected in your system settings, and that you chose the language you are actually speaking. The tool will surface a message for denied access or a missing microphone.`,
+      },
+    ],
+    related: [
+      { slug: 'text-to-speech', note: `The opposite direction — have typed text read back to you aloud.` },
+      { slug: 'word-counter', note: `Count the words in your finished transcript.` },
+      { slug: 'case-converter', note: `Fix the capitalization of a dictated draft in one click.` },
+    ],
+  },
+
+  'duplicate-line-remover': {
+    intro: [
+      `Lists pulled from logs, exports, or copy-pasted spreadsheets are full of repeats, and scrolling through to delete them by hand is error-prone. This Duplicate Line Remover strips out repeated lines instantly and tells you exactly how many it removed.`,
+      `It splits your text on line breaks and keeps only the first occurrence of each line, using a fast set-based comparison. Three toggles tune what "duplicate" means: turn off case sensitivity so "Apple" and "apple" count as the same, trim surrounding whitespace so a stray trailing space does not hide a match, and choose whether blank lines are preserved or dropped. Marketers cleaning an email list, developers deduping config entries, and anyone tidying a CSV column paste into the input and read the cleaned result from the output.`,
+      `A badge reports the number of duplicates removed, so you get instant confirmation that the cleanup did something — useful when checking whether a list had repeats at all.`,
+    ],
+    steps: [
+      `Paste your list into the Input box, one item per line.`,
+      `Set the toggles: case-sensitive comparison, trim whitespace before comparing, and keep empty lines.`,
+      `Click "Remove Duplicates".`,
+      `Read the deduplicated list in the Output box and check the badge for how many were removed, then copy the result.`,
+    ],
+    why: [
+      `It runs entirely in your browser, so even a long list of emails or internal records never leaves your machine.`,
+      `The three comparison options handle the real-world messiness — mixed case and stray whitespace — that trips up naive deduplication.`,
+      `It preserves the first occurrence in its original form, so your kept lines look exactly as you pasted them.`,
+      `The removed-count badge confirms the result and quickly tells you how duplicate-heavy a list was.`,
+    ],
+    faqs: [
+      {
+        question: `Does it keep the original order of my list?`,
+        answer: `Yes. The tool walks your list top to bottom and keeps the first time each line appears, so the surviving lines stay in their original order rather than being sorted.`,
+      },
+      {
+        question: `How does "trim whitespace before comparing" help?`,
+        answer: `Lines that look identical can differ by a trailing space or a leading tab, which makes them count as unique. Trimming compares the lines without that surrounding whitespace, so visually identical entries are correctly treated as duplicates.`,
+      },
+      {
+        question: `What happens to blank lines?`,
+        answer: `With "Keep empty lines" on, blank lines are preserved exactly where they are and are not deduplicated. With it off, blank lines are removed entirely, which is handy for compacting a sparse list.`,
+      },
+    ],
+    related: [
+      { slug: 'text-sorter', note: `Alphabetize or shuffle your list once the duplicates are gone.` },
+      { slug: 'find-and-replace', note: `Normalize entries first so near-duplicates collapse into exact matches.` },
+      { slug: 'word-frequency-counter', note: `See which entries repeated most before you removed them.` },
+    ],
+  },
+
+  'find-and-replace': {
+    intro: [
+      `Swapping one word for another across a wall of text — renaming a variable in a snippet, updating a product name in a draft, or fixing a typo that appears a dozen times — is exactly the job for find and replace. This tool does it in the browser with a live preview and a running count of how many replacements it made.`,
+      `Type what to find and what to replace it with, and the result updates as you go. A "Match case" checkbox controls whether the search is case-sensitive, and a "Use regular expressions" checkbox unlocks pattern matching for the trickier jobs: collapsing whitespace, reformatting dates, or capturing part of a match and reusing it. Editors cleaning up imported copy, developers tweaking code blocks, and anyone reformatting data lean on it instead of editing by hand.`,
+      `When regex mode is on, an invalid pattern shows a clear error rather than failing silently, and capture-group references like $1 work as they do in JavaScript, so you can rearrange text, not just substitute it.`,
+    ],
+    steps: [
+      `Paste your text into the main box.`,
+      `Enter the term or pattern to find, and what to replace it with.`,
+      `Tick "Match case" for an exact-case search, or "Use regular expressions" for pattern matching.`,
+      `Watch the replacement counter, then copy the result from the output box.`,
+    ],
+    why: [
+      `Replacements happen live in your browser as you type, with a count so you know immediately how many matches were affected.`,
+      `Full regular-expression support — including capture-group backreferences — handles reformatting jobs a plain text swap cannot.`,
+      `In literal mode the search term is escaped for you, so special characters like dots and parentheses are matched as themselves, not as regex syntax.`,
+      `An invalid regular expression surfaces a readable error instead of breaking, so you can fix the pattern and carry on.`,
+    ],
+    faqs: [
+      {
+        question: `How do I use regular expressions here?`,
+        answer: `Tick "Use regular expressions" and type a pattern in the Find box — for example \\d{4} to match any four digits. The pattern runs globally, and turning off "Match case" adds the case-insensitive flag. You can reference captured groups in the Replace box with $1, $2, and so on.`,
+      },
+      {
+        question: `Why is my search not finding a match?`,
+        answer: `Check the "Match case" setting — with it on, the search is case-sensitive, so "Cat" will not match "cat". In literal (non-regex) mode the text must appear exactly; switch to regex mode if you need flexible matching like optional characters or word boundaries.`,
+      },
+      {
+        question: `Does it replace every occurrence or just the first?`,
+        answer: `Every occurrence. The replacement is applied globally across the whole text, and the counter tells you how many matches were changed.`,
+      },
+      {
+        question: `Is my text kept private?`,
+        answer: `Yes — the find-and-replace runs locally in your browser using JavaScript's own string and RegExp engine, so nothing is uploaded.`,
+      },
+    ],
+    related: [
+      { slug: 'regex-tester', note: `Build and debug a complex pattern before using it to replace text.` },
+      { slug: 'duplicate-line-remover', note: `Clean up a list after normalizing its entries with a replace.` },
+      { slug: 'case-converter', note: `Adjust the capitalization of the whole block in one step.` },
+    ],
+  },
+
+  'text-sorter': {
+    intro: [
+      `Getting a list into order — alphabetizing names, grouping lines by length, or randomizing draw entries — is one of those jobs that is tedious manually and trivial for a computer. This Text Sorter reorders the lines of whatever you paste with a single click per action.`,
+      `It treats each line as an item and offers six operations: sort A–Z or Z–A, sort by length (shortest or longest first), reverse the current order without sorting, and shuffle randomly using the Fisher–Yates algorithm for an unbiased mix. Two options refine the result — a case-insensitive sort so capitalization does not scatter related words, and a remove-blank-lines toggle to drop empty rows first. Teachers randomizing a roster, writers alphabetizing a glossary, and anyone ordering a bibliography use it the same way.`,
+      `Each action rewrites the same box, so you can stack them: remove blanks, sort A–Z, then reverse — and a line counter keeps track of how many entries you are working with.`,
+    ],
+    steps: [
+      `Paste your list into the box, one item per line.`,
+      `Set the options — case-insensitive sort and remove blank lines — to taste.`,
+      `Click an action: A → Z, Z → A, Length ↑, Length ↓, Reverse, or Shuffle.`,
+      `Copy the reordered list with the Copy button.`,
+    ],
+    why: [
+      `Six ordering operations in one place cover alphabetical, length-based, reversed, and randomized needs without a spreadsheet.`,
+      `Shuffle uses a proper Fisher–Yates algorithm, so every arrangement is equally likely — important for fair random draws.`,
+      `Alphabetical sorting is locale-aware via localeCompare, so accented and international characters order sensibly.`,
+      `Everything happens in your browser, so your list stays private and the result is instant.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between Reverse and Z → A?`,
+        answer: `Z → A sorts the lines into reverse alphabetical order. Reverse simply flips the current order of the lines as they are, without sorting — so if your list is already in a custom order, Reverse mirrors it while Z → A would alphabetize it backwards.`,
+      },
+      {
+        question: `Is the shuffle truly random?`,
+        answer: `Yes. It uses the Fisher–Yates shuffle, which produces an unbiased permutation where every possible ordering is equally likely — unlike naive sort-by-random tricks that can skew the results.`,
+      },
+      {
+        question: `How does case-insensitive sorting change the result?`,
+        answer: `With it on, "apple" and "Apple" sort next to each other instead of all capitalized words being grouped before lowercase ones. Turn it off if you specifically want uppercase entries ordered separately from lowercase ones.`,
+      },
+    ],
+    related: [
+      { slug: 'duplicate-line-remover', note: `Remove repeats before or after sorting the list.` },
+      { slug: 'word-frequency-counter', note: `Analyze which words dominate a list once it is organized.` },
+      { slug: 'find-and-replace', note: `Reformat entries before sorting so they line up the way you expect.` },
+    ],
+  },
+
+  'word-frequency-counter': {
+    intro: [
+      `Which words are you leaning on too heavily? Word frequency analysis answers that — and it is the backbone of everything from editing prose to studying a text. This counter reads whatever you paste and builds a ranked table of every word and how often it appears.`,
+      `It extracts words with a Unicode-aware pattern, lowercases them so "The" and "the" are counted together, and tallies the totals into a sortable table showing each word, its count, and its share of the text as a percentage. A "Ignore common stop words" toggle filters out high-frequency filler like the, and, to, and of, so the words that actually characterize your writing rise to the top. Editors hunting for repetition, students analyzing a passage, and writers checking keyword balance all use it to see their text at a glance.`,
+      `Click the column headers to re-sort by count or alphabetically, and a summary line reports the total and unique word counts so you can gauge vocabulary variety.`,
+    ],
+    steps: [
+      `Paste the text you want to analyze into the box.`,
+      `Optionally tick "Ignore common stop words" to hide filler words.`,
+      `Read the table of words, counts, and percentages.`,
+      `Click the "Word" or "Count" header to change the sort order.`,
+    ],
+    why: [
+      `It reports each word's percentage share and the unique-versus-total word counts, giving you a sense of repetition and vocabulary range, not just raw tallies.`,
+      `The stop-word filter strips out grammatical filler so the meaningful, content-carrying words stand out.`,
+      `Sortable columns let you flip between "most frequent" and "alphabetical" views of the same data instantly.`,
+      `All analysis is done in your browser, so even unpublished drafts stay on your device.`,
+    ],
+    faqs: [
+      {
+        question: `What counts as a "word" here?`,
+        answer: `Words are matched as runs of letters, digits, and apostrophes, so contractions like "don't" stay intact. Punctuation and spaces are treated as separators, and everything is lowercased so the same word in different cases is grouped together.`,
+      },
+      {
+        question: `What are stop words and why ignore them?`,
+        answer: `Stop words are extremely common words — the, and, a, to, of, in — that appear in almost any text and usually carry little meaning on their own. Filtering them out reveals the distinctive words that actually describe your content, which is useful for editing and keyword analysis.`,
+      },
+      {
+        question: `How is the percentage calculated?`,
+        answer: `Each word's percentage is its count divided by the total number of words in the text (before stop-word filtering), so the figures reflect how much of the whole document that word represents.`,
+      },
+      {
+        question: `How is this different from a keyword density checker?`,
+        answer: `This is a general text-analysis table for writers and students, with stop-word filtering and sortable columns. A keyword density checker is framed specifically around on-page SEO and target phrases; use that one when you are optimizing a web page for search.`,
+      },
+    ],
+    related: [
+      { slug: 'word-counter', note: `Get overall totals — words, characters, sentences — rather than per-word frequencies.` },
+      { slug: 'keyword-density-checker', note: `Analyze the same idea through an SEO lens for a web page.` },
+      { slug: 'text-sorter', note: `Sort or dedupe the word list you are studying.` },
+    ],
+  },
+
+  'morse-binary-converter': {
+    intro: [
+      `Whether you are decoding a puzzle, teaching a class about how computers store letters, or just having fun with secret messages, translating between plain text and Morse code or binary is oddly satisfying. This converter does both, in both directions, updating the moment you type.`,
+      `Switch between two modes — Text ↔ Morse and Text ↔ Binary — and edit either side: type a sentence and watch the dots-and-dashes or the 1s-and-0s appear, or paste a coded string and read the decoded text back. Morse uses the international standard, with letters separated by spaces and words by a forward slash; binary encodes each character as its eight-bit code. Hobbyists, students, escape-room designers, and curious tinkerers all use it to encode and decode without memorizing a chart.`,
+      `If you paste something the mode cannot parse — a stray character in a Morse string or a digit other than 0 or 1 in binary — the field turns red and explains the rule, so you can spot the problem instead of getting silent garbage.`,
+    ],
+    steps: [
+      `Choose a mode: "Text ↔ Morse" or "Text ↔ Binary".`,
+      `Type or paste plain text in the left box to encode it.`,
+      `Or type or paste Morse/binary in the right box to decode it back to text.`,
+      `Use the Copy link above either box to grab the result; watch for a red error state if the code is malformed.`,
+    ],
+    why: [
+      `Conversion is bi-directional and live — editing either side instantly updates the other, so encoding and decoding use one interface.`,
+      `It follows the conventional Morse formatting (space between letters, slash between words) and standard eight-bit binary, so the output is interoperable with other tools and charts.`,
+      `Clear, mode-specific error states flag invalid Morse symbols or non-binary digits and tell you the formatting rule to fix them.`,
+      `It runs entirely in your browser from built-in lookup tables, so it is instant, free, and private.`,
+    ],
+    faqs: [
+      {
+        question: `How should I format Morse code so it decodes correctly?`,
+        answer: `Separate the dots and dashes of each letter with a single space, and separate whole words with a forward slash surrounded by spaces — for example "... --- ..." is SOS, and ".... ..  / -- .--. " spaces words apart. Decoding is case-insensitive and the output is shown in uppercase.`,
+      },
+      {
+        question: `Why does my binary show an error?`,
+        answer: `Binary mode expects only 0s and 1s, with each character as an eight-bit group separated by spaces. A different digit, a letter, or missing spaces between bytes will trigger the error state. Re-space the input into clean eight-bit chunks and it will decode.`,
+      },
+      {
+        question: `Can it handle punctuation and numbers?`,
+        answer: `Morse mode supports digits and common punctuation in addition to letters. Binary mode encodes any character from its character code, so numbers and symbols convert as readily as letters — though very high-range Unicode characters may exceed a single eight-bit byte.`,
+      },
+      {
+        question: `Is this useful for real communication?`,
+        answer: `It is mainly an educational and hobby tool — for puzzles, learning Morse, escape rooms, and understanding how text maps to binary. It is not an encryption tool; Morse and binary are encodings anyone can reverse, not secure ciphers.`,
+      },
+    ],
+    related: [
+      { slug: 'base64-encoder', note: `Another text encoding, used to safely represent binary data as text.` },
+      { slug: 'url-encoder', note: `Encode text for safe use in URLs and query strings.` },
+      { slug: 'case-converter', note: `Normalize your text's case before encoding it.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

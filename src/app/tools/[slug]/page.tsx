@@ -709,6 +709,38 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'case-converter': dynamic(() => import('@/components/tools/CaseConverter').then(mod => ({ default: mod.CaseConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'text-to-speech': dynamic(() => import('@/components/tools/TextToSpeech').then(mod => ({ default: mod.TextToSpeech })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'speech-to-text': dynamic(() => import('@/components/tools/SpeechToText').then(mod => ({ default: mod.SpeechToText })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'duplicate-line-remover': dynamic(() => import('@/components/tools/DuplicateLineRemover').then(mod => ({ default: mod.DuplicateLineRemover })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'find-and-replace': dynamic(() => import('@/components/tools/FindAndReplace').then(mod => ({ default: mod.FindAndReplace })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'text-sorter': dynamic(() => import('@/components/tools/TextSorter').then(mod => ({ default: mod.TextSorter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'word-frequency-counter': dynamic(() => import('@/components/tools/WordFrequencyCounter').then(mod => ({ default: mod.WordFrequencyCounter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'morse-binary-converter': dynamic(() => import('@/components/tools/MorseBinaryConverter').then(mod => ({ default: mod.MorseBinaryConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
