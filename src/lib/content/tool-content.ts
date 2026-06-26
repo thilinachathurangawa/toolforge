@@ -6003,6 +6003,390 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'number-base-converter', note: `Convert numbers between binary, octal, decimal, and hexadecimal representations.` },
     ],
   },
+
+  // ── Generator tools ──────────────────────────────────────────────────
+
+  'favicon-generator': {
+    intro: [
+      `A favicon is the tiny logo that sits in the browser tab, the bookmarks bar, and the home screen when someone saves your site — and getting one out of a single logo file usually means wrestling with an image editor. This generator skips all of that: drop in one PNG, JPG, or WebP and it produces every size a modern site needs in one pass.`,
+      `Behind the scenes it draws your image onto an HTML5 canvas and rescales it to 16×16, 32×32, 48×48, 180×180, 192×192, and 512×512 — the set that covers browser tabs, the Apple touch icon iOS uses for home-screen shortcuts, and the larger icons Android and progressive web apps reference in a manifest. Non-square images are centre-cropped to a square rather than squashed, so a wide logo still looks right.`,
+      `Designers handing off a brand mark, indie developers shipping a side project, and anyone replacing the default Next.js or WordPress icon will find it faster than exporting sizes by hand. The "Download All" button bundles every PNG plus a ready-to-paste block of link tags into a single ZIP.`,
+    ],
+    steps: [
+      `Drag an image onto the upload zone, or click to browse — PNG, JPG, and WebP are accepted.`,
+      `Wait a moment while each size is rendered; the preview grid fills in automatically.`,
+      `Toggle the light/dark background button to check how the icon reads against both browser themes.`,
+      `Click "Download All (.zip)" for the full set, or grab a single size with its individual PNG link.`,
+      `Open the included favicon-snippet.html and paste the link tags into your page's head.`,
+    ],
+    why: [
+      `Everything runs locally on a canvas in your browser — your logo is never uploaded to a server, so unreleased branding stays private.`,
+      `One upload yields the complete modern set, including the 180×180 Apple touch icon and the 192/512 sizes PWAs need, not just a lone 16×16.`,
+      `The light/dark preview catches the common mistake of a dark icon that vanishes against a dark tab strip before you ship it.`,
+      `The ZIP ships with the exact HTML link tags, so wiring the favicon into your site is copy-and-paste rather than guesswork.`,
+    ],
+    faqs: [
+      {
+        question: `What favicon sizes do I actually need in 2025?`,
+        answer: `For broad coverage you want 16×16 and 32×32 for browser tabs, 180×180 for the Apple touch icon used by iOS home screens, and 192×192 plus 512×512 referenced by your web app manifest for Android and PWAs. This tool generates all of them at once.`,
+      },
+      {
+        question: `Does this create a real .ico file?`,
+        answer: `No — it outputs PNG icons, which every current browser supports via link tags, plus a conventional favicon.png. The legacy multi-resolution .ico format is not produced here; if you specifically need favicon.ico, point your 32×32 PNG through a dedicated ICO converter.`,
+      },
+      {
+        question: `Is my uploaded image sent anywhere?`,
+        answer: `It is not. The file is read with the browser FileReader API and drawn to a canvas entirely on your device. Nothing is transmitted, which makes the tool safe for logos that have not been announced yet.`,
+      },
+      {
+        question: `My logo is rectangular — will it be distorted?`,
+        answer: `No. A non-square source is scaled to cover the square and centred, so it is cropped rather than stretched. For the cleanest result, start from a square image or one with even padding around the mark.`,
+      },
+    ],
+    related: [
+      { slug: 'image-resizer', note: `Resize or pad your source logo to a clean square before generating icons.` },
+      { slug: 'image-converter', note: `Convert an existing icon between PNG, JPG, and WebP if your source is the wrong format.` },
+      { slug: 'image-compressor', note: `Shrink the original artwork first if it is a heavy multi-megabyte export.` },
+    ],
+  },
+
+  'barcode-generator': {
+    intro: [
+      `Need a scannable barcode for a product label, a library book, a warehouse bin, or an asset tag? This generator turns a line of text or digits into a crisp 1D barcode you can download and print, supporting the symbologies that actually show up in retail and logistics.`,
+      `It renders with JsBarcode directly in the page and covers CODE128 and CODE39 for general alphanumeric data, EAN-13 and EAN-8 for international retail, UPC-A for North American products, ITF-14 for shipping cartons, plus MSI, Pharmacode, and Codabar. Each format has strict rules — EAN-13 expects 12 or 13 digits and computes a check digit — and the tool tells you immediately when your data does not fit the chosen format instead of producing an unscannable image.`,
+      `Small businesses printing their own price stickers, makers labelling inventory, and developers mocking up packaging all use it the same way: type the data, pick the format, tune the look, and export a PNG.`,
+    ],
+    steps: [
+      `Type or paste your data into the Data field — a valid sample loads for whichever format you pick.`,
+      `Choose a symbology from the Format dropdown (CODE128 is the safe default for mixed text).`,
+      `Adjust the bar width, height, and margin sliders until the barcode suits your label size.`,
+      `Set the bar and background colors, and toggle whether the human-readable text prints beneath the bars.`,
+      `Click "Download PNG" to save the barcode rendered at 3× resolution for sharp printing.`,
+    ],
+    why: [
+      `Generation happens in your browser through JsBarcode, so the data you encode — SKUs, asset IDs, tracking numbers — never leaves your machine.`,
+      `Live validation flags input that is wrong for the chosen symbology (for example, letters in an EAN-13) before you waste a print run.`,
+      `The PNG is rasterized at triple resolution from the vector render, so scanners read it cleanly even at small label sizes.`,
+      `Ten formats sit behind one dropdown, covering both the fixed-length retail GTINs and the flexible alphanumeric codes used internally.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between CODE128 and UPC/EAN?`,
+        answer: `CODE128 is a variable-length symbology that encodes letters, digits, and symbols, which makes it ideal for internal use like asset tags and shipping references. UPC and EAN are fixed-length, digits-only retail standards that identify a product globally (a GTIN) and include a mandatory check digit — you use them when a barcode must scan at a store checkout.`,
+      },
+      {
+        question: `Why does it say my barcode value is invalid?`,
+        answer: `Each format enforces its own rules. EAN-13 needs 12–13 digits, EAN-8 needs 7–8, and UPC-A needs 11–12, all numeric. CODE39 and Codabar restrict the allowed characters. Switch to CODE128 if you just need to encode arbitrary text, or correct the length and character set for your chosen retail format.`,
+      },
+      {
+        question: `Can I print these barcodes for real products?`,
+        answer: `Yes for internal codes. For retail UPC or EAN barcodes that scan at checkout, the underlying number must be a legitimate GTIN you have been assigned by GS1 — this tool renders the barcode correctly, but it cannot issue you a registered product number.`,
+      },
+      {
+        question: `Is the barcode image free to use?`,
+        answer: `Completely. The generated PNG has no watermark and is free for personal and commercial use.`,
+      },
+    ],
+    related: [
+      { slug: 'qr-generator', note: `When you need a 2D code that stores URLs or WiFi details instead of a product number.` },
+      { slug: 'uuid-generator', note: `Generate unique identifiers to encode as internal asset or inventory barcodes.` },
+    ],
+  },
+
+  'css-gradient-generator': {
+    intro: [
+      `Hand-writing a CSS gradient means remembering the exact syntax for stops, angles, and the three gradient functions — easy to fumble when you just want a good-looking background. This generator gives you the controls and writes the CSS for you, updating a full-bleed preview the instant you change anything.`,
+      `It builds linear, radial, and conic gradients from a list of color stops you can add, recolor, and reposition with a per-stop slider. Linear and conic gradients expose an angle dial from 0 to 360 degrees; radial gradients let you choose a circle or ellipse shape. The result is plain CSS with no library or framework attached.`,
+      `Front-end developers prototyping a hero section, designers testing a brand color blend, and anyone theming a dashboard reach for it to land a gradient quickly. When it looks right, one click copies the complete background declaration in a JetBrains Mono code block, ready to drop into a stylesheet.`,
+    ],
+    steps: [
+      `Pick a gradient type — Linear, Radial, or Conic — with the type buttons.`,
+      `Set the angle with the slider for linear and conic gradients, or pick circle vs ellipse for radial.`,
+      `Edit each color stop's color and drag its position slider; use "Add stop" for more colors or the trash icon to remove one (a minimum of two is kept).`,
+      `Watch the large preview panel update live as you tweak.`,
+      `Click "Copy CSS" to grab the full background declaration for your stylesheet.`,
+    ],
+    why: [
+      `It is pure React state with no dependencies — nothing is sent anywhere, and the CSS it emits is standard, framework-agnostic, and works in any project.`,
+      `All three gradient types share one interface, so you can flip a linear blend into a conic one without rebuilding your color stops.`,
+      `Unlimited color stops with individual position control let you craft multi-color blends, not just the two-color presets many tools cap you at.`,
+      `The output is the literal CSS the preview renders, so what you copy is exactly what you saw — no surprise differences in production.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between linear, radial, and conic gradients?`,
+        answer: `A linear gradient blends colors along a straight line at a set angle. A radial gradient radiates outward from a center point as a circle or ellipse. A conic gradient sweeps colors around a center point like a color wheel, which is handy for pie-chart and angular effects.`,
+      },
+      {
+        question: `How do color stop positions work?`,
+        answer: `Each stop has a position from 0% to 100% along the gradient. Two stops at 0% and 100% blend smoothly edge to edge; placing two stops at the same position creates a hard line instead of a fade. The slider next to each color sets that percentage.`,
+      },
+      {
+        question: `Will the copied CSS work in every browser?`,
+        answer: `Linear and radial gradients are supported everywhere. Conic gradients are supported in all current browsers but not in very old ones, so add a solid background-color fallback if you must support legacy versions.`,
+      },
+    ],
+    related: [
+      { slug: 'box-shadow-generator', note: `Pair your gradient background with a matching CSS shadow for depth.` },
+      { slug: 'color-palette-generator', note: `Generate a harmonious set of colors to use as your gradient stops.` },
+      { slug: 'color-converter', note: `Convert any stop color between HEX, RGB, and HSL.` },
+    ],
+  },
+
+  'box-shadow-generator': {
+    intro: [
+      `The CSS box-shadow property packs five values plus a color into one line, and small changes to any of them completely change the feel of a shadow. This generator turns those numbers into sliders with a live preview, so you can dial in exactly the depth you want and read off the CSS.`,
+      `You control horizontal and vertical offset, blur radius, spread radius, and a separate opacity slider that the tool folds into an rgba() shadow color — so you adjust transparency without editing hex codes by hand. An inset toggle flips the shadow inward for pressed or recessed effects, and a background color picker lets you preview the shadow against the surface it will actually sit on.`,
+      `It is the go-to for building a subtle card elevation, a glowing focus ring, or the soft double-shadow look of neumorphic UI. Designers and developers use the preview to judge contrast before copying the box-shadow declaration straight into their stylesheet.`,
+    ],
+    steps: [
+      `Drag the horizontal and vertical offset sliders to push the shadow left/right and up/down.`,
+      `Set the blur radius for softness and the spread radius to grow or shrink the shadow.`,
+      `Lower the opacity slider for a subtle shadow or raise it for a bold one.`,
+      `Pick the shadow color and a preview background color to check real-world contrast.`,
+      `Toggle "Inset shadow" if you want the shadow inside the box, then click "Copy CSS".`,
+    ],
+    why: [
+      `Pure client-side React: no upload, no account, and the emitted box-shadow is standard CSS that works in any project.`,
+      `The dedicated opacity slider is merged into an rgba() color for you, so you tune transparency without hand-editing alpha values.`,
+      `A configurable background behind the preview box reveals whether a pale shadow actually shows up on your real surface color.`,
+      `Inset support and spread control mean you can build pressed states and neumorphic shadows, not just simple drop shadows.`,
+    ],
+    faqs: [
+      {
+        question: `What does spread radius do in a box-shadow?`,
+        answer: `Spread grows or shrinks the shadow before the blur is applied. A positive spread makes the shadow larger than the element, useful for glows; a negative spread pulls it in, which helps create shadows that only peek out from one side.`,
+      },
+      {
+        question: `How do I make a soft, subtle shadow?`,
+        answer: `Use a small vertical offset, a generous blur radius, zero or slightly negative spread, and a low opacity around 10–20%. Large blur with low opacity reads as a gentle elevation rather than a hard outline.`,
+      },
+      {
+        question: `What is an inset shadow used for?`,
+        answer: `An inset shadow renders inside the element instead of behind it, making the box look recessed or pressed in. It is common for input fields, toggled buttons, and the inner shadow half of a neumorphic design.`,
+      },
+      {
+        question: `Can I stack multiple shadows?`,
+        answer: `CSS supports comma-separated multiple shadows, and full neumorphism uses a light and a dark one together. This tool builds one shadow at a time; copy two results and join them with a comma in your stylesheet to layer them.`,
+      },
+    ],
+    related: [
+      { slug: 'css-gradient-generator', note: `Build a gradient background to sit behind your shadowed cards.` },
+      { slug: 'css-grid-generator', note: `Lay out the cards you are adding shadows to with a CSS grid.` },
+      { slug: 'color-palette-generator', note: `Choose a coherent shadow and surface color from one base hue.` },
+    ],
+  },
+
+  'color-palette-generator': {
+    intro: [
+      `Picking one color you like is easy; finding three or four that work together is the hard part. This palette generator applies established color-theory relationships to a single base color and returns a matching scheme, so you start from harmony instead of trial and error.`,
+      `Choose a base color with the picker or by typing a hex value, then switch between five harmony rules: complementary (the opposite hue), analogous (neighbors on the wheel), triadic (three evenly spaced hues), split-complementary, and monochromatic (one hue at varied lightness). The math runs in HSL space, rotating the hue by the right number of degrees for each rule, which keeps saturation and lightness consistent across the swatches.`,
+      `Web designers building a brand system, developers who need accent colors that do not clash, and anyone designing a chart or slide deck use it to assemble a usable palette in seconds. Every swatch shows its HEX, RGB, and HSL values, each copyable with a single click.`,
+    ],
+    steps: [
+      `Set your base color with the color picker or by entering a hex code.`,
+      `Pick a harmony rule — Complementary, Analogous, Triadic, Split-Complementary, or Monochromatic.`,
+      `Review the generated swatches, which update instantly as you change the base or the rule.`,
+      `Click the HEX, RGB, or HSL line on any swatch to copy that value to your clipboard.`,
+    ],
+    why: [
+      `The schemes come from real color-theory hue rotations computed in HSL, not random colors, so the results are genuinely coordinated.`,
+      `Each swatch exposes HEX, RGB, and HSL and copies the exact format you click, saving a separate conversion step.`,
+      `Five harmony rules cover the common design needs — from a single high-contrast accent (complementary) to a calm, related set (analogous).`,
+      `It runs entirely in your browser with no library, so it is instant and nothing about your brand colors is shared.`,
+    ],
+    faqs: [
+      {
+        question: `What is a triadic color scheme?`,
+        answer: `A triadic scheme uses three hues spaced evenly around the color wheel, 120 degrees apart. It is vibrant and balanced — one color usually leads while the other two accent — which makes it popular for playful, energetic designs.`,
+      },
+      {
+        question: `When should I use complementary versus analogous colors?`,
+        answer: `Complementary pairs (opposite hues) create strong contrast and draw attention, great for calls to action. Analogous colors (neighbors on the wheel) are low-contrast and soothing, better for backgrounds and cohesive, understated layouts.`,
+      },
+      {
+        question: `Why do my monochromatic swatches share the same hue?`,
+        answer: `That is the definition of monochromatic — a single hue varied only in lightness (and here, kept at the same saturation). It gives you tints and shades of one color, ideal for minimal interfaces and depth without introducing new colors.`,
+      },
+      {
+        question: `Are these colors accessible for text?`,
+        answer: `Harmony rules address aesthetics, not contrast ratios. Always check a foreground/background pair against WCAG contrast guidelines before using it for text — a beautiful palette can still fail readability if two similar-lightness colors are layered.`,
+      },
+    ],
+    related: [
+      { slug: 'color-converter', note: `Convert any generated swatch into other formats or fine-tune a value.` },
+      { slug: 'color-palette', note: `Pull a starting color out of an existing image, then build a scheme around it here.` },
+      { slug: 'css-gradient-generator', note: `Feed your new palette straight into a multi-stop CSS gradient.` },
+    ],
+  },
+
+  'avatar-generator': {
+    intro: [
+      `When a user has not uploaded a photo, an initials avatar is the clean fallback you see across Gmail, Slack, and most dashboards. This generator makes one from any name — extracting the initials and drawing them on a colored shape — and exports it as a PNG or SVG.`,
+      `Type a name and it pulls the initials automatically: the first letter of the first and last words, or the first two letters of a single name. You choose a circle, square, or squircle (a rounded square with an adjustable corner radius), set the font size, and pick background and text colors, with a row of preset colors for quick starts. It draws everything on an HTML5 canvas, and rebuilds an equivalent vector when you export SVG.`,
+      `Developers seeding placeholder user accounts, teams making consistent profile images, and designers mocking up a contact list use it to produce sharp, on-brand avatars without opening a graphics app. Export PNG for immediate use or SVG when you need it to scale crisply at any size.`,
+    ],
+    steps: [
+      `Enter a name — the initials are extracted and shown below the field as you type.`,
+      `Choose a shape: Circle, Square, or Squircle (the squircle adds a corner-radius slider).`,
+      `Adjust the font size, and for squircles the corner radius, with the sliders.`,
+      `Set the background and text colors, or click a preset color swatch.`,
+      `Click "PNG" or "SVG" to download the avatar in your preferred format.`,
+    ],
+    why: [
+      `The avatar is rendered on a canvas in your browser and exported locally — no names or images are sent to a server.`,
+      `You get both raster (PNG) and true vector (SVG) output, so the same avatar works as a small thumbnail or scales losslessly for large displays.`,
+      `Initials are derived automatically from one or two words, so a full name, a single handle, or a company name all produce sensible letters.`,
+      `Circle, square, and adjustable squircle shapes match the avatar styles used across common apps, including iOS-style rounded squares.`,
+    ],
+    faqs: [
+      {
+        question: `How are the initials chosen from a name?`,
+        answer: `For two or more words it takes the first letter of the first word and the first letter of the last word — so "Ada Lovelace" becomes AL. For a single word it uses the first two letters, like "Figma" becoming FI. All letters are uppercased.`,
+      },
+      {
+        question: `Should I download PNG or SVG?`,
+        answer: `Use PNG when you need a ready-to-display image at the current size, such as a 256-pixel avatar. Use SVG when the avatar must scale to different sizes without blurring, or when you want to edit colors and text later in a vector editor.`,
+      },
+      {
+        question: `Is the background transparent outside the shape?`,
+        answer: `Yes. The PNG is exported with an alpha channel, so the area around a circle or squircle is transparent and the avatar sits cleanly on any background. The SVG likewise contains only the shape and text.`,
+      },
+    ],
+    related: [
+      { slug: 'color-palette-generator', note: `Pick coordinated background and text colors for a set of avatars.` },
+      { slug: 'favicon-generator', note: `Turn a finished avatar or logo into full favicon sizes.` },
+      { slug: 'meme-generator', note: `Another canvas-based image tool when you need quick captioned graphics.` },
+    ],
+  },
+
+  'signature-generator': {
+    intro: [
+      `Signing a PDF or adding your name to an email footer usually means printing, signing, and scanning — or hunting for the right tool. This signature generator lets you produce a clean, transparent-background signature image in the browser, either by drawing it or by typing it in a handwriting font.`,
+      `Draw mode uses a pressure-friendly canvas that tracks mouse and touch input, with rounded line joins for smooth strokes; you set the pen color and thickness and can clear the board to start over. Type mode renders your name in one of four cursive web fonts — Dancing Script, Caveat, Pacifico, or Satisfy — at an adjustable size and color. Either way, the export is a PNG with a transparent background, so it drops onto documents and forms without a white box around it.`,
+      `Freelancers signing contracts, anyone filling in a form field, and people building an email signature use it to get a usable mark in seconds. The signing happens on your device; only the display fonts are fetched from Google Fonts.`,
+    ],
+    steps: [
+      `Choose Draw or Type at the top.`,
+      `In Draw mode, set your pen color and thickness, then sign on the checkered pad with your mouse or finger; use "Clear board" to retry.`,
+      `In Type mode, enter your name, pick a cursive font, and set the size and color.`,
+      `Click "Download transparent PNG" to save your signature.`,
+      `Drop the PNG onto your PDF, form, or email signature — the transparent background blends in.`,
+    ],
+    why: [
+      `Your signature is drawn and exported entirely on your device; the image is never uploaded, which matters for something as personal as a signature.`,
+      `The PNG export preserves transparency, so your signature layers onto documents without an opaque rectangle behind it.`,
+      `Two modes in one tool: freehand drawing for an authentic mark, or typed cursive when you want a tidy, legible version.`,
+      `Drawing works with touch as well as a mouse, so you can sign naturally on a phone or tablet.`,
+    ],
+    faqs: [
+      {
+        question: `Is the signature background really transparent?`,
+        answer: `Yes. The canvas is exported as a PNG with an alpha channel and no fill behind your strokes or text, so when you place it on a document only the ink shows — there is no white box to hide.`,
+      },
+      {
+        question: `Does my signature get uploaded anywhere?`,
+        answer: `No. Both drawing and export happen locally in your browser. The only network request is loading the cursive display fonts from Google Fonts for Type mode; your actual signature image stays on your device.`,
+      },
+      {
+        question: `Is a typed or drawn signature legally valid?`,
+        answer: `In many places an electronic signature is legally recognized, but requirements vary by country, document type, and platform. For binding agreements, confirm what your jurisdiction or e-signature service requires — this tool produces the image, not a certified e-signature audit trail.`,
+      },
+      {
+        question: `Can I use this on my phone?`,
+        answer: `Yes. The drawing pad listens for touch input, so you can sign with your finger or a stylus, and the download works the same as on desktop.`,
+      },
+    ],
+    related: [
+      { slug: 'image-metadata-remover', note: `Strip any metadata from images before attaching them to signed documents.` },
+      { slug: 'favicon-generator', note: `Another browser-based canvas tool for turning artwork into ready-to-use images.` },
+      { slug: 'image-converter', note: `Convert your signature PNG to another format if a service requires it.` },
+    ],
+  },
+
+  'random-picker-wheel': {
+    intro: [
+      `When you need to pick someone or something at random and want it to feel fair and fun, a spinning wheel beats a coin flip. Paste your list, hit spin, and watch the wheel decelerate to a winner — complete with a confetti burst when it stops.`,
+      `Each line you enter becomes a slice, automatically assigned a distinct color so the wheel stays readable even with a dozen entries. The spin uses real animation physics: an initial velocity that decays through friction frame by frame via requestAnimationFrame, so it slows down naturally rather than snapping to a result. The winner is read from the slice under the pointer when the wheel stops, so what you see is what you get.`,
+      `Teachers calling on students, streamers running giveaways, and groups deciding where to eat all use it the same way. An optional setting removes each winner after the spin, which is exactly what you want for drawing multiple raffle winners without repeats.`,
+    ],
+    steps: [
+      `Type or paste your entries into the text box, one per line.`,
+      `Optionally tick "Remove the winner after each spin" for draws without repeats.`,
+      `Press the big SPIN button.`,
+      `Watch the wheel slow to a stop and read the highlighted winner, celebrated with confetti.`,
+      `Spin again for the next pick; if removal is on, the winner is already taken off the list.`,
+    ],
+    why: [
+      `Everything runs in your browser — your list of names or prizes is never uploaded anywhere.`,
+      `The spin uses genuine friction-based animation, so the result is unpredictable and the deceleration looks natural rather than scripted.`,
+      `The announced winner is derived from the wheel's final angle under the fixed pointer, so the visual outcome and the named winner always match.`,
+      `Built-in winner removal makes multi-draw giveaways effortless, and the confetti adds a celebratory moment with no extra setup.`,
+    ],
+    faqs: [
+      {
+        question: `Is the wheel actually random?`,
+        answer: `Yes. Each spin starts with a randomized velocity, so where it lands is not predetermined. The winning slice is calculated from the wheel's final resting angle relative to the pointer, meaning the displayed winner is exactly the slice that stopped at the top.`,
+      },
+      {
+        question: `How many entries can I add?`,
+        answer: `Add as many lines as you like — each becomes a slice with its own color. Very long lists make individual slices thin and labels are trimmed to fit, but the wheel still spins and picks correctly.`,
+      },
+      {
+        question: `How do I draw several winners without repeats?`,
+        answer: `Turn on "Remove the winner after each spin." After each result, that entry is deleted from the list automatically, so the next spin chooses only from the remaining names — perfect for awarding first, second, and third place.`,
+      },
+    ],
+    related: [
+      { slug: 'password-generator', note: `When you need cryptographically random strings rather than a random list pick.` },
+      { slug: 'uuid-generator', note: `Generate unique IDs for raffle tickets or entries.` },
+      { slug: 'fake-data-generator', note: `Need a list of sample names to spin with? Generate some instantly.` },
+    ],
+  },
+
+  'fake-data-generator': {
+    intro: [
+      `Building a UI, seeding a database, or testing a CSV importer all need realistic-looking data — and typing it by hand is tedious. This generator fabricates mock user records on demand, so you can populate a table or an API fixture in one click.`,
+      `Tick the fields you want — full name, email, phone, address, UUID, and job title — and set how many rows to create, from 1 to 100. Names are assembled from built-in first/last name lists, emails are derived from those names against dummy domains, addresses combine real-sounding street and city components, and UUIDs come from the browser's Web Crypto randomUUID for proper v4 format. The results land in a clean table you can export to JSON or CSV, or copy as JSON.`,
+      `Front-end developers filling out a prototype, QA engineers stress-testing a form, and anyone who needs sample rows for a demo use it to skip the busywork. Because every value is invented locally, there is no risk of leaking real personal data into a test environment.`,
+    ],
+    steps: [
+      `Check the fields you need; at least one must stay selected.`,
+      `Enter how many rows to generate, from 1 to 100.`,
+      `Click "Generate" to build the table — click again any time to reroll a fresh set.`,
+      `Review the data in the table.`,
+      `Export with "Export JSON" or "Export CSV", or use "Copy JSON" to grab it for code.`,
+    ],
+    why: [
+      `All data is fabricated in your browser from built-in lists and the Web Crypto API — nothing is fetched and nothing is uploaded, so test data never touches a server.`,
+      `UUIDs use crypto.randomUUID, producing standards-compliant version-4 identifiers rather than weak pseudo-random strings.`,
+      `One click gives you both JSON (an array of objects) and CSV (with properly quoted values), matching how you would seed an app or a spreadsheet.`,
+      `Field selection and a 1–100 row count let you generate exactly the shape you need, from a single example to a full table.`,
+    ],
+    faqs: [
+      {
+        question: `Is this data safe to use in tests?`,
+        answer: `Yes — every value is randomly assembled from generic placeholder lists and dummy domains, so it represents no real person. Using fabricated data like this is the recommended way to avoid exposing real personal information in development and test environments.`,
+      },
+      {
+        question: `Are the email addresses real?`,
+        answer: `No. Emails are built from the generated names against placeholder domains such as example.com, which are reserved for documentation and testing. They are syntactically valid but will not deliver mail, which is exactly what you want for fixtures.`,
+      },
+      {
+        question: `What is the difference between the JSON and CSV exports?`,
+        answer: `JSON exports an array of objects keyed by field name, ideal for seeding an API, a database, or a JavaScript fixture. CSV exports a header row plus comma-separated, quoted rows, ready to open in a spreadsheet or feed an import routine.`,
+      },
+      {
+        question: `Why cap the output at 100 rows?`,
+        answer: `The tool is built for quick fixtures and demos rather than bulk dataset generation, so the row count is clamped between 1 and 100 to keep the table responsive. Generate repeatedly and concatenate the exports if you need more.`,
+      },
+    ],
+    related: [
+      { slug: 'uuid-generator', note: `Generate standalone UUIDs when you only need identifiers, not full records.` },
+      { slug: 'json-formatter', note: `Pretty-print or validate the JSON you export here.` },
+      { slug: 'json-to-csv', note: `Convert between the JSON and CSV shapes of your test data.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

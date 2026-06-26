@@ -673,6 +673,42 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'favicon-generator': dynamic(() => import('@/components/tools/FaviconGenerator').then(mod => ({ default: mod.FaviconGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'barcode-generator': dynamic(() => import('@/components/tools/BarcodeGenerator').then(mod => ({ default: mod.BarcodeGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'css-gradient-generator': dynamic(() => import('@/components/tools/CssGradientGenerator').then(mod => ({ default: mod.CssGradientGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'box-shadow-generator': dynamic(() => import('@/components/tools/BoxShadowGenerator').then(mod => ({ default: mod.BoxShadowGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'color-palette-generator': dynamic(() => import('@/components/tools/ColorPaletteGenerator').then(mod => ({ default: mod.ColorPaletteGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'avatar-generator': dynamic(() => import('@/components/tools/AvatarGenerator').then(mod => ({ default: mod.AvatarGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'signature-generator': dynamic(() => import('@/components/tools/SignatureGenerator').then(mod => ({ default: mod.SignatureGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'random-picker-wheel': dynamic(() => import('@/components/tools/RandomPickerWheel').then(mod => ({ default: mod.RandomPickerWheel })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'fake-data-generator': dynamic(() => import('@/components/tools/FakeDataGenerator').then(mod => ({ default: mod.FakeDataGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {
