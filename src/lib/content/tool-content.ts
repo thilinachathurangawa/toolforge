@@ -7130,6 +7130,312 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'image-converter', note: `Convert the watermarked image to a different format such as WebP.` },
     ],
   },
+
+  'unix-timestamp-converter': {
+    intro: [
+      `Every time a record is created in a database, a log line is written, or an API response is returned, the timestamp is almost always stored as a Unix epoch — a plain integer counting seconds (or milliseconds) since 1 January 1970 at 00:00:00 UTC. Reading those numbers directly is hopeless. The Unix Timestamp Converter turns them into the exact local time, UTC time, and relative description you need — and reverses the process when you need to go the other direction.`,
+      `Backend engineers reach for this when scanning server logs where events are stamped 1719475200 and they need to know whether that was before or after the outage window. Mobile developers use it while debugging push notification scheduling — a timestamp of 1735689600 needs to resolve to a date that can be compared against the user's local timezone. Security analysts use it to correlate authentication tokens that encode expiry as a Unix epoch in their JWT payloads. The live "Current Unix Time" banner at the top of the page shows the current second ticking in real time, making it easy to copy the current epoch at any moment.`,
+      `The converter automatically detects whether a timestamp is in seconds (10 digits) or milliseconds (13 digits), so you never need to pre-convert. In the date-to-timestamp block you can either fill individual Year, Month, Day, Hour, Minute, Second selectors or paste an ISO 8601 string directly — both update the epoch output instantly. All calculations use the JavaScript Date object running locally in your browser; nothing is transmitted.`,
+    ],
+    steps: [
+      `Copy the current Unix time from the live banner, or paste your own timestamp into the "Timestamp → Human Date" input field.`,
+      `The tool automatically detects seconds (10 digits) vs. milliseconds (13 digits) and immediately shows local time, UTC time, and a relative description like "3 minutes ago".`,
+      `Click Copy next to any output line to send it to your clipboard.`,
+      `To go the other direction, fill in Year, Month, Day, Hour, Minute, Second in the "Date → Timestamp" block, or paste an ISO 8601 string into the override field.`,
+      `Read the resulting epoch in both seconds and milliseconds, and copy either value.`,
+    ],
+    why: [
+      `The live clock shows the current Unix epoch ticking second by second — useful for capturing a precise "now" timestamp without needing a terminal or a language REPL.`,
+      `Auto-detects seconds vs. milliseconds so you do not need to know or convert the format before pasting.`,
+      `Relative time output ("42 minutes ago", "2 days from now") adds immediate human context without any extra calculation.`,
+      `Runs entirely in your browser via the JavaScript Date API — no server, no telemetry, no data leaves your machine.`,
+    ],
+    faqs: [
+      {
+        question: `What is the Unix timestamp 2038 problem?`,
+        answer: `Many older systems store Unix timestamps as a 32-bit signed integer, which can hold a maximum value of 2,147,483,647. That number represents 19 January 2038 at 03:14:07 UTC. After that moment, a 32-bit system's timestamp counter overflows to a large negative number, causing dates to jump back to 1901. Modern systems use 64-bit integers, which push the overflow date billions of years into the future — but embedded systems and legacy software are still vulnerable.`,
+      },
+      {
+        question: `How do I tell whether my timestamp is in seconds or milliseconds?`,
+        answer: `Count the digits. A 10-digit number like 1719475200 is seconds. A 13-digit number like 1719475200000 is milliseconds. If the number is larger than about 2 billion (10 digits that start with 1 or 2), it is seconds. The converter detects this automatically based on digit count, so you can paste either format freely.`,
+      },
+      {
+        question: `Why does the tool show a different time than I expected?`,
+        answer: `The "Local Time" output uses your browser's local timezone, which is set by your operating system. If you are working with a timestamp that represents a time in another timezone, the UTC output is the unambiguous reference. To compare, check the UTC output against the expected UTC time of the event.`,
+      },
+      {
+        question: `Is my timestamp data sent to a server?`,
+        answer: `No. All conversions run inside your browser using the built-in JavaScript Date object. No data is transmitted to any server, making the tool safe to use with sensitive timestamps from logs or authentication systems.`,
+      },
+    ],
+    related: [
+      { slug: 'string-converter', note: `Reformat timestamp-related identifiers like field names between camelCase and snake_case.` },
+      { slug: 'json-formatter', note: `Format and inspect JSON payloads that contain embedded Unix timestamps.` },
+      { slug: 'hash-generator', note: `Generate SHA-256 or MD5 hashes for timestamp-based nonces or cache keys.` },
+    ],
+  },
+
+  'csv-to-json': {
+    intro: [
+      `CSV is the format data comes in. JSON is the format modern applications expect. The gap between them costs real development time — especially when you need to inspect a database export, feed a spreadsheet row into an API, or prototype a frontend component with realistic data. The CSV to JSON Converter handles that conversion entirely in your browser, turning tabular text into a clean, ready-to-use JSON array in under a second.`,
+      `Data engineers paste in a query result from DBeaver or pgAdmin to verify the shape before writing an ETL transform. Front-end developers drop in a product CSV from a client to mock up a catalog component without waiting for an API. QA engineers convert test fixtures from spreadsheets into the JSON arrays their testing framework expects. The converter uses the PapaParse library for robust parsing — it handles quoted fields with commas inside, escaped quotes, mixed line endings, and other edge cases that naive regex-based parsers choke on.`,
+      `Three options govern the output. "Has Header Row" tells the parser to use the first row as property names — turning each subsequent row into a named object. "Skip Empty Lines" prevents blank rows from creating empty array entries. "Parse Numbers and Booleans" automatically coerces cells that look like numbers or true/false values into their native JavaScript types, so you get {"age": 30} instead of {"age": "30"}. Toggle any combination depending on your source data.`,
+    ],
+    steps: [
+      `Paste your CSV text into the input area, or click "Upload File" to drop in a .csv or .txt file from disk.`,
+      `Enable "Has Header Row" if the first line contains column names (most exports do). Disable it for raw data arrays.`,
+      `Toggle "Skip Empty Lines" to ignore blank rows, and "Parse Numbers & Booleans" to auto-convert numeric and boolean cells.`,
+      `The JSON array appears immediately in the output panel below, with a row count shown in the label.`,
+      `Click "Copy JSON" to send the output to your clipboard, or drag it directly into your editor.`,
+    ],
+    why: [
+      `Uses the battle-tested PapaParse library for parsing — it handles quoted commas, escaped quotes, BOM markers, and mixed line endings that trip up simpler converters.`,
+      `Three output-shaping options (header row, empty lines, type coercion) let you control the exact JSON structure without post-processing.`,
+      `File drop support means you can convert a local CSV without first opening it in a text editor to copy its contents.`,
+      `Runs fully offline in your browser — no upload, no API key, no size limit imposed by a server. Large CSV files process as fast as your device can parse them.`,
+    ],
+    faqs: [
+      {
+        question: `What happens if my CSV has commas inside a field value?`,
+        answer: `PapaParse handles quoted fields correctly. If a cell value contains a comma, it should be wrapped in double quotes in the CSV — for example: "Smith, John". The parser recognizes the quotes and treats the comma as part of the value, not a column delimiter.`,
+      },
+      {
+        question: `When should I turn off "Has Header Row"?`,
+        answer: `Turn it off when your CSV has no column names in the first row — for example, a raw export that starts immediately with data values. In that case, the output will be an array of arrays rather than an array of objects, which is sometimes exactly what you need for positional data processing.`,
+      },
+      {
+        question: `Is my CSV data uploaded anywhere?`,
+        answer: `No. The CSV is parsed entirely in your browser using JavaScript. The file or pasted text never leaves your device. This makes the tool safe for internal data, client exports, and anything you would not want passing through a third-party server.`,
+      },
+      {
+        question: `Why are some numbers coming out as strings even with "Parse Numbers" enabled?`,
+        answer: `PapaParse's type detection parses cells that look like pure numbers. If a cell has leading zeros (like a postal code "02134"), a currency symbol, or mixed content ("30px"), it stays as a string to avoid corrupting the value. That behavior is intentional — converting "02134" to the number 2134 would destroy the leading zero.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Once you have the JSON array, format and validate it with proper indentation.` },
+      { slug: 'json-to-csv', note: `The reverse path — convert a JSON array back into a CSV file.` },
+      { slug: 'text-diff', note: `Compare two versions of a CSV before and after a transformation to confirm the changes.` },
+    ],
+  },
+
+  'xml-to-json': {
+    intro: [
+      `XML still powers a huge portion of enterprise data exchange — SOAP web services, RSS and Atom feeds, Android resource files, Maven configurations, SVG graphics, and almost every legacy system integration you will encounter. But modern JavaScript applications expect JSON. Bridging that gap usually means writing a recursive DOM traversal or installing a parsing library. The XML to JSON Converter does that work instantly, in your browser, with no dependencies to install.`,
+      `API integrators paste a raw SOAP response to understand its structure before writing a parser. WordPress and CMS developers convert RSS feed XML into JSON arrays to feed a custom frontend component. Android developers look up the shape of a parsed layout XML to understand what their code will receive at runtime. The split-pane layout shows your input XML on the left and the resulting JSON on the right simultaneously, updating as you type — so you can see exactly how each XML node maps to a JSON key.`,
+      `The conversion follows a consistent set of rules. Element attributes become properties prefixed with "@" (so a tag attribute like id="42" becomes "@id": "42"). When an element has only text content, it converts to a plain string value. When multiple sibling elements share the same tag name, they convert to a JSON array. The "Beautify Output" toggle formats the JSON with two-space indentation for readability, or compact format for copy-pasting into minified contexts. If the XML is malformed, a descriptive error badge appears immediately — no silent failures.`,
+    ],
+    steps: [
+      `Paste your XML into the left "XML Input" panel. The converter begins processing as you type.`,
+      `If the XML contains a syntax error — an unclosed tag, mismatched element, or illegal character — an error badge appears below the input with a description.`,
+      `Once valid XML is entered, the JSON output appears in the right panel automatically.`,
+      `Toggle "Beautify" to switch between indented (readable) and compact (minified) JSON output.`,
+      `Click "Copy JSON" to send the formatted result to your clipboard.`,
+    ],
+    why: [
+      `Uses the browser's native DOMParser API — no external library download, no npm dependency, and the same XML engine your browser already uses to render web pages.`,
+      `Real-time validation with descriptive error messages catches malformed XML immediately rather than returning an empty or corrupted output silently.`,
+      `Consistent attribute mapping (@prefix) and array detection (repeated sibling tags) produce predictable JSON that does not require post-processing to navigate.`,
+      `Client-side only — XML documents, which often contain sensitive business data or internal schema details, never leave your browser.`,
+    ],
+    faqs: [
+      {
+        question: `How are XML attributes handled in the JSON output?`,
+        answer: `Each attribute becomes a property prefixed with "@". For example, the tag <user id="42" role="admin"> becomes {"@id": "42", "@role": "admin"} in the JSON object for that node. This prefix distinguishes attribute properties from child element properties and is a widely used convention in XML-to-JSON mappings.`,
+      },
+      {
+        question: `When does the converter produce a JSON array?`,
+        answer: `When multiple sibling XML elements share the same tag name, the converter groups them into a JSON array under that tag's key. For example, three <item> elements inside a <list> produce "item": ["first", "second", "third"]. A single <item> produces a plain string or object, not an array.`,
+      },
+      {
+        question: `My XML has a namespace prefix like ns2:element — how does that appear in JSON?`,
+        answer: `The tag name including the prefix becomes the JSON key. So <ns2:element>value</ns2:element> converts to "ns2:element": "value". Namespace declaration attributes like xmlns:ns2 are preserved as "@xmlns:ns2" properties on their element.`,
+      },
+      {
+        question: `Is my XML data sent to any server?`,
+        answer: `No. The DOMParser API is a browser built-in — parsing happens entirely in your browser's JavaScript engine. Your XML never leaves your device, which is important for SOAP payloads, configuration files, and internal API responses that contain sensitive data.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Format and validate the JSON output once converted from XML.` },
+      { slug: 'csv-to-json', note: `If your data source is tabular rather than hierarchical, convert CSV to JSON instead.` },
+      { slug: 'html-entity-encoder', note: `Decode HTML entities in XML text content before or after conversion.` },
+    ],
+  },
+
+  'yaml-json-converter': {
+    intro: [
+      `YAML is everywhere in the DevOps world — Kubernetes manifests, GitHub Actions workflows, Docker Compose files, Ansible playbooks, Helm charts, and CI/CD pipeline configs all default to it. JSON is what APIs, debuggers, and most programming language runtimes speak natively. The YAML ↔ JSON Converter lets you translate between the two in real time, in either direction, without switching tools or running a script in your terminal.`,
+      `Platform engineers paste a Kubernetes deployment manifest to understand its JSON equivalent before writing a validation rule against the Kubernetes API. Node.js developers convert a GitHub Actions workflow YAML into JSON so they can feed it into a JSON schema validator or diff tool. Configuration authors paste a complex nested YAML to verify the parsed structure matches what they intended — catching accidental indentation errors that change the hierarchy without triggering a parser error.`,
+      `Two tabs handle each direction: "YAML → JSON" and "JSON → YAML". Both sides update in real time as you type. Errors surface with the specific line and column information that js-yaml provides — so "mapping values are not allowed here at line 3, column 5" tells you exactly where to look. The YAML output uses a clean two-space indented format; the JSON output is formatted with two-space indentation as well, ready to read or paste.`,
+    ],
+    steps: [
+      `Select the "YAML → JSON" tab to convert YAML to JSON, or "JSON → YAML" to go the other direction.`,
+      `Click "Load example" to pre-fill a sample input if you want to explore the output format before pasting your own data.`,
+      `Paste or type your YAML (or JSON) into the left input panel. Conversion happens in real time.`,
+      `If there is a syntax error — wrong indentation, a missing colon, or invalid JSON — an error message appears below the input showing the line and description.`,
+      `Click "Copy" to send the output to your clipboard.`,
+    ],
+    why: [
+      `Uses js-yaml, a battle-tested library that supports the full YAML 1.2 spec including multi-line strings, anchors, and aliases — features that simpler parsers miss.`,
+      `Real-time conversion means you see the result change as you fix a YAML indentation error, eliminating the slow edit-run-check cycle in a terminal.`,
+      `Line-number error reporting pinpoints exactly where a parse failure occurs rather than returning a generic "invalid YAML" message.`,
+      `Client-side only — Kubernetes secrets, CI tokens, and database connection strings in config files never leave your browser.`,
+    ],
+    faqs: [
+      {
+        question: `Why does my YAML parse without error but the JSON output looks wrong?`,
+        answer: `YAML is sensitive to indentation — a key indented one space too few or too many becomes a child of a different parent node, changing the structure without triggering a parse error. Compare your indentation carefully: each level should be consistently two (or four) spaces, with no mix of tabs and spaces.`,
+      },
+      {
+        question: `Does the converter handle YAML anchors and aliases?`,
+        answer: `Yes. js-yaml resolves YAML anchors (&anchor) and aliases (*anchor) during parsing, so the JSON output contains the fully expanded, dereferenced values — the same structure your application would receive at runtime.`,
+      },
+      {
+        question: `Is this tool useful for Kubernetes config files?`,
+        answer: `Yes, this is a common use case. Paste a Kubernetes YAML manifest to inspect its JSON equivalent — which is what the Kubernetes API Server actually processes. This helps when writing validation webhooks, JSON patch operations, or kubectl --patch arguments that require JSON format.`,
+      },
+      {
+        question: `Is my config file data sent to any server?`,
+        answer: `No. Conversion runs entirely in your browser using the js-yaml library. Your YAML or JSON — including any secrets, tokens, or connection strings — never leaves your device.`,
+      },
+    ],
+    related: [
+      { slug: 'json-formatter', note: `Validate and format the converted JSON output with proper indentation.` },
+      { slug: 'csv-to-json', note: `If your configuration data starts in a spreadsheet, convert it to JSON first.` },
+      { slug: 'json-diff', note: `Compare two YAML-derived JSON objects to find what changed between versions.` },
+    ],
+  },
+
+  'html-entity-encoder': {
+    intro: [
+      `Certain characters carry structural meaning in HTML — the angle bracket that opens a tag, the ampersand that starts an entity reference, the double quote that delimits an attribute value. When those characters appear in content rather than markup, they must be escaped into entity form to prevent browsers from misinterpreting them. The HTML Entity Encoder converts raw text to safe entities in one click, and reverses the operation just as easily.`,
+      `Web developers use it when building dynamic HTML templates: a product description containing a trademark symbol or an apostrophe needs encoding before it is injected into an attribute value. Content editors use it when a CMS is stripping or mangling characters — pasting the problematic text here shows exactly what entity sequence is needed. Security testers encode angle brackets to demonstrate what a safe-rendered version of a suspected XSS payload looks like versus the raw string.`,
+      `The tool uses the browser's own DOM for encoding and decoding, which guarantees correct results for named HTML5 entities, decimal numeric references (&#60;), and hexadecimal references (&#x3C;) alike. A quick-reference table beneath the tool lists the ten most commonly needed entity mappings — the kind you look up so often that having them one scroll away is worth the space.`,
+    ],
+    steps: [
+      `Choose "Encode" to convert raw text into HTML entity sequences, or "Decode" to turn entity strings back into their original characters.`,
+      `Paste or type your content into the left panel. The output updates instantly in the right panel.`,
+      `Click "Copy" above either panel to send its contents to your clipboard.`,
+      `Refer to the entity reference table at the bottom for the ten most common special characters and their named, decimal, and hex entity forms.`,
+    ],
+    why: [
+      `Uses the browser's own DOM element internally — the same engine rendering the page — which means the encoding and decoding results match exactly what a browser would produce or expect.`,
+      `Handles both encode and decode directions in a single tool, so you do not need to switch between an encoder and a separate decoder site.`,
+      `The quick-reference table keeps the most commonly needed entities — angle brackets, ampersand, quotes, copyright, trademark, euro — immediately visible without a separate search.`,
+      `Runs client-side with no upload — safe to use with HTML fragments from private internal tools, CMS templates, or email systems.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between named entities and numeric entities?`,
+        answer: `Named entities use a human-readable name: &lt; for less-than, &amp; for ampersand. Numeric entities use a decimal (&# followed by a number) or hexadecimal (&#x followed by hex digits) code point. All three represent the same character — named entities are easier to read, while numeric entities work for any Unicode code point, including characters that have no named entity form.`,
+      },
+      {
+        question: `Why do I need to encode HTML entities?`,
+        answer: `If you inject text containing < or & directly into HTML, the browser parses them as the start of a tag or entity reference rather than as literal characters. This can break your layout or, worse, open an XSS vulnerability if the text comes from user input. Encoding converts those characters to their safe entity equivalents so the browser renders them as visible text rather than treating them as markup.`,
+      },
+      {
+        question: `Does the encoder handle the full Unicode character set?`,
+        answer: `The encoder outputs the most specific named entity where one exists (like &copy; for ©). For characters without a named entity, it falls back to the raw character because modern HTML5 documents with a UTF-8 charset can include most Unicode characters directly without encoding them.`,
+      },
+      {
+        question: `Is my text data sent to a server?`,
+        answer: `No. Encoding and decoding use a hidden browser DOM element, which is entirely local to your browser tab. No text is transmitted anywhere.`,
+      },
+    ],
+    related: [
+      { slug: 'url-encoder-decoder', note: `Encode special characters for safe inclusion in URLs rather than HTML.` },
+      { slug: 'base64-encoder', note: `Encode binary data or text as Base64 for use in data URIs or HTTP headers.` },
+      { slug: 'xml-to-json', note: `Parse XML that may contain encoded entities as part of converting it to JSON.` },
+    ],
+  },
+
+  'csv-diff-viewer': {
+    intro: [
+      `Data changes silently. A CSV export from last week and one from today look identical at a glance but differ in a dozen cells buried in row 847. Spotting those differences manually — scrolling two spreadsheets side by side, comparing cell by cell — is tedious and error-prone. The CSV Diff Viewer does the comparison automatically, rendering a color-coded table that shows exactly which rows were added, which were removed, and which cells changed value.`,
+      `Data analysts run it before and after a data pipeline job to verify that only the expected records changed. Engineers compare the before-and-after of a database migration export to confirm referential integrity was preserved. Product managers diff two versions of a pricing CSV to audit what a vendor changed between submission rounds. The visual grid format — green for added, red for removed, yellow for modified cells — makes the change surface immediately scannable without reading line by line.`,
+      `The tool uses PapaParse to parse both CSVs, then aligns rows by index and compares column by column. When the first row looks like a header (non-numeric values), it is used to label the table columns. The summary line at the top of the result shows the count of added, removed, and modified rows so you know the scope of changes at a glance before inspecting individual cells.`,
+    ],
+    steps: [
+      `Paste the original CSV into the left "Original CSV" textarea and the modified CSV into the right "Modified CSV" textarea.`,
+      `Click "Compare" to run the diff.`,
+      `Read the summary line: how many rows were added, removed, or modified.`,
+      `Scroll the result table to inspect individual rows. Green rows are new, red rows were deleted, and yellow-highlighted cells within a row changed value — the old value is shown in strikethrough red, the new value in green.`,
+    ],
+    why: [
+      `Visual color coding — green for added, red for removed, yellow for modified cells — lets you scan a diff result in seconds rather than reading it line by line.`,
+      `Shows old and new cell values side by side within a modified row (strikethrough old → new), so you see both values without needing separate original and modified views.`,
+      `Uses PapaParse for robust CSV parsing — handles quoted commas, escaped quotes, and varying line endings that simple split-on-comma approaches miss.`,
+      `Completely browser-side — production database exports, financial CSVs, and client data stay on your machine.`,
+    ],
+    faqs: [
+      {
+        question: `How does the tool match rows between the two CSVs?`,
+        answer: `Rows are matched by their position (index) in the file. Row 1 in the original is compared to row 1 in the modified file. This means if a row was inserted at the top, all subsequent rows will appear as "modified" even if their content did not change. For key-based diffing (matching rows by an ID column), a post-comparison manual review may still be needed for insertions at arbitrary positions.`,
+      },
+      {
+        question: `Does the tool require my CSVs to have the same columns?`,
+        answer: `No, but the column count in the result table is determined by the widest row. If the two CSVs have different numbers of columns, the extra cells in the narrower CSV appear as empty. The header row (if present) is taken from the first CSV.`,
+      },
+      {
+        question: `Can I compare CSV files with thousands of rows?`,
+        answer: `Yes — PapaParse processes the CSV locally in your browser, and JavaScript can handle large files quickly. The result table renders all rows, so very large diffs will scroll. There is no server-side size limit because no data is uploaded.`,
+      },
+      {
+        question: `Is my CSV data sent to a server?`,
+        answer: `No. Both CSVs are parsed locally using PapaParse running in your browser. Nothing is transmitted to any server, making the tool safe for financial records, client data, and any other sensitive spreadsheet content.`,
+      },
+    ],
+    related: [
+      { slug: 'text-diff', note: `Compare plain text files line by line when the data is not in CSV format.` },
+      { slug: 'json-diff', note: `Diff two JSON objects field by field when your data has already been converted.` },
+      { slug: 'csv-to-json', note: `Convert a CSV to JSON first if you need to work with the data in a structured format.` },
+    ],
+  },
+
+  'rot13-caesar-cipher': {
+    intro: [
+      `The Caesar cipher is one of the oldest substitution ciphers on record — Julius Caesar reportedly used it to protect military correspondence by shifting each letter in the alphabet by three positions. ROT13, the most widely known modern variant, shifts by 13 and is used everywhere from forum spoiler tags to developer in-jokes to basic obfuscation of text in plain-text files. The ROT13 / Caesar Cipher tool applies any shift from 1 to 25 in real time, covering both classic ROT13 and every other Caesar variant.`,
+      `Developers use ROT13 to obfuscate spoilers or surprise reveals in README files and code comments — the text is readable to anyone who knows to apply ROT13, but not immediately visible. CTF (Capture the Flag) competitors reach for it constantly, since ROT13 and Caesar shifts are among the most common encoding challenges in beginner and intermediate puzzles. Educators use it to teach the basics of substitution ciphers and why frequency analysis breaks them. The shift slider makes it easy to try all 25 possible shifts when brute-forcing an unknown Caesar cipher.`,
+      `The tool shifts only alphabetic characters — A through Z and a through z — leaving numbers, spaces, punctuation, and Unicode symbols exactly as they are. ROT13 is its own inverse: applying it twice returns the original text, so the same tool encodes and decodes. For other shifts, the "Swap" button moves the output back to the input field, letting you apply the inverse shift (26 minus the original shift) to decode.`,
+    ],
+    steps: [
+      `Type or paste your text into the "Input Text" area.`,
+      `Drag the slider or type a number in the manual input to set the shift value. The default is 13 (standard ROT13).`,
+      `Click "ROT13 (13)" to snap the slider back to 13 at any time.`,
+      `Read the encoded result in the "Output" area — it updates instantly as you adjust the shift.`,
+      `Click "Copy Output" to copy the result, or "Swap" to move the output into the input field (useful for decoding by applying the inverse shift).`,
+    ],
+    why: [
+      `Real-time output as you adjust the shift slider means you can brute-force an unknown Caesar cipher interactively — drag through all 25 positions and read for the shift that produces readable English.`,
+      `The Swap button enables decoding without needing a separate "decode" mode — paste the cipher text, swap, and apply the inverse shift (26 minus original).`,
+      `Numbers, punctuation, and non-ASCII characters pass through unchanged, so URLs, code snippets, and formatted text do not get corrupted by the cipher.`,
+      `Pure client-side JavaScript with no dependencies — runs instantly and never transmits the plaintext or ciphertext to any server.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between ROT13 and a Caesar cipher?`,
+        answer: `ROT13 is a specific Caesar cipher where the shift is exactly 13. Because the English alphabet has 26 letters, shifting by 13 twice returns to the start — making ROT13 its own inverse. A Caesar cipher is the general term for any alphabetic shift substitution, with shifts from 1 to 25. ROT13 is the most common because its self-inverse property makes it convenient for lightweight obfuscation.`,
+      },
+      {
+        question: `How do I decode a Caesar cipher if I don't know the shift?`,
+        answer: `Drag the slider through all 25 positions and read the output at each stop. Readable English text will appear at the correct shift — this is called a brute-force attack. For longer texts, look for common short words: if "Gur" appears, it is likely "The" (shift 13). For very short messages, frequency analysis of letter distribution can also hint at the shift.`,
+      },
+      {
+        question: `Does the cipher affect numbers or special characters?`,
+        answer: `No. Only the 26 uppercase and 26 lowercase English letters (A–Z, a–z) are shifted. Digits, spaces, punctuation, and non-ASCII characters pass through to the output unchanged. This keeps URLs, code snippets, and structured text intact.`,
+      },
+      {
+        question: `Is ROT13 a secure encryption method?`,
+        answer: `No. ROT13 and Caesar ciphers provide no meaningful security — they are trivially broken by anyone who tries 25 possible shifts or notices letter frequencies. They are appropriate only for very lightweight obfuscation like spoiler tags, not for protecting sensitive data. Use a modern encryption standard like AES-256 for anything that needs real security.`,
+      },
+    ],
+    related: [
+      { slug: 'base64-encoder', note: `Encode text or binary data with Base64 for more widely used obfuscation in web contexts.` },
+      { slug: 'hash-generator', note: `Generate cryptographic hashes for one-way data fingerprinting rather than reversible encoding.` },
+      { slug: 'string-converter', note: `Convert cased text between naming conventions when the goal is formatting rather than encoding.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

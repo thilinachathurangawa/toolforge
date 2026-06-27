@@ -177,6 +177,34 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'unix-timestamp-converter': dynamic(() => import('@/components/tools/UnixTimestampConverter').then(mod => ({ default: mod.UnixTimestampConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'csv-to-json': dynamic(() => import('@/components/tools/CsvToJson').then(mod => ({ default: mod.CsvToJson })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'xml-to-json': dynamic(() => import('@/components/tools/XmlToJson').then(mod => ({ default: mod.XmlToJson })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'yaml-json-converter': dynamic(() => import('@/components/tools/YamlJsonConverter').then(mod => ({ default: mod.YamlJsonConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'html-entity-encoder': dynamic(() => import('@/components/tools/HtmlEntityEncoder').then(mod => ({ default: mod.HtmlEntityEncoder })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'csv-diff-viewer': dynamic(() => import('@/components/tools/CsvDiffViewer').then(mod => ({ default: mod.CsvDiffViewer })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'rot13-caesar-cipher': dynamic(() => import('@/components/tools/Rot13CaesarCipher').then(mod => ({ default: mod.Rot13CaesarCipher })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
   'security-header-analyzer': dynamic(() => import('@/components/tools/SecurityHeaderAnalyzer').then(mod => ({ default: mod.SecurityHeaderAnalyzer })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
