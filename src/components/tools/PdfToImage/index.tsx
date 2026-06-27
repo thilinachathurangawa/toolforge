@@ -30,11 +30,8 @@ export function PdfToImage() {
     setFileName(file.name);
     try {
       const pdfjs = await import('pdfjs-dist');
-      // Bundle the worker locally (no external CDN).
-      pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-        'pdfjs-dist/build/pdf.worker.min.mjs',
-        import.meta.url
-      ).toString();
+      // Worker is copied to public/ by scripts/ensure-node.cjs during prebuild.
+      pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
 
       const data = await file.arrayBuffer();
       const pdf = await pdfjs.getDocument({ data }).promise;
