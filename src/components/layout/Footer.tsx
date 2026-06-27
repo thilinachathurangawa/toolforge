@@ -100,11 +100,24 @@ export function Footer() {
             Featured On
           </h4>
           <div className="flex flex-wrap gap-4 items-center">
+            {/* Product Hunt Badge */}
+            <a
+              href="https://www.producthunt.com/products/toolforge-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-toolforge-3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                alt="ToolForge - 200+ free tools that run 100% in your browser. No sign-up. | Product Hunt"
+                width="250"
+                height="54"
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1182550&theme=dark&t=1782589546937"
+                className="h-[54px] w-auto"
+              />
+            </a>
             {/* TheSaaSDir Badge - Add after submission */}
             {/* <a href="https://thesaasdir.com/product/toolforge?ref=badge" rel="dofollow" target="_blank" rel="noopener noreferrer">
               <img src="https://thesaasdir.com/badge/toolforge.svg" alt="Featured on TheSaaSDir" width="160" height="44" className="h-11 w-auto" />
             </a> */}
-            {/* Add more directory badges here as you get approved */}
           </div>
         </div>
 

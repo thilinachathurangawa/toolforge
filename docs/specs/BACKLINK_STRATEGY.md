@@ -20,7 +20,7 @@ Build domain authority (DR) and URL rating (UR) by submitting ToolForge to high-
 
 | Directory | DR | Cost | Link Type | Review Time | Badge Required |
 |-----------|-----|------|-----------|-------------|----------------|
-| **Product Hunt** | 91+ | Free | Dofollow | 24-48h | No |
+| **Product Hunt** | 91+ | Free | Dofollow | 24-48h | Yes (badge received ✓) |
 | **Crunchbase** | 91 | Free | Dofollow | 2-5 days | No |
 | **AlternativeTo** | 80+ | Free | Dofollow | 1-3 days | No |
 | **TheSaaSDir** | Unknown | Free/$19 | Dofollow | 24-48h | Yes (free tier) |
@@ -169,6 +169,14 @@ online tools, free tools, browser tools, developer tools, image tools, json form
 ## 5. Badge Requirements
 
 Some directories require adding a badge to your site. Prepare badge HTML:
+
+### Product Hunt "Featured On" Badge
+```html
+<a href="https://www.producthunt.com/products/toolforge-2?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-toolforge-3" target="_blank" rel="noopener noreferrer">
+  <img alt="ToolForge - 200+ free tools that run 100% in your browser. No sign-up. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1182550&amp;theme=dark&amp;t=1782589546937">
+</a>
+```
+> **Status:** Active — ToolForge has been featured on Product Hunt. Add this badge to the footer "Featured On" section.
 
 ### TheSaaSDir Badge
 ```html
