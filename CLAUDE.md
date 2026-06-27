@@ -1,6 +1,6 @@
 # ToolForge — project conventions
 
-Next.js 14 / TypeScript / Tailwind / shadcn-ui multi-tool site. ~153 tools across
+Next.js 14 / TypeScript / Tailwind / shadcn-ui multi-tool site. ~206 tools across
 10 categories. Content is **data-driven**: the tool registry plus per-tool
 long-form content modules drive routing, SEO, category pages, sitemap, and
 structured data.

@@ -69,7 +69,7 @@ export function Navbar() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <input
               type="text"
-              placeholder="Search 50+ free tools..."
+              placeholder="Search 200+ free tools..."
               value={searchQuery}
               onChange={handleSearchChange}
               className="w-full h-10 pl-10 pr-4 rounded-full border border-border bg-surface/50 text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all duration-200"

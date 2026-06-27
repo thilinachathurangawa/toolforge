@@ -5,7 +5,7 @@ export const siteConfig = {
   tagline: 'Free Online Tools — Fast, Private, No Sign-up',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.toolforge.website',
   description:
-    'ToolForge offers 50+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.',
+    'ToolForge offers 200+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.',
   ogImage: '/icon.svg',
   author: 'ToolForge',
   twitter: '@toolforge',
