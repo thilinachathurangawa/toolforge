@@ -254,7 +254,7 @@ export const TOOLS: Tool[] = [
     tags: ['color', 'palette', 'extract', 'image', 'hex', 'rgb'],
     keywords: ['color palette from image', 'extract colors from image', 'dominant colors'],
     icon: 'Palette',
-    relatedTools: ['image-compressor', 'image-cropper', 'color-picker'],
+    relatedTools: ['image-compressor', 'image-cropper', 'color-palette-generator'],
     phase: 2,
     faqs: [
       {

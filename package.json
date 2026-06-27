@@ -7,7 +7,7 @@
   },
   "scripts": {
     "predev": "node scripts/ensure-node.cjs",
-    "prebuild": "node scripts/ensure-node.cjs",
+    "prebuild": "node scripts/ensure-node.cjs && node scripts/check-tool-count.cjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
