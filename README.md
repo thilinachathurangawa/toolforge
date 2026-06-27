@@ -1,4 +1,4 @@
-# ToolForge — Free Online Tools Platform.
+# ToolForge — Free Online Tools Platform
 
 > A collection of free, fast, browser-based tools built for SEO performance and ad revenue.
 > No backend required. No sign-up. No data leaves your browser.
