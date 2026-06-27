@@ -805,6 +805,50 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'password-strength-checker': dynamic(() => import('@/components/tools/PasswordStrengthChecker').then(mod => ({ default: mod.PasswordStrengthChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'file-hash-checker': dynamic(() => import('@/components/tools/FileHashChecker').then(mod => ({ default: mod.FileHashChecker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'text-encrypt-decrypt': dynamic(() => import('@/components/tools/TextEncryptDecrypt').then(mod => ({ default: mod.TextEncryptDecrypt })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'schema-markup-generator': dynamic(() => import('@/components/tools/SchemaMarkupGenerator').then(mod => ({ default: mod.SchemaMarkupGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'hreflang-tag-generator': dynamic(() => import('@/components/tools/HreflangTagGenerator').then(mod => ({ default: mod.HreflangTagGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'what-is-my-ip': dynamic(() => import('@/components/tools/WhatIsMyIp').then(mod => ({ default: mod.WhatIsMyIp })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'user-agent-parser': dynamic(() => import('@/components/tools/UserAgentParser').then(mod => ({ default: mod.UserAgentParser })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'browser-screen-info': dynamic(() => import('@/components/tools/BrowserScreenInfo').then(mod => ({ default: mod.BrowserScreenInfo })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'svg-to-png': dynamic(() => import('@/components/tools/SvgToPng').then(mod => ({ default: mod.SvgToPng })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'drawing-pad': dynamic(() => import('@/components/tools/DrawingPad').then(mod => ({ default: mod.DrawingPad })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'pixel-art-maker': dynamic(() => import('@/components/tools/PixelArtMaker').then(mod => ({ default: mod.PixelArtMaker })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {

@@ -7436,6 +7436,468 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'string-converter', note: `Convert cased text between naming conventions when the goal is formatting rather than encoding.` },
     ],
   },
+
+  'password-strength-checker': {
+    intro: [
+      `Most people believe a complex password is automatically a strong one, but cryptographers measure strength through entropy — the number of guesses needed to crack it by brute force. A 16-character lowercase phrase can outperform an 8-character mix of symbols and numbers by billions of attempts. This password strength checker scores your password on a 0–4 entropy scale and shows you exactly why each score was assigned.`,
+      `Security engineers, IT administrators, and anyone setting up accounts on sensitive systems use this tool to verify that a candidate password would survive a realistic attack. The tool detects common weaknesses — keyboard sequences like "qwerty" or "12345", repeated characters, and passwords that appear in known breach lists — then estimates crack times across three distinct threat scenarios: an offline attack against a fast hash (like MD5), an offline attack against a slow hash (like bcrypt), and a rate-limited online login attempt.`,
+    ],
+    steps: [
+      `Type or paste your candidate password into the input field.`,
+      `Read the strength bar: it fills from red (Very Weak, score 0) through amber (Fair, score 2) to green (Very Strong, score 4).`,
+      `Check the three estimated crack-time rows to understand the realistic risk under each attack model.`,
+      `Review the feedback list for specific, actionable suggestions — add uppercase letters, a symbol, or increase length — then retype and watch the score improve.`,
+    ],
+    why: [
+      `Runs entirely in your browser — the password you type is never sent to any server, log, or database. The analysis is instantaneous and private.`,
+      `Goes beyond simple rules. The scoring engine checks for keyboard walk patterns, character repetition, and a list of the most commonly used passwords, rather than just counting character types.`,
+      `Three crack-time estimates give you a realistic threat model. A password that takes centuries to crack on bcrypt might fall in minutes against an MD5-hashed database stolen in a breach.`,
+      `Actionable feedback tells you exactly what to change rather than just labelling a password "weak" without explanation.`,
+    ],
+    faqs: [
+      {
+        question: `Does this tool store or transmit my password?`,
+        answer: `No. The entire analysis runs in your browser using JavaScript. Nothing is sent to any server. You can disconnect from the internet and the tool will still work correctly.`,
+      },
+      {
+        question: `Why does length matter more than complexity?`,
+        answer: `Entropy grows with each additional character because the attacker must try exponentially more combinations. Adding one lowercase character to a 12-character password increases the search space by a factor of 26. Adding a single symbol only expands the charset from roughly 62 to 92 characters — far less impact than making the password longer.`,
+      },
+      {
+        question: `What score should I aim for?`,
+        answer: `Score 3 (Strong) or 4 (Very Strong) is appropriate for anything important — banking, email, and work accounts. A score of 2 is acceptable only for low-stakes accounts where you use a unique password not reused elsewhere. Scores 0 and 1 are insecure regardless of the site.`,
+      },
+      {
+        question: `What is the difference between offline fast hash and offline slow hash?`,
+        answer: `If a website stores passwords as MD5, SHA-1, or unsalted SHA-256 (fast hashes), an attacker with the stolen database can test billions of guesses per second on a GPU. Bcrypt, scrypt, and Argon2 are slow hashes that limit attempts to roughly 10,000 per second even on dedicated hardware. Knowing which hash your target service uses determines which crack-time estimate is relevant.`,
+      },
+    ],
+    related: [
+      { slug: 'password-generator', note: `Generate a new strong random password if your current one scored too low.` },
+      { slug: 'hash-generator', note: `Calculate the SHA-256 or SHA-512 hash of any string for server-side verification workflows.` },
+      { slug: 'text-encrypt-decrypt', note: `Encrypt sensitive text with AES-256-GCM once you have a strong passphrase.` },
+    ],
+  },
+
+  'file-hash-checker': {
+    intro: [
+      `Every time you download software, an OS image, or a sensitive document, you are trusting that the file arrived intact and unmodified. Cryptographic hashing gives you a way to verify that trust: the publisher computes a hash of the original file and publishes it, and you recompute the hash on the file you received. A single corrupted byte produces a completely different hash, making tampering or transfer errors immediately visible.`,
+      `This file hash checker computes SHA-1, SHA-256, SHA-384, or SHA-512 checksums directly in your browser using the native Web Crypto API — no upload, no server, no size limit beyond available RAM. Security engineers use it to verify ISO images before flashing, developers use it to confirm npm tarball integrity, and auditors use it to create tamper-evident fingerprints of files in an evidence chain.`,
+    ],
+    steps: [
+      `Drag your file onto the drop zone or click "Browse" to select it from disk.`,
+      `Choose the hashing algorithm from the four buttons — SHA-256 is the most common for software verification; SHA-512 provides a longer fingerprint for higher-assurance scenarios.`,
+      `The hash calculates automatically; copy it with the clipboard button.`,
+      `Optionally paste the expected hash from the publisher into the verification field. The tool immediately reports "Match" (green) or "No Match" (red).`,
+    ],
+    why: [
+      `The file never leaves your device. The Web Crypto API processes the file buffer in browser memory, which means even confidential documents stay fully private during verification.`,
+      `All four current SHA-2 variants are supported in a single tool. Switching algorithms is one click and recalculates instantly without re-uploading.`,
+      `The comparison is case-insensitive and trims whitespace, eliminating the most common causes of false "no match" results when copying hashes from terminals or emails.`,
+      `There is no file size restriction. Unlike server-based tools that cap uploads at a few hundred megabytes, this tool handles multi-gigabyte ISO and virtual disk files limited only by your browser's available memory.`,
+    ],
+    faqs: [
+      {
+        question: `What is a file hash or checksum?`,
+        answer: `A hash is a fixed-length fingerprint produced by a mathematical function that takes an entire file as input. The same file always produces the same hash; any change — even flipping a single bit — produces a completely different hash. Publishers use this to let recipients confirm a downloaded file is identical to the original.`,
+      },
+      {
+        question: `Which algorithm should I use?`,
+        answer: `SHA-256 is the current standard for most software distribution and is required by many certificate authorities. SHA-512 offers a longer fingerprint (512 bits vs 256 bits) and is preferred in high-assurance environments. SHA-1 is legacy — use it only when a publisher provides only a SHA-1 hash, as it is no longer considered collision-resistant for new applications.`,
+      },
+      {
+        question: `Can I recover the original file from its hash?`,
+        answer: `No. Hashing is a one-way function by design. A hash uniquely identifies a file but contains no information about its contents. This is fundamentally different from encryption, which is reversible with the correct key.`,
+      },
+      {
+        question: `Why does my hash not match the expected value?`,
+        answer: `The most common causes are: a corrupted or incomplete download (re-download the file), copy-paste of only part of the expected hash (check for missing leading zeros), or a mismatch between hash algorithm (verify the publisher specifies SHA-256 not SHA-1). Ensure you are hashing the exact same file the publisher measured, not a re-compressed or renamed version.`,
+      },
+    ],
+    related: [
+      { slug: 'hash-generator', note: `Generate hashes from text strings rather than files — useful for API authentication tokens and password storage.` },
+      { slug: 'base64-encoder', note: `Encode binary data including hash outputs to Base64 for safe transmission in JSON or HTTP headers.` },
+      { slug: 'password-strength-checker', note: `Evaluate a passphrase before using it as part of a PBKDF2 or bcrypt key derivation scheme.` },
+    ],
+  },
+
+  'text-encrypt-decrypt': {
+    intro: [
+      `When you need to share a password, an API key, or a private note through an untrusted channel — a public Slack, an email thread, a shared document — symmetric encryption gives the recipient the ability to decode it without exposing the plaintext along the way. This tool implements AES-256-GCM, a mode of the Advanced Encryption Standard that provides both confidentiality and authentication, meaning a tampered ciphertext will fail to decrypt rather than produce garbled output.`,
+      `The tool uses the native Web Crypto API built into every modern browser and never sends any data to a server. The passphrase is processed through PBKDF2 with 100,000 iterations of SHA-256 to derive a 256-bit encryption key, which slows down brute-force attacks on weak passphrases. The output is Base64-encoded so it can be safely copied into emails, JSON fields, or any text channel. Use cases include encrypting credentials before committing them to a repository, sending private notes over unencrypted channels, and creating encrypted backups of sensitive strings.`,
+    ],
+    steps: [
+      `Select "Encrypt" or "Decrypt" mode using the toggle at the top.`,
+      `In Encrypt mode, paste your plaintext into the input area. In Decrypt mode, paste the Base64 ciphertext you received.`,
+      `Enter your passphrase in the passphrase field — use a strong, unique passphrase that both parties know. Click the eye icon to reveal and confirm what you typed.`,
+      `Click the action button. The result appears in the output area ready to copy. Use "Swap to Input" to move the output back for a second operation.`,
+    ],
+    why: [
+      `AES-256-GCM is a military-grade authenticated encryption mode. Unlike unauthenticated modes like AES-CBC, GCM detects any modification of the ciphertext and refuses to decrypt, protecting against padding-oracle and bit-flipping attacks.`,
+      `PBKDF2 with 100,000 iterations imposes a deliberate computational cost on any attacker trying to guess the passphrase by brute force, buying significant time even if the ciphertext is stolen.`,
+      `Everything runs in the browser. The passphrase, the plaintext, and the ciphertext are never transmitted to any server. You can verify this by loading the page, disconnecting from the internet, and encrypting a message — it still works.`,
+      `A random 16-byte salt and 12-byte IV are generated for every encryption operation, so encrypting the same message with the same passphrase twice produces different ciphertexts, preventing pattern analysis.`,
+    ],
+    faqs: [
+      {
+        question: `What happens if I forget my passphrase?`,
+        answer: `The data is permanently unrecoverable. AES-GCM is a symmetric cipher — there is no master key, no recovery email, and no way to derive the passphrase from the ciphertext. Write the passphrase down in a secure location (a password manager, for example) before you share the ciphertext.`,
+      },
+      {
+        question: `Is AES-256-GCM safe for sensitive data?`,
+        answer: `Yes. AES-256-GCM is approved by the U.S. National Institute of Standards and Technology (NIST) and is used in TLS 1.3, SSH, and encrypted messaging protocols worldwide. The security depends on using a strong, random-looking passphrase — the algorithm itself has no known practical weaknesses.`,
+      },
+      {
+        question: `What is PBKDF2 and why does it matter?`,
+        answer: `PBKDF2 (Password-Based Key Derivation Function 2) converts a human-memorable passphrase into a cryptographic key by running it through a hash function many thousands of times. This means an attacker trying every possible passphrase must spend the same computational cost per guess, making brute-force attacks against weak passphrases orders of magnitude slower.`,
+      },
+      {
+        question: `Can I store the Base64 ciphertext anywhere?`,
+        answer: `Yes — the ciphertext is designed for text channels. It contains no information about the plaintext without the passphrase, so it is safe to publish publicly. However, ensure the passphrase is shared through a completely separate, secure channel to avoid both being intercepted at once.`,
+      },
+    ],
+    related: [
+      { slug: 'hash-generator', note: `Generate one-way SHA-256 fingerprints of text when you need verification rather than reversible encryption.` },
+      { slug: 'base64-encoder', note: `Encode or decode Base64 strings directly when working with the raw ciphertext output.` },
+      { slug: 'password-strength-checker', note: `Evaluate your passphrase strength before using it as the encryption key.` },
+    ],
+  },
+
+  'schema-markup-generator': {
+    intro: [
+      `Search engines can display much richer results — star ratings, FAQ dropdowns, product prices, and article bylines — when a page includes structured data that describes its content in a machine-readable format. JSON-LD is Google's recommended implementation: a JavaScript object embedded in a script tag that maps your content to the Schema.org vocabulary without altering your visible HTML. This generator builds valid JSON-LD for three of the highest-impact schema types and wraps it in a copy-ready script tag.`,
+      `Content marketers and SEO engineers reach for this tool when launching new pages that qualify for rich snippets. Article schema helps news and blog posts appear with author names and publication dates in Google's top stories. Product schema unlocks review stars and price display in shopping results. FAQ schema collapses question-answer pairs directly into the search result, expanding your SERP footprint without additional paid clicks. All output is generated entirely in the browser — no account, no API key, no rate limit.`,
+    ],
+    steps: [
+      `Choose your schema type using the tab buttons at the top: Article, Product, or FAQ.`,
+      `Fill in the form fields that apply to your page — empty fields are automatically omitted from the output, so you only need to complete the fields you have data for.`,
+      `The JSON-LD script tag updates in real time in the output panel below the form.`,
+      `Click "Copy Code" and paste the entire script tag into the \`<head>\` section of your HTML page. Validate using Google's Rich Results Test after deploying.`,
+    ],
+    why: [
+      `Real-time preview: the output updates instantly as you type, so you can see exactly how the JSON-LD object looks before copying it — no save or submit button needed.`,
+      `Empty-field omission: the generator skips any field you leave blank, producing clean, minimal JSON-LD rather than a cluttered object full of empty strings.`,
+      `Three high-impact types in one place: Article, Product, and FAQ cover the schema types most likely to trigger rich snippets in Google Search for content, e-commerce, and support pages.`,
+      `No account or login: generate and copy unlimited schema markup with no registration, no API key, and no rate limit — completely free for commercial use.`,
+    ],
+    faqs: [
+      {
+        question: `What is JSON-LD and where does it go in my HTML?`,
+        answer: `JSON-LD (JavaScript Object Notation for Linked Data) is a structured data format that uses a \`<script type="application/ld+json">\` tag to embed machine-readable metadata in your HTML. Paste the copied output inside the \`<head>\` element of your page. It has no effect on visual rendering and is invisible to users but readable by search engine crawlers.`,
+      },
+      {
+        question: `Which schema type should I use for my page?`,
+        answer: `Use Article for blog posts, news articles, and long-form editorial content to qualify for Google's top stories carousel. Use Product for e-commerce pages selling a physical or digital product, especially if you have reviews. Use FAQ for support, help, or informational pages with question-and-answer sections, as this type can add clickable Q&A dropdowns directly in search results.`,
+      },
+      {
+        question: `Does Google require all fields to be filled in?`,
+        answer: `No. Google requires a small set of fields per type (for example, Article requires headline and author; Product requires name and offers), but recommends as many additional fields as you can accurately provide. The generator omits empty fields, so you can fill in only what you have without creating invalid markup.`,
+      },
+      {
+        question: `How do I check if my schema is working?`,
+        answer: `Use Google's Rich Results Test (search.google.com/test/rich-results) or the Schema Markup Validator (validator.schema.org) to check for errors after deploying. Rich snippets can take days or weeks to appear in search results after Google re-crawls your page.`,
+      },
+    ],
+    related: [
+      { slug: 'meta-tag-generator', note: `Generate title, description, and Open Graph meta tags to complement your structured data.` },
+      { slug: 'robots-txt-generator', note: `Control which pages Googlebot can crawl and index alongside your schema markup.` },
+      { slug: 'serp-snippet-preview', note: `Preview how your title and description appear in Google search results before publishing.` },
+    ],
+  },
+
+  'hreflang-tag-generator': {
+    intro: [
+      `When the same content exists at different URLs for different languages or regions, search engines need explicit signals to serve each version to the right audience. Without hreflang tags, Google may treat your French and English pages as duplicates and penalise both. The hreflang specification uses \`<link rel="alternate">\` elements in the page \`<head>\` to create a bi-directional map between language variants, telling crawlers exactly which URL targets which locale.`,
+      `International SEO specialists and web developers use this generator when launching multilingual sites, regional landing pages, or language-specific e-commerce storefronts. You add one row per URL variant, select its ISO 639-1 language code and optional ISO 3166-1 alpha-2 country region, and the tool produces the complete set of link tags ready to paste into each page's head. The x-default tag — which points to a fallback page for users whose language does not match any specific variant — is also supported with a single checkbox.`,
+    ],
+    steps: [
+      `Click "Add Row" to add a URL entry. Each row represents one language or regional variant of the page.`,
+      `Enter the full URL for that variant (including the protocol), then select its language from the ISO 639-1 dropdown and, if targeting a specific country, its region from the ISO 3166-1 alpha-2 dropdown.`,
+      `Check "Include x-default" and enter the fallback URL if you want to signal a default page for unmatched locales.`,
+      `Click "Copy All Tags" and paste the entire block of \`<link>\` elements into the \`<head>\` section of every page listed, not just the primary one.`,
+    ],
+    why: [
+      `Builds valid RFC 5646 language tags automatically: entering language "en" and region "GB" produces \`hreflang="en-GB"\` while language-only entries like "fr" produce \`hreflang="fr"\` — correct in both cases without manual formatting.`,
+      `x-default support is built in: the checkbox adds a properly formatted x-default fallback tag, which Google recommends for international selector pages or default-language homepages.`,
+      `Dynamic row management: add as many URL variants as needed, remove rows that do not apply, and the output updates instantly. There is no artificial limit on the number of rows.`,
+      `Free and instant: no login, no API call, no rate limit. Generate hreflang tag sets for unlimited pages and projects at no cost.`,
+    ],
+    faqs: [
+      {
+        question: `What does hreflang do and why does it matter for SEO?`,
+        answer: `Hreflang tells Google and Bing which language and country a specific URL is intended for. Without it, search engines may consolidate duplicate-content signals across your language variants, hurting rankings for all of them. With it, each URL is correctly indexed for its target audience and served to users whose browser language or search location matches.`,
+      },
+      {
+        question: `When do I need the x-default tag?`,
+        answer: `Include x-default when you have a page that acts as a language selector (e.g., a homepage that detects the user's browser language and redirects), or when none of your specific variants is intended for a particular locale. The x-default URL is served to users whose language does not match any hreflang tag in the set.`,
+      },
+      {
+        question: `Does the order of the link tags matter?`,
+        answer: `No. Hreflang link tags are order-independent — Google reads the entire set and maps them regardless of sequence. What matters is that every URL in the set lists all other variants (including itself), forming a complete bi-directional annotation.`,
+      },
+      {
+        question: `What if I have hundreds of URLs?`,
+        answer: `For large sites with many URL variants, maintaining hreflang in the \`<head>\` of every page becomes impractical. The recommended alternative for scale is an XML sitemap with hreflang extensions, where all annotations live in a single file. This generator focuses on the page-level implementation suitable for small-to-medium page sets.`,
+      },
+    ],
+    related: [
+      { slug: 'sitemap-generator', note: `Create an XML sitemap to help search engines discover and crawl all language variants.` },
+      { slug: 'robots-txt-generator', note: `Ensure your robots.txt file does not block the language variant pages from being crawled.` },
+      { slug: 'meta-tag-generator', note: `Generate complementary meta tags including \`og:locale\` for social media localisation.` },
+    ],
+  },
+
+  'what-is-my-ip': {
+    intro: [
+      `Your public IP address is the identity your device presents to the internet — it is how websites, servers, and services know where to send data back to you. Unlike your private IP (assigned by your router for internal network communication), your public IP is visible to every server you connect to and can be used to approximate your geographic location, identify your internet service provider, and enforce geo-restrictions on content. Knowing your current public IP is an essential first step in dozens of networking and troubleshooting tasks.`,
+      `Network administrators check their external IP when configuring firewall rules or whitelisting a remote office. Developers verify that a VPN or proxy is actually routing their traffic through the intended endpoint. Remote workers confirm their IP before accessing systems that require IP-based authentication. This tool displays your current public IPv4 or IPv6 address the instant the page loads, with a one-click copy button for immediate use. Your IP address is retrieved via the ipify.org API — it is publicly visible by design and sent to that service solely to deliver it back to you.`,
+    ],
+    steps: [
+      `Open the page — your public IP address displays automatically within a second of page load.`,
+      `Check the badge next to the IP to see whether it is an IPv4 address (e.g., 203.0.113.5) or an IPv6 address (e.g., 2001:db8::1).`,
+      `Click "Copy IP" to copy the address to your clipboard for use in firewall rules, whitelists, or configuration files.`,
+      `Click the refresh button if your IP may have changed since the page loaded (for example, after reconnecting a VPN).`,
+    ],
+    why: [
+      `Instant display: your IP loads on page open with no form submission or extra button click required.`,
+      `IPv4 and IPv6 aware: the tool uses the ipify API's dual-stack endpoint, returning your IPv6 address when your connection supports it and falling back to IPv4 otherwise.`,
+      `Single purpose: unlike tools that bundle IP lookup with geolocation, ISP data, and map views, this tool focuses exclusively on the one number most users actually need — your public address for copy-and-paste use.`,
+      `No sign-up or tracking: the tool makes one API call to retrieve your IP and displays it. No analytics events are fired on that number, no history is stored.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between a public IP and a private IP?`,
+        answer: `A private IP (e.g., 192.168.1.x or 10.0.0.x) is assigned by your router and is only visible inside your home or office network. A public IP is assigned by your internet service provider and is the address visible to the outside world. This tool shows your public IP — the one external servers see when you connect to them.`,
+      },
+      {
+        question: `Will this show my exact home or office location?`,
+        answer: `No. IP geolocation can narrow your location to a city or ISP region, but it cannot pinpoint a street address. The precision depends on how your ISP allocates address blocks. Mobile network IPs often resolve to a city centre or carrier hub far from your physical location.`,
+      },
+      {
+        question: `What is IPv6 and why might I see it?`,
+        answer: `IPv6 is the next generation of the internet addressing protocol, using 128-bit addresses (e.g., 2001:db8::1) instead of the 32-bit IPv4 addresses (e.g., 203.0.113.5). If your ISP has enabled IPv6 for your connection and your device supports it, the dual-stack API endpoint returns your IPv6 address. Many ISPs still assign both — if you need specifically your IPv4 address, visit api.ipify.org directly.`,
+      },
+      {
+        question: `Can a VPN hide my IP address?`,
+        answer: `Yes. When connected to a VPN, your traffic exits through the VPN provider's server, and this tool will show the VPN server's public IP rather than your true ISP-assigned address. This is the expected behaviour and is how you can verify your VPN is working correctly.`,
+      },
+    ],
+    related: [
+      { slug: 'address-lookup', note: `Look up geolocation, ISP, and timezone data for any IP address including the one shown here.` },
+      { slug: 'dns-lookup', note: `Query DNS records to see how domain names resolve to IP addresses.` },
+      { slug: 'website-status-checker', note: `Check whether a website is reachable from outside your network once you have your IP.` },
+    ],
+  },
+
+  'user-agent-parser': {
+    intro: [
+      `Every browser sends a User Agent string with each HTTP request — a compact identifier that describes the browser name, version, rendering engine, operating system, and device type. Web servers use it for logging, developers use it for feature detection, and testers use it to simulate different browsers. Reading the raw string is possible but opaque: a typical Chrome on Windows string runs to over 100 characters and includes multiple version numbers for historical compatibility reasons.`,
+      `This parser reads your browser's User Agent automatically on page load and breaks it into labelled cards — Browser, Operating System, and Device — so you can see at a glance what your browser is reporting. You can also paste any custom User Agent string to decode it: useful for diagnosing what a web server logged from a mobile client, understanding what a headless browser or scraper is identifying as, or verifying that a custom UA set in testing tools is parsed correctly. All processing happens in the browser using regular expressions — no data is uploaded anywhere.`,
+    ],
+    steps: [
+      `Your current browser's User Agent string loads automatically in the text area at the top of the page.`,
+      `Read the three parsed cards below: Browser (name, version, rendering engine), Operating System (name and version), and Device (Desktop, Mobile, or Tablet).`,
+      `To decode a different User Agent — for example, one from a server log or a testing tool — paste it into the text area and click "Parse".`,
+      `Click "Use My UA" at any time to reset the text area back to your real browser's User Agent string.`,
+    ],
+    why: [
+      `Detects the correct browser from ambiguous strings: Chrome, Edge, Opera, Firefox, and Safari all include "Safari" and sometimes "Chrome" in their UA strings for historical compatibility. The parser applies the correct detection order — Edge before Chrome, Opera before Chrome — to return the real browser name.`,
+      `Covers all major OS variants including the Windows NT version mapping (10.0 → Windows 10/11), macOS dot-version reconstruction from underscored OS X strings, and iOS/iPadOS separation.`,
+      `Editable input for custom strings: paste a UA from a log file, a scraper, or a testing harness and get an instant structured breakdown without writing regex yourself.`,
+      `Fully offline: the parser uses compiled regular expressions that run in your browser. No API call is made, no UA string is sent to a server.`,
+    ],
+    faqs: [
+      {
+        question: `What is a User Agent string?`,
+        answer: `A User Agent string is a text identifier that browsers include in the HTTP request header \`User-Agent:\` sent to every website. It tells the server which browser, version, operating system, and device type is making the request. Web servers use this for analytics logging, content negotiation, and legacy device detection.`,
+      },
+      {
+        question: `Why does my Chrome UA say it is also Safari?`,
+        answer: `For historical compatibility, Chrome, Edge, and most Chromium-based browsers include \`Safari/\` and \`AppleWebKit/\` in their UA strings. This allows older server-side detection code written to recognise "Safari" to also work with these browsers. The correct way to detect Chrome is to look for the \`Chrome/\` token, which is what this parser does.`,
+      },
+      {
+        question: `Can I change or spoof my User Agent?`,
+        answer: `Yes. Most browsers allow you to override the User Agent string in developer tools (Chrome DevTools → Network Conditions panel, for example). Browser extensions and command-line flags also allow UA spoofing. This tool always reads whatever string the browser is actually sending, making it useful for verifying that a spoofed UA is formatted correctly.`,
+      },
+      {
+        question: `What does the Engine field mean?`,
+        answer: `The engine is the underlying rendering core: Blink (Chrome, Edge, Opera), Gecko (Firefox), WebKit (Safari), or Trident (Internet Explorer). Engine matters because the same browser feature may behave slightly differently across engines, which is why web developers often test against multiple engines rather than just multiple browser brands.`,
+      },
+    ],
+    related: [
+      { slug: 'browser-screen-info', note: `View your screen resolution, viewport size, and other browser environment details alongside the UA.` },
+      { slug: 'what-is-my-ip', note: `Check your public IP address — another piece of information your browser reveals to every server you visit.` },
+      { slug: 'http-headers-checker', note: `Inspect the full HTTP response headers that a server sends back, including how it responds to your UA.` },
+    ],
+  },
+
+  'browser-screen-info': {
+    intro: [
+      `Front-end developers and QA engineers regularly need to know the exact environment their browser is running in: the actual screen dimensions, the viewport the page is rendered inside, the device pixel ratio that determines how many physical pixels back each CSS pixel, and whether the browser has cookies or touch input available. Collecting this information normally requires opening developer tools or writing console commands — this tool surfaces everything in one organised dashboard.`,
+      `Web designers use it to debug responsive layout issues when a layout breaks at an unexpected breakpoint. Mobile QA testers use it to confirm that a test device's pixel ratio matches the assumed target in their test plan. Accessibility engineers check the reported language preference to verify content is served in the correct locale. All values are read directly from \`window.screen\`, \`window\`, and \`navigator\` APIs in your browser — no data is sent anywhere. The viewport dimensions update live as you resize the window.`,
+    ],
+    steps: [
+      `Open the page and all values populate instantly from your browser's built-in APIs.`,
+      `Resize the browser window to see the Viewport Size fields update in real time, confirming responsive breakpoints.`,
+      `Click "Refresh" to re-read all values if you have changed a browser setting or switched tabs since loading.`,
+      `Click "Copy All" to copy the full dataset as a formatted JSON object — useful for pasting into a bug report or test log.`,
+    ],
+    why: [
+      `Live viewport updates: a resize event listener keeps the viewport width and height current as you drag the browser window, making it easy to pinpoint exact breakpoints without writing any JavaScript.`,
+      `Covers eighteen distinct data points including less-commonly checked values like hardware concurrency (CPU thread count), max touch points, and Do Not Track preference.`,
+      `Zero data transmission: every value is read from browser memory using synchronous JavaScript APIs. The page makes no network requests after the initial load.`,
+      `Formatted JSON copy: the "Copy All" button produces a compact JSON object with labelled keys, ready to paste directly into a bug report, test spec, or support ticket.`,
+    ],
+    faqs: [
+      {
+        question: `What is the Device Pixel Ratio?`,
+        answer: `Device Pixel Ratio (DPR) is the number of physical screen pixels that correspond to one CSS pixel. A DPR of 2 means a "Retina" or high-DPI screen — a 1920×1080 CSS viewport is actually rendered at 3840×2160 physical pixels. Images need to be at least DPR× their displayed size to appear sharp on such screens.`,
+      },
+      {
+        question: `What is the difference between Screen Resolution and Viewport Size?`,
+        answer: `Screen Resolution (from \`screen.width\` and \`screen.height\`) is the total number of pixels your monitor has. Viewport Size (from \`window.innerWidth\` and \`window.innerHeight\`) is the portion of that screen the browser's content area occupies, excluding toolbars and system chrome. Responsive CSS media queries target viewport size, not screen resolution.`,
+      },
+      {
+        question: `What does Hardware Concurrency mean?`,
+        answer: `\`navigator.hardwareConcurrency\` reports the number of logical CPU threads available to JavaScript. Modern multi-core processors expose this to allow web workers to be spawned efficiently. A value of 8 means the browser can run 8 JavaScript threads in parallel, not that the machine has 8 physical cores (hyper-threading typically doubles the logical count).`,
+      },
+      {
+        question: `Does this tool track or fingerprint my browser?`,
+        answer: `No. The values are read locally and displayed only to you. The tool makes no network requests with this data and stores nothing after you close the tab. The information displayed is the same information already available to every website you visit through standard browser APIs.`,
+      },
+    ],
+    related: [
+      { slug: 'user-agent-parser', note: `Decode your browser's User Agent string into structured browser, OS, and device information.` },
+      { slug: 'what-is-my-ip', note: `Check your public IP address — another client environment property visible to web servers.` },
+      { slug: 'internet-speed-test', note: `Measure your download and upload speeds to complete a full picture of your browser's network environment.` },
+    ],
+  },
+
+  'svg-to-png': {
+    intro: [
+      `SVG is the ideal format for icons, logos, and illustrations because it scales to any resolution without losing sharpness. However, many platforms — email clients, older content management systems, social media post composers, and mobile apps — do not support SVG and require a raster image instead. Converting SVG to PNG used to mean installing a graphics application, but the HTML5 Canvas API makes it possible to do the same thing entirely in the browser without any server-side processing.`,
+      `This converter accepts one or more SVG files, lets you choose an output scale (0.5× through 4×, or custom dimensions), set a background colour (transparent, white, or custom), and produces individual PNG downloads or a batch ZIP archive. Designers use it to export icon sets for mobile app assets, developers use it to prepare SVG illustrations for use in PDF generators that lack SVG support, and content teams use it to create social media thumbnails from vector artwork.`,
+    ],
+    steps: [
+      `Drag one or more SVG files onto the drop zone, or click to browse and select them.`,
+      `Choose your output scale — 2× is suitable for most screen use, 4× for print-quality output — or enter custom pixel dimensions.`,
+      `Select a background colour: Transparent preserves alpha for logos on coloured backgrounds, White is useful for platforms that do not support transparency.`,
+      `Click "Convert to PNG". When conversion is complete, download each file individually or click "Download All as ZIP" for batch export.`,
+    ],
+    why: [
+      `Runs entirely in the browser using the HTML5 Canvas API — your SVG files are never uploaded to any server, ensuring complete privacy for proprietary artwork.`,
+      `Preserves vector quality at the chosen scale: the SVG is drawn onto a canvas at the target resolution, so a 2× conversion of a 100×100 SVG produces a crisp 200×200 PNG with no upscaling artefacts.`,
+      `Batch conversion: drop an entire icon set and convert all files in one click. The results include before/after previews and file size information before you commit to a download.`,
+      `Background control: transparent PNGs work on any background colour in the final design; white-filled PNGs are compatible with platforms that mishandle transparency.`,
+    ],
+    faqs: [
+      {
+        question: `Does a higher scale factor affect output quality?`,
+        answer: `Because the source is a vector SVG, scaling up produces a larger PNG with more pixels but the same visual sharpness — not the blurring you would see when upscaling a raster image. Choose 4× or custom dimensions for print-quality exports; 1× or 2× is sufficient for screen use.`,
+      },
+      {
+        question: `Can I convert multiple SVG files at once?`,
+        answer: `Yes. Drop several SVG files onto the zone or select them together from the file picker. Each is converted independently with the same settings, and you can download them individually or all at once as a ZIP file.`,
+      },
+      {
+        question: `What about SVGs that reference external images or fonts?`,
+        answer: `SVGs that use \`<image href="...">\` pointing to external URLs, or that reference web fonts, may not render correctly because the browser's Canvas security model blocks cross-origin resource loads for canvas operations. Self-contained SVGs with inline styles and embedded assets convert reliably.`,
+      },
+      {
+        question: `What does "transparent background" mean in a PNG?`,
+        answer: `A transparent PNG has an alpha channel that stores opacity information per pixel. Areas declared transparent in the SVG (or the background itself) remain see-through in the exported PNG, so when you place the image over a coloured surface the SVG artwork appears correctly rather than on a white rectangle.`,
+      },
+    ],
+    related: [
+      { slug: 'image-converter', note: `Convert between JPG, PNG, and WebP raster formats after you have your PNG from SVG.` },
+      { slug: 'image-compressor', note: `Reduce the file size of the exported PNG before uploading it to a website.` },
+      { slug: 'ascii-art-generator', note: `Convert images to text-based art as a creative alternative output format.` },
+    ],
+  },
+
+  'drawing-pad': {
+    intro: [
+      `Sometimes you need to sketch a concept faster than any diagramming tool allows — a quick wireframe, a rough data-flow arrow, a hand-drawn annotation on a shared idea. This drawing pad gives you a freehand canvas that opens instantly in any browser, works equally well with a mouse, touch screen, or stylus, and exports to PNG with a single click. No account, no install, no whiteboard software subscription required.`,
+      `UX designers use it to sketch screen flows before opening a dedicated tool. Teachers use it to annotate diagrams during screen-shared lessons. Developers use it to diagram architecture concepts in meetings. The canvas uses the Pointer Events API for cross-device compatibility and applies quadratic Bézier smoothing between pointer positions to produce clean curves from even fast gestures. Erased strokes use canvas compositing rather than painting white, so erasing on a transparent background removes pixels cleanly rather than covering them.`,
+    ],
+    steps: [
+      `Click or tap the color swatch to pick your brush colour.`,
+      `Drag the size slider to set the brush width from 1px (fine pen) to 40px (broad marker).`,
+      `Draw on the canvas — the tool works with mouse, finger touch, and stylus. Use the Draw / Erase toggle to switch between adding and removing strokes.`,
+      `Click "Download PNG" to save the drawing. Click "Clear" to blank the canvas and start over.`,
+    ],
+    why: [
+      `Pointer Events API gives reliable cross-device drawing: the same event handlers work for mouse, touch, and stylus inputs without separate code paths or polyfills, ensuring consistent behaviour on iOS Safari, Android Chrome, and desktop browsers alike.`,
+      `Smooth curves: the tool uses the midpoint between consecutive pointer positions as a Bézier control point, which eliminates the jagged corners produced by straight line segments between raw pointer samples.`,
+      `Destination-out compositing for the eraser removes pixels from the canvas buffer rather than painting over them. This correctly erases strokes on a white background and leaves transparent regions where the eraser passes.`,
+      `Instant PNG export: the HTML5 Canvas \`toDataURL('image/png')\` API encodes the canvas directly to a downloadable PNG without any server-side processing.`,
+    ],
+    faqs: [
+      {
+        question: `Can I use this on a tablet or iPad?`,
+        answer: `Yes. The canvas uses \`touch-action: none\` to prevent the browser from scrolling the page while you draw, and the Pointer Events API handles touch input the same way as mouse input. Pressure sensitivity from a stylus is not currently mapped to brush size, but the brush size slider provides manual control.`,
+      },
+      {
+        question: `Is my drawing saved if I close the page?`,
+        answer: `No. The canvas state is held in browser memory and is not persisted to local storage or any server. Download your PNG before closing the tab if you want to keep the drawing.`,
+      },
+      {
+        question: `What resolution is the exported PNG?`,
+        answer: `The canvas is initialised at its CSS display width (the full width of the content area) by 500px tall. On a high-DPI display the CSS pixels map to physical pixels at a 1:1 ratio — if you need a higher-resolution export, try downloading and then upscaling with the Image Resizer tool.`,
+      },
+      {
+        question: `Can I undo a stroke?`,
+        answer: `Undo is not currently available — use the Eraser tool to remove unwanted strokes, or click "Clear" to reset the entire canvas. Future updates may add multi-step undo via canvas snapshot history.`,
+      },
+    ],
+    related: [
+      { slug: 'pixel-art-maker', note: `Create grid-based retro pixel art on a precise cell-by-cell canvas with a flood-fill bucket tool.` },
+      { slug: 'ascii-art-generator', note: `Convert any uploaded image into ASCII text art for a text-based creative output.` },
+      { slug: 'meme-generator', note: `Add text captions to images for meme creation if your sketch needs a caption.` },
+    ],
+  },
+
+  'pixel-art-maker': {
+    intro: [
+      `Pixel art experienced a significant creative revival in the 2010s and remains a dominant aesthetic in indie games, social media avatars, NFT projects, and retro-styled interfaces. Every pixel placement is intentional, and the constrained grid forces design decisions that larger canvases never require. This tool provides an in-browser pixel art editor with three grid sizes, a flood-fill bucket, a preset color palette, and a crisp 8× upscaled PNG export — no Photoshop or specialized software needed.`,
+      `Game developers use it to prototype sprite designs and UI icons before committing to a full asset pipeline. Graphic designers use it to create favicon concepts, emoji-style illustrations, and social media profile pictures. Students learning digital art use it as a low-barrier entry point that teaches color theory and composition at a small scale. The export scales each grid cell up by 8× using a strictly aliased canvas render, so a 16×16 grid exports as a 128×128 PNG with perfectly sharp square pixels rather than the bilinear blurring that upscaling algorithms normally produce.`,
+    ],
+    steps: [
+      `Choose a grid size with the "16×16", "32×32", or "64×64" buttons. Larger grids give more detail but are slower to fill.`,
+      `Select the "Pen" tool and click or drag across the grid to place colored pixels in the current color.`,
+      `Switch to "Fill" (bucket) to flood-fill an enclosed region — click any cell and the tool fills all connected cells of the same color.`,
+      `Click "Download PNG" to export a crisp 8× upscaled version: a 16-grid becomes 128px, a 32-grid becomes 256px, and a 64-grid becomes 512px — all with zero anti-aliasing blur.`,
+    ],
+    why: [
+      `Crisp pixel-perfect export: the download canvas uses \`imageSmoothingEnabled = false\` and renders each grid cell as a solid filled rectangle at 8× scale. This produces the hard-edged, sharp pixel aesthetic expected of pixel art rather than the blurred result of standard image upscaling.`,
+      `Flood-fill bucket with BFS: the fill tool uses a breadth-first search to identify all connected cells of the matching color and replaces them in a single operation, saving the repetitive clicking needed to fill large uniform areas.`,
+      `16-color preset palette plus free color picker: the preset swatches cover primary, secondary, and neutral colors for quick selection; the color input allows any custom hex color for more precise work.`,
+      `Checkerboard transparency background: empty cells are shown as an alternating grey checkerboard (the web standard for transparent areas), so you can accurately preview which regions will be transparent in the final PNG.`,
+    ],
+    faqs: [
+      {
+        question: `What resolution is the downloaded PNG?`,
+        answer: `The download scales each grid cell up by 8×: a 16×16 grid exports as 128×128 pixels, 32×32 becomes 256×256, and 64×64 becomes 512×512. Empty (transparent) cells are exported as transparent pixels in the PNG alpha channel.`,
+      },
+      {
+        question: `Can I make animated GIFs with this tool?`,
+        answer: `Not currently. This tool exports static PNG files. Animated sprite sheets and GIF export require frame management and a GIF encoder, which are outside the current scope. For animation, consider exporting individual frames and compositing them in a GIF editor.`,
+      },
+      {
+        question: `What does the flood-fill tool do exactly?`,
+        answer: `The flood-fill (bucket) tool starts at the cell you click and fills all connected cells that share the exact same color as the target cell with the current brush color. It uses a breadth-first traversal of the four cardinal neighbors (up, down, left, right) and stops at cells of a different color or at grid boundaries.`,
+      },
+      {
+        question: `How do I make pixel art for games?`,
+        answer: `Start with a 16×16 or 32×32 grid for character sprites and icons. Use a limited palette of 8–16 colors to maintain visual consistency. Use the Eraser to remove stray pixels, and the Fill bucket to quickly color large uniform areas like backgrounds. Export the PNG and import it into your game engine with nearest-neighbor scaling to preserve the crisp pixel aesthetic at any display resolution.`,
+      },
+    ],
+    related: [
+      { slug: 'drawing-pad', note: `Freehand draw and sketch without the grid constraint for organic shapes and quick diagrams.` },
+      { slug: 'ascii-art-generator', note: `Convert photos to text-based ASCII art for an entirely different kind of retro aesthetic.` },
+      { slug: 'filter-effect-studio', note: `Apply vintage, pixelation, and other filters to photos as a complementary creative tool.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

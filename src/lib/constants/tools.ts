@@ -2986,6 +2986,169 @@ export const TOOLS: Tool[] = [
     relatedTools: ['image-compressor', 'image-resizer', 'image-converter'],
     phase: 4,
   },
+
+  // ── Phase 4: Security Tools ──────────────────────────────────────────────────
+  {
+    slug: 'password-strength-checker',
+    name: 'Password Strength Checker',
+    shortDescription: 'Test how strong your password is and get instant feedback',
+    description:
+      'Check password strength online free. Get a 0–4 entropy score, estimated crack times for online and offline attacks, and actionable tips to improve security. Runs entirely in your browser — nothing is transmitted.',
+    category: 'security',
+    tags: ['password', 'strength', 'security', 'entropy', 'checker', 'meter'],
+    keywords: ['password strength checker online', 'test password security', 'how strong is my password', 'password entropy calculator'],
+    icon: 'ShieldCheck',
+    isNew: true,
+    relatedTools: ['password-generator', 'hash-generator', 'text-encrypt-decrypt'],
+    phase: 4,
+  },
+  {
+    slug: 'file-hash-checker',
+    name: 'File Hash Checker',
+    shortDescription: 'Calculate and verify SHA-256, SHA-512 file checksums',
+    description:
+      'Calculate and verify file checksums in your browser free. Supports SHA-1, SHA-256, SHA-384, SHA-512. Paste an expected hash for instant Match / No Match verification. No file upload required.',
+    category: 'security',
+    tags: ['hash', 'checksum', 'sha256', 'sha512', 'verify', 'file', 'integrity'],
+    keywords: ['file hash checker online', 'SHA256 file verifier', 'verify download integrity free', 'checksum calculator online'],
+    icon: 'Hash',
+    isNew: true,
+    relatedTools: ['hash-generator', 'base64-encoder', 'password-strength-checker'],
+    phase: 4,
+  },
+  {
+    slug: 'text-encrypt-decrypt',
+    name: 'Text Encrypt / Decrypt',
+    shortDescription: 'AES-256-GCM text encryption with a passphrase',
+    description:
+      'Encrypt and decrypt text with AES-256-GCM using the Web Crypto API. PBKDF2 key derivation with 100,000 iterations. Base64 output for easy sharing. Runs completely offline — no data ever leaves your browser.',
+    category: 'security',
+    tags: ['encrypt', 'decrypt', 'aes', 'aes-256', 'gcm', 'passphrase', 'security', 'web crypto'],
+    keywords: ['encrypt text with password online', 'AES-256 text encryption online', 'secure message encryption tool', 'decrypt text with passphrase'],
+    icon: 'Lock',
+    isNew: true,
+    relatedTools: ['hash-generator', 'base64-encoder', 'password-strength-checker'],
+    phase: 4,
+  },
+
+  // ── Phase 4: SEO Tools ───────────────────────────────────────────────────────
+  {
+    slug: 'schema-markup-generator',
+    name: 'Schema Markup Generator',
+    shortDescription: 'Generate JSON-LD schema for Article, Product, and FAQ',
+    description:
+      'Generate valid JSON-LD structured data markup for Article, Product, and FAQ schema types free. Fill in your details and copy the ready-to-paste script tag. Boosts rich snippets in Google Search.',
+    category: 'seo',
+    tags: ['schema', 'json-ld', 'structured data', 'rich snippets', 'faq', 'article', 'product', 'seo'],
+    keywords: ['JSON-LD schema generator free', 'FAQ schema markup builder', 'rich snippets code generator', 'structured data generator SEO'],
+    icon: 'Code2',
+    isNew: true,
+    relatedTools: ['meta-tag-generator', 'robots-txt-generator', 'serp-snippet-preview'],
+    phase: 4,
+  },
+  {
+    slug: 'hreflang-tag-generator',
+    name: 'Hreflang Tag Generator',
+    shortDescription: 'Build hreflang alternate link tags for multilingual SEO',
+    description:
+      'Generate hreflang link tags for multilingual and multi-regional websites free. Add URL rows, select language and region, include x-default, and copy the complete set of HTML link tags.',
+    category: 'seo',
+    tags: ['hreflang', 'multilingual', 'seo', 'international', 'language', 'link tags', 'alternate'],
+    keywords: ['hreflang tag generator online', 'multilingual SEO link builder', 'HTML language alternate tags', 'international SEO hreflang'],
+    icon: 'Globe',
+    isNew: true,
+    relatedTools: ['sitemap-generator', 'robots-txt-generator', 'meta-tag-generator'],
+    phase: 4,
+  },
+
+  // ── Phase 4: Network Tools ───────────────────────────────────────────────────
+  {
+    slug: 'what-is-my-ip',
+    name: 'What Is My IP',
+    shortDescription: 'See your public IPv4 or IPv6 address instantly',
+    description:
+      'Find your public IP address instantly. Displays IPv4 or IPv6 with one-click copy. Your IP is retrieved via the ipify.org API — it is your publicly visible address by design.',
+    category: 'network',
+    tags: ['ip', 'address', 'public ip', 'ipv4', 'ipv6', 'my ip', 'find ip'],
+    keywords: ['what is my IP address', 'find my public IP', 'check my IP online', 'my IP address lookup', 'what is my IPv4 address'],
+    icon: 'Wifi',
+    isNew: true,
+    isPopular: true,
+    relatedTools: ['address-lookup', 'dns-lookup', 'website-status-checker'],
+    phase: 4,
+  },
+  {
+    slug: 'user-agent-parser',
+    name: 'User Agent Parser',
+    shortDescription: 'Decode any browser User Agent string into browser, OS, device',
+    description:
+      'Parse your browser User Agent string or any custom UA into browser name, version, engine, operating system, and device type. 100% client-side — no data is sent to any server.',
+    category: 'network',
+    tags: ['user agent', 'browser', 'parse', 'os', 'device', 'detect', 'ua'],
+    keywords: ['user agent parser online', 'what is my browser user agent', 'device string analyzer', 'browser detection tool', 'parse user agent string'],
+    icon: 'Monitor',
+    isNew: true,
+    relatedTools: ['browser-screen-info', 'what-is-my-ip', 'http-headers-checker'],
+    phase: 4,
+  },
+  {
+    slug: 'browser-screen-info',
+    name: 'Browser & Screen Info',
+    shortDescription: 'Check screen resolution, viewport, pixel ratio and browser details',
+    description:
+      'View your screen resolution, viewport size, device pixel ratio, color depth, browser language, cookie status, and more. All values read directly from browser APIs — nothing uploaded.',
+    category: 'network',
+    tags: ['screen resolution', 'viewport', 'pixel ratio', 'browser info', 'device', 'cookies', 'language'],
+    keywords: ['check my screen resolution online', 'what is my viewport size', 'browser fingerprint info checker', 'device pixel ratio checker'],
+    icon: 'Laptop',
+    isNew: true,
+    relatedTools: ['user-agent-parser', 'what-is-my-ip', 'internet-speed-test'],
+    phase: 4,
+  },
+
+  // ── Phase 4: Creative Tools ──────────────────────────────────────────────────
+  {
+    slug: 'svg-to-png',
+    name: 'SVG to PNG Converter',
+    shortDescription: 'Convert SVG files to high-resolution PNG images',
+    description:
+      'Convert SVG vector files to PNG raster images free. Choose 0.5×–4× scale or custom dimensions, set background color, and batch-convert multiple SVGs. Download individually or as a ZIP. Runs in your browser.',
+    category: 'creative',
+    tags: ['svg', 'png', 'convert', 'vector', 'raster', 'export', 'batch'],
+    keywords: ['convert SVG to PNG online', 'free vector to raster image tool', 'transparent SVG PNG converter', 'SVG to PNG batch converter'],
+    icon: 'ImageDown',
+    isNew: true,
+    relatedTools: ['image-converter', 'image-compressor', 'ascii-art-generator'],
+    phase: 4,
+  },
+  {
+    slug: 'drawing-pad',
+    name: 'Drawing Pad',
+    shortDescription: 'Free browser drawing canvas with color, brush, and eraser',
+    description:
+      'Draw and sketch freely in your browser. Choose brush color and size, switch to eraser, clear the canvas, and download as PNG. Works with mouse, touch, and stylus. No install required.',
+    category: 'creative',
+    tags: ['draw', 'sketch', 'canvas', 'doodle', 'paint', 'brush', 'eraser'],
+    keywords: ['free online drawing pad', 'browser doodle canvas', 'quick sketch tool online', 'draw online without download'],
+    icon: 'Pencil',
+    isNew: true,
+    relatedTools: ['pixel-art-maker', 'ascii-art-generator', 'meme-generator'],
+    phase: 4,
+  },
+  {
+    slug: 'pixel-art-maker',
+    name: 'Pixel Art Maker',
+    shortDescription: 'Create pixel art on 16×16, 32×32, or 64×64 grids',
+    description:
+      'Create retro pixel art in your browser free. Choose 16×16, 32×32, or 64×64 grid, pick colors, use pen or flood-fill bucket, and download a crisp 8× upscaled PNG. No software required.',
+    category: 'creative',
+    tags: ['pixel art', '8-bit', 'sprite', 'grid', 'canvas', 'creative', 'draw'],
+    keywords: ['pixel art maker online', '8-bit drawing tool free', 'sprite creator browser', 'pixel art editor online free'],
+    icon: 'Grid3x3',
+    isNew: true,
+    relatedTools: ['drawing-pad', 'ascii-art-generator', 'filter-effect-studio'],
+    phase: 4,
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
