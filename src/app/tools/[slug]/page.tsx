@@ -849,6 +849,38 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'cell-reference-converter': dynamic(() => import('@/components/tools/CellReferenceConverter').then(mod => ({ default: mod.CellReferenceConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'column-letter-converter': dynamic(() => import('@/components/tools/ColumnLetterConverter').then(mod => ({ default: mod.ColumnLetterConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'excel-date-converter': dynamic(() => import('@/components/tools/ExcelDateConverter').then(mod => ({ default: mod.ExcelDateConverter })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'excel-formula-explainer': dynamic(() => import('@/components/tools/ExcelFormulaExplainer').then(mod => ({ default: mod.ExcelFormulaExplainer })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'excel-function-reference': dynamic(() => import('@/components/tools/ExcelFunctionReference').then(mod => ({ default: mod.ExcelFunctionReference })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'reorder-point-calculator': dynamic(() => import('@/components/tools/ReorderPointCalculator').then(mod => ({ default: mod.ReorderPointCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'eoq-calculator': dynamic(() => import('@/components/tools/EoqCalculator').then(mod => ({ default: mod.EoqCalculator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
+  'invoice-generator': dynamic(() => import('@/components/tools/InvoiceGenerator').then(mod => ({ default: mod.InvoiceGenerator })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
 };
 
 export async function generateStaticParams() {

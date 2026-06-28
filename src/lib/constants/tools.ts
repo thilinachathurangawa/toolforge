@@ -11,7 +11,8 @@ export type ToolCategory =
   | 'security'
   | 'seo'
   | 'network'
-  | 'creative';
+  | 'creative'
+  | 'workplace';
 
 import { FAQ } from '@/lib/seo/json-ld';
 
@@ -3149,6 +3150,122 @@ export const TOOLS: Tool[] = [
     relatedTools: ['drawing-pad', 'ascii-art-generator', 'filter-effect-studio'],
     phase: 4,
   },
+
+
+  // ── Workplace Tools ─────────────────────────────────────────────────
+
+  {
+    slug: 'cell-reference-converter',
+    name: 'Cell Reference Converter',
+    shortDescription: 'Convert Excel A1 references to R1C1 format and back',
+    description: 'Convert Excel and Google Sheets cell references between A1 notation and R1C1 notation instantly. Supports single cells, ranges, and absolute references.',
+    category: 'workplace',
+    subcategory: 'excel-tools',
+    tags: ['excel', 'cell reference', 'A1', 'R1C1', 'spreadsheet', 'google sheets', 'convert'],
+    keywords: ['cell reference converter', 'A1 to R1C1', 'excel reference notation', 'R1C1 converter'],
+    icon: 'Grid2x2',
+    isNew: true,
+    relatedTools: ['column-letter-converter', 'excel-date-converter', 'excel-formula-explainer'],
+    phase: 4,
+  },
+  {
+    slug: 'column-letter-converter',
+    name: 'Column Letter Converter',
+    shortDescription: 'Convert Excel column letters to numbers and back',
+    description: 'Convert between Excel column letters (A, B, Z, AA, XFD) and column numbers (1, 2, 26, 27, 16384). Supports the full Excel range up to column 16384.',
+    category: 'workplace',
+    subcategory: 'excel-tools',
+    tags: ['excel', 'column letter', 'column number', 'spreadsheet', 'A to Z', 'convert'],
+    keywords: ['excel column letter to number', 'column number converter', 'excel column converter'],
+    icon: 'Columns3',
+    isNew: true,
+    relatedTools: ['cell-reference-converter', 'excel-date-converter', 'excel-formula-explainer'],
+    phase: 4,
+  },
+  {
+    slug: 'excel-date-converter',
+    name: 'Excel Date Converter',
+    shortDescription: 'Convert Excel serial date numbers to readable dates',
+    description: 'Convert Excel and Google Sheets date serial numbers to human-readable dates and vice versa. Supports both the 1900 (Excel) and 1904 (Google Sheets) date systems.',
+    category: 'workplace',
+    subcategory: 'excel-tools',
+    tags: ['excel', 'date', 'serial number', 'convert', 'spreadsheet', 'google sheets', '1900', '1904'],
+    keywords: ['excel date converter', 'excel serial date', 'convert excel date number', 'excel date to number'],
+    icon: 'CalendarDays',
+    isNew: true,
+    relatedTools: ['cell-reference-converter', 'column-letter-converter', 'excel-formula-explainer'],
+    phase: 4,
+  },
+  {
+    slug: 'excel-formula-explainer',
+    name: 'Excel Formula Explainer',
+    shortDescription: 'Understand any Excel formula with plain-English explanations',
+    description: 'Paste any Excel or Google Sheets formula and get a plain-English explanation of what it does. Supports 60+ functions including VLOOKUP, IF, SUMIF, INDEX/MATCH, and nested formulas.',
+    category: 'workplace',
+    subcategory: 'excel-tools',
+    tags: ['excel', 'formula', 'explain', 'vlookup', 'sumif', 'if', 'nested', 'spreadsheet'],
+    keywords: ['excel formula explainer', 'explain excel formula', 'excel formula help', 'VLOOKUP explainer'],
+    icon: 'BookOpenCheck',
+    isNew: true,
+    relatedTools: ['excel-function-reference', 'cell-reference-converter', 'column-letter-converter'],
+    phase: 4,
+  },
+  {
+    slug: 'excel-function-reference',
+    name: 'Excel Function Reference',
+    shortDescription: 'Searchable quick reference for 60+ Excel functions',
+    description: 'Browse and search a quick reference guide for over 60 Excel functions. Filter by category (Math, Lookup, Text, Date, Logic, Statistical) to find the right function fast.',
+    category: 'workplace',
+    subcategory: 'excel-tools',
+    tags: ['excel', 'function', 'reference', 'lookup', 'vlookup', 'sumif', 'index', 'match', 'guide'],
+    keywords: ['excel function reference', 'excel functions list', 'excel formulas guide', 'excel cheat sheet'],
+    icon: 'Library',
+    isNew: true,
+    relatedTools: ['excel-formula-explainer', 'cell-reference-converter', 'excel-date-converter'],
+    phase: 4,
+  },
+  {
+    slug: 'reorder-point-calculator',
+    name: 'Reorder Point Calculator',
+    shortDescription: 'Calculate when to reorder inventory to avoid stockouts',
+    description: 'Calculate the reorder point for any product using daily usage, lead time, and safety stock. Includes stockout warnings when current inventory falls below the reorder threshold.',
+    category: 'workplace',
+    subcategory: 'inventory-calculators',
+    tags: ['reorder point', 'inventory', 'safety stock', 'lead time', 'stockout', 'supply chain'],
+    keywords: ['reorder point calculator', 'inventory reorder calculator', 'safety stock calculator', 'stockout calculator'],
+    icon: 'PackageSearch',
+    isNew: true,
+    relatedTools: ['eoq-calculator', 'invoice-generator'],
+    phase: 4,
+  },
+  {
+    slug: 'eoq-calculator',
+    name: 'EOQ Calculator',
+    shortDescription: 'Calculate Economic Order Quantity to minimize inventory costs',
+    description: 'Calculate Economic Order Quantity to minimize total inventory costs. Shows orders per year, ordering vs holding cost breakdown, and total annual cost at the optimal order quantity.',
+    category: 'workplace',
+    subcategory: 'inventory-calculators',
+    tags: ['EOQ', 'economic order quantity', 'inventory', 'ordering cost', 'holding cost', 'supply chain'],
+    keywords: ['EOQ calculator', 'economic order quantity', 'inventory cost calculator', 'optimal order quantity'],
+    icon: 'TrendingDown',
+    isNew: true,
+    relatedTools: ['reorder-point-calculator', 'invoice-generator'],
+    phase: 4,
+  },
+  {
+    slug: 'invoice-generator',
+    name: 'Invoice Generator',
+    shortDescription: 'Create and download professional invoices as PDF',
+    description: 'Generate professional invoices online. Add business and client details, line items, tax, and discounts. Download as a PDF instantly. Business details are saved locally for quick reuse.',
+    category: 'workplace',
+    subcategory: 'business-tools',
+    tags: ['invoice', 'pdf', 'billing', 'freelance', 'business', 'client', 'payment'],
+    keywords: ['invoice generator', 'free invoice generator', 'create invoice online', 'PDF invoice maker'],
+    icon: 'FileText',
+    isNew: true,
+    relatedTools: ['reorder-point-calculator', 'eoq-calculator'],
+    phase: 4,
+  },
 ];
 
 // ── Helpers ──────────────────────────────────────────────────────────
@@ -3164,6 +3281,14 @@ export const CATEGORIES: { value: ToolCategory; label: string; icon: string; des
   { value: 'seo', label: 'SEO Tools', icon: 'Search', description: 'Analyze keyword density, optimize meta tags, preview SERP snippets, check website status, and improve search engine rankings. Essential tools for digital marketers, SEO specialists, and website owners.' },
   { value: 'network', label: 'Network Tools', icon: 'Globe', description: 'Test internet connection speed, lookup IP address information, query DNS records, check port availability, and analyze network performance. Useful for network administrators and developers.' },
   { value: 'creative', label: 'Creative Tools', icon: 'Palette', description: 'Extract color palettes from images, create memes and stickers, design with color tools, and generate creative content. Perfect for designers, artists, and creative professionals.' },
+  { value: 'workplace', label: 'Workplace Tools', icon: 'Briefcase', description: 'Excel and spreadsheet utilities, inventory calculators, and business tools for professionals. Convert cell references, look up Excel functions, calculate reorder points, generate invoices, and more.' },
+];
+
+// Workplace subcategories
+export const WORKPLACE_SUBCATEGORIES: { value: string; label: string; icon: string }[] = [
+  { value: 'excel-tools', label: 'Excel & Spreadsheet Tools', icon: 'Table2' },
+  { value: 'inventory-calculators', label: 'Inventory Calculators', icon: 'PackageSearch' },
+  { value: 'business-tools', label: 'Business Tools', icon: 'Briefcase' },
 ];
 
 // Calculator subcategories

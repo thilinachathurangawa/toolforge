@@ -7898,6 +7898,315 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       { slug: 'filter-effect-studio', note: `Apply vintage, pixelation, and other filters to photos as a complementary creative tool.` },
     ],
   },
+
+  'cell-reference-converter': {
+    intro: [
+      `Excel and Google Sheets support two fundamentally different ways to address cells. A1 notation — the default you see every day — names columns with letters (A through XFD) and rows with numbers, so the intersection of column B and row 12 is simply "B12". R1C1 notation counts both rows and columns numerically, making the same cell "R12C2". Both systems describe identical locations; the difference is how you read and write them.`,
+      `R1C1 notation shows up most often when you record a macro, write a VBA script, or read formula audit trails in Excel's formula dependency view. Switching the spreadsheet application between modes in Options → Formulas → R1C1 reference style changes the display globally, which can disorient colleagues who expect A1. This converter lets you translate individual references or ranges in either direction — without touching your spreadsheet settings — and copy the result straight into your formula or script.`,
+    ],
+    steps: [
+      `Select the conversion direction: "A1 → R1C1" to translate standard notation into row-column format, or "R1C1 → A1" to go the other way.`,
+      `Type a cell reference in the input field. Enter a single cell (B12, R12C2) or a range separated by a colon (A1:B10, R1C1:R10C2).`,
+      `The converted reference appears instantly in the output field below the swap arrow.`,
+      `Click "Copy Result" to copy the output to the clipboard, then paste it wherever you need it.`,
+      `Use the swap button (↔) to flip direction without clearing your inputs.`,
+    ],
+    why: [
+      `Instant bidirectional conversion: both A1-to-R1C1 and R1C1-to-A1 directions are handled in a single interface, with a one-click swap button to change direction without retyping.`,
+      `Range support: the converter handles colon-separated ranges (A1:B10, R1C1:R10C2) as well as single cell addresses, covering the most common spreadsheet formula patterns.`,
+      `No spreadsheet disruption: you can look up a reference conversion without switching your spreadsheet's display mode, which would confuse anyone else working on the same file.`,
+      `Accurate column arithmetic: the column-letter encoding uses the same weighted base-26 algorithm Excel itself uses, so AA correctly becomes 27 and XFD correctly becomes 16384.`,
+    ],
+    faqs: [
+      {
+        question: `When would I need to use R1C1 notation?`,
+        answer: `R1C1 is the notation used by Excel's macro recorder and VBA. When you record a macro that references cells, Excel writes the references as R1C1. Some advanced formula auditing views also display dependencies in R1C1 form, and some developers prefer it in code because both axes are numbers and easier to calculate programmatically.`,
+      },
+      {
+        question: `Does this converter handle absolute references like $A$1?`,
+        answer: `The current converter handles standard A1 and R1C1 absolute references (cell addresses without the relative [] bracket syntax). It converts B12 to R12C2 correctly. It does not currently parse the relative R[1]C[1] bracket notation used to express relative offsets in R1C1 mode.`,
+      },
+      {
+        question: `What is the maximum column letter the converter supports?`,
+        answer: `The converter supports the full Excel column range from A (column 1) up to XFD (column 16384), which is the hard limit in Excel and Google Sheets. Entering a letter beyond XFD or a number above 16384 will produce an error rather than a result.`,
+      },
+    ],
+    related: [
+      { slug: 'column-letter-converter', note: `Convert standalone Excel column letters (A, Z, AA) to and from column numbers without a row component.` },
+      { slug: 'excel-date-converter', note: `Convert Excel serial date numbers to human-readable dates — another common spreadsheet data format challenge.` },
+      { slug: 'excel-formula-explainer', note: `Paste a complete Excel formula and get a plain-English breakdown of every function and argument.` },
+    ],
+  },
+
+  'column-letter-converter': {
+    intro: [
+      `Every column in Excel and Google Sheets has two identities: the letter label you see in the spreadsheet header (A, B, Z, AA, XFD) and the underlying integer index used in formulas, scripts, and APIs (1, 2, 26, 27, 16384). The letter system feels natural when you are clicking around a spreadsheet, but the moment you write a formula that calculates a column address dynamically — using OFFSET, INDEX, or a VBA loop — you need to work in numbers and convert back to letters for display or reference.`,
+      `Excel supports up to 16,384 columns per sheet, spanning from A to XFD. The encoding is a base-26 variant where A=1 (not 0), which means the rollover points differ slightly from pure base-26: Z is 26, AA is 27, AZ is 52, BA is 53. This converter handles the full range with the correct algorithm, validates inputs against the XFD limit, and returns an error message instead of a silent wrong result if you exceed the maximum.`,
+    ],
+    steps: [
+      `Choose the direction: "Letter → Number" to convert a column label like AA to its index, or "Number → Letter" to find the letter for a column index.`,
+      `Type the column letter (e.g., AB) or column number (e.g., 28) into the input field.`,
+      `The converted value appears immediately in the output field. An error message shows if the input is invalid or exceeds the Excel column limit (XFD / 16384).`,
+      `Click "Copy Result" to copy the answer to your clipboard for pasting into a formula or script.`,
+    ],
+    why: [
+      `Full Excel range support: the converter covers the complete column space from A (1) through XFD (16384), validating that your input does not exceed the Excel hard limit before returning a result.`,
+      `Correct base-26 arithmetic: column letters do not follow pure base-26 (where A would be 0). They use a 1-indexed variant where A=1, Z=26, AA=27. The converter implements this exactly, so edge cases like Z, AA, and AZ produce the right numbers.`,
+      `Error feedback: invalid letters and out-of-range numbers produce a clear error message rather than silently returning a wrong value, so you know immediately when your input is outside the valid range.`,
+      `Instant results: conversion happens as you type with no button press required, making it fast to check multiple columns in succession.`,
+    ],
+    faqs: [
+      {
+        question: `Why does AA equal 27 instead of 27 in regular base-26?`,
+        answer: `In regular base-26 with A=0, Z would be 25 and AA would be 26. But Excel's column letters use A=1 (1-indexed), which shifts every value up by 1. This is why Z=26, AA=27, AZ=52, and BA=53. The converter implements this 1-indexed variant exactly.`,
+      },
+      {
+        question: `What is column XFD and why is it the limit?`,
+        answer: `XFD is column 16,384, which is 2^14. Microsoft chose 16,384 columns as the limit in the Excel 2007 specification (XLSX format) and Google Sheets adopted the same limit. Earlier versions of Excel had only 256 columns (IV). The converter will refuse any letter beyond XFD or any number above 16384.`,
+      },
+      {
+        question: `How do I use column numbers in Excel formulas?`,
+        answer: `The COLUMN() function returns the column number of any cell reference. OFFSET() accepts a column count as its third argument. INDEX() takes a column number in its third argument. MATCH() returns a position number you can feed into INDEX. If you need the letter from a number in a formula, =SUBSTITUTE(ADDRESS(1,n,4),1,"") extracts just the letter from a constructed address.`,
+      },
+    ],
+    related: [
+      { slug: 'cell-reference-converter', note: `Convert full cell addresses between A1 (B12) and R1C1 (R12C2) notation, including range support.` },
+      { slug: 'excel-formula-explainer', note: `Paste an Excel formula like OFFSET or INDEX/MATCH and get a plain-English explanation of each argument.` },
+      { slug: 'excel-function-reference', note: `Browse a searchable quick reference for all major Excel functions including OFFSET, INDEX, and COLUMN.` },
+    ],
+  },
+
+  'excel-date-converter': {
+    intro: [
+      `Dates in Excel and Google Sheets are stored internally as plain numbers called serial values. January 1, 1900 is 1 in Excel, January 2 is 2, and the counter has been incrementing ever since — so a modern date like June 29, 2026 is stored as 46201. When you format a cell as a date, the spreadsheet simply translates that integer into a readable string. When you format it as a number, the mask comes off and you see the serial value underneath.`,
+      `There is a well-known quirk: Excel's 1900 date system incorrectly treats February 29, 1900 as a real date (it was not a leap year), adding a phantom day that shifts all dates after February 28, 1900 up by one. Google Sheets uses the same 1900 system by default and carries the same bug. Older Macintosh Excel workbooks use a 1904 date system that starts counting from January 1, 1904. This tool converts in both directions — serial number to date and date to serial number — for both systems, with the leap-year bug accounted for in the 1900 calculation.`,
+    ],
+    steps: [
+      `Choose the date system: "1900 (Excel / Google Sheets)" for modern workbooks, or "1904 (Legacy Mac)" for older Mac-originated files.`,
+      `Select the conversion direction: "Serial Number → Date" to decode a raw number, or "Date → Serial Number" to find the serial for a known date.`,
+      `Enter a serial number (e.g., 46201) or pick a date from the date picker.`,
+      `The result appears immediately, including the day of the week for date outputs.`,
+      `Click "Copy Result" to copy the converted value to the clipboard.`,
+    ],
+    why: [
+      `Both date systems supported: the 1900 system (used by all modern Excel and Google Sheets workbooks) and the 1904 system (used in legacy Mac Excel files) are both available, so you can match whichever system your workbook actually uses.`,
+      `1900 leap-year bug is handled: Excel incorrectly counts February 29, 1900 as day 60, which shifts every date on or after March 1, 1900 by one. The converter accounts for this discrepancy so your results match what Excel actually shows, not what a naive date calculation would produce.`,
+      `Bidirectional: convert from serial number to a readable date or from a date back to its serial number, useful both for debugging raw data and for constructing serial values to enter into formulas.`,
+      `Day-of-week display: date results include the day of the week (Monday, Tuesday, etc.), giving you an immediate sanity check that the conversion is correct.`,
+    ],
+    faqs: [
+      {
+        question: `Why does Excel's date system have a leap-year bug?`,
+        answer: `The original Lotus 1-2-3 spreadsheet incorrectly treated 1900 as a leap year, and when Microsoft built Excel, they preserved this bug deliberately for compatibility. This means Excel counts February 29, 1900 as day 60, even though it never existed. Every date from March 1, 1900 onward is therefore one day higher in Excel's serial system than a strictly correct Julian Day calculation would give.`,
+      },
+      {
+        question: `How do I find the serial number of a date in Excel?`,
+        answer: `Format any date cell as "Number" (Home → Number Format → Number) and the serial value is revealed. Alternatively, =DATEVALUE("2026-06-29") returns the serial number for a text-formatted date, and simply entering =TODAY() in a Number-formatted cell shows today's serial.`,
+      },
+      {
+        question: `When would I need to convert a date serial number?`,
+        answer: `The most common scenarios are: (1) receiving CSV or API data where dates came through as integers rather than formatted strings; (2) writing VBA or Apps Script that passes date integers between systems; (3) debugging a formula that returns an unexpected number instead of a date because the cell is not formatted as a date type.`,
+      },
+    ],
+    related: [
+      { slug: 'cell-reference-converter', note: `Convert between A1 and R1C1 cell reference styles — another common spreadsheet format translation.` },
+      { slug: 'excel-formula-explainer', note: `Paste formulas that use DATE, DATEVALUE, or TODAY and get a plain-English explanation of how they work.` },
+      { slug: 'excel-function-reference', note: `Look up the DATE, EDATE, NETWORKDAYS and other date functions in a searchable Excel function reference.` },
+    ],
+  },
+
+  'excel-formula-explainer': {
+    intro: [
+      `A formula like =INDEX(A2:A100,MATCH(1,(B2:B100=F1)*(C2:C100=F2),0)) is perfectly valid Excel, but reading it cold — especially when someone else wrote it — requires knowing what INDEX and MATCH each do, why they are nested together, why the multiplication is there, and what the trailing zero means. The Excel Formula Explainer parses formulas and translates each function into plain English so you can understand what a formula does without looking up each function separately.`,
+      `The explainer recognizes over 60 of the most-used Excel functions across lookup, math, text, date, logic, and statistical categories. It identifies nested calls, describes the purpose of each argument, and explains the overall intent of the full expression. This is useful when you inherit a complex workbook, audit a formula written by a colleague, try to understand a formula found online, or simply want to verify that a formula you wrote does what you think it does. All parsing happens in your browser — no formula text is sent to any server.`,
+    ],
+    steps: [
+      `Type or paste an Excel formula into the input field. You can include or omit the leading "=" sign.`,
+      `The tool identifies every function in the formula and displays a plain-English description of each one, including its purpose and how its arguments relate to each other.`,
+      `For nested formulas (like INDEX/MATCH or IF with nested IFs), each layer is explained in sequence so you can follow the logic from the innermost function outward.`,
+      `Use the example formula buttons to load common formulas and see how the explainer works before pasting your own.`,
+      `Click "Clear" to reset and start with a new formula.`,
+    ],
+    why: [
+      `60+ function database: the explainer covers VLOOKUP, HLOOKUP, INDEX, MATCH, SUMIF, SUMIFS, COUNTIF, IF, IFS, AND, OR, IFERROR, TEXT, LEFT, RIGHT, MID, TRIM, LEN, DATE, TODAY, DATEDIF, AVERAGE, AVERAGEIF, MIN, MAX, and dozens more — the functions most likely to appear in real-world spreadsheets.`,
+      `Nested formula parsing: the parser identifies function calls inside other function calls and explains each layer separately rather than stopping at the outer function, which is where comprehension usually breaks down.`,
+      `Browser-only processing: your formula text never leaves the page. This matters when formulas reference sensitive data labels, business logic, or proprietary calculation methods.`,
+      `Example formulas: a set of pre-loaded examples (VLOOKUP, INDEX/MATCH, SUMIF, nested IF) lets you try the tool immediately and see the kind of explanations it produces before pasting your own formula.`,
+    ],
+    faqs: [
+      {
+        question: `Does the explainer work for Google Sheets formulas?`,
+        answer: `Yes. The vast majority of functions covered — VLOOKUP, INDEX, MATCH, SUMIF, IF, TEXT, and the rest — exist identically in Google Sheets. A small number of Excel-specific functions (like some newer dynamic array functions) may not be in the reference database, but the common functions work the same way in both applications.`,
+      },
+      {
+        question: `Can it explain array formulas entered with Ctrl+Shift+Enter?`,
+        answer: `The explainer recognizes the functions inside array formulas and explains what each function does. It does not explicitly explain the array-entry mechanism (the curly braces), but the function-by-function explanation usually makes the array behavior apparent from the context.`,
+      },
+      {
+        question: `Why would VLOOKUP and INDEX/MATCH give different results?`,
+        answer: `VLOOKUP always searches the leftmost column of the lookup range and returns a column to the right, so it cannot look left. INDEX/MATCH has no such constraint — the lookup column and the return column can be in any position relative to each other. VLOOKUP also defaults to approximate match, which requires a sorted column, while MATCH's third argument makes the match type explicit and defaults to exact (0) in most INDEX/MATCH formulas.`,
+      },
+    ],
+    related: [
+      { slug: 'excel-function-reference', note: `Browse or search the full function reference for syntax, arguments, and use cases for any Excel function.` },
+      { slug: 'cell-reference-converter', note: `Convert between A1 and R1C1 cell notation — useful when reading formulas that use either style.` },
+      { slug: 'column-letter-converter', note: `Translate column letters to numbers and back when working with OFFSET, INDEX, or programmatic formula construction.` },
+    ],
+  },
+
+  'excel-function-reference': {
+    intro: [
+      `Excel has hundreds of worksheet functions, but most spreadsheets rely on a core set of perhaps sixty: the lookup functions (VLOOKUP, INDEX, MATCH, XLOOKUP), the conditional aggregations (SUMIF, SUMIFS, COUNTIF, AVERAGEIF), the logical tests (IF, IFS, AND, OR, IFERROR), the text utilities (LEFT, MID, RIGHT, TRIM, TEXT, LEN), the date calculations (DATE, TODAY, EDATE, NETWORKDAYS), and the statistical functions (SUM, AVERAGE, MIN, MAX, STDEV). Knowing these sixty well covers the overwhelming majority of real-world spreadsheet work.`,
+      `This function reference covers those sixty-plus functions with concise syntax summaries, argument descriptions, and example calls for each. You can search by name or filter by category (Math & Statistical, Lookup & Reference, Text, Date & Time, Logical, or Information) to narrow the list. Each entry is designed to answer the "what does this argument do?" question quickly — the kind of question you usually have mid-formula when you cannot pause to read full documentation. All content is displayed instantly in your browser with no network requests.`,
+    ],
+    steps: [
+      `Use the search box to type any function name or keyword. Results filter in real time as you type.`,
+      `Click a category filter button (All, Math, Lookup, Text, Date, Logic, Statistical) to narrow the list to one function group.`,
+      `Click any function card to expand it and see the full syntax, argument descriptions, and an example formula.`,
+      `Use the search and category filter together to quickly zero in on a specific function type — for example, search "if" in the Logic category to see IF, IFS, IFERROR, and IFNA.`,
+    ],
+    why: [
+      `Category filtering: the six category buttons (Math, Lookup, Text, Date, Logic, Statistical) let you browse all functions in a domain at once, useful when you know the kind of function you need but not its exact name.`,
+      `Instant search: the search field filters by function name in real time, so typing "sum" immediately shows SUMIF, SUMIFS, SUMPRODUCT, and SUM — no page reload or button press required.`,
+      `Syntax + example for every function: each entry shows the exact syntax signature with argument names and a short example formula so you can see the function in context, not just in the abstract.`,
+      `Pairs with the Formula Explainer: if you understand what a function does from this reference but want to understand a specific formula that uses it, paste the formula into the Excel Formula Explainer for a full breakdown.`,
+    ],
+    faqs: [
+      {
+        question: `What is the difference between VLOOKUP and XLOOKUP?`,
+        answer: `VLOOKUP searches the first column of a range and returns a value from a column to its right. XLOOKUP, introduced in 2019, is more flexible: the lookup array and return array are specified independently (so you can look up from any column and return from any column, including columns to the left), it defaults to exact match, and it has a built-in not-found value argument instead of requiring IFERROR wrapping. XLOOKUP is the modern replacement for VLOOKUP in newer Excel and Google Sheets versions.`,
+      },
+      {
+        question: `When should I use SUMIFS instead of SUMIF?`,
+        answer: `Use SUMIFS whenever you have more than one condition. SUMIF accepts only one criterion range and one criterion; SUMIFS accepts up to 127 condition pairs. The syntax is also slightly different: in SUMIF the sum range comes first, but in SUMIFS the sum range also comes first and conditions follow in criterion_range, criterion pairs. SUMIFS works identically to SUMIF when only one condition is provided, so you can always use SUMIFS.`,
+      },
+      {
+        question: `What does IFERROR do?`,
+        answer: `IFERROR(value, value_if_error) evaluates the first argument and, if it produces any error value (#N/A, #VALUE!, #REF!, #DIV/0!, #NUM!, #NAME?, or #NULL!), returns the second argument instead. It is most commonly used to suppress #N/A from VLOOKUP or MATCH when a lookup value is not found — for example, =IFERROR(VLOOKUP(A2,Table,2,0),"Not found") returns "Not found" instead of #N/A.`,
+      },
+    ],
+    related: [
+      { slug: 'excel-formula-explainer', note: `Paste a formula to get a plain-English explanation of every function and argument inside it.` },
+      { slug: 'cell-reference-converter', note: `Convert between A1 and R1C1 notation — helpful when reading formulas that use either reference style.` },
+      { slug: 'excel-date-converter', note: `Convert Excel date serial numbers to real dates — useful context when working with date functions like EDATE or NETWORKDAYS.` },
+    ],
+  },
+
+  'reorder-point-calculator': {
+    intro: [
+      `A reorder point is the inventory level that triggers a replenishment order. Order too late and you run out of stock — which means lost sales, emergency shipments, and unhappy customers. Order too early and you tie up cash in excess inventory that takes up shelf space and risks obsolescence. The reorder point formula finds the threshold that accounts for both the demand you will consume while waiting for the next order (demand during lead time) and a buffer for unexpected spikes in usage or delays (safety stock).`,
+      `The formula is straightforward: Reorder Point = (Daily Usage × Lead Time) + Safety Stock. What makes it powerful is running the numbers precisely for each SKU rather than guessing. This calculator takes your three inputs, shows the full arithmetic, and optionally compares your current stock level against the result so you know whether you need to place an order right now. All calculations run locally in your browser.`,
+    ],
+    steps: [
+      `Enter your average daily usage — the number of units you typically consume or sell each day.`,
+      `Enter the lead time in days — how long it takes from placing an order to receiving it in your warehouse.`,
+      `Enter your safety stock — the buffer units you want to keep on hand beyond the lead-time demand to absorb uncertainty.`,
+      `Optionally, enter your current inventory level. If supplied, the tool compares it to the reorder point and flags whether you should place an order immediately.`,
+      `Review the formula breakdown and click "Copy Results" to capture the output for your purchasing records.`,
+    ],
+    why: [
+      `Full formula breakdown: the result panel shows the complete arithmetic — daily usage multiplied by lead time, plus safety stock — so you can verify the calculation or explain it to a colleague, not just read a number.`,
+      `Stockout alert: when you provide your current inventory, the tool highlights in red if you are below the reorder point and estimates how many days until stockout at the current usage rate, prompting immediate action.`,
+      `Green status confirmation: when current inventory is above the reorder point, the tool displays a green confirmation so you know no action is needed — avoiding unnecessary early orders.`,
+      `No formulas to memorize: the inputs map directly to the variables in the formula, with placeholder examples that make it clear what unit and scale each field expects.`,
+    ],
+    faqs: [
+      {
+        question: `How do I determine the right safety stock level?`,
+        answer: `A common starting point is multiplying your maximum daily usage by your maximum lead time, then subtracting your average daily usage multiplied by your average lead time. This covers the worst-case demand spike during the longest possible replenishment wait. More sophisticated methods use the standard deviation of demand and lead time with a service-level z-score to hit a specific stockout probability target.`,
+      },
+      {
+        question: `What if my lead time varies significantly?`,
+        answer: `If lead time is highly variable, use the maximum observed lead time in your calculation rather than the average. This produces a higher reorder point that errs on the side of safety. You can then reduce safety stock slightly to offset the increased lead-time estimate rather than stacking both the maximum lead time and a large safety stock buffer simultaneously.`,
+      },
+      {
+        question: `Should I use daily or weekly units?`,
+        answer: `You can use any consistent time unit as long as usage and lead time match. If you measure usage per week, lead time must also be in weeks. Using days is the most common choice because lead times are typically quoted in days and daily movement data is usually available in inventory management systems.`,
+      },
+    ],
+    related: [
+      { slug: 'eoq-calculator', note: `Calculate the Economic Order Quantity to minimize total ordering and holding costs — the next decision after setting the reorder point.` },
+      { slug: 'invoice-generator', note: `Generate a professional invoice for the supplier once you place the replenishment order.` },
+    ],
+  },
+
+  'eoq-calculator': {
+    intro: [
+      `Every inventory replenishment decision involves a trade-off between two competing costs. Ordering in large batches reduces the number of orders you place per year (lowering ordering costs — freight, processing, admin) but forces you to hold more inventory on average (raising holding costs — storage, insurance, capital tied up in stock). Ordering in small batches keeps average inventory low but multiplies the number of orders and their associated costs. The Economic Order Quantity formula finds the batch size where these two costs are exactly equal — which is also the point where total inventory cost is at its minimum.`,
+      `EOQ = √(2DS/H), where D is annual demand in units, S is the cost of placing one order in dollars, and H is the annual cost of holding one unit in dollars. At exactly this quantity, total ordering cost equals total holding cost. This calculator shows not just the EOQ result but also the orders per year at that quantity, the individual cost components, and a visual cost breakdown bar to illustrate the 50/50 balance that characterizes the optimal point. All calculations run in your browser.`,
+    ],
+    steps: [
+      `Enter your annual demand — the total number of units you expect to order or sell in a year.`,
+      `Enter the ordering cost per order — the total cost each time you place a replenishment order, including freight, purchase-order processing, and receiving labor.`,
+      `Enter the holding cost per unit per year — typically 20–30% of unit value, covering storage space, insurance, obsolescence risk, and the opportunity cost of capital.`,
+      `Review the EOQ result, the full formula breakdown, and the additional metrics: orders per year and the cost split between ordering and holding.`,
+      `Click "Copy Results" to capture all outputs for your inventory planning documentation.`,
+    ],
+    why: [
+      `Step-by-step formula display: the results panel shows the full EOQ calculation — plugging in your actual numbers — so you can trace every step from the raw inputs to the final rounded quantity, not just read a black-box answer.`,
+      `Orders-per-year metric: dividing annual demand by the EOQ tells you how often to reorder, which feeds directly into your purchasing calendar and cash-flow planning.`,
+      `Cost breakdown bar: the visual bar illustrates the 50/50 ordering-versus-holding cost split that proves the EOQ is optimal. If you deviate from EOQ in either direction, one of the two bars would grow longer — showing the cost penalty.`,
+      `Real-time updates: results recalculate instantly as you change any input, making it easy to explore sensitivity — for example, how much does EOQ change if holding cost rises by 50%?`,
+    ],
+    faqs: [
+      {
+        question: `What assumptions does the EOQ model make?`,
+        answer: `The classic EOQ model assumes demand is constant and known, lead time is fixed and known, ordering cost is the same for every order regardless of quantity, holding cost is linear with average inventory, and no quantity discounts are available. When these assumptions do not hold — seasonal demand, variable lead times, volume discounts — the basic EOQ is a useful starting point but should be adjusted with variants like the quantity discount model or stochastic demand models.`,
+      },
+      {
+        question: `Why does the calculator show ordering cost equal to holding cost in the results?`,
+        answer: `At the EOQ, total ordering cost and total holding cost are always equal. This is a mathematical property of the formula: the derivative of total cost with respect to order quantity equals zero exactly when the two cost components are the same. If your ordering cost appears significantly different from your holding cost in the output, it usually means you have rounded the EOQ rather than using the exact unrounded value.`,
+      },
+      {
+        question: `How do I estimate my holding cost per unit per year?`,
+        answer: `A standard rule of thumb is 20–30% of the unit's purchase cost per year. If a unit costs $10, the holding cost is roughly $2–$3 per year. The components include warehouse rent allocated per unit (square footage × rate ÷ units stored), insurance as a percentage of inventory value, write-off risk for perishable or obsolescence-prone stock, and the opportunity cost of the capital tied up in inventory (your cost of capital or WACC applied to average inventory value).`,
+      },
+    ],
+    related: [
+      { slug: 'reorder-point-calculator', note: `Calculate when to place the order — the reorder point works alongside EOQ to define both timing and order size.` },
+      { slug: 'invoice-generator', note: `Generate a supplier invoice once you have determined the optimal order quantity and are ready to place the order.` },
+    ],
+  },
+
+  'invoice-generator': {
+    intro: [
+      `Sending a professional invoice is one of those tasks that sounds simple until you are staring at a blank document trying to remember what belongs in a proper invoice layout. Client name and address, business name and contact details, line items with quantities and unit prices, subtotal, tax, discounts, total due, payment terms — the list of required fields is longer than most people realize, and the formatting needs to look polished enough that clients actually pay promptly.`,
+      `This invoice generator builds and downloads a PDF invoice entirely in your browser. Fill in business and client information, add line items with quantity and price, set a tax rate and any discount, and the total calculates automatically. A live preview tab shows exactly how the invoice will look before you download. Business details are saved to your browser's local storage so returning users do not need to re-enter their company information each time. The PDF is generated using jsPDF and downloaded directly to your device — no data is sent to any server, keeping your billing information completely private.`,
+    ],
+    steps: [
+      `Fill in your business information: company name, address, email, and phone. Click "Save for reuse" to store these details in your browser for future invoices.`,
+      `Enter your client's name, address, and email in the Client Information section.`,
+      `Set the invoice number, issue date, and due date in the Invoice Details section.`,
+      `Add line items by clicking "Add Item". Enter a description, quantity, and unit price for each service or product. Remove rows with the trash icon.`,
+      `Set the tax rate (as a percentage) and any flat discount amount. The subtotal, tax, discount, and total update in real time.`,
+      `Add any payment terms or notes in the Notes field, then click "Preview" to review the invoice layout.`,
+      `Click "Download PDF" to generate and save the invoice as a PDF file ready to send to your client.`,
+    ],
+    why: [
+      `Live preview: the Preview tab shows an accurate HTML representation of the invoice layout before you commit to downloading, so you can catch formatting issues and verify the numbers look right.`,
+      `Saved business details: your company information is stored in localStorage and automatically loaded on return visits, eliminating the most repetitive data entry when creating multiple invoices.`,
+      `Browser-only generation: jsPDF generates the PDF file entirely on your device. No invoice data — client names, amounts, line items — is ever transmitted to a server, making this safe for confidential billing.`,
+      `Dynamic line items: add as many line items as needed, remove any with the trash icon, and all totals update instantly. The PDF captures the complete list regardless of how many rows you add.`,
+    ],
+    faqs: [
+      {
+        question: `Is my invoice data stored anywhere online?`,
+        answer: `No. All invoice generation happens in your browser using jsPDF. The only data stored is your business information, saved to your browser's localStorage (a local file on your computer) when you click "Save for reuse". No invoice data leaves your device. Clearing your browser's site data removes the saved business info.`,
+      },
+      {
+        question: `Can I customize the invoice template or add a logo?`,
+        answer: `The current generator produces a clean, professional layout with your business details, client details, line items, and totals. Logo upload and custom template colors are not currently supported, but the PDF output uses standard professional formatting that is appropriate for most B2B and freelance invoicing.`,
+      },
+      {
+        question: `What format is the PDF?`,
+        answer: `The PDF is generated in standard A4 portrait format by jsPDF. The file is named invoice-[your invoice number].pdf and saved to your browser's default download location. You can open it in any PDF viewer, print it, or attach it to an email.`,
+      },
+    ],
+    related: [
+      { slug: 'reorder-point-calculator', note: `Calculate your inventory reorder point before placing the supplier order that will generate this invoice.` },
+      { slug: 'eoq-calculator', note: `Determine the optimal order quantity to minimize inventory costs before creating the purchase invoice.` },
+    ],
+  },
 };
 
 export function getToolContent(slug: string): ToolLongContent | undefined {

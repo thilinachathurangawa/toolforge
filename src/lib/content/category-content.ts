@@ -237,6 +237,31 @@ export const CATEGORY_CONTENT: Record<string, CategoryLongContent> = {
       },
     ],
   },
+
+  workplace: {
+    intro: [
+      `Spreadsheets and inventory decisions sit at the center of daily work for analysts, operations managers, procurement teams, and freelancers alike. Yet the tasks that come up most often — decoding an Excel formula written by someone else, converting a cell reference between A1 and R1C1 notation for a macro, figuring out when to reorder stock, calculating the optimal order quantity — either require hunting through documentation or doing manual arithmetic that is easy to get wrong. The Workplace Tools category collects the utilities that make these routine tasks faster and more reliable.`,
+      `The Excel and spreadsheet tools cover the four formats and reference systems that trip up spreadsheet users most frequently: A1-to-R1C1 cell reference conversion, column letter-to-number translation (up to the full XFD/16384 limit), serial date decoding (with Excel's 1900 leap-year quirk handled correctly), and formula explanation with a database of over 60 functions. The inventory and business tools cover Economic Order Quantity, reorder point calculation, and professional PDF invoice generation. All tools run locally in your browser — no spreadsheet data, formula text, or invoice details are sent to any server.`,
+    ],
+    faqs: [
+      {
+        question: `Do these tools work with Google Sheets as well as Excel?`,
+        answer: `Yes. The cell reference converter, column letter converter, and formula explainer work identically for Google Sheets because both applications use the same A1/R1C1 notation and the same column letter encoding. The date converter supports both the 1900 system (used by Excel and Google Sheets by default) and the 1904 system used in legacy Mac Excel files.`,
+      },
+      {
+        question: `Is any spreadsheet or formula data uploaded when I use these tools?`,
+        answer: `No. Every tool in this category processes input locally in your browser using JavaScript. No formula text, cell references, dates, or business data is transmitted to any server. This is particularly important for the invoice generator, which handles client names, rates, and totals.`,
+      },
+      {
+        question: `How accurate is the EOQ model for real inventory decisions?`,
+        answer: `The classic EOQ formula gives a useful starting point for any product with reasonably steady demand. Its assumptions — constant demand, fixed lead time, no volume discounts — don't perfectly match every real-world situation, but the result is a well-grounded baseline. For items with highly seasonal demand or significant volume discounts, treat the EOQ as the starting point for a more detailed analysis rather than a final answer.`,
+      },
+      {
+        question: `Can I save and reuse invoice information?`,
+        answer: `Yes. The invoice generator stores your business information (company name, address, email, phone) in your browser's localStorage when you click "Save for reuse". On your next visit, that information is automatically loaded. Client details and line items are not saved between sessions, as these change with each invoice.`,
+      },
+    ],
+  },
 };
 
 export function getCategoryContent(value: string): CategoryLongContent | undefined {
