@@ -908,7 +908,7 @@ export default function ToolPage({ params }: ToolPageParams) {
     : [];
 
   // Prefer the long-form FAQs for structured data when present.
-  const jsonLd = buildToolJsonLd(tool, content?.faqs ?? tool.faqs);
+  const jsonLd = buildToolJsonLd(tool, content?.faqs ?? tool.faqs, category?.label);
 
   return (
     <>

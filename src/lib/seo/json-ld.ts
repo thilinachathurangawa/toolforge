@@ -6,18 +6,17 @@ export interface FAQ {
   answer: string;
 }
 
-export function buildToolJsonLd(tool: Tool, faqs?: FAQ[]) {
+export function buildToolJsonLd(tool: Tool, faqs?: FAQ[], categoryLabel?: string) {
   const url = `${siteConfig.url}/tools/${tool.slug}`;
 
   const graph: any[] = [
     {
-      '@type': 'WebApplication',
+      '@type': 'SoftwareApplication',
       name: tool.name,
       description: tool.description,
       url,
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
-      browserRequirements: 'Requires JavaScript',
       offers: {
         '@type': 'Offer',
         price: '0',
@@ -34,15 +33,19 @@ export function buildToolJsonLd(tool: Tool, faqs?: FAQ[]) {
           name: 'Home',
           item: siteConfig.url,
         },
+        ...(categoryLabel
+          ? [
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: categoryLabel,
+                item: `${siteConfig.url}/category/${tool.category}`,
+              },
+            ]
+          : []),
         {
           '@type': 'ListItem',
-          position: 2,
-          name: 'Tools',
-          item: `${siteConfig.url}/tools`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
+          position: categoryLabel ? 3 : 2,
           name: tool.name,
           item: url,
         },
