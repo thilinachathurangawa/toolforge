@@ -5,6 +5,7 @@ import { Syne, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { siteConfig } from '@/lib/constants/site';
+import { TOOLS } from '@/lib/constants/tools';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { AdProvider } from '@/components/ads';
@@ -34,55 +35,60 @@ const fontJetBrainsMono = JetBrains_Mono({
 });
 
 // Configure Site-Wide Base SEO Metadata
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: siteConfig.url,
-    languages: {
-      'en': siteConfig.url,
-      'x-default': siteConfig.url,
+export const metadata: Metadata = (() => {
+  const toolCount = TOOLS.length;
+  const description = `ToolForge offers ${toolCount}+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.`;
+
+  return {
+    title: {
+      default: `${siteConfig.name} — ${siteConfig.tagline}`,
+      template: `%s | ${siteConfig.name}`,
     },
-  },
-  icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
-  },
-  openGraph: {
-    title: siteConfig.name,
-    description: siteConfig.description,
-    url: `${siteConfig.url}/`,
-    siteName: siteConfig.name,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
+    description,
+    metadataBase: new URL(siteConfig.url),
+    alternates: {
+      canonical: siteConfig.url,
+      languages: {
+        'en': siteConfig.url,
+        'x-default': siteConfig.url,
       },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: siteConfig.twitter,
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-  },
-};
+    },
+    icons: {
+      icon: '/icon.svg',
+      apple: '/icon.svg',
+    },
+    openGraph: {
+      title: siteConfig.name,
+      description,
+      url: `${siteConfig.url}/`,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.name,
+      description,
+      images: [siteConfig.ogImage],
+      creator: siteConfig.twitter,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
+  };
+})();
 
 export default function RootLayout({
   children,
