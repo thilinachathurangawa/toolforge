@@ -2,22 +2,37 @@
 import React, { Suspense } from 'react';
 import { HomePageClient } from './HomePageClient';
 import { siteConfig } from '@/lib/constants/site';
+import { TOOLS } from '@/lib/constants/tools';
+import type { Metadata } from 'next';
 
-export const metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
-  description: siteConfig.description,
-  alternates: {
-    canonical: siteConfig.url,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const toolCount = TOOLS.length;
+  const dynamicDescription = `ToolForge offers ${toolCount}+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.`;
 
-const jsonLd = {
+  return {
+    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: dynamicDescription,
+    openGraph: {
+      description: dynamicDescription,
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+    },
+    twitter: {
+      description: dynamicDescription,
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+    },
+    alternates: {
+      canonical: siteConfig.url,
+    },
+  };
+}
+
+const jsonLd = (toolCount: number) => ({
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'WebSite',
       name: siteConfig.name,
-      description: siteConfig.description,
+      description: `ToolForge offers ${toolCount}+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.`,
       url: siteConfig.url,
       potentialAction: {
         '@type': 'SearchAction',
@@ -29,18 +44,20 @@ const jsonLd = {
       '@type': 'Organization',
       name: siteConfig.name,
       url: siteConfig.url,
-      description: siteConfig.description,
+      description: `ToolForge offers ${toolCount}+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.`,
       logo: `${siteConfig.url}/icon.svg`,
     },
   ],
-};
+});
 
 export default function HomePage() {
+  const toolCount = TOOLS.length;
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(toolCount)) }}
       />
       <Suspense
         fallback={
