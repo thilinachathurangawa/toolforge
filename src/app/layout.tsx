@@ -9,6 +9,7 @@ import { TOOLS } from '@/lib/constants/tools';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { AdProvider } from '@/components/ads';
+import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import '@/styles/globals.css';
 import { cn } from '@/lib/utils';
 
@@ -104,6 +105,7 @@ export default function RootLayout({
         fontDMSans.variable,
         fontJetBrainsMono.variable
       )}
+      suppressHydrationWarning
     >
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
@@ -121,6 +123,7 @@ export default function RootLayout({
         />
       </head>
       <body className="relative min-h-screen bg-background text-foreground font-body antialiased flex flex-col overflow-x-hidden">
+        <ThemeProvider>
         {/* Ambient Premium Backdrop: Grid Mesh + Glow Blobs */}
         <div className="absolute inset-0 z-[-1] overflow-hidden pointer-events-none">
           {/* Linear grid overlay */}
@@ -196,6 +199,7 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
 
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { siteConfig } from '@/lib/constants/site';
 import { Search, Menu, X, Wand2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
   const router = useRouter();
@@ -91,6 +92,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <ThemeToggle />
         </nav>
 
         {/* Mobile controls */}
@@ -137,6 +139,10 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <div className="flex items-center justify-between px-3 py-2.5 rounded-lg">
+              <span className="text-sm font-medium text-text-secondary">Theme</span>
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       )}

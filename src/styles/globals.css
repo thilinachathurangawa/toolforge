@@ -72,6 +72,8 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   h1, h2, h3, h4, h5, h6 {
