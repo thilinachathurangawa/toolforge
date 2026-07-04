@@ -14,6 +14,7 @@ import { Breadcrumb } from '@/components/shared/Breadcrumb';
 import { RelatedTools } from '@/components/shared/RelatedTools';
 import { ToolContent } from '@/components/shared/ToolContent';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
+import { ShareButton } from '@/components/shared/ShareButton';
 import { ToolPlaceholder } from '@/components/tools/ToolPlaceholder';
 import { AdBanner, AdInArticle, AdSidebar } from '@/components/ads';
 import { ToolCard } from '@/components/shared/ToolCard';
@@ -898,21 +899,24 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
   const canonical = `${siteConfig.url}/tools/${tool.slug}`;
 
   return {
-    title: `${tool.name} — Free Online Tool`,
+    title: `${tool.name} — Free Online Tool | ToolForge`,
     description: tool.description,
     keywords: tool.keywords,
     alternates: { canonical },
     openGraph: {
-      title: `${tool.name} | ${siteConfig.name}`,
+      title: `${tool.name} — Free Online Tool | ToolForge`,
       description: tool.description,
       url: canonical,
+      siteName: 'ToolForge',
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: tool.name }],
+      locale: 'en_US',
       type: 'website',
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: tool.name,
-      description: tool.description,
+      title: `${tool.name} — Free Online Tool`,
+      description: tool.shortDescription,
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: tool.name }],
     },
   };
 }
@@ -966,18 +970,25 @@ export default function ToolPage({ params }: ToolPageParams) {
                 ]}
               />
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent border border-accent/20">
-                  <DynamicIcon name={tool.icon} size={24} />
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent border border-accent/20">
+                    <DynamicIcon name={tool.icon} size={24} />
+                  </div>
+                  <div>
+                    <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
+                      {tool.name}
+                    </h1>
+                    <p className="text-sm sm:text-base text-text-secondary mt-2 leading-relaxed">
+                      {tool.shortDescription}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-text-primary">
-                    {tool.name}
-                  </h1>
-                  <p className="text-sm sm:text-base text-text-secondary mt-2 leading-relaxed">
-                    {tool.shortDescription}
-                  </p>
-                </div>
+                <ShareButton 
+                  url={`${siteConfig.url}/tools/${tool.slug}`}
+                  title={tool.name}
+                  description={tool.shortDescription}
+                />
               </div>
             </header>
 

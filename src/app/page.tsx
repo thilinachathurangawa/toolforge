@@ -10,15 +10,22 @@ export async function generateMetadata(): Promise<Metadata> {
   const dynamicDescription = `ToolForge offers ${toolCount}+ free online tools for image editing, text processing, developer utilities, and more. All tools work 100% in your browser — no data leaves your device.`;
 
   return {
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    title: 'ToolForge — Free Online Tools | Fast & Private',
     description: dynamicDescription,
     openGraph: {
+      title: 'ToolForge — Free Online Tools Platform',
       description: dynamicDescription,
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+      url: siteConfig.url,
+      siteName: 'ToolForge',
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: 'ToolForge Platform' }],
+      locale: 'en_US',
+      type: 'website',
     },
     twitter: {
+      card: 'summary_large_image',
+      title: 'ToolForge — Free Online Tools Platform',
       description: dynamicDescription,
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: 'ToolForge Platform' }],
     },
     alternates: {
       canonical: siteConfig.url,

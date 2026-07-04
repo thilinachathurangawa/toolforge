@@ -10,6 +10,7 @@ import { AdBanner } from '@/components/ads';
 import { adConfig } from '@/lib/constants/site';
 import { Search, Sparkles, Shield, Cpu, Zap, Mail, X } from 'lucide-react';
 import { DynamicIcon } from '@/components/shared/DynamicIcon';
+import { ShareButton } from '@/components/shared/ShareButton';
 import Link from 'next/link';
 
 export function HomePageClient() {
@@ -148,6 +149,14 @@ export function HomePageClient() {
               </button>
             )}
           </div>
+        </div>
+
+        <div className="flex items-center justify-center">
+          <ShareButton 
+            url="https://www.toolforge.website"
+            title="ToolForge — Free Online Tools Platform"
+            description="Discover 50+ free browser-based tools for image editing, text formatting, and more. 100% private."
+          />
         </div>
       </section>
 
