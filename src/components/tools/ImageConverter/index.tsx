@@ -3,6 +3,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { Upload, Download, X, Image as ImageIcon, Package, Eye, EyeOff } from 'lucide-react';
 import JSZip from 'jszip';
+// @ts-ignore - imagetracerjs doesn't have TypeScript definitions
+import ImageTracer from 'imagetracerjs';
 import { cn } from '@/lib/utils';
 
 interface ConversionResult {
@@ -16,13 +18,14 @@ interface ConversionResult {
   previewUrl: string;
 }
 
-type TargetFormat = 'jpg' | 'png' | 'webp' | 'gif';
+type TargetFormat = 'jpg' | 'png' | 'webp' | 'gif' | 'svg';
 
 const FORMAT_LABELS: Record<TargetFormat, string> = {
   jpg: 'JPG',
   png: 'PNG',
   webp: 'WebP',
   gif: 'GIF',
+  svg: 'SVG',
 };
 
 const MIME_TYPES: Record<TargetFormat, string> = {
@@ -30,6 +33,7 @@ const MIME_TYPES: Record<TargetFormat, string> = {
   png: 'image/png',
   webp: 'image/webp',
   gif: 'image/gif',
+  svg: 'image/svg+xml',
 };
 
 export function ImageConverter() {
@@ -104,6 +108,79 @@ export function ImageConverter() {
     qualityValue: number
   ): Promise<ConversionResult> => {
     return new Promise((resolve, reject) => {
+      // Handle SVG conversion separately
+      if (format === 'svg') {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+
+        img.onload = () => {
+          URL.revokeObjectURL(url);
+
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            reject(new Error('Failed to get canvas context'));
+            return;
+          }
+
+          ctx.drawImage(img, 0, 0);
+
+          try {
+            const imageData = canvas.toDataURL('image/png');
+            
+            ImageTracer.imageToSVG(
+              imageData,
+              (svgString: string) => {
+                const blob = new Blob([svgString], { type: 'image/svg+xml' });
+                const previewUrl = URL.createObjectURL(blob);
+
+                resolve({
+                  file,
+                  originalFormat: getFileFormat(file),
+                  targetFormat: FORMAT_LABELS[format],
+                  quality: qualityValue,
+                  convertedBlob: blob,
+                  originalSize: file.size,
+                  convertedSize: blob.size,
+                  previewUrl,
+                });
+              },
+              {
+                ltres: 1,
+                qtres: 1,
+                pathomit: 8,
+                rightangleenhance: true,
+                colorsampling: 2,
+                numberofcolors: 16,
+                mincolorratio: 0,
+                colorquantcycles: 3,
+                blurradius: 0,
+                blurdelta: 20,
+                linefilter: true,
+                scale: 1,
+                roundcoords: 1,
+                viewbox: true,
+                desc: false,
+              }
+            );
+          } catch (err) {
+            reject(new Error('Failed to convert to SVG'));
+          }
+        };
+
+        img.onerror = () => {
+          URL.revokeObjectURL(url);
+          reject(new Error('Failed to load image'));
+        };
+
+        img.src = url;
+        return;
+      }
+
+      // Handle raster format conversions (JPG, PNG, WebP, GIF)
       const img = new Image();
       const url = URL.createObjectURL(file);
 
@@ -273,7 +350,7 @@ export function ImageConverter() {
                 Drop images here or click to upload
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                JPG, PNG, WebP, GIF supported • Multiple files allowed
+                JPG, PNG, WebP, GIF supported • Convert to SVG available • Multiple files allowed
               </p>
             </label>
           </div>
@@ -336,6 +413,7 @@ export function ImageConverter() {
               <option value="png">PNG</option>
               <option value="webp">WebP</option>
               <option value="gif">GIF</option>
+              <option value="svg">SVG</option>
             </select>
           </div>
 

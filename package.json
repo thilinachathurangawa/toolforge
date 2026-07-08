@@ -37,6 +37,7 @@
     "colorthief": "^2.4.0",
     "exif-js": "^2.3.0",
     "heic2any": "^0.0.4",
+    "imagetracerjs": "^1.2.6",
     "js-yaml": "^5.2.0",
     "jsbarcode": "^3.12.3",
     "jspdf": "^4.2.1",
