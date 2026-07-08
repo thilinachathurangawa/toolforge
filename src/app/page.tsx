@@ -17,7 +17,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description: dynamicDescription,
       url: siteConfig.url,
       siteName: 'ToolForge',
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: 'ToolForge Platform' }],
+      images: [{ 
+        url: `${siteConfig.url}/icon.svg`,
+        width: 1200, 
+        height: 630, 
+        alt: 'ToolForge Platform',
+        type: 'image/svg+xml'
+      }],
       locale: 'en_US',
       type: 'website',
     },
@@ -25,7 +31,12 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: 'ToolForge — Free Online Tools Platform',
       description: dynamicDescription,
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: 'ToolForge Platform' }],
+      images: [{ 
+        url: `${siteConfig.url}/icon.svg`,
+        width: 1200, 
+        height: 630, 
+        alt: 'ToolForge Platform' 
+      }],
     },
     alternates: {
       canonical: siteConfig.url,

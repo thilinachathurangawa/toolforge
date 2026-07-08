@@ -908,7 +908,13 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
       description: tool.description,
       url: canonical,
       siteName: 'ToolForge',
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: tool.name }],
+      images: [{ 
+        url: `${siteConfig.url}/icon.svg`,
+        width: 1200, 
+        height: 630, 
+        alt: tool.name,
+        type: 'image/svg+xml'
+      }],
       locale: 'en_US',
       type: 'website',
     },
@@ -916,7 +922,12 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
       card: 'summary_large_image',
       title: `${tool.name} — Free Online Tool`,
       description: tool.shortDescription,
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: tool.name }],
+      images: [{ 
+        url: `${siteConfig.url}/icon.svg`,
+        width: 1200, 
+        height: 630, 
+        alt: tool.name 
+      }],
     },
   };
 }
