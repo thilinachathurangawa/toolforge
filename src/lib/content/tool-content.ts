@@ -204,7 +204,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'tip-calculator': {
     intro: [
       `Splitting a restaurant bill should not require passing a phone around the table. The Tip Calculator takes the bill amount, the tip percentage you want to leave, and the number of people, and returns the tip, the grand total, and exactly what each person owes.`,
-      `It is the tool you open at the end of a group dinner, but it is just as handy for a single diner deciding between an 18% and a 20% tip, or for someone budgeting travel where tipping norms differ from home. Preset buttons for 10%, 15%, 18%, 20%, and 25% map to the usual range so you can settle up in seconds.`,
+      `It is the tool you open at the end of a group dinner, but it is just as handy for a single diner deciding between an 18% and a 20% tip, or for someone budgeting travel where tipping norms differ from home. Preset buttons for 10%, 15%, 18%, 20%, and 25% map to the usual range so you can settle up in seconds. If service was exceptional, or local custom calls for something outside that range, you can type any custom percentage instead of tapping a preset.`,
     ],
     steps: [
       `Enter the total bill amount.`,
@@ -1411,7 +1411,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'commission-calculator': {
     intro: [
       `For anyone paid on what they sell, knowing the commission before payday matters. This calculator takes a sales amount and a commission rate, adds any fixed base salary, and returns the commission earned and the total take-home.`,
-      `Salespeople use it to forecast a paycheck from a strong month; managers use it to model what a rate change would cost; recruiters use it to explain an offer's earning potential. Because it folds in an optional base salary, it works for pure-commission roles and for the common base-plus-commission structure alike.`,
+      `Salespeople use it to forecast a paycheck from a strong month; managers use it to model what a rate change would cost; recruiters use it to explain an offer's earning potential. Because it folds in an optional base salary, it works for pure-commission roles and for the common base-plus-commission structure alike. Rerunning the numbers with a different rate or sales figure takes seconds, which makes it easy to see what hitting next month's target would actually pay.`,
     ],
     steps: [
       `Enter the total sales amount the commission is based on.`,
@@ -1453,7 +1453,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'future-value-calculator': {
     intro: [
       `Money today is worth more than the same money later, and the Future Value Calculator shows exactly how much more. Enter a present sum, an interest rate, and a time horizon, and it projects what that money will grow to with compounding — optionally adding a regular monthly deposit along the way.`,
-      `Savers use it to see where a nest egg lands in ten years; planners use it to test whether a savings habit reaches a goal. The compounding-frequency control lets you model daily, monthly, quarterly, or annual compounding on a lump sum, while the monthly-deposit option layers in steady contributions for a more realistic savings picture.`,
+      `Savers use it to see where a nest egg lands in ten years; planners use it to test whether a savings habit reaches a goal. The compounding-frequency control lets you model daily, monthly, quarterly, or annual compounding on a lump sum, while the monthly-deposit option layers in steady contributions for a more realistic savings picture. Because contributions and interest are reported separately, it also doubles as a reality check on how much of a projected balance is genuinely growth rather than your own deposits.`,
     ],
     steps: [
       `Enter the present value — the amount you are starting with.`,
@@ -1492,7 +1492,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'roi-calculator': {
     intro: [
       `Return on investment boils any venture down to one comparable number: how much you gained relative to what you put in. The ROI Calculator takes your initial investment and its final value and returns the ROI percentage and the profit or loss in dollars — and if you supply a time period, it also computes the annualized return.`,
-      `Investors use it to compare opportunities on equal footing; marketers use it to justify a campaign's spend; anyone weighing a purchase uses it to check whether the payoff was worth it. The annualized figure is what makes it genuinely useful for comparison: a 50% return over five years is far less impressive than 50% in one, and this tool surfaces that difference.`,
+      `Investors use it to compare opportunities on equal footing; marketers use it to justify a campaign's spend; anyone weighing a purchase uses it to check whether the payoff was worth it. The annualized figure is what makes it genuinely useful for comparison: a 50% return over five years is far less impressive than 50% in one, and this tool surfaces that difference. And since it accepts losses as readily as gains, it works just as well for an honest post-mortem on an investment that went wrong.`,
     ],
     steps: [
       `Enter the initial investment — the amount you put in.`,
@@ -1568,7 +1568,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'student-loan-calculator': {
     intro: [
       `Student debt rarely comes with a clear picture of the road ahead. This calculator takes a loan balance, an interest rate, and a repayment plan, then builds the full payoff story: your monthly payment, how long it takes, the total interest, and a month-by-month amortization schedule you can expand and inspect.`,
-      `Graduates use it to compare what Standard, Graduated, and Extended plans really cost over time; prospective borrowers use it to understand the long-term weight of a balance before signing. The detailed schedule is the standout — instead of a single payment figure, you can watch the balance fall and see how much of each payment is interest versus principal.`,
+      `Graduates use it to compare what Standard, Graduated, and Extended plans really cost over time; prospective borrowers use it to understand the long-term weight of a balance before signing. The detailed schedule is the standout — instead of a single payment figure, you can watch the balance fall and see how much of each payment is interest versus principal. Seeing those early payments dominated by interest is often the nudge that makes extra principal payments feel worthwhile, even when the plan's minimum looks manageable.`,
     ],
     steps: [
       `Enter your student loan amount.`,
@@ -2265,7 +2265,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'period-calculator': {
     intro: [
       `Knowing roughly when your next period will arrive makes planning easier, from travel to events to simply being prepared. This calculator projects your upcoming periods from the start date of your last one and your average cycle length, looking two cycles ahead.`,
-      `It is a simple tracking aid for anyone who wants a heads-up on their cycle without an app or account. By adding your cycle length to your last start date, it estimates the next period and the one after that. The projection assumes consistent cycles, so it works best when your periods are fairly regular.`,
+      `It is a simple tracking aid for anyone who wants a heads-up on their cycle without an app or account. By adding your cycle length to your last start date, it estimates the next period and the one after that. The projection assumes consistent cycles, so it works best when your periods are fairly regular. If yours vary noticeably from month to month, treat the dates as a rough window rather than a fixed appointment, and update the inputs each cycle to keep the estimate honest.`,
     ],
     steps: [
       `Pick the date your last period began.`,
@@ -2432,7 +2432,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'pace-calculator': {
     intro: [
       `Pace is the language of running — minutes per kilometer is how runners gauge effort, plan races, and compare workouts. This calculator turns a distance and a finishing time into your pace, expressed in the familiar minutes-and-seconds-per-kilometer format.`,
-      `Runners use it after a session to see how fast they actually moved, or before a race to check whether a goal time is realistic for their distance. Splitting time into hours, minutes, and seconds lets you enter anything from a short interval to a marathon precisely, and the result comes back in the clean M:SS format every running watch uses.`,
+      `Runners use it after a session to see how fast they actually moved, or before a race to check whether a goal time is realistic for their distance. Splitting time into hours, minutes, and seconds lets you enter anything from a short interval to a marathon precisely, and the result comes back in the clean M:SS format every running watch uses. It is equally handy for walkers and hikers who want to know how their outing translates into a per-kilometer figure they can compare across routes.`,
     ],
     steps: [
       `Enter the distance covered in kilometers.`,
@@ -2812,7 +2812,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'body-surface-area-calculator': {
     intro: [
       `Body surface area is a measure clinicians rely on for things like medication dosing and assessing metabolic needs, because it reflects body size better than weight alone. This calculator computes it from your weight and height using the two most established equations — DuBois and Mosteller — side by side.`,
-      `Healthcare students and professionals use BSA where precise body-size scaling matters, such as chemotherapy dosing or estimating cardiac index. Showing both formulas lets you cross-check, since they can differ slightly, and gives confidence in the figure you carry forward.`,
+      `Healthcare students and professionals use BSA where precise body-size scaling matters, such as chemotherapy dosing or estimating cardiac index. Showing both formulas lets you cross-check, since they can differ slightly, and gives confidence in the figure you carry forward. Students working through pharmacology or physiology exercises also find the side-by-side output useful for understanding why textbooks and references sometimes quote marginally different BSA values for the same patient.`,
     ],
     steps: [
       `Enter your weight in kilograms.`,
@@ -2895,7 +2895,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'due-date-calculator': {
     intro: [
       `For expectant parents, the estimated due date is the anchor everything else is planned around. This calculator applies Naegele's rule — the standard method clinicians use — adding 280 days to the first day of your last menstrual period to estimate when your baby is due.`,
-      `It gives a quick, recognized estimate for early planning, appointments, and counting down the weeks. While an ultrasound and your healthcare provider give the most accurate dating, the last-period method this tool uses is the widely accepted starting point and matches how due dates are first calculated.`,
+      `It gives a quick, recognized estimate for early planning, appointments, and counting down the weeks. While an ultrasound and your healthcare provider give the most accurate dating, the last-period method this tool uses is the widely accepted starting point and matches how due dates are first calculated. Keep in mind that only about one in twenty babies arrives on the estimated date itself — the figure marks the middle of a window, not a deadline.`,
     ],
     steps: [
       `Select the first day of your last menstrual period.`,
@@ -3191,7 +3191,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'average-calculator': {
     intro: [
       `Finding the average of a list of numbers is one of the most common quick calculations there is — grades, expenses, scores, measurements. This calculator takes a list however you have it, separated by commas, spaces, or line breaks, and returns the mean along with the sum, count, minimum, maximum, and range.`,
-      `It saves the tedious tapping of adding a long column on a phone calculator. Teachers average marks, shoppers average prices, and anyone summarizing a quick data set gets the answer plus the supporting figures in one step. Pasting straight from a spreadsheet column works because it accepts line-separated values.`,
+      `It saves the tedious tapping of adding a long column on a phone calculator. Teachers average marks, shoppers average prices, and anyone summarizing a quick data set gets the answer plus the supporting figures in one step. Pasting straight from a spreadsheet column works because it accepts line-separated values. The badge display of every parsed number is worth a glance too — it catches the stray typo or missed decimal point before you trust the result.`,
     ],
     steps: [
       `Type or paste your numbers, separated by commas, spaces, or line breaks.`,
@@ -3527,7 +3527,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'volume-calculator': {
     intro: [
       `Calculating volume means knowing the right formula for the shape in front of you, and there is a different one for a sphere, a cylinder, a cone, and so on. This calculator gathers six common 3D shapes into one tool and computes both their volume and surface area from the dimensions you enter.`,
-      `Students check geometry homework with it; in the real world people use it to size a tank, estimate how much water a container holds, or work out material for a project. Returning surface area alongside volume is a bonus that matters whenever you also need to know how much material wraps the outside.`,
+      `Students check geometry homework with it; in the real world people use it to size a tank, estimate how much water a container holds, or work out material for a project. Returning surface area alongside volume is a bonus that matters whenever you also need to know how much material wraps the outside. Because the input fields change to match the selected shape, you are only ever asked for the dimensions that shape actually needs.`,
     ],
     steps: [
       `Select a shape: sphere, cube, cylinder, rectangular prism, cone, or square-based pyramid.`,
@@ -3695,7 +3695,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'time-calculator': {
     intro: [
       `Adding and subtracting times is fiddly because there are 60 minutes in an hour, not 100, so ordinary arithmetic gives wrong answers. This calculator handles time properly: add two durations, subtract one from another, or find the gap between two clock times, in 12-hour or 24-hour format.`,
-      `People use it to add up durations — total runtime of several recordings, combined task times — or to work out how far apart two moments are. The result comes back both as hours, minutes, and seconds and as decimal totals, which is handy when you need to feed the figure into something else.`,
+      `People use it to add up durations — total runtime of several recordings, combined task times — or to work out how far apart two moments are. The result comes back both as hours, minutes, and seconds and as decimal totals, which is handy when you need to feed the figure into something else, such as a timesheet that expects decimal hours or a spreadsheet formula that works in plain seconds.`,
     ],
     steps: [
       `Choose a mode: Add, Subtract, or Difference.`,
@@ -4790,7 +4790,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'sql-formatter': {
     intro: [
       `A SQL query crammed onto one line is hard to read and harder to debug. The SQL Formatter reflows it into a clean, indented layout — each major clause on its own line, keywords aligned — so the structure of even a complex query becomes clear at a glance.`,
-      `Developers and analysts paste queries copied from logs, ORMs, or a colleague to make sense of them, or to tidy a query before committing it. It puts SELECT, FROM, WHERE, JOIN, and other major clauses on their own lines, indents nested parentheses, and can uppercase keywords so they stand out from table and column names.`,
+      `Developers and analysts paste queries copied from logs, ORMs, or a colleague to make sense of them, or to tidy a query before committing it. It puts SELECT, FROM, WHERE, JOIN, and other major clauses on their own lines, indents nested parentheses, and can uppercase keywords so they stand out from table and column names. A consistent layout also makes code review kinder: two versions of a tidied query diff far more cleanly than two one-liners.`,
     ],
     steps: [
       `Paste your SQL query into the input box.`,
@@ -4874,7 +4874,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'markdown-to-html': {
     intro: [
       `Markdown is quick to write, but the web speaks HTML. This converter turns Markdown into clean HTML markup — headings, bold and italic, links, images, code blocks, and more — ready to paste into a page, an email template, or a CMS that expects raw HTML.`,
-      `Writers and developers use it to publish Markdown notes as web content, to generate HTML for a newsletter, or just to see the tags a snippet produces. It covers the everyday Markdown syntax with a lightweight converter, so common documents translate cleanly without pulling in a heavy library.`,
+      `Writers and developers use it to publish Markdown notes as web content, to generate HTML for a newsletter, or just to see the tags a snippet produces. It covers the everyday Markdown syntax with a lightweight converter, so common documents translate cleanly without pulling in a heavy library. Seeing the raw tags side by side with your source is also a painless way to learn what HTML each piece of Markdown shorthand actually stands for.`,
     ],
     steps: [
       `Paste or type your Markdown into the input box.`,
@@ -5132,7 +5132,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'url-redirect-tracer': {
     intro: [
       `A single link can quietly bounce through several redirects before landing on its final page — and each hop costs time and can leak or lose information. This URL Redirect Tracer follows that chain step by step, showing every URL, its status code, and where it points next, until it reaches the destination.`,
-      `SEOs use it to find redirect chains that dilute link value, marketers verify that a shortened or campaign link ends where it should, and the cautious use it to see where a suspicious link actually leads before clicking through. It numbers each hop, color-codes the status codes, and reports the total number of redirects and the time the chain took.`,
+      `SEOs use it to find redirect chains that dilute link value, marketers verify that a shortened or campaign link ends where it should, and the cautious use it to see where a suspicious link actually leads before clicking through. It numbers each hop, color-codes the status codes, and reports the total number of redirects and the time the chain took. When a migration or link shortener misbehaves, that hop-by-hop view usually shows the culprit in seconds.`,
     ],
     steps: [
       `Enter the starting URL.`,
@@ -5255,7 +5255,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'image-resizer': {
     intro: [
       `An image is rarely the right size out of the camera or screenshot tool — too large for a web page, the wrong dimensions for a social profile. This Image Resizer scales images to exact pixel dimensions, a percentage of the original, or a ready-made social media size, while optionally locking the aspect ratio so nothing stretches.`,
-      `Bloggers shrink photos so pages load fast, social media managers hit the exact dimensions each platform wants, and anyone preparing an avatar or banner gets it sized correctly. Presets for Instagram, Facebook, Twitter, and YouTube remove the guesswork, and resizing happens locally with no upload.`,
+      `Bloggers shrink photos so pages load fast, social media managers hit the exact dimensions each platform wants, and anyone preparing an avatar or banner gets it sized correctly. Presets for Instagram, Facebook, Twitter, and YouTube remove the guesswork, and resizing happens locally with no upload. Because the processing stays on your device, even large photo files resize in moments — there is no round trip to a server to wait on.`,
     ],
     steps: [
       `Upload one or more images.`,
@@ -5339,7 +5339,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'image-batch-resizer': {
     intro: [
       `Resizing one image is easy; resizing fifty to the same dimensions is a chore. This Image Batch Resizer applies one set of dimensions across an entire batch at once, with a "skip if smaller" option so you never accidentally upscale images that are already small, and a toggle for how the output files are named.`,
-      `Photographers preparing a gallery, e-commerce sellers standardizing product shots, and anyone with a folder of images to normalize use it to process the whole set in one pass. Like the single resizer it offers presets, percentages, and an aspect-ratio lock, but it is built for volume — and downloads everything as a ZIP.`,
+      `Photographers preparing a gallery, e-commerce sellers standardizing product shots, and anyone with a folder of images to normalize use it to process the whole set in one pass. Like the single resizer it offers presets, percentages, and an aspect-ratio lock, but it is built for volume — and downloads everything as a ZIP. The naming toggle keeps the output tidy too, letting you decide whether files keep their original names or gain a suffix that marks them as resized.`,
     ],
     steps: [
       `Upload all the images you want to resize.`,
@@ -8205,6 +8205,914 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     related: [
       { slug: 'reorder-point-calculator', note: `Calculate your inventory reorder point before placing the supplier order that will generate this invoice.` },
       { slug: 'eoq-calculator', note: `Determine the optimal order quantity to minimize inventory costs before creating the purchase invoice.` },
+    ],
+  },
+
+  // ── Phase 1: High-Traffic Tools (Missing Content) ─────────────────────
+
+  'image-compressor': {
+    intro: [
+      `Images are usually the heaviest thing on a web page, and oversized photos slow down loading times and waste bandwidth. The Image Compressor reduces JPG, PNG, and WebP file sizes by removing unnecessary metadata and applying smart compression algorithms that preserve visual quality while significantly cutting file size.`,
+      `Web developers use it to optimize images before uploading to content delivery networks, content creators shrink photos for social media without losing clarity, and anyone sharing photos online reduces upload times and storage costs. The tool works entirely in your browser using the canvas API, so your photos never leave your device.`,
+      `Because compression happens client-side, you can process sensitive images—client work, personal photos, or screenshots containing private details—without worrying about data leaving your computer. The quality slider lets you balance file size reduction against visual fidelity, and batch processing handles multiple images at once.`,
+    ],
+    steps: [
+      `Upload your image by dragging and dropping it onto the upload area or clicking the upload button to select a file.`,
+      `Adjust the compression quality slider to your preferred level—lower values produce smaller files with more compression, higher values preserve more detail.`,
+      `Preview the compressed image side by side with the original to compare visual quality and check the file size reduction percentage.`,
+      `Click Download to save the optimized image to your device, or use batch mode to compress multiple images at once.`,
+    ],
+    why: [
+      `All compression runs locally in your browser using JavaScript and the canvas API—your images are never uploaded to any server, keeping private photos completely secure.`,
+      `Supports JPG, PNG, and WebP formats with intelligent compression algorithms that remove unnecessary metadata while preserving visual quality.`,
+      `Batch processing lets you compress multiple images in one session, saving time when optimizing entire photo galleries or asset sets.`,
+      `Real-time preview shows the compressed image alongside the original with file size comparison, so you can see exactly how much space you'll save before downloading.`,
+    ],
+    faqs: [
+      {
+        question: `How does image compression work without losing quality?`,
+        answer: `The tool removes unnecessary EXIF metadata and applies lossy compression algorithms that reduce file size while preserving the visual information that matters most to human perception. The quality slider controls how aggressively the algorithm compresses the image data.`,
+      },
+      {
+        question: `Is my image data safe when using this tool?`,
+        answer: `Yes. All image processing happens directly in your browser using JavaScript and the canvas API. Your images are never uploaded to any server, ensuring complete privacy and security for sensitive photos.`,
+      },
+      {
+        question: `What image formats are supported?`,
+        answer: `The tool supports JPG, PNG, and WebP formats. You can compress individual images or use batch mode to process multiple images at once, regardless of format.`,
+      },
+      {
+        question: `Can I control the compression level?`,
+        answer: `Yes, the quality slider lets you adjust compression from 1 to 100. Lower values produce smaller files with more compression artifacts, while higher values preserve more detail at the cost of larger file sizes.`,
+      },
+      {
+        question: `Will compressing an image make it blurry?`,
+        answer: `At moderate compression levels, the visual difference is often imperceptible. Aggressive compression may introduce artifacts or softness, especially in areas with fine detail. Use the preview to compare before downloading.`,
+      },
+    ],
+    related: [
+      { slug: 'image-resizer', note: `After compressing, you may need to resize images to specific dimensions for web or social media use.` },
+      { slug: 'image-converter', note: `Convert between formats like PNG, JPG, and WebP after compression to match your platform's requirements.` },
+      { slug: 'image-cropper', note: `Crop images to remove unwanted areas or change aspect ratios before or after compression.` },
+    ],
+  },
+
+  'qr-generator': {
+    intro: [
+      `QR codes have become the standard way to bridge physical and digital spaces—restaurant menus, business cards, event posters, and WiFi credentials all rely on scannable codes that anyone with a smartphone camera can read. The QR Code Generator creates these codes for URLs, plain text, email addresses, phone numbers, and WiFi credentials.`,
+      `Marketers add QR codes to print advertisements to drive traffic to landing pages, business owners put them on business cards for instant contact saving, and venue operators display WiFi QR codes so guests can connect without typing long passwords. The generator produces both PNG raster files for screen use and SVG vector files for print.`,
+      `Because the tool runs entirely in your browser, you can generate codes for sensitive information—internal URLs, private contact details, or corporate WiFi credentials—without that data ever leaving your device. Customization options let you match the code's appearance to your branding.`,
+    ],
+    steps: [
+      `Select the type of QR code you want to create from the dropdown: URL, plain text, email address, phone number, or WiFi credentials.`,
+      `Enter your content in the input field—for URLs, paste the full web address; for WiFi, enter the network name and password.`,
+      `Customize the appearance by adjusting the size slider, choosing foreground and background colors, and setting the error correction level if needed.`,
+      `Click Generate to create your QR code, then download it as PNG for digital use or SVG for print materials.`,
+    ],
+    why: [
+      `QR code generation happens entirely in your browser using JavaScript libraries, so your data—URLs, contact details, WiFi passwords—is never transmitted to any server.`,
+      `Supports multiple data types including URLs, text, email, phone, and WiFi, making it a single tool for diverse QR code needs rather than requiring separate generators.`,
+      `Offers both PNG raster format for screen use and SVG vector format for print, ensuring the code remains crisp at any size when scaled for large-format printing.`,
+      `Customization options for size, color, and error correction level let you match the QR code to your branding while ensuring scannability.`,
+    ],
+    faqs: [
+      {
+        question: `What types of QR codes can I generate?`,
+        answer: `You can generate QR codes for URLs (which open in a browser when scanned), plain text (displays the text), email addresses (opens a compose window), phone numbers (initiates a call), and WiFi credentials (connects automatically). Each type is optimized for its specific use case.`,
+      },
+      {
+        question: `What file formats are available for download?`,
+        answer: `QR codes can be downloaded as PNG (raster) for digital use on screens and websites, or SVG (vector) for print materials. SVG is recommended for print because it can be scaled to any size without losing quality or becoming pixelated.`,
+      },
+      {
+        question: `Can I customize the QR code appearance?`,
+        answer: `Yes, you can adjust the size in pixels, choose custom foreground and background colors, and set the error correction level. Higher error correction allows the code to be read even if partially damaged or obscured.`,
+      },
+      {
+        question: `Are the generated QR codes free to use?`,
+        answer: `Absolutely. All QR codes generated are completely free for both personal and commercial use with no watermarks, no attribution requirements, and no restrictions on how you use them.`,
+      },
+      {
+        question: `What is error correction level?`,
+        answer: `Error correction adds redundancy so the QR code can still be read if partially damaged. Low (7%) saves space but tolerates little damage, Medium (15%) is standard, Quartile (25%) handles moderate damage, and High (30%) tolerates significant damage but produces larger codes.`,
+      },
+    ],
+    related: [
+      { slug: 'barcode-generator', note: `Generate traditional linear barcodes for product labeling and inventory systems alongside your QR codes.` },
+      { slug: 'password-generator', note: `Create strong, secure WiFi passwords to use in your WiFi QR codes.` },
+    ],
+  },
+
+  'password-generator': {
+    intro: [
+      `Weak passwords are the single biggest security vulnerability most people face—reusing passwords across sites, choosing memorable phrases, or using short, predictable combinations makes accounts trivially crackable. The Password Generator creates cryptographically strong, random passwords that resist brute-force attacks and dictionary attacks.`,
+      `Security-conscious users generate unique passwords for every account, developers create test credentials for applications, and IT administrators provision secure temporary passwords for users. The generator uses your browser's cryptographically secure random number generator, not the predictable Math.random function.`,
+      `Because password generation happens entirely in your browser, the passwords you create are never transmitted to or stored on any server. You can customize length, include or exclude character types, and generate as many passwords as needed without anyone else ever seeing them.`,
+    ],
+    steps: [
+      `Set your desired password length using the slider—we recommend at least 16 characters for high-security applications, and the tool supports up to 128 characters.`,
+      `Select which character types to include: uppercase letters, lowercase letters, numbers, and special symbols. More character types increase security.`,
+      `Click the Generate button to create a random password using your selected criteria.`,
+      `Copy the password to your clipboard using the copy button, then paste it into the service where you're creating an account.`,
+    ],
+    why: [
+      `Uses your browser's cryptographically secure random number generator (window.crypto.getRandomValues) instead of Math.random, ensuring passwords are truly unpredictable and resistant to statistical attacks.`,
+      `All generation happens locally in your browser—passwords are never transmitted to or stored on any server, so they remain completely private.`,
+      `Customizable length up to 128 characters and selectable character types let you balance security against any platform-specific password requirements.`,
+      `One-click copy to clipboard makes it easy to transfer passwords without typing them, reducing the risk of keyloggers or shoulder surfing.`,
+    ],
+    faqs: [
+      {
+        question: `How secure are the generated passwords?`,
+        answer: `The generator uses cryptographically secure random number generation (CSPRNG) via your browser's window.crypto API, which produces truly unpredictable values suitable for security applications. This is far stronger than the predictable Math.random function used by many simple generators.`,
+      },
+      {
+        question: `What password length should I use?`,
+        answer: `We recommend at least 16 characters for high-security applications. Longer passwords are exponentially more difficult to crack—each additional character multiplies the possible combinations. The tool supports up to 128 characters for maximum security.`,
+      },
+      {
+        question: `Should I include special characters and numbers?`,
+        answer: `Yes, including a mix of uppercase letters, lowercase letters, numbers, and special characters significantly increases password strength by expanding the possible character combinations from 26 (lowercase only) to over 90 (all types). This makes brute-force attacks much harder.`,
+      },
+      {
+        question: `Are my passwords stored or sent anywhere?`,
+        answer: `No. All password generation happens entirely in your browser using JavaScript. No data is ever sent to any server, and the passwords are not stored in your browser's local storage or history. They exist only in memory until you copy them.`,
+      },
+      {
+        question: `Can I generate passwords that exclude specific characters?`,
+        answer: `The current version includes all characters of the selected types. If a platform rejects certain special characters, generate a password and manually edit it, or use the character type selectors to exclude that category entirely.`,
+      },
+    ],
+    related: [
+      { slug: 'hash-generator', note: `Generate hash values of your passwords for verification or database storage using MD5, SHA-1, SHA-256, or SHA-512.` },
+      { slug: 'uuid-generator', note: `Generate unique identifiers for API keys, session tokens, or database records alongside your secure passwords.` },
+    ],
+  },
+
+  'json-formatter': {
+    intro: [
+      `JSON is the lingua franca of web APIs and configuration files, but raw JSON from APIs or minified production builds is often a single unreadable line. The JSON Formatter transforms messy, compacted JSON into beautifully indented, readable structure, validates syntax to catch errors, and can minify JSON back down for production use.`,
+      `Web developers debugging API responses use it to make sense of nested data structures, backend engineers validate configuration files before deployment, and frontend developers minify JSON payloads to reduce bandwidth. The tool also provides a tree view for navigating complex objects without scrolling through thousands of lines.`,
+      `Because all processing happens in your browser using JavaScript, you can paste sensitive API responses, configuration files containing secrets, or internal data structures without worrying about data leaving your device. The validator pinpoints exact error locations with line numbers when syntax is broken.`,
+    ],
+    steps: [
+      `Paste or type your JSON data into the input text area on the left side of the screen.`,
+      `Click the Format button to beautify the JSON with proper indentation, or click Minify to compress it into a single line.`,
+      `Use the Validate button to check syntax—errors will appear with line numbers and descriptions of what's wrong.`,
+      `Switch to the Tree View tab to explore nested JSON structures as an expandable/collapsible hierarchy.`,
+      `Copy the formatted result to your clipboard using the copy button above the output area.`,
+    ],
+    why: [
+      `All JSON processing runs locally in your browser using JavaScript—your data is never sent to any server, making it safe for sensitive API responses and configuration files.`,
+      `Handles four common operations in one tool: formatting for readability, validation for error detection, minification for production, and tree view for navigation of complex structures.`,
+      `The validator provides specific error messages with line numbers when JSON is malformed, making debugging much faster than generic syntax errors.`,
+      `Supports large JSON files without browser freezing, and the tree view makes navigating deeply nested objects manageable without endless scrolling.`,
+    ],
+    faqs: [
+      {
+        question: `What can I do with this JSON tool?`,
+        answer: `You can format and beautify JSON for readability, validate JSON syntax to find errors, minify JSON to reduce file size, and view JSON data in a structured tree format for easier navigation of complex nested structures.`,
+      },
+      {
+        question: `How does JSON validation work?`,
+        answer: `The tool checks your JSON against the official JSON specification. It identifies syntax errors like missing commas, mismatched brackets, trailing commas, unquoted keys, and other common issues, providing clear error messages with line numbers.`,
+      },
+      {
+        question: `Can I minify JSON for production use?`,
+        answer: `Yes, the minify feature removes all whitespace, newlines, and unnecessary characters to create compact JSON files perfect for API responses, configuration files, and production environments where file size matters.`,
+      },
+      {
+        question: `Is my JSON data secure?`,
+        answer: `Absolutely. All JSON processing happens locally in your browser using JavaScript. Your data is never sent to any server, ensuring complete privacy and security for sensitive data like API keys, configuration secrets, or internal structures.`,
+      },
+      {
+        question: `What's the difference between format and beautify?`,
+        answer: `They're the same operation—both terms refer to adding proper indentation and line breaks to make JSON human-readable. The tool uses 2-space indentation by default, which is the most common convention for JSON.`,
+      },
+    ],
+    related: [
+      { slug: 'json-parse', note: `Parse and clean minified JSON strings before formatting them for readability.` },
+      { slug: 'json-path-finder', note: `Extract specific values from large JSON structures using JSONPath notation after formatting.` },
+      { slug: 'json-diff', note: `Compare two JSON documents to see what changed between API responses or configuration versions.` },
+    ],
+  },
+
+  'word-counter': {
+    intro: [
+      `Writing to specific length requirements is a constant constraint—essays with word minimums, social media posts with character limits, blog posts targeting optimal reading length. The Word Counter provides real-time metrics including word count, character count, sentence count, paragraph count, and estimated reading time as you type or paste text.`,
+      `Students use it to hit essay requirements without going over, bloggers optimize posts for readability and SEO, and social media managers ensure posts fit within platform character limits. The tool counts words according to standard conventions, handling contractions, hyphenated words, and punctuation correctly.`,
+      `Because text processing happens entirely in your browser, you can paste sensitive documents, unpublished drafts, or confidential content without worrying about data leaving your device. The reading time estimate helps writers gauge whether their content length matches audience attention spans.`,
+    ],
+    steps: [
+      `Type or paste your text into the main input area—the counts will update in real-time as you type.`,
+      `View the metrics panel showing word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time.`,
+      `Use the character count breakdown to distinguish between total characters and characters excluding spaces, which matters for platforms with strict limits.`,
+      `Copy your text or the metrics summary using the respective copy buttons, or clear the text to start over.`,
+    ],
+    why: [
+      `All text processing happens locally in your browser—your content is never sent to any server, ensuring complete privacy for sensitive documents, unpublished drafts, or confidential writing.`,
+      `Real-time counting updates as you type, so you can see exactly when you hit word or character limits without needing to click a calculate button repeatedly.`,
+      `Provides comprehensive metrics beyond simple word count: character breakdown, sentence count, paragraph count, and reading time estimate give writers a complete picture of their text.`,
+      `Handles edge cases correctly—contractions count as one word, hyphenated words are counted appropriately, and punctuation doesn't artificially inflate counts.`,
+    ],
+    faqs: [
+      {
+        question: `What text metrics does this tool count?`,
+        answer: `The word counter tracks words, characters (both with and without spaces), sentences, paragraphs, and estimated reading time based on average reading speed. This comprehensive analysis helps writers meet specific requirements and optimize content.`,
+      },
+      {
+        question: `Does this tool count words in real-time?`,
+        answer: `Yes, the word counter updates instantly as you type or paste text. You can see the counts change character by character, making it perfect for writing with specific word count requirements without needing to stop and check.`,
+      },
+      {
+        question: `Can I use this for academic or professional writing?`,
+        answer: `Absolutely. The word counter is ideal for essays, reports, articles, and any writing with word limits. It accurately counts words according to standard conventions used by academic institutions and professional editors.`,
+      },
+      {
+        question: `Is my text data private?`,
+        answer: `Yes, all text processing happens entirely in your browser. Your content is never sent to any server, ensuring complete privacy for sensitive documents, unpublished manuscripts, or confidential writing.`,
+      },
+      {
+        question: `How is reading time calculated?`,
+        answer: `Reading time is estimated based on the average adult reading speed of 200-250 words per minute. This gives writers a rough estimate of how long it will take readers to consume their content, helping optimize for audience attention spans.`,
+      },
+    ],
+    related: [
+      { slug: 'readability-checker', note: `Analyze your text's readability score and complexity level after checking word count.` },
+      { slug: 'lorem-ipsum', note: `Generate placeholder text to test layout and formatting before writing your actual content.` },
+      { slug: 'case-converter', note: `Convert text between uppercase, lowercase, title case, and other formats after counting.` },
+    ],
+  },
+
+  'unit-converter': {
+    intro: [
+      `Converting between measurement systems is a constant friction point—metric to imperial for cooking, Celsius to Fahrenheit for weather, megabytes to gigabytes for storage. The Unit Converter handles conversions across length, weight, temperature, area, volume, speed, time, data storage, and more in a single interface.`,
+      `Students check homework answers, engineers convert between metric and imperial for international projects, cooks adjust recipes from different measurement systems, and everyday users make quick conversions without memorizing formulas. Each category uses precise conversion factors for accuracy.`,
+      `Because conversions run entirely in your browser using JavaScript, you can convert values without any data leaving your device. The tool supports bidirectional conversion—swap the from/to units instantly to reverse the calculation without re-entering values.`,
+    ],
+    steps: [
+      `Select the unit category you want to convert from the tabs or dropdown: length, weight, temperature, area, volume, speed, time, or data storage.`,
+      `Enter the value you want to convert in the input field.`,
+      `Select the original unit from the "From" dropdown and the target unit from the "To" dropdown.`,
+      `View the converted result instantly—no need to click a calculate button as conversion happens in real-time.`,
+      `Click the swap button between the unit dropdowns to reverse the conversion direction without re-entering your value.`,
+    ],
+    why: [
+      `All conversions happen locally in your browser using JavaScript—no data is sent to any server, and the tool works offline once the page has loaded.`,
+      `Supports multiple unit categories in one tool rather than requiring separate converters for length, weight, temperature, and other measurements.`,
+      `Uses precise mathematical formulas and standard conversion factors, providing accurate results to multiple decimal places for scientific and engineering applications.`,
+      `Real-time conversion updates as you type or change units, and the swap button lets you instantly reverse conversions without re-entering values.`,
+    ],
+    faqs: [
+      {
+        question: `What unit categories are supported?`,
+        answer: `The unit converter supports length (meters, feet, miles, etc.), weight (kilograms, pounds, ounces, etc.), temperature (Celsius, Fahrenheit, Kelvin), area, volume, speed, time, data storage, and more. New categories are added based on user feedback.`,
+      },
+      {
+        question: `How accurate are the conversions?`,
+        answer: `Conversions use precise mathematical formulas and standard conversion factors defined by international standards. Results are accurate to multiple decimal places, making the tool suitable for scientific, engineering, and everyday use.`,
+      },
+      {
+        question: `Can I convert multiple values at once?`,
+        answer: `Yes, you can convert as many values as needed. Simply enter a value and select the units—the conversion happens instantly. Change the value or units for additional conversions without refreshing the page.`,
+      },
+      {
+        question: `Is this tool free to use?`,
+        answer: `Absolutely. The unit converter is completely free with no limitations, subscriptions, or hidden fees. Use it as often as you need for personal, educational, or commercial purposes.`,
+      },
+      {
+        question: `Does it work offline?`,
+        answer: `Yes, once the page has loaded, all conversion logic runs in your browser using JavaScript. You can use the tool without an internet connection, making it reliable for field work or areas with poor connectivity.`,
+      },
+    ],
+    related: [
+      { slug: 'temperature-converter', note: `Quick access to temperature conversions between Celsius, Fahrenheit, and Kelvin.` },
+      { slug: 'currency-converter', note: `Convert between different currencies with current exchange rates for financial calculations.` },
+      { slug: 'number-base-converter', note: `Convert numbers between decimal, binary, hexadecimal, and other number systems.` },
+    ],
+  },
+
+  'lorem-ipsum': {
+    intro: [
+      `Lorem Ipsum has been the standard placeholder text for printing and typesetting since the 1500s, and it remains the go-to choice for designers who need realistic-looking text without the distraction of meaningful content. The Lorem Ipsum Generator creates this classic placeholder text in customizable quantities—words, sentences, or paragraphs—for website mockups, print designs, and prototypes.`,
+      `UI/UX designers use it to populate wireframes and mockups, graphic designers fill brochure and poster layouts, and developers test typography and spacing before real content is available. The generator creates random variations each time while maintaining the authentic Lorem Ipsum structure and word distribution.`,
+      `Because text generation happens entirely in your browser, you can generate as much placeholder text as you need without any data leaving your device. The tool supports character limits for designs with strict space constraints, and you can copy the text directly to your clipboard.`,
+    ],
+    steps: [
+      `Select the type of text you want to generate: words, sentences, or paragraphs from the dropdown menu.`,
+      `Specify the quantity you need—enter a number for precise control, or leave it blank for a standard amount.`,
+      `Optionally set a character limit if your design has strict space constraints.`,
+      `Click the Generate button to create your placeholder text.`,
+      `Copy the generated text to your clipboard using the copy button, then paste it into your design or mockup.`,
+    ],
+    why: [
+      `All text generation happens locally in your browser using JavaScript—no data is sent to any server, and the tool works offline once loaded.`,
+      `Generates random variations each time while maintaining the authentic Lorem Ipsum structure, so you get variety without losing the classic look and feel.`,
+      `Supports multiple output types (words, sentences, paragraphs) and character limits, giving you precise control over the amount of text for your design needs.`,
+      `Lorem Ipsum is public domain text, free to use for any purpose—personal or commercial—without attribution or licensing concerns.`,
+    ],
+    faqs: [
+      {
+        question: `What is Lorem Ipsum text?`,
+        answer: `Lorem Ipsum is standard placeholder text used in printing and typesetting since the 1500s. It's derived from a work by Cicero written in 45 BC, scrambled to make it nonsensical. Designers use it because it has a realistic letter distribution without distracting readers with meaningful content.`,
+      },
+      {
+        question: `Can I customize the amount of text generated?`,
+        answer: `Yes, you can choose to generate a specific number of words, sentences, or paragraphs. You can also set a character limit to generate text that fits within specific design constraints, ensuring the placeholder matches your layout exactly.`,
+      },
+      {
+        question: `Is the generated text unique each time?`,
+        answer: `Each generation creates a new random variation while maintaining the classic Lorem Ipsum structure and word distribution. This gives you variety across different designs while keeping the authentic look and feel that clients and stakeholders recognize.`,
+      },
+      {
+        question: `Can I use this for commercial projects?`,
+        answer: `Absolutely. Lorem Ipsum text is in the public domain and free to use for any purpose, personal or commercial. Our generator makes it easy to get the exact amount you need without copyright or licensing concerns.`,
+      },
+      {
+        question: `Why not just use real text?`,
+        answer: `Real text draws attention to the content itself rather than the layout and design. Placeholder text lets reviewers focus on typography, spacing, and visual hierarchy without getting distracted by the meaning of the words.`,
+      },
+    ],
+    related: [
+      { slug: 'word-counter', note: `Check the word and character count of your generated placeholder text to ensure it fits your design requirements.` },
+      { slug: 'markdown-previewer', note: `Test how your placeholder text renders in Markdown format for documentation or content management systems.` },
+    ],
+  },
+
+  'markdown-previewer': {
+    intro: [
+      `Markdown has become the standard for writing documentation, README files, and technical content because it's readable as plain text but renders beautifully as HTML. The Markdown Previewer lets you write Markdown syntax in a split-pane editor and see the rendered HTML preview in real-time, supporting GitHub Flavored Markdown with tables, task lists, and syntax highlighting.`,
+      `Developers write README files and documentation, bloggers draft posts in Markdown before publishing, and technical writers create API documentation and guides. The previewer supports code blocks with syntax highlighting for dozens of programming languages, making it ideal for technical content.`,
+      `Because rendering happens entirely in your browser using JavaScript libraries, you can write sensitive documentation, internal guides, or unpublished content without worrying about data leaving your device. The toolbar provides quick access to common Markdown formatting without memorizing syntax.`,
+    ],
+    steps: [
+      `Type or paste your Markdown content in the left editor panel—the preview updates in real-time as you type.`,
+      `Use the toolbar buttons for common formatting: bold, italic, headings, lists, links, images, and code blocks.`,
+      `For code blocks with syntax highlighting, specify the language after the opening backticks (e.g., \`\`\`javascript for JavaScript).`,
+      `Switch between editor and preview modes or use the split view to see both simultaneously.`,
+      `Copy the rendered HTML or download the Markdown file when you're ready to publish or save your work.`,
+    ],
+    why: [
+      `All Markdown rendering happens locally in your browser using JavaScript—your content is never sent to any server, ensuring privacy for sensitive documentation and unpublished drafts.`,
+      `Supports GitHub Flavored Markdown (GFM) including tables, task lists, strikethrough, autolinks, and syntax highlighting, making it compatible with GitHub and other GFM platforms.`,
+      `Real-time preview updates as you type, so you can instantly see how your formatting renders without needing to switch between editor and preview modes repeatedly.`,
+      `Syntax highlighting for code blocks supports dozens of programming languages, making it ideal for technical documentation, API guides, and developer-focused content.`,
+    ],
+    faqs: [
+      {
+        question: `What Markdown syntax is supported?`,
+        answer: `The previewer supports GitHub Flavored Markdown (GFM), including tables, task lists, strikethrough, autolinks, and more. It also supports standard Markdown syntax like headers, lists, links, images, and code blocks. This ensures compatibility with GitHub and other GFM platforms.`,
+      },
+      {
+        question: `Can I export the rendered Markdown?`,
+        answer: `Yes, you can copy the rendered HTML to paste into websites, emails, or documents that support HTML. You can also download the raw Markdown file to save your work locally or use it in other Markdown editors.`,
+      },
+      {
+        question: `Is my content saved or stored anywhere?`,
+        answer: `No, all content stays in your browser's memory while you're working. Nothing is sent to servers or stored in databases. Your Markdown content remains completely private and secure, even if you're writing sensitive documentation.`,
+      },
+      {
+        question: `Can I use syntax highlighting for code blocks?`,
+        answer: `Yes, the previewer supports syntax highlighting for code blocks in dozens of programming languages. Simply specify the language after the opening backticks (e.g., \`\`\`javascript, \`\`\`python, \`\`\`rust) and your code will be beautifully highlighted.`,
+      },
+      {
+        question: `Does this support tables and task lists?`,
+        answer: `Yes, as part of GitHub Flavored Markdown support, you can create tables using pipe and hyphen syntax, and task lists using square brackets with x or space for checked/unchecked items. Both render correctly in the preview.`,
+      },
+    ],
+    related: [
+      { slug: 'word-counter', note: `Check the word and character count of your Markdown content to ensure it meets documentation requirements.` },
+      { slug: 'text-diff', note: `Compare two versions of your Markdown document to see changes between drafts.` },
+      { slug: 'markdown-to-html', note: `Convert your Markdown to clean HTML for use in websites or content management systems.` },
+    ],
+  },
+
+  'velocity-calculator': {
+    intro: [
+      `Velocity is the rate at which an object changes its position, calculated as distance divided by time (v = d/t). The Velocity Calculator solves for any of these three variables when you know the other two, supporting multiple unit systems for distance (meters, kilometers, miles, feet) and time (seconds, minutes, hours).`,
+      `Students solve physics homework problems, engineers calculate vehicle speeds for safety analysis, and athletes track running or cycling performance. The calculator displays results in multiple velocity units (m/s, km/h, mph, ft/s) simultaneously, making it easy to convert between metric and imperial systems.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve motion problems without any data leaving your device. The tool handles unit conversions automatically, so you can input values in whatever units you have available and get results in your preferred format.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: velocity, distance, or time.`,
+      `Enter the two known values in their respective input fields.`,
+      `Choose the appropriate units for each value from the dropdown menus.`,
+      `Click Calculate to solve for the unknown variable.`,
+      `View the result displayed in multiple units (m/s, km/h, mph, ft/s) for convenience.`,
+    ],
+    why: [
+      `Velocity calculations run entirely in your browser using JavaScript—no data leaves your device, and the tool functions offline after the initial page load.`,
+      `Solves for any of the three variables (velocity, distance, time) when you know the other two, making it versatile for different problem types.`,
+      `Accepts input in metric or imperial units and automatically converts between systems, so you can work with whatever measurements you have available.`,
+      `Shows results in m/s, km/h, mph, and ft/s simultaneously, eliminating the need for separate unit conversion tools.`,
+    ],
+    faqs: [
+      {
+        question: `What is the formula for velocity?`,
+        answer: `The formula for velocity is v = d/t, where v is velocity, d is distance, and t is time. Velocity measures the rate of change of position with respect to time, typically expressed in meters per second (m/s) or kilometers per hour (km/h).`,
+      },
+      {
+        question: `What units does this calculator support?`,
+        answer: `The calculator supports meters, kilometers, miles, and feet for distance; and seconds, minutes, and hours for time. Results are displayed in m/s, km/h, mph, and ft/s for easy comparison across unit systems.`,
+      },
+      {
+        question: `What is the difference between speed and velocity?`,
+        answer: `Speed is a scalar quantity measuring how fast an object moves, while velocity is a vector quantity including both speed and direction. This calculator focuses on the magnitude of velocity (speed), as direction requires additional context beyond the numerical calculation.`,
+      },
+      {
+        question: `Can I calculate distance or time from velocity?`,
+        answer: `Yes, you can solve for any variable. If you know velocity and time, you can calculate distance (d = v × t). If you know velocity and distance, you can calculate time (t = d/v). The calculator rearranges the formula automatically based on your selection.`,
+      },
+      {
+        question: `Why are results shown in multiple units?`,
+        answer: `Showing results in m/s, km/h, mph, and ft/s simultaneously lets you see the answer in whatever unit system you need without manual conversion. This is especially useful when working with international standards or comparing measurements across different contexts.`,
+      },
+    ],
+    related: [
+      { slug: 'force-calculator', note: `Calculate force using Newton's Second Law after determining velocity for motion problems.` },
+      { slug: 'kinetic-energy-calculator', note: `Calculate kinetic energy using velocity and mass for energy problems.` },
+      { slug: 'projectile-motion-calculator', note: `Analyze projectile trajectories using initial velocity and launch angle.` },
+    ],
+  },
+
+  'force-calculator': {
+    intro: [
+      `Newton's Second Law of Motion states that force equals mass times acceleration (F = ma), the fundamental relationship that underlies all of classical mechanics. The Force Calculator solves for any of these three variables when you know the other two, supporting multiple unit systems for mass (kg, g, lb, oz), acceleration (m/s², ft/s², g-force), and force (N, lbf, dynes).`,
+      `Students solve mechanics homework problems, engineers calculate loads for structural design, and physicists analyze experimental data. The calculator handles unit conversions automatically, so you can input values in whatever units you have and get results in your preferred format.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve force problems without any data leaving your device. The tool clearly distinguishes between mass (amount of matter) and weight (force due to gravity), a common point of confusion in physics problems.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: force, mass, or acceleration.`,
+      `Type in the two quantities you already know, such as the object's mass and its acceleration.`,
+      `Pick a unit for each quantity — kilograms or pounds for mass, m/s², ft/s², or g-force for acceleration.`,
+      `Click Calculate to solve for the unknown variable using F = ma.`,
+      `View the result displayed in multiple force units (Newtons, pound-force, dynes) for convenience.`,
+    ],
+    why: [
+      `Force calculations execute client-side in your browser—no data is transmitted to any server, ensuring complete privacy for your engineering or physics work.`,
+      `Solves for any of the three variables (force, mass, acceleration) when you know the other two, making it versatile for different problem types.`,
+      `Handles metric (SI) and imperial unit systems automatically, converting between Newtons, pound-force, and dynes as needed.`,
+      `Displays force results in multiple units at once, so you can reference the value in whatever system your project requires.`,
+    ],
+    faqs: [
+      {
+        question: `What is Newton's Second Law?`,
+        answer: `Newton's Second Law states that force equals mass times acceleration (F = ma). This means the force acting on an object is directly proportional to its mass and the acceleration it experiences. This law is foundational to classical mechanics and explains how forces cause motion.`,
+      },
+      {
+        question: `Which mass, acceleration, and force units can I use?`,
+        answer: `The calculator supports kilograms, grams, pounds, and ounces for mass; meters per second squared, feet per second squared, and g-force for acceleration; and Newtons, pound-force, and dynes for force.`,
+      },
+      {
+        question: `Can I calculate mass or acceleration from force?`,
+        answer: `Yes — the tool solves for whichever variable you leave unknown. If you know force and acceleration, you can calculate mass (m = F/a). If you know force and mass, you can calculate acceleration (a = F/m). Just pick the target from the dropdown and Newton's law is rearranged for you.`,
+      },
+      {
+        question: `What is the difference between mass and weight?`,
+        answer: `Mass is a measure of the amount of matter in an object (measured in kg), while weight is the force of gravity acting on an object (measured in N). Weight equals mass times gravitational acceleration (W = mg), so weight varies with location while mass remains constant.`,
+      },
+      {
+        question: `What is g-force?`,
+        answer: `G-force is a unit of acceleration equal to the acceleration due to Earth's gravity (approximately 9.81 m/s²). It's commonly used to express accelerations relative to Earth's gravity, such as in aviation or automotive contexts.`,
+      },
+    ],
+    related: [
+      { slug: 'velocity-calculator', note: `Calculate velocity before determining force in motion problems.` },
+      { slug: 'kinetic-energy-calculator', note: `Calculate kinetic energy after determining force and acceleration.` },
+      { slug: 'density-calculator', note: `Calculate density using mass and volume for material property problems.` },
+    ],
+  },
+
+  'kinetic-energy-calculator': {
+    intro: [
+      `Kinetic energy is the energy an object possesses due to its motion, calculated as KE = ½mv² where m is mass and v is velocity. The Kinetic Energy Calculator solves for any of these three variables when you know the other two, supporting multiple unit systems for mass (kg, g, lb, oz), velocity (m/s, km/h, mph, ft/s), and energy (J, kJ, cal, BTU).`,
+      `Students solve physics homework problems, engineers calculate energy requirements for moving vehicles, and renewable energy analysts estimate power generation from wind or water. The calculator handles unit conversions automatically, making it easy to work with different measurement systems.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve energy problems without any data leaving your device. The tool clearly explains the relationship between kinetic energy, potential energy, and total mechanical energy in the FAQ section.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: kinetic energy, mass, or velocity.`,
+      `Provide the two values you know — typically the moving object's mass and its speed.`,
+      `Set the measurement units for each input using the selectors beside the fields.`,
+      `Click Calculate to solve for the unknown variable using KE = ½mv².`,
+      `View the result displayed in multiple energy units (Joules, kilojoules, calories, BTU) for convenience.`,
+    ],
+    why: [
+      `Kinetic energy computations are performed entirely in your browser—no server communication occurs, keeping your calculations private and the tool functional offline.`,
+      `Solves for any of the three variables (kinetic energy, mass, velocity) when you know the other two, making it versatile for different problem types.`,
+      `Converts between metric and imperial units automatically, handling Joules, kilojoules, calories, and BTU without manual conversion.`,
+      `Shows energy results in multiple units simultaneously, matching the conventions of different scientific and engineering fields.`,
+    ],
+    faqs: [
+      {
+        question: `What is the formula for kinetic energy?`,
+        answer: `The formula for kinetic energy is KE = ½mv², where KE is kinetic energy, m is mass, and v is velocity. Kinetic energy is the energy an object possesses due to its motion, measured in Joules (J) in the SI system.`,
+      },
+      {
+        question: `What mass, velocity, and energy units are available?`,
+        answer: `The calculator supports kilograms, grams, pounds, and ounces for mass; meters per second, kilometers per hour, miles per hour, and feet per second for velocity; and Joules, kilojoules, calories, and BTU for energy.`,
+      },
+      {
+        question: `Can I calculate mass or velocity from kinetic energy?`,
+        answer: `Yes — any one of the three quantities can be found from the other two. If you know kinetic energy and velocity, you can calculate mass (m = 2KE/v²). If you know kinetic energy and mass, you can calculate velocity (v = √(2KE/m)).`,
+      },
+      {
+        question: `What is the difference between kinetic and potential energy?`,
+        answer: `Kinetic energy is the energy of motion (½mv²), while potential energy is stored energy due to position or configuration (like gravitational potential energy mgh). The total mechanical energy is the sum of kinetic and potential energy, and this sum remains constant in closed systems.`,
+      },
+      {
+        question: `Why is kinetic energy proportional to velocity squared?`,
+        answer: `Kinetic energy is proportional to velocity squared because the work done to accelerate an object depends on both the force applied and the distance over which it acts. Since distance is proportional to velocity for constant acceleration, the work (and thus energy) ends up proportional to v².`,
+      },
+    ],
+    related: [
+      { slug: 'velocity-calculator', note: `Calculate velocity before determining kinetic energy for motion problems.` },
+      { slug: 'force-calculator', note: `Calculate force using Newton's Second Law to understand what causes changes in kinetic energy.` },
+      { slug: 'projectile-motion-calculator', note: `Analyze a projectile's flight and evaluate its kinetic energy at launch or impact.` },
+    ],
+  },
+
+  'ohms-law-calculator': {
+    intro: [
+      `Ohm's Law is the fundamental relationship in electrical circuits: voltage equals current times resistance (V = IR). The Ohm's Law Calculator solves for any of these three variables when you know the other two, supporting multiple unit systems for voltage (V, mV, kV), current (A, mA, kA), and resistance (Ω, kΩ, MΩ). It also calculates power automatically using P = VI.`,
+      `Students solve electronics homework problems, electricians design and troubleshoot circuits, and engineers calculate component values for PCB design. The calculator handles unit conversions automatically and displays results in multiple units simultaneously for easy comparison.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve circuit problems without any data leaving your device. The tool clearly explains the relationship between voltage, current, resistance, and power in the FAQ section.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: voltage, current, or resistance.`,
+      `Fill in the two electrical quantities you know, such as the supply voltage and the resistance.`,
+      `Match each input to its unit — volts, millivolts, or kilovolts; amps or milliamps; ohms, kilohms, or megohms.`,
+      `Click Calculate to solve for the unknown variable using V = IR.`,
+      `View the result plus the calculated power (P = VI) displayed in multiple units for convenience.`,
+    ],
+    why: [
+      `Circuit calculations run locally in your browser—no data is sent to any server, and the tool works offline for secure, private electrical design work.`,
+      `Solves for any of the three variables (voltage, current, resistance) when you know the other two, and automatically calculates power as a bonus.`,
+      `Handles electrical unit conversions automatically, working with volts/millivolts/kilovolts, amps/milliamps/kiloamps, and ohms/kiloohms/megaohms.`,
+      `Displays voltage, current, resistance, and power in multiple units at once, covering the conventions used in different regions and industries.`,
+    ],
+    faqs: [
+      {
+        question: `What is Ohm's Law?`,
+        answer: `Ohm's Law states that the current through a conductor between two points is directly proportional to the voltage across the two points, expressed as V = IR, where V is voltage, I is current, and R is resistance. This fundamental relationship underlies all DC circuit analysis.`,
+      },
+      {
+        question: `Which voltage, current, and resistance units are supported?`,
+        answer: `The calculator supports volts, millivolts, and kilovolts for voltage; amperes, milliamperes, and kiloamperes for current; and ohms, kilohms, and megohms for resistance. Power is calculated and displayed in watts.`,
+      },
+      {
+        question: `Can I calculate power as well?`,
+        answer: `Yes, the calculator automatically calculates power (P = VI) along with voltage, current, and resistance. Power tells you how much energy the circuit consumes or delivers, measured in watts.`,
+      },
+      {
+        question: `What are the practical applications of Ohm's Law?`,
+        answer: `Ohm's Law is used extensively in electronics for circuit design, troubleshooting, and analysis. It helps calculate component values like resistors, determine current flow through branches, and ensure safe operating conditions by preventing excessive current.`,
+      },
+      {
+        question: `What is the relationship between power and Ohm's Law?`,
+        answer: `Power can be calculated using P = VI (power equals voltage times current). Using Ohm's Law to substitute V = IR, you can also express power as P = I²R or P = V²/R. These alternative forms are useful when you know different combinations of variables.`,
+      },
+    ],
+    related: [
+      { slug: 'resistor-color-code-calculator', note: `Decode resistor color codes to determine resistance values before using Ohm's Law.` },
+      { slug: 'scientific-notation-calculator', note: `Work comfortably with the very large and very small quantities (megohms, milliamps) that circuit math produces.` },
+      { slug: 'unit-converter', note: `Convert between broader measurement systems when your circuit work crosses into mechanical or thermal units.` },
+    ],
+  },
+
+  'ph-calculator': {
+    intro: [
+      `pH measures how acidic or basic a solution is, calculated as the negative logarithm of hydrogen ion concentration (pH = -log₁₀[H⁺]). The pH Calculator converts between pH, pOH, hydrogen ion concentration [H⁺], and hydroxide ion concentration [OH⁻], supporting scientific notation for very small concentrations typical in chemistry.`,
+      `Students solve acid-base chemistry problems, chemists analyze solution properties, and environmental scientists monitor water quality. The calculator also classifies solutions as strongly acidic, weakly acidic, neutral, weakly basic, or strongly basic based on the pH value.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve chemistry problems without any data leaving your device. The tool handles the logarithmic calculations automatically and displays results in both decimal and scientific notation.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: [H⁺] concentration, [OH⁻] concentration, pH, or pOH.`,
+      `Enter the known value in the input field using decimal or scientific notation.`,
+      `Click Calculate to solve for all related values automatically.`,
+      `View the results showing pH, pOH, both ion concentrations, and the acid/base classification.`,
+      `Copy any result to your clipboard using the copy buttons next to each value.`,
+    ],
+    why: [
+      `pH calculations execute entirely in your browser using JavaScript—no data is transmitted to any server, ensuring your chemistry work remains private.`,
+      `Calculates all related values (pH, pOH, [H⁺], [OH⁻]) from a single input, saving time compared to manual logarithmic calculations.`,
+      `Handles scientific notation automatically for the very small concentrations typical in chemistry (10⁻⁷ M, 10⁻¹⁴ M, etc.).`,
+      `Provides acid/base classification (strongly acidic to strongly basic) to help interpret the practical meaning of pH values in real-world applications.`,
+    ],
+    faqs: [
+      {
+        question: `What is the pH formula?`,
+        answer: `The pH formula is pH = -log₁₀[H⁺], where [H⁺] is the hydrogen ion concentration in moles per liter (M). pH measures how acidic or basic a solution is on a logarithmic scale from 0 to 14.`,
+      },
+      {
+        question: `What is the pH scale?`,
+        answer: `The pH scale ranges from 0 to 14. A pH of 7 is neutral (pure water), below 7 is acidic (lower is more acidic), and above 7 is basic (higher is more basic). Each unit represents a tenfold change in hydrogen ion concentration.`,
+      },
+      {
+        question: `What is the relationship between pH and pOH?`,
+        answer: `pH and pOH are related by the equation pH + pOH = 14 at 25°C. pOH measures the hydroxide ion concentration using pOH = -log₁₀[OH⁻]. This relationship comes from the water autoionization constant Kw = [H⁺][OH⁻] = 10⁻¹⁴.`,
+      },
+      {
+        question: `Can I calculate ion concentration from pH?`,
+        answer: `Yes, you can calculate hydrogen ion concentration from pH using [H⁺] = 10^(-pH). The calculator also automatically calculates the complementary [OH⁻] concentration using the water autoionization constant.`,
+      },
+      {
+        question: `Why is the pH scale logarithmic?`,
+        answer: `The pH scale is logarithmic because hydrogen ion concentrations in solutions vary over many orders of magnitude. A logarithmic scale compresses this range into manageable numbers (0-14) while preserving the relative differences between solutions.`,
+      },
+    ],
+    related: [
+      { slug: 'molarity-calculator', note: `Calculate solution concentration (molarity) before determining pH for weak acids and bases.` },
+      { slug: 'ideal-gas-law-calculator', note: `Calculate gas properties in chemical reactions that affect solution pH.` },
+    ],
+  },
+
+  'molarity-calculator': {
+    intro: [
+      `Molarity measures solution concentration as moles of solute per liter of solution (M = n/V). The Molarity Calculator solves for molarity, moles of solute, or volume of solution when you know the other two, supporting multiple unit systems for amount (mol, mmol), volume (L, mL), and concentration (M, mM). It can also calculate mass when you provide the molar mass.`,
+      `Students prepare laboratory solutions, chemists calculate reagent quantities for reactions, and pharmaceutical technicians compound medications. The calculator handles unit conversions automatically and displays results in multiple units for flexibility in lab settings.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve solution concentration problems without any data leaving your device. The tool clearly distinguishes between molarity and molality in the FAQ section, a common point of confusion.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: molarity, moles, or volume.`,
+      `Enter the pair of values you already have, such as moles of solute and solution volume.`,
+      `Optionally enter the molar mass (g/mol) to calculate the mass of solute needed.`,
+      `Assign a unit to each field — moles or millimoles, liters or milliliters.`,
+      `Click Calculate to solve for the unknown variable and optionally the mass.`,
+      `View the results displayed in multiple units for convenience.`,
+    ],
+    why: [
+      `Molarity computations are performed client-side in your browser—no data leaves your device, keeping your solution preparation calculations private and secure.`,
+      `Solves for any of the three variables (molarity, moles, volume) when you know the other two, and optionally calculates mass from molar mass.`,
+      `Automatically converts between moles and millimoles, liters and milliliters, matching the units commonly used in different laboratory settings.`,
+      `Shows concentration results in both M (molar) and mM (millimolar) simultaneously, covering the conventions used across chemistry disciplines.`,
+    ],
+    faqs: [
+      {
+        question: `What is the molarity formula?`,
+        answer: `The molarity formula is M = n/V, where M is molarity in moles per liter (mol/L), n is the number of moles of solute, and V is the volume of solution in liters. Molarity is the most common way to express solution concentration in chemistry.`,
+      },
+      {
+        question: `Which amount, volume, and concentration units can I work with?`,
+        answer: `The calculator supports moles and millimoles for amount of substance; liters and milliliters for volume; and molar (M) and millimolar (mM) for concentration. Mass can be calculated in grams when molar mass is provided.`,
+      },
+      {
+        question: `Can I calculate mass from moles?`,
+        answer: `Yes, if you provide the molar mass (g/mol) of the solute, the calculator can calculate the mass needed using Mass = moles × molar mass. This is essential for preparing solutions in the laboratory.`,
+      },
+      {
+        question: `What is the difference between molarity and molality?`,
+        answer: `Molarity (M) is moles of solute per liter of solution, while molality (m) is moles of solute per kilogram of solvent. Molarity is temperature-dependent because solution volume changes with temperature, while molality is not.`,
+      },
+      {
+        question: `How do I find molar mass?`,
+        answer: `Molar mass is the mass of one mole of a substance, found by summing the atomic masses from the periodic table. For example, water (H₂O) has a molar mass of approximately 18.015 g/mol (2×1.008 + 15.999).`,
+      },
+    ],
+    related: [
+      { slug: 'ph-calculator', note: `Calculate pH from molarity for strong acids and bases in solution chemistry.` },
+      { slug: 'ideal-gas-law-calculator', note: `Calculate gas moles using PV = nRT before determining solution molarity.` },
+      { slug: 'density-calculator', note: `Calculate density using mass and volume for solution property analysis.` },
+    ],
+  },
+
+  'ideal-gas-law-calculator': {
+    intro: [
+      `The Ideal Gas Law (PV = nRT) relates pressure, volume, amount of gas in moles, and temperature for an ideal gas. The Ideal Gas Law Calculator solves for any of these four variables when you know the other three, supporting multiple unit systems for pressure (atm, kPa, mmHg, torr, bar), volume (L, mL, m³), and temperature (K, °C, °F).`,
+      `Students solve gas law homework problems, chemists calculate gas quantities for reactions, and engineers analyze gas behavior in industrial processes. The calculator automatically uses the correct gas constant R value based on your chosen units, eliminating a common source of calculation errors.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve gas law problems without any data leaving your device. The tool explains when real gases deviate from ideal behavior in the FAQ section.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: pressure, volume, moles, or temperature.`,
+      `Enter the three known values in their respective input fields.`,
+      `Set the pressure, volume, and temperature units so the matching gas constant is applied.`,
+      `Click Calculate to solve for the unknown variable using PV = nRT.`,
+      `Read the answer, which is presented across several equivalent units.`,
+    ],
+    why: [
+      `Ideal gas law calculations run entirely in your browser—no server communication occurs, ensuring your chemistry calculations remain private and the tool works offline.`,
+      `Solves for any of the four variables (pressure, volume, moles, temperature) when you know the other three, making it versatile for different problem types.`,
+      `Automatically selects the correct gas constant R value based on your chosen units, eliminating a common source of calculation errors.`,
+      `Handles unit conversions between different pressure (atm, kPa, mmHg, torr, bar), volume (L, mL, m³), and temperature (K, °C, °F) systems automatically.`,
+    ],
+    faqs: [
+      {
+        question: `What is the ideal gas law?`,
+        answer: `The ideal gas law is PV = nRT, where P is pressure, V is volume, n is the number of moles of gas, R is the gas constant, and T is temperature in Kelvin. It relates the four state variables of an ideal gas and is a good approximation for many real gases under standard conditions.`,
+      },
+      {
+        question: `What pressure, volume, and temperature units does it accept?`,
+        answer: `The calculator supports atmospheres, kilopascals, mmHg, torr, and bar for pressure; liters, milliliters, and cubic meters for volume; and Kelvin, Celsius, and Fahrenheit for temperature. The gas constant R is automatically selected based on your units.`,
+      },
+      {
+        question: `What is the gas constant R?`,
+        answer: `The gas constant R has different values depending on the units used. Common values include 0.0821 L·atm/(mol·K), 8.314 J/(mol·K), 62.36 L·mmHg/(mol·K), and 8.314 kPa·L/(mol·K). The calculator automatically uses the correct value for your chosen units.`,
+      },
+      {
+        question: `When does the ideal gas law apply?`,
+        answer: `The ideal gas law applies to ideal gases under standard conditions. Real gases deviate from ideal behavior at high pressures and low temperatures when intermolecular forces become significant. However, the law is a good approximation for many situations at moderate conditions.`,
+      },
+      {
+        question: `Why must temperature be in Kelvin?`,
+        answer: `The ideal gas law requires absolute temperature because gas volume is directly proportional to absolute temperature. Celsius and Fahrenheit can be used for input, but the calculator converts them to Kelvin for the calculation to ensure accuracy.`,
+      },
+    ],
+    related: [
+      { slug: 'molarity-calculator', note: `Calculate solution molarity after determining gas moles from the ideal gas law.` },
+      { slug: 'density-calculator', note: `Calculate gas density using molar mass and molar volume from ideal gas law results.` },
+      { slug: 'ph-calculator', note: `Calculate pH of solutions formed by dissolving gases in water.` },
+    ],
+  },
+
+  'projectile-motion-calculator': {
+    intro: [
+      `Projectile motion describes the curved path of an object launched into the air under the influence of gravity alone. The Projectile Motion Calculator calculates trajectory parameters including maximum height, time of flight, horizontal range, and velocity components from initial velocity and launch angle, assuming no air resistance and standard gravity (9.81 m/s²).`,
+      `Students solve physics homework problems, ballistics analysts estimate projectile paths, and sports scientists optimize athletic performance. The calculator also provides the trajectory equation, allowing you to predict the projectile's position at any time during flight.`,
+      `The physics runs as JavaScript on your own machine, so trajectory analysis never sends anything over the network. The tool handles initial height calculations for projectiles launched from elevated positions.`,
+    ],
+    steps: [
+      `Enter the initial velocity of the projectile in the input field.`,
+      `Enter the launch angle in degrees (0° is horizontal, 90° is vertical).`,
+      `Optionally enter the initial height if the projectile starts above ground level (default is 0).`,
+      `Click Calculate to compute trajectory parameters.`,
+      `View maximum height, time of flight, horizontal range, and velocity components (Vx, Vy).`,
+      `See the trajectory equation for predicting the projectile's path at any time.`,
+    ],
+    why: [
+      `All calculations happen locally in your browser—no data is sent to any server, and the tool works offline once the page has loaded.`,
+      `Calculates all trajectory parameters from just two inputs (velocity and angle), saving time compared to manual calculations.`,
+      `Supports initial height for projectiles launched from elevated positions, not just ground-level launches.`,
+      `Provides the trajectory equation, allowing you to predict the projectile's position at any point during flight.`,
+    ],
+    faqs: [
+      {
+        question: `What is projectile motion?`,
+        answer: `Projectile motion is the motion of an object thrown or projected into the air, subject only to acceleration due to gravity. The horizontal motion is constant velocity, while vertical motion is constant acceleration downward. The path followed is a parabola when air resistance is neglected.`,
+      },
+      {
+        question: `What formulas does this calculator use?`,
+        answer: `The calculator uses standard projectile motion formulas: Vx = V₀·cos(θ) for horizontal velocity, Vy = V₀·sin(θ) for initial vertical velocity, time of flight equations, maximum height H = (Vy²)/(2g), and horizontal range R = Vx·time of flight. It assumes no air resistance and standard gravity (9.81 m/s²).`,
+      },
+      {
+        question: `What velocity units can I enter?`,
+        answer: `The calculator supports meters per second, kilometers per hour, and miles per hour for initial velocity. Results are displayed in metric units (meters, seconds) by default, with the option to convert to imperial units.`,
+      },
+      {
+        question: `Can I calculate from an initial height?`,
+        answer: `Yes, you can specify an initial height for the projectile. The calculator will adjust the trajectory calculations accordingly, accounting for the starting elevation. This is useful for projectiles launched from cliffs, towers, or elevated platforms.`,
+      },
+      {
+        question: `What angle gives maximum range?`,
+        answer: `For a projectile launched from ground level with no air resistance, the launch angle of 45° gives maximum horizontal range. If launched from an elevated position, the optimal angle is slightly less than 45°. The calculator can help you find the optimal angle for your specific situation.`,
+      },
+    ],
+    related: [
+      { slug: 'velocity-calculator', note: `Calculate velocity components before analyzing projectile motion.` },
+      { slug: 'kinetic-energy-calculator', note: `Calculate kinetic energy of the projectile at launch or any point in flight.` },
+      { slug: 'force-calculator', note: `Calculate force required to achieve a specific launch velocity.` },
+    ],
+  },
+
+  'resistor-color-code-calculator': {
+    intro: [
+      `Resistor color codes are a standardized system for marking resistance values on through-hole resistors using colored bands. The Resistor Color Code Calculator decodes 4-band and 5-band resistor color codes to determine resistance values and tolerance, and can also find the correct color bands for a desired resistance value. It also supports SMD (surface mount device) resistor codes.`,
+      `Electronics hobbyists identify resistors in circuits, students learn the color code system, and engineers verify component values during PCB assembly. The calculator displays resistance in appropriate units (Ω, kΩ, MΩ) along with the tolerance range showing minimum and maximum acceptable values.`,
+      `Because calculations run entirely in your browser using JavaScript, you can decode resistor values without any data leaving your device. The visual color display helps you verify the correct band colors against actual components.`,
+    ],
+    steps: [
+      `Select the resistor mode from the dropdown: 4-band, 5-band, or SMD code.`,
+      `For band resistors, choose the color for each band from the color dropdown menus in order from left to right.`,
+      `For SMD resistors, enter the 3 or 4-digit code printed on the component.`,
+      `Click Calculate to determine the resistance value.`,
+      `View the resistance in ohms, kilohms, or megohms along with the tolerance range.`,
+      `Copy the results to your clipboard for documentation or reference.`,
+    ],
+    why: [
+      `Decoding runs fully client-side, so the tool keeps working without an internet connection and nothing about your components is ever transmitted.`,
+      `Supports 4-band, 5-band, and SMD resistor codes in one tool, covering most resistor types encountered in electronics work.`,
+      `Displays resistance in appropriate units (Ω, kΩ, MΩ) automatically based on the calculated value.`,
+      `Shows the tolerance range (minimum and maximum values) to understand the acceptable variation in resistance.`,
+    ],
+    faqs: [
+      {
+        question: `How do I read resistor color codes?`,
+        answer: `For 4-band resistors: the first two bands are significant digits, the third is the multiplier, and the fourth is tolerance. For 5-band resistors: the first three bands are significant digits, the fourth is the multiplier, and the fifth is tolerance. Read bands from left to right, with the tolerance band (usually gold or silver) on the right.`,
+      },
+      {
+        question: `What are the standard resistor color codes?`,
+        answer: `Standard digit color codes are: Black(0), Brown(1), Red(2), Orange(3), Yellow(4), Green(5), Blue(6), Violet(7), Grey(8), White(9). Multipliers include Black(×1), Brown(×10), Red(×100), Orange(×1K), Yellow(×10K), Green(×100K), Blue(×1M), Violet(×10M), Gold(×0.1), Silver(×0.01).`,
+      },
+      {
+        question: `What tolerance values are available?`,
+        answer: `Standard tolerance color codes are: Brown(±1%), Red(±2%), Green(±0.5%), Blue(±0.25%), Violet(±0.1%), Grey(±0.05%), Gold(±5%), Silver(±10%). Tolerance indicates the maximum deviation from the marked resistance value.`,
+      },
+      {
+        question: `Does this calculator support SMD resistors?`,
+        answer: `Yes, the calculator supports SMD (surface mount device) resistor codes. For 3-digit codes, the first two digits are significant and the third is the multiplier. For 4-digit codes, the first three are significant and the fourth is the multiplier. An 'R' indicates a decimal point.`,
+      },
+      {
+        question: `How do I find colors for a desired resistance?`,
+        answer: `Enter the desired resistance value and tolerance, then use the calculator in reverse mode to find the correct color bands. This is useful when you need to find a resistor with specific characteristics in your inventory.`,
+      },
+    ],
+    related: [
+      { slug: 'ohms-law-calculator', note: `Use decoded resistance values in Ohm's Law calculations for circuit analysis.` },
+      { slug: 'scientific-notation-calculator', note: `Express decoded resistances like 4.7 kΩ or 2.2 MΩ in scientific notation for datasheets and reports.` },
+    ],
+  },
+
+  'density-calculator': {
+    intro: [
+      `Density is mass per unit volume (ρ = m/V), a fundamental property of materials that determines whether objects float or sink and affects many physical and chemical processes. The Density Calculator solves for density, mass, or volume when you know the other two, supporting multiple unit systems for mass (kg, g, lb, oz) and volume (L, mL, m³, ft³, gal).`,
+      `Students solve physics and chemistry homework problems, engineers select materials based on density requirements, and scientists analyze material properties. The calculator handles unit conversions automatically and displays results in multiple units for flexibility across different applications.`,
+      `Because calculations run entirely in your browser using JavaScript, you can solve density problems without any data leaving your device. The tool explains common density applications in the FAQ section.`,
+    ],
+    steps: [
+      `Select what you want to calculate from the dropdown: density, mass, or volume.`,
+      `Supply the two properties you know — usually the sample's mass and its volume.`,
+      `Choose units that match your measurements, from grams and milliliters to pounds and gallons.`,
+      `Click Calculate to solve for the unknown variable using ρ = m/V.`,
+      `Check the computed value, reported in kg/m³, g/cm³, lb/ft³, and more.`,
+    ],
+    why: [
+      `Density calculations execute client-side in your browser—no data is transmitted to any server, keeping your material property analysis private and functional offline.`,
+      `Solves for any of the three variables (density, mass, volume) when you know the other two, making it versatile for different problem types.`,
+      `Converts between metric and imperial measurement systems automatically, handling kg/g/lb/oz for mass and L/mL/m³/ft³/gal for volume.`,
+      `Displays density results in kg/m³, g/cm³, lb/ft³, and other common units simultaneously, matching the conventions of different scientific and engineering fields.`,
+    ],
+    faqs: [
+      {
+        question: `What is the density formula?`,
+        answer: `The density formula is ρ = m/V, where ρ (rho) is density, m is mass, and V is volume. Density is typically expressed in kg/m³ in the SI system, but g/cm³ is common for solids and liquids. Water has a density of approximately 1 g/cm³ at 4°C.`,
+      },
+      {
+        question: `Which mass and volume units does the tool handle?`,
+        answer: `The calculator supports kilograms, grams, pounds, and ounces for mass; and liters, milliliters, cubic meters, cubic feet, and gallons for volume. Density results are displayed in kg/m³, g/cm³, lb/ft³, and other common units.`,
+      },
+      {
+        question: `Can I calculate mass or volume from density?`,
+        answer: `Yes — leave any one of the three properties as the unknown. If you know density and volume, you can calculate mass (m = ρV). If you know density and mass, you can calculate volume (V = m/ρ). The ρ = m/V relationship is inverted for you depending on the chosen target.`,
+      },
+      {
+        question: `What is the density of water?`,
+        answer: `The density of water is approximately 1 g/cm³ or 1000 kg/m³ at 4°C. This value is used as a reference point—materials with density less than water float, while materials with density greater than water sink.`,
+      },
+      {
+        question: `How does temperature affect density?`,
+        answer: `Most materials expand when heated and contract when cooled, which changes their density. For water, density is maximum at 4°C and decreases at both higher and lower temperatures. This is why ice floats on liquid water.`,
+      },
+    ],
+    related: [
+      { slug: 'molarity-calculator', note: `Calculate solution molarity using density and mass concentration for solution chemistry.` },
+      { slug: 'volume-calculator', note: `Calculate volume of geometric shapes before determining density.` },
+      { slug: 'ideal-gas-law-calculator', note: `Find the moles and volume of a gas with PV = nRT before working out its density.` },
+    ],
+  },
+
+  'color-palette': {
+    intro: [
+      `Color palettes extracted from images provide the actual color schemes used in photographs, artwork, and designs, making them more authentic than randomly generated palettes. The Color Palette Extractor analyzes uploaded images to identify dominant colors, creating harmonious color schemes with hex codes that designers can use directly in their work.`,
+      `UI/UX designers extract color schemes from inspiration images, graphic designers create brand-consistent palettes from logos, and web developers match website colors to photographic content. The tool displays colors in a visual palette with hex codes for easy copying into design tools.`,
+      `Because image analysis happens entirely in your browser using the canvas API, you can extract colors from sensitive or private images without worrying about data leaving your device. The tool can extract anywhere from 3 to 20 dominant colors depending on your needs.`,
+    ],
+    steps: [
+      `Drop the image you want to sample onto the tool, or browse for it with the file picker.`,
+      `Select the number of colors you want to extract from the palette (typically 5-10 for most applications).`,
+      `Optionally adjust the sensitivity setting to control how strictly the tool distinguishes similar colors.`,
+      `Click Extract to analyze the image and identify dominant colors.`,
+      `View the extracted color palette with hex codes displayed below each color swatch.`,
+      `Click on any color swatch to copy its hex code to your clipboard.`,
+    ],
+    why: [
+      `All image analysis happens locally in your browser using the canvas API—your images are never uploaded to any server, keeping private photos completely secure.`,
+      `Extracts actual dominant colors from real images rather than generating random colors, ensuring the palette reflects the image's authentic color scheme.`,
+      `Supports extracting anywhere from 3 to 20 colors, giving you flexibility for different design needs from simple triadic schemes to complex palettes.`,
+      `Provides hex codes directly in the interface, so you can copy colors into design tools like Figma, Adobe Creative Suite, or CSS without manual conversion.`,
+    ],
+    faqs: [
+      {
+        question: `How does the tool extract colors from images?`,
+        answer: `The tool analyzes the pixel data of your image using the canvas API, clustering similar colors and identifying the most frequently occurring color values. It then ranks these by frequency and selects the top dominant colors for your palette.`,
+      },
+      {
+        question: `What image formats are supported?`,
+        answer: `The tool supports common image formats including JPG, PNG, WebP, and GIF. Simply upload any image file and the tool will analyze its color content regardless of format.`,
+      },
+      {
+        question: `How many colors should I extract?`,
+        answer: `For most design applications, 5-8 colors provide a good balance between variety and manageability. Fewer colors (3-5) work well for simple, focused designs, while more colors (10-20) are useful for complex, rich designs or when you want maximum flexibility.`,
+      },
+      {
+        question: `Can I use these colors in my designs?`,
+        answer: `Absolutely. The extracted colors are provided as standard hex codes that work in any design tool, programming language, or platform that accepts color values. Use them in CSS, design software, or any application that supports hex color codes.`,
+      },
+      {
+        question: `What if the extracted colors don't match what I see?`,
+        answer: `Color perception can be subjective, and the tool identifies mathematically dominant colors rather than perceptually important ones. Try adjusting the sensitivity setting or extracting more colors to capture subtle variations that might be important to your design.`,
+      },
+    ],
+    related: [
+      { slug: 'color-converter', note: `Convert extracted hex colors to other color formats like RGB, HSL, or CMYK for different use cases.` },
+      { slug: 'color-palette-generator', note: `Generate complementary color schemes from your extracted palette colors.` },
     ],
   },
 };

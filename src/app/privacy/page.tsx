@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             Data Processing Location
           </h2>
           <p className="text-text-secondary leading-relaxed">
-            All tools on {siteConfig.name} run 100% in your browser. Your data never leaves your device. We do not collect, store, or transmit any of your files, images, text, or personal information to our servers.
+            The vast majority of tools on {siteConfig.name} run entirely in your browser: your files, images, and text are processed locally and are never uploaded to our servers. A small number of tools necessarily contact external services to work — for example, network utilities (IP lookup, DNS lookup, WHOIS, ping, redirect tracing, website status checks) send the domain, URL, or request you enter to the relevant public API, and the currency converter fetches live exchange rates. Where a tool contacts an external service, its page says so and names the service.
           </p>
         </section>
 
@@ -106,10 +106,46 @@ export default function PrivacyPage() {
 
         <section className="bg-surface border border-border rounded-lg p-6 sm:p-8">
           <h2 className="font-display text-2xl font-bold tracking-tight text-text-primary mb-4">
+            Advertising
+          </h2>
+          <p className="text-text-secondary leading-relaxed mb-4">
+            {siteConfig.name} is supported by advertising. We may display ads served by third-party advertising networks, including Google AdSense.
+          </p>
+          <ul className="space-y-3 text-text-secondary">
+            <li className="flex items-start gap-3">
+              <span className="text-accent mt-1">•</span>
+              <span>Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this website or other websites.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-accent mt-1">•</span>
+              <span>Google&apos;s use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and/or other sites on the internet.</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-accent mt-1">•</span>
+              <span>
+                You may opt out of personalized advertising by visiting{' '}
+                <a href="https://www.google.com/settings/ads" className="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+                  Google Ads Settings
+                </a>
+                , or opt out of some third-party vendors&apos; use of cookies at{' '}
+                <a href="https://www.aboutads.info/choices" className="text-accent underline underline-offset-2" target="_blank" rel="noopener noreferrer">
+                  www.aboutads.info
+                </a>
+                .
+              </span>
+            </li>
+          </ul>
+          <p className="text-text-secondary leading-relaxed mt-4">
+            Ad networks may collect data such as your IP address, device type, and pages visited to measure ad performance and prevent fraud. We never share the content you process with our tools (your files, images, or text) with any advertising network.
+          </p>
+        </section>
+
+        <section className="bg-surface border border-border rounded-lg p-6 sm:p-8">
+          <h2 className="font-display text-2xl font-bold tracking-tight text-text-primary mb-4">
             Data Security
           </h2>
           <p className="text-text-secondary leading-relaxed">
-            Since your data never leaves your device when using our tools, the primary security measure is your own browser and device security. For contact form submissions, we use industry-standard encryption and secure transmission protocols.
+            For tools that process data locally in your browser, your data never leaves your device, so the primary security measure is your own browser and device security. All pages are served over HTTPS. Contact form submissions and requests made by network tools use industry-standard encryption and secure transmission protocols.
           </p>
         </section>
 
@@ -148,7 +184,7 @@ export default function PrivacyPage() {
 
         <section className="bg-surface border border-border rounded-lg p-6 sm:p-8">
           <p className="text-sm text-text-secondary">
-            Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            Last updated: July 9, 2026
           </p>
         </section>
       </div>

@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_next/
-Disallow: /contact
 
 Sitemap: https://www.toolforge.website/sitemap.xml
