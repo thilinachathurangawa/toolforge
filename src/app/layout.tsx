@@ -109,6 +109,12 @@ export default function RootLayout({
     >
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
+        {/* Theme initialization: runs synchronously before paint to prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t)t='dark';var r=t==='system'?(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):t;document.documentElement.classList.add(r);}catch(e){document.documentElement.classList.add('dark');}})();`,
+          }}
+        />
         {/* Microsoft Clarity Tracking */}
         <script
           dangerouslySetInnerHTML={{
