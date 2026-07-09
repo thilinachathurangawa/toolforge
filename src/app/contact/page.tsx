@@ -56,16 +56,16 @@ export default function ContactPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
       <Breadcrumb items={[{ label: 'Contact' }]} className="mb-6" />
 
-      <header className="mb-8">
+      <header className="mb-8 text-center">
         <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
           Contact Us
         </h1>
-        <p className="text-sm sm:text-base text-text-secondary mt-2 max-w-2xl">
+        <p className="text-sm sm:text-base text-text-secondary mt-2 max-w-2xl mx-auto">
           Have questions or feedback? We&apos;d love to hear from you.
         </p>
       </header>
 
-      <div className="max-w-2xl">
+      <div className="max-w-2xl mx-auto">
         <div className="bg-surface border border-border rounded-lg p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
