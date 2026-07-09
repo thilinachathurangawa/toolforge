@@ -64,8 +64,8 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Global Search Bar (Medium screen & up) */}
-        <form onSubmit={handleSearchSubmit} className="hidden md:flex relative max-w-md w-full">
+        {/* Global Search Bar (Medium screen & up) — hidden on homepage where hero search is the primary entry point */}
+        <form onSubmit={handleSearchSubmit} className={cn("hidden md:flex relative max-w-md w-full", pathname === '/' && "!hidden")}>
           <div className="relative w-full">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <input
@@ -97,8 +97,8 @@ export function Navbar() {
 
         {/* Mobile controls */}
         <div className="flex items-center gap-2 lg:hidden">
-          {/* Mobile Search Trigger Button (Redirects to input or focuses) */}
-          <form onSubmit={handleSearchSubmit} className="relative md:hidden w-40 sm:w-48">
+          {/* Mobile search — hidden on homepage where hero search is the primary entry point */}
+          <form onSubmit={handleSearchSubmit} className={cn("relative md:hidden w-40 sm:w-48", pathname === '/' && "!hidden")}>
             <div className="relative w-full">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" size={15} />
               <input
