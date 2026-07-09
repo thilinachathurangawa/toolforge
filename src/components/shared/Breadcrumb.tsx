@@ -14,33 +14,10 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
-  // Generate JSON-LD schema for breadcrumbs
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: typeof window !== 'undefined' ? window.location.origin : 'https://www.toolforge.website',
-      },
-      ...items.map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 2,
-        name: item.label,
-        item: item.href ? (typeof window !== 'undefined' ? `${window.location.origin}${item.href}` : `https://www.toolforge.website${item.href}`) : undefined,
-      })),
-    ],
-  };
-
+  // BreadcrumbList JSON-LD is emitted at page level (src/lib/seo/json-ld.ts);
+  // emitting it here as well produced duplicate schema on every tool/category page.
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <nav
+    <nav
         aria-label="Breadcrumb"
         className={cn('flex items-center flex-wrap gap-1 text-xs text-text-secondary', className)}
       >
@@ -65,7 +42,6 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             )}
           </React.Fragment>
         ))}
-      </nav>
-    </>
+    </nav>
   );
 }

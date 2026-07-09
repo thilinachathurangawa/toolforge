@@ -3,15 +3,17 @@ import { MetadataRoute } from 'next';
 import { TOOLS, CATEGORIES, CALCULATOR_SUBCATEGORIES } from '@/lib/constants/tools';
 import { siteConfig } from '@/lib/constants/site';
 
+// lastModified is intentionally omitted: we don't track real per-page update
+// dates, and stamping every URL with the build date tells Google "everything
+// changed on every deploy" — a pattern that makes crawlers distrust the
+// sitemap. Google's guidance is to omit lastmod unless it's accurate.
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = siteConfig.url;
-  const currentDate = new Date();
 
   // 1. Core Homepage sitemap node
   const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0,
     },
@@ -29,7 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   staticPages.forEach((page) => {
     routes.push({
       url: `${baseUrl}${page.path}`,
-      lastModified: currentDate,
       changeFrequency: page.changeFreq,
       priority: page.priority,
     });
@@ -39,7 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   CATEGORIES.forEach((cat) => {
     routes.push({
       url: `${baseUrl}/category/${cat.value}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,
     });
@@ -49,7 +49,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   CALCULATOR_SUBCATEGORIES.forEach((sub) => {
     routes.push({
       url: `${baseUrl}/category/calculator/${sub.value}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.8,
     });
@@ -59,7 +58,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   TOOLS.forEach((tool) => {
     routes.push({
       url: `${baseUrl}/tools/${tool.slug}`,
-      lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
     });

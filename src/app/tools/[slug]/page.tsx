@@ -908,26 +908,15 @@ export async function generateMetadata({ params }: ToolPageParams): Promise<Meta
       description: tool.description,
       url: canonical,
       siteName: 'ToolForge',
-      images: [{ 
-        url: `${siteConfig.url}/icon.svg`,
-        width: 1200, 
-        height: 630, 
-        alt: tool.name,
-        type: 'image/svg+xml'
-      }],
       locale: 'en_US',
       type: 'website',
+      // og:image comes from the file convention (opengraph-image.tsx) —
+      // a per-tool PNG card instead of the shared icon.svg.
     },
     twitter: {
       card: 'summary_large_image',
       title: `${tool.name} — Free Online Tool`,
       description: tool.shortDescription,
-      images: [{ 
-        url: `${siteConfig.url}/icon.svg`,
-        width: 1200, 
-        height: 630, 
-        alt: tool.name 
-      }],
     },
   };
 }

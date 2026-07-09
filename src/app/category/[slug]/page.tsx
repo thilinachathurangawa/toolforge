@@ -32,22 +32,23 @@ export async function generateMetadata({ params }: CategoryPageParams): Promise<
   }
 
   const canonical = `${siteConfig.url}/category/${category.value}`;
+  const toolCount = getToolsByCategory(category.value).length;
+  const description = `${toolCount} free online ${category.label.toLowerCase()} — no sign-up required, everything runs in your browser.`;
 
   return {
     title: `${category.label} — Free Online Tools`,
-    description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
+    description,
     alternates: { canonical },
     openGraph: {
       title: `${category.label} | ${siteConfig.name}`,
-      description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
+      description,
       url: canonical,
       type: 'website',
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: category.label,
-      description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
+      description,
     },
   };
 }

@@ -12,20 +12,28 @@ export function buildToolJsonLd(tool: Tool, faqs?: FAQ[], categoryLabel?: string
   const graph: any[] = [
     {
       '@type': 'SoftwareApplication',
+      '@id': `${url}#app`,
       name: tool.name,
       description: tool.description,
       url,
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Any',
+      isAccessibleForFree: true,
       offers: {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'USD',
       },
       featureList: tool.tags,
+      publisher: {
+        '@type': 'Organization',
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
     },
     {
       '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
       itemListElement: [
         {
           '@type': 'ListItem',
@@ -57,6 +65,7 @@ export function buildToolJsonLd(tool: Tool, faqs?: FAQ[], categoryLabel?: string
   if (faqs && faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
+      '@id': `${url}#faq`,
       mainEntity: faqs.map((faq) => ({
         '@type': 'Question',
         name: faq.question,
@@ -84,6 +93,7 @@ export function buildCategoryJsonLd(
   const graph: any[] = [
       {
         '@type': 'CollectionPage',
+        '@id': `${url}#collection`,
         name: category.label,
         description: `Explore our collection of free online ${category.label.toLowerCase()}. No sign-up required, works entirely in your browser.`,
         url,
@@ -97,14 +107,24 @@ export function buildCategoryJsonLd(
           name: category.label,
         },
         hasPart: tools.map((tool) => ({
-          '@type': 'WebApplication',
+          '@type': 'SoftwareApplication',
+          '@id': `${siteConfig.url}/tools/${tool.slug}#app`,
           name: tool.name,
           description: tool.description,
           url: `${siteConfig.url}/tools/${tool.slug}`,
+          applicationCategory: 'UtilityApplication',
+          operatingSystem: 'Any',
+          isAccessibleForFree: true,
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+          },
         })),
       },
       {
         '@type': 'BreadcrumbList',
+        '@id': `${url}#breadcrumb`,
         itemListElement: [
           {
             '@type': 'ListItem',
