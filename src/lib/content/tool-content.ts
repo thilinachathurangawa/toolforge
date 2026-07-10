@@ -6726,6 +6726,54 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     ],
   },
 
+  'image-to-text': {
+    intro: [
+      `A receipt you need to expense, a screenshot of an error message, a page from a book you want to quote — the text is right there in the picture, but you can't select it. This Image to Text tool runs the Tesseract OCR engine in your browser through WebAssembly and turns that picture into editable text you can copy or save as a .txt file.`,
+      `Students digitize passages from printed handouts, accountants pull line items off photographed receipts, and developers grab stack traces from screenshots a colleague sent instead of retyping them character by character. Drop in a PNG, JPG, WebP, or BMP; you can also paste a screenshot directly from the clipboard with Ctrl+V. Recognition supports eight languages — English, Spanish, French, German, Portuguese, Italian, Hindi, and Simplified Chinese — chosen from a dropdown before you extract.`,
+      `The output keeps the reading order, line breaks, and paragraph grouping of the original by rebuilding the text from Tesseract's block structure, and a confidence score tells you how sure the engine was. One honest limitation: the result is plain text. Bold, fonts, and colors are not carried over, because a .txt file cannot represent them and OCR cannot reliably detect them.`,
+    ],
+    steps: [
+      `Add your image: drop it on the upload area, click to browse, or paste a screenshot with Ctrl+V.`,
+      `Pick the language of the text in the image from the dropdown (English is preselected).`,
+      `Click "Extract Text". The first run downloads the OCR engine (about 10–15 MB, cached afterwards), then a progress bar tracks recognition.`,
+      `Review the result next to the image preview and fix any misread words — the output box is editable.`,
+      `Click "Copy Text" or "Download .txt" to save the result, named after your image file.`,
+    ],
+    why: [
+      `Your image is processed on your own device — the OCR runs in a WebAssembly worker in your browser, so the photo is never uploaded to a server, which matters for receipts, IDs, and internal documents.`,
+      `Line breaks and paragraph spacing survive extraction, because the text is rebuilt from the engine's block-and-line layout rather than dumped as one flat string.`,
+      `A confidence percentage is shown with every result, and the tool flags low-confidence output so you know when to double-check rather than trust it blindly.`,
+      `Clipboard paste support means a screenshot can go from "just captured" to editable text in two keystrokes and one click.`,
+    ],
+    faqs: [
+      {
+        question: `Does the OCR keep my formatting, like bold text and fonts?`,
+        answer: `No — the output is plain text. Line breaks, paragraph grouping, and reading order are preserved, but visual styling such as bold, italics, font families, and colors is not, because a .txt file has no way to store it and OCR engines cannot reliably detect it in the first place.`,
+      },
+      {
+        question: `Is my image uploaded anywhere?`,
+        answer: `No. Recognition happens inside your browser using the Tesseract engine compiled to WebAssembly. On the first run the tool downloads the engine and language files (roughly 10–15 MB) from a public CDN, but your image itself never leaves your device.`,
+      },
+      {
+        question: `Why is the extracted text garbled or full of mistakes?`,
+        answer: `Accuracy depends heavily on the source. Sharp, well-lit images of printed text work best; low-resolution photos, skewed angles, handwriting, and decorative fonts all degrade results. Also check that the selected language matches the text — recognizing Spanish with the English model produces poor output. The confidence score is your guide: below about 80%, proofread carefully.`,
+      },
+      {
+        question: `What image formats can I use?`,
+        answer: `PNG, JPG/JPEG, WebP, and BMP are accepted, whether dropped, browsed, or pasted from the clipboard. Other formats such as HEIC or PDF are rejected with a message — convert those to a supported format first.`,
+      },
+      {
+        question: `Can it read handwriting?`,
+        answer: `Not reliably. Tesseract is trained on printed text, so neat block capitals may partially work, but cursive and everyday handwriting usually come out wrong. For handwritten notes, treat any output as a rough draft to correct by hand.`,
+      },
+    ],
+    related: [
+      { slug: 'word-counter', note: `Check the length of the text you just extracted before using it.` },
+      { slug: 'case-converter', note: `Fix capitalization when OCR returns text in the wrong case.` },
+      { slug: 'text-to-speech', note: `Have the extracted text read aloud to proofread it against the original image.` },
+    ],
+  },
+
   // ── New image batch ──────────────────────────────────────────────────
 
   'social-media-image-resizer': {

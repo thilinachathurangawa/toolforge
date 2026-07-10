@@ -770,6 +770,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'image-to-text': dynamic(() => import('@/components/tools/ImageToText').then(mod => ({ default: mod.ImageToText })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
   'social-media-image-resizer': dynamic(() => import('@/components/tools/SocialMediaImageResizer').then(mod => ({ default: mod.SocialMediaImageResizer })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,

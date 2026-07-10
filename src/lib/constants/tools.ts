@@ -2858,6 +2858,20 @@ export const TOOLS: Tool[] = [
     relatedTools: ['base64-encoder', 'url-encoder', 'case-converter'],
     phase: 4,
   },
+  {
+    slug: 'image-to-text',
+    name: 'Image to Text (OCR)',
+    shortDescription: 'Extract text from images and download it as a .txt file',
+    description:
+      'Free OCR tool that extracts text from photos, screenshots, and scans right in your browser. Preserves line breaks, supports 8 languages, and downloads the result as a .txt file. Nothing is uploaded.',
+    category: 'text',
+    tags: ['ocr', 'image to text', 'extract text', 'scan', 'photo', 'screenshot', 'convert'],
+    keywords: ['image to text converter', 'ocr online free', 'extract text from image', 'photo to text', 'picture to text converter'],
+    icon: 'ScanText',
+    isNew: true,
+    relatedTools: ['word-counter', 'case-converter', 'text-to-speech'],
+    phase: 4,
+  },
 
   // ── Phase 4: Image Tools (new batch) ────────────────────────────────
 
