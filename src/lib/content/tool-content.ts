@@ -29,6 +29,11 @@ export interface ToolContentTable {
 export interface ToolExtraSection {
   /** H2 heading text. */
   heading: string;
+  /**
+   * Where the section renders relative to the fixed sections.
+   * Defaults to "after-how-to-use".
+   */
+  placement?: 'after-about' | 'after-how-to-use' | 'after-why';
   /** Explanatory paragraphs. */
   body: string[];
   /** A single formula, rendered in a monospace callout. */
@@ -7164,6 +7169,28 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Adjust the padding between sprites (a few pixels prevents sprites from bleeding into each other when using linear texture filtering in a game engine).`,
       `Choose a scale factor to uniformly upscale or downscale all sprites — useful for generating @2x or @0.5x variants.`,
       `Click Download PNG to save the packed atlas, and Download JSON to save the frame map with x, y, width, height for every sprite.`,
+    ],
+    sections: [
+      {
+        placement: 'after-about',
+        heading: `Sprite Sheet vs. Texture Atlas vs. Sprite Map — Is It the Same Thing?`,
+        body: [
+          `If you have searched for a "sprite atlas generator" or a "sprite map maker" and landed here, you are in the right place — these names all describe the same output: many small images packed into one combined image with a data file recording where each piece sits. The term you use mostly depends on your community.`,
+          `Web developers usually say "sprite sheet." Game engine documentation, from Unity to Godot, tends to say "texture atlas." Some 2D toolkits and frameworks call it a "sprite map." Whichever term you know it by, this generator produces exactly that: a single packed PNG plus a JSON frame map, so it works as a sprite sheet, a texture atlas, and a sprite map all at once.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `Tips for Building a Clean Sprite Sheet`,
+        body: [
+          `Packing the images is the easy part — a sheet is only as useful as the source files you feed it. A few habits before you upload make the exported atlas far easier to work with in code.`,
+        ],
+        examples: [
+          `Name source files sequentially and consistently, like walk_01.png, walk_02.png, walk_03.png. The exported JSON keys each frame by its filename without the extension, so zero-padded, ordered names keep the frame keys readable and sorted correctly when you loop over an animation in code.`,
+          `Use a power-of-two sheet width — 256, 512, 1024 or 2048 — when the atlas is bound for a game engine. GPUs handle power-of-two textures most efficiently and some older hardware and compression formats require them. For a CSS sprite sheet of web icons, this does not matter: the browser references sprites by pixel offset, so any width is fine.`,
+          `Trim excess transparent padding from each source image before uploading. The packer positions sprites by their full image bounds, so tightly cropped sprites pack closer together and produce a smaller, more efficient sheet — then add a couple of pixels of padding in the tool itself to prevent bleeding.`,
+        ],
+      },
     ],
     why: [
       `Exports both the PNG atlas and the JSON frame map simultaneously — other simple packers give you the image but make you hand-write the coordinates.`,

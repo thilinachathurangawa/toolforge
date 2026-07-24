@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
 import type { Tool } from '@/lib/constants/tools';
-import type { ToolLongContent } from '@/lib/content/tool-content';
+import type { ToolLongContent, ToolExtraSection } from '@/lib/content/tool-content';
 import { DynamicIcon } from './DynamicIcon';
 
 interface ToolContentProps {
@@ -12,6 +12,66 @@ interface ToolContentProps {
   related: { tool: Tool; note: string }[];
 }
 
+/** One optional H2 section: prose, an optional formula callout, examples, table. */
+function ExtraSection({ sec }: { sec: ToolExtraSection }) {
+  return (
+    <section className="prose-tool">
+      <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+        {sec.heading}
+      </h2>
+      <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
+        {sec.body.map((para, j) => (
+          <p key={j}>{para}</p>
+        ))}
+      </div>
+      {sec.formula && (
+        <div className="mt-3 rounded-lg border border-border bg-surface px-4 py-3 font-mono text-sm text-text-primary overflow-x-auto">
+          {sec.formula}
+        </div>
+      )}
+      {sec.examples && sec.examples.length > 0 && (
+        <ul className="mt-3 list-disc list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
+          {sec.examples.map((ex, j) => (
+            <li key={j}>{ex}</li>
+          ))}
+        </ul>
+      )}
+      {sec.table && (
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr>
+                {sec.table.headers.map((h, j) => (
+                  <th
+                    key={j}
+                    className="border border-border bg-surface px-3 py-2 text-left font-medium text-text-primary"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sec.table.rows.map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) => (
+                    <td
+                      key={c}
+                      className="border border-border px-3 py-2 text-text-secondary"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </section>
+  );
+}
+
 /**
  * Renders the long-form editorial content for a tool page: intro, step-by-step
  * instructions, the ToolForge differentiator, FAQs, and related tools with
@@ -19,6 +79,12 @@ interface ToolContentProps {
  * renders unique text rather than a shared template.
  */
 export function ToolContent({ tool, content, related }: ToolContentProps) {
+  const sections = content.sections ?? [];
+  const sectionsAt = (placement: NonNullable<ToolExtraSection['placement']>) =>
+    sections
+      .filter((s) => (s.placement ?? 'after-how-to-use') === placement)
+      .map((sec, i) => <ExtraSection key={`${placement}-${i}`} sec={sec} />);
+
   return (
     <>
       {/* Intro — what it does, who needs it, real-world use cases */}
@@ -33,6 +99,8 @@ export function ToolContent({ tool, content, related }: ToolContentProps) {
         </div>
       </section>
 
+      {sectionsAt('after-about')}
+
       {/* How to use — numbered, tool-specific */}
       <section className="prose-tool">
         <h2 className="font-display text-xl font-bold text-text-primary mb-3">
@@ -45,63 +113,7 @@ export function ToolContent({ tool, content, related }: ToolContentProps) {
         </ol>
       </section>
 
-      {/* Optional extra sections — formulas, worked examples, reference tables */}
-      {content.sections?.map((sec, i) => (
-        <section key={i} className="prose-tool">
-          <h2 className="font-display text-xl font-bold text-text-primary mb-3">
-            {sec.heading}
-          </h2>
-          <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
-            {sec.body.map((para, j) => (
-              <p key={j}>{para}</p>
-            ))}
-          </div>
-          {sec.formula && (
-            <div className="mt-3 rounded-lg border border-border bg-surface px-4 py-3 font-mono text-sm text-text-primary overflow-x-auto">
-              {sec.formula}
-            </div>
-          )}
-          {sec.examples && sec.examples.length > 0 && (
-            <ul className="mt-3 list-disc list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
-              {sec.examples.map((ex, j) => (
-                <li key={j}>{ex}</li>
-              ))}
-            </ul>
-          )}
-          {sec.table && (
-            <div className="mt-4 overflow-x-auto">
-              <table className="w-full border-collapse text-sm">
-                <thead>
-                  <tr>
-                    {sec.table.headers.map((h, j) => (
-                      <th
-                        key={j}
-                        className="border border-border bg-surface px-3 py-2 text-left font-medium text-text-primary"
-                      >
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {sec.table.rows.map((row, r) => (
-                    <tr key={r}>
-                      {row.map((cell, c) => (
-                        <td
-                          key={c}
-                          className="border border-border px-3 py-2 text-text-secondary"
-                        >
-                          {cell}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </section>
-      ))}
+      {sectionsAt('after-how-to-use')}
 
       {/* Why ToolForge — genuine differentiators */}
       <section>
@@ -119,6 +131,8 @@ export function ToolContent({ tool, content, related }: ToolContentProps) {
           ))}
         </ul>
       </section>
+
+      {sectionsAt('after-why')}
 
       {/* FAQ */}
       {content.faqs.length > 0 && (
