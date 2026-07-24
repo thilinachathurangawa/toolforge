@@ -5240,6 +5240,24 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Developers checking that a service is exposed, and people troubleshooting why they cannot connect, use it for a fast reachability test. Quick-select buttons cover the common ports, and the result distinguishes between an open port, a closed one, and a timeout, with the response time shown.`,
       `An important limitation: a browser cannot open raw TCP sockets, so this checks reachability by attempting an HTTP/HTTPS connection to the port rather than performing a true low-level port scan.`,
     ],
+    sections: [
+      {
+        placement: 'after-about',
+        heading: `TCP vs. UDP: What This Tool Can (and Can't) Check`,
+        body: [
+          `Most services you would want to test — web servers, SSH, databases — run over TCP, and that is what this checker is built for: it probes TCP-style reachability by attempting an HTTP or HTTPS connection to the host and port. It cannot test UDP ports at all. Browsers are not allowed to open raw TCP or UDP sockets, so there is simply no way for an in-browser tool to send a UDP datagram or complete a low-level TCP handshake — it can only make a web-style request and see whether it succeeds.`,
+          `In practice: checking port 443 (HTTPS, a TCP port) works well, because a browser speaks exactly that protocol and gets a clear answer. A UDP-based service — DNS on port 53, or a game server that communicates over UDP — cannot be verified here, and neither can a TCP service that does not speak HTTP, which may report as closed even when it is open. For those, use a dedicated command-line tool such as netcat or nmap.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `Testing If Your Port Forwarding Is Working`,
+        body: [
+          `A common reason to reach for a port checker is to confirm a port forwarding rule. After you set up forwarding on a home router — to expose a game server, a self-hosted app, or a security camera to the internet — you need to know whether the port is actually reachable from outside your network. Running this tool against your public IP and the forwarded port tells you whether an outside connection gets through.`,
+          `The key is that the test has to come from outside your local network, which is exactly what an online tool provides. Checking from a device on the same Wi-Fi or LAN can succeed simply because the traffic never leaves the network and never touches the router's forwarding rule — so a "success" there proves nothing about internet reachability. Because this checker probes over HTTP/HTTPS, it is most reliable for web-facing forwarded services; a forwarded UDP or non-web TCP port may read as closed even when the rule is correct.`,
+        ],
+      },
+    ],
     steps: [
       `Enter the host or IP address.`,
       `Enter the port number, or tap a common-port quick-select button (80, 443, 22, 3306, and more).`,
@@ -5263,7 +5281,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       },
       {
         question: `What are the common ports used for?`,
-        answer: `Port 80 and 443 serve web traffic (HTTP and HTTPS), 22 is SSH, 21 is FTP, 25 is email (SMTP), 3306 is MySQL, and 8080 is a common alternate web port. The quick-select buttons label each so you can check the right one.`,
+        answer: `Port 80 and 443 serve web traffic (HTTP and HTTPS), 22 is SSH, 21 is FTP, 25 is email (SMTP), 53 is DNS, 3306 is MySQL, 3389 is RDP (Windows Remote Desktop), 5432 is PostgreSQL, and 8080 is a common alternate web port. Quick-select buttons cover the most common of these, and the tool labels the detected service for any recognized port you enter.`,
       },
       {
         question: `Why might an open port show as closed here?`,
