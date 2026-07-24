@@ -45,6 +45,64 @@ export function ToolContent({ tool, content, related }: ToolContentProps) {
         </ol>
       </section>
 
+      {/* Optional extra sections — formulas, worked examples, reference tables */}
+      {content.sections?.map((sec, i) => (
+        <section key={i} className="prose-tool">
+          <h2 className="font-display text-xl font-bold text-text-primary mb-3">
+            {sec.heading}
+          </h2>
+          <div className="space-y-3 text-sm text-text-secondary leading-relaxed">
+            {sec.body.map((para, j) => (
+              <p key={j}>{para}</p>
+            ))}
+          </div>
+          {sec.formula && (
+            <div className="mt-3 rounded-lg border border-border bg-surface px-4 py-3 font-mono text-sm text-text-primary overflow-x-auto">
+              {sec.formula}
+            </div>
+          )}
+          {sec.examples && sec.examples.length > 0 && (
+            <ul className="mt-3 list-disc list-inside space-y-2 text-sm text-text-secondary leading-relaxed">
+              {sec.examples.map((ex, j) => (
+                <li key={j}>{ex}</li>
+              ))}
+            </ul>
+          )}
+          {sec.table && (
+            <div className="mt-4 overflow-x-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr>
+                    {sec.table.headers.map((h, j) => (
+                      <th
+                        key={j}
+                        className="border border-border bg-surface px-3 py-2 text-left font-medium text-text-primary"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {sec.table.rows.map((row, r) => (
+                    <tr key={r}>
+                      {row.map((cell, c) => (
+                        <td
+                          key={c}
+                          className="border border-border px-3 py-2 text-text-secondary"
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      ))}
+
       {/* Why ToolForge — genuine differentiators */}
       <section>
         <h2 className="font-display text-xl font-bold text-text-primary mb-4">

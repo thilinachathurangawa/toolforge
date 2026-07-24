@@ -14,11 +14,38 @@ export interface ToolRelatedLink {
   note: string; // one sentence: why someone using this tool might also need that one
 }
 
+/** Optional quick-reference table inside an extra content section. */
+export interface ToolContentTable {
+  headers: string[];
+  rows: string[][];
+}
+
+/**
+ * Optional free-standing H2 section rendered between "How to Use" and "Why".
+ * Use for genuinely tool-specific explanatory content (formulas, worked
+ * examples, reference tables) that the fixed sections don't cover. Keep it
+ * unique and accurate — same standard as the rest of the page.
+ */
+export interface ToolExtraSection {
+  /** H2 heading text. */
+  heading: string;
+  /** Explanatory paragraphs. */
+  body: string[];
+  /** A single formula, rendered in a monospace callout. */
+  formula?: string;
+  /** Worked examples, rendered as a bulleted list. */
+  examples?: string[];
+  /** A quick-reference table. */
+  table?: ToolContentTable;
+}
+
 export interface ToolLongContent {
   /** 2–3 unique paragraphs: what it does, who needs it, concrete real-world use cases. */
   intro: string[];
   /** Numbered, tool-specific steps that match the real UI/inputs. */
   steps: string[];
+  /** Optional extra H2 sections rendered after "How to Use" (formulas, tables, etc.). */
+  sections?: ToolExtraSection[];
   /** 2–4 genuine differentiators, grounded in the implementation (no false claims). */
   why: string[];
   /** 3–5 question/answer pairs based on real search intent for this tool. */
@@ -174,6 +201,41 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Read the per-item sale price and amount saved, both updated instantly.`,
       `Check the "Total for X items" and "Total Amount Saved" figures, then use Copy to save the full breakdown.`,
     ],
+    sections: [
+      {
+        heading: `How to Calculate Percentage Off (Step-by-Step)`,
+        body: [
+          `Working out a discount by hand takes two steps. First find the amount you save by multiplying the original price by the discount percentage divided by 100. Then subtract that saving from the original price to get the sale price. The percentage is always divided by 100 because "25%" means 25 per hundred, or 0.25.`,
+          `The same two steps work for any price and any percentage — the examples below run through different price points so you can see the pattern rather than memorising a single case.`,
+        ],
+        formula: `amount saved = original price × (discount % ÷ 100)   →   sale price = original price − amount saved`,
+        examples: [
+          `20% off a $45 shirt: 45 × (20 ÷ 100) = $9.00 saved, so the shirt costs $36.00.`,
+          `15% off an $80 order: 80 × (15 ÷ 100) = $12.00 saved, leaving $68.00 to pay.`,
+          `30% off a $129.99 gadget: 129.99 × (30 ÷ 100) = $39.00 saved, bringing it to $90.99.`,
+          `10% off a $250 fare: 250 × (10 ÷ 100) = $25.00 saved, for a final price of $225.00.`,
+        ],
+        table: {
+          headers: [`Discount`, `$20 item`, `$50 item`, `$100 item`],
+          rows: [
+            [`10% off`, `Save $2.00 → $18.00`, `Save $5.00 → $45.00`, `Save $10.00 → $90.00`],
+            [`15% off`, `Save $3.00 → $17.00`, `Save $7.50 → $42.50`, `Save $15.00 → $85.00`],
+            [`20% off`, `Save $4.00 → $16.00`, `Save $10.00 → $40.00`, `Save $20.00 → $80.00`],
+            [`25% off`, `Save $5.00 → $15.00`, `Save $12.50 → $37.50`, `Save $25.00 → $75.00`],
+            [`30% off`, `Save $6.00 → $14.00`, `Save $15.00 → $35.00`, `Save $30.00 → $70.00`],
+            [`50% off`, `Save $10.00 → $10.00`, `Save $25.00 → $25.00`, `Save $50.00 → $50.00`],
+          ],
+        },
+      },
+      {
+        heading: `How to Find What Percentage Off You Got`,
+        body: [
+          `Sometimes you already know both prices — the original and the sale price on the tag — and want to know the discount percentage behind them. This is the reverse of the calculation above. Divide the sale price by the original price, subtract that from 1, then multiply by 100 to turn the result into a percentage.`,
+          `For example, a jacket marked down from $80 to $52: (1 − 52 ÷ 80) × 100 = (1 − 0.65) × 100 = 35% off. To check the discount on any price pair, enter the original price above and try percentages until the sale price matches.`,
+        ],
+        formula: `percentage off = (1 − sale price ÷ original price) × 100`,
+      },
+    ],
     why: [
       `It separates per-item and total figures, so a bulk purchase shows both the unit price and what you save across every unit — not just a single discounted number.`,
       `Five quick-percentage buttons match the discounts you actually see on sale tags, so common cases take one tap.`,
@@ -183,7 +245,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     faqs: [
       {
         question: `How do I calculate a percentage discount by hand?`,
-        answer: `Multiply the original price by the discount percentage divided by 100 to get the amount saved, then subtract that from the original price. For example, 30% off a $50 item is $50 × 0.30 = $15 saved, leaving $35. This calculator does that for you and multiplies across quantity.`,
+        answer: `Multiply the original price by the discount percentage divided by 100 to get the amount saved, then subtract that from the original price. The "How to Calculate Percentage Off" section above walks through this with several worked examples and a quick-reference table.`,
       },
       {
         question: `Does this include sales tax?`,
