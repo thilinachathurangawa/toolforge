@@ -6120,6 +6120,32 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `The English word output appears instantly in the text area below.`,
       `Click Copy to send the result to your clipboard, ready to paste into a document or payment form.`,
     ],
+    sections: [
+      {
+        placement: 'after-how-to-use',
+        heading: `Cheque Amount Examples in Words`,
+        body: [
+          `Here are some common round amounts written out exactly as the converter's cheque mode produces them, ready to copy onto a cheque:`,
+        ],
+        table: {
+          headers: [`Amount`, `In words (cheque format)`],
+          rows: [
+            [`$1,575.00`, `One Thousand, Five Hundred Seventy-Five Dollars and 00/100 Cents`],
+            [`$10,368.00`, `Ten Thousand, Three Hundred Sixty-Eight Dollars and 00/100 Cents`],
+            [`$11,000.00`, `Eleven Thousand Dollars and 00/100 Cents`],
+            [`$12,570.00`, `Twelve Thousand, Five Hundred Seventy Dollars and 00/100 Cents`],
+            [`$18,000.00`, `Eighteen Thousand Dollars and 00/100 Cents`],
+          ],
+        },
+      },
+      {
+        placement: 'after-why',
+        heading: `Other Ways to Say "Number to Words"`,
+        body: [
+          `Whether you call it converting a digit to a word, a figure to words, or simply writing an amount in words, it is the same task this converter handles. Searches like "amount to words" or "convert amount in words" all describe one job: turning a numeric value into its written English form. Type the number or amount and the words appear instantly, in either standard or cheque format.`,
+        ],
+      },
+    ],
     why: [
       `Cheque mode formats the output exactly as banks expect — integer words followed by "and XX/100 Cents" — so you can paste directly without reformatting.`,
       `Handles numbers up to 999 quadrillion, covering any practical financial or scientific figure.`,
