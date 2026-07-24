@@ -1275,6 +1275,27 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `A HAR file is a complete recording of the network activity your browser captured — every request, its timing, and its response — but opened as raw JSON it is an unreadable wall of text. HAR Viewer parses that file and lays out a clean summary: how many requests were made, and for each one its method, URL, and response status.`,
       `It is the tool you open when someone sends you a HAR export to debug a problem: a support engineer scanning which requests failed, a developer confirming the order calls fired in, or a tester verifying a 401 really did come back from the API. Upload the file or paste its contents and the noise becomes a readable list.`,
     ],
+    sections: [
+      {
+        placement: 'after-about',
+        heading: `HAR Viewer, HAR Analyzer, HAR Reader — All the Same Tool`,
+        body: [
+          `Depending on where you first heard the term, you might call this a HAR viewer, a HAR analyzer, a HAR reader, or simply a way to open a .har file — they all describe the same job, and this tool does all of it. Whether you searched for how to analyze a HAR file, read a HAR log, or open a HAR export a colleague sent you, you are in the right place. It takes a .har file and turns its contents into something readable and useful: a plain summary plus a browsable list of requests, instead of a raw JSON wall. So the label does not matter — viewer, analyzer, opener, or reader, it is one tool for inspecting what a HAR file actually recorded.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `What You Can Analyze in a HAR File`,
+        body: [
+          `Once a HAR file is open, a few patterns are worth looking for — each one points to a common web performance or reliability problem:`,
+        ],
+        examples: [
+          `Failed requests: every request in the list shows its response status, so you can scan for 4xx codes (such as 404 Not Found or 401 Unauthorized) and 5xx codes (server errors) to pinpoint exactly which call broke rather than guessing from the symptom.`,
+          `Slow requests: a HAR records precise timing for each request. The list itself focuses on method, URL, and status, so to compare durations use Copy to export the parsed HAR and read each entry's "time" and "timings" values — the largest numbers reveal the calls holding up the page load.`,
+          `Unexpected or duplicate requests: reading down the URLs makes repeated calls to the same endpoint stand out, and the entry count in the summary shows the total volume. An unusually high number of requests to one domain often exposes a retry loop, a missing cache, or a tracking script firing far more than it should.`,
+        ],
+      },
+    ],
     steps: [
       `Upload a .har file with the "Upload HAR" button, or paste its JSON contents into the text box.`,
       `The tool parses it and shows a summary: HAR version, number of entries, and number of pages.`,
