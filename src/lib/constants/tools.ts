@@ -179,7 +179,7 @@ export const TOOLS: Tool[] = [
     keywords: ['JSON formatter online', 'JSON beautifier', 'validate JSON', 'format JSON'],
     icon: 'Braces',
     isPopular: true,
-    relatedTools: ['base64-encoder', 'url-encoder', 'hash-generator'],
+    relatedTools: ['base64-encoder', 'url-encoder-decoder', 'hash-generator'],
     phase: 2,
     faqs: [
       {
@@ -293,7 +293,7 @@ export const TOOLS: Tool[] = [
     tags: ['base64', 'encode', 'decode', 'developer', 'convert'],
     keywords: ['base64 encode online', 'base64 decoder', 'text to base64'],
     icon: 'Binary',
-    relatedTools: ['url-encoder', 'hash-generator', 'json-formatter'],
+    relatedTools: ['url-encoder-decoder', 'hash-generator', 'json-formatter'],
     phase: 2,
   },
 
@@ -357,18 +357,6 @@ export const TOOLS: Tool[] = [
     keywords: ['hash generator online', 'MD5 hash', 'SHA-256 generator', 'SHA-1 hash', 'cryptographic hash'],
     icon: 'Hash',
     relatedTools: ['password-generator', 'base64-encoder'],
-    phase: 3,
-  },
-  {
-    slug: 'url-encoder',
-    name: 'URL Encoder / Decoder',
-    shortDescription: 'Encode and decode URL strings',
-    description: 'Encode and decode URL strings and query parameters online for free. Handle special characters and percent-encoding for web development.',
-    category: 'developer',
-    tags: ['url', 'encode', 'decode', 'percent', 'developer'],
-    keywords: ['URL encoder online', 'URL decoder', 'percent encode'],
-    icon: 'Link',
-    relatedTools: ['base64-encoder', 'json-formatter'],
     phase: 3,
   },
   {
@@ -638,7 +626,7 @@ export const TOOLS: Tool[] = [
     tags: ['string', 'convert', 'case', 'format', 'transform'],
     keywords: ['string converter', 'case converter', 'convert string case'],
     icon: 'TextCase',
-    relatedTools: ['json-formatter', 'url-encoder'],
+    relatedTools: ['json-formatter', 'url-encoder-decoder'],
     phase: 3,
   },
   {
@@ -2855,7 +2843,7 @@ export const TOOLS: Tool[] = [
     keywords: ['text to morse code converter', 'binary to text translator', 'decode morse code online', 'ASCII to binary tool'],
     icon: 'Binary',
     isNew: true,
-    relatedTools: ['base64-encoder', 'url-encoder', 'case-converter'],
+    relatedTools: ['base64-encoder', 'url-encoder-decoder', 'case-converter'],
     phase: 4,
   },
   {

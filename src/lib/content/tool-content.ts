@@ -4639,9 +4639,9 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       },
     ],
     related: [
-      { slug: 'url-encoder', note: `For plain percent-encoding of any text, use the simpler encoder.` },
       { slug: 'url-parameter-cleaner', note: `Strip tracking parameters from the URL you are working with.` },
       { slug: 'base64-encoder', note: `Encode data as Base64 for a different transport need.` },
+      { slug: 'json-escape', note: `Escape strings for safe inclusion inside JSON.` },
     ],
   },
 
@@ -4855,48 +4855,6 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     ],
   },
 
-  'url-encoder': {
-    intro: [
-      `Percent-encoding is how text travels safely inside a URL — spaces become %20, ampersands become %26, and so on. This URL Encoder converts any text to its percent-encoded form and decodes it back, with an auto-detect mode that picks the right direction for you.`,
-      `Developers use it constantly: encoding a value before dropping it into a query string, or decoding an encoded parameter to read what it contains. It works on any text, not just full URLs, and shows live character counts for input and output so you can see how encoding expands a string.`,
-    ],
-    steps: [
-      `Choose Encode, Decode, or Auto-detect.`,
-      `Enter the text or value you want to convert.`,
-      `In Encode or Decode mode, click Process; in Auto-detect, the output updates as you type.`,
-      `Copy the result, using the character counts to confirm the change.`,
-    ],
-    why: [
-      `Auto-detect mode recognizes whether your input is already encoded and converts the right way automatically.`,
-      `It uses encodeURIComponent and decodeURIComponent, so it correctly handles the full set of characters that need escaping, including non-ASCII.`,
-      `Live character counters for input and output show how much encoding changes the length.`,
-      `It runs entirely client-side, so the text you paste is never transmitted.`,
-    ],
-    faqs: [
-      {
-        question: `What is URL encoding?`,
-        answer: `URL encoding, or percent-encoding, replaces characters that are unsafe or reserved in a URL with a percent sign followed by their hexadecimal code — a space becomes %20. This lets arbitrary text, including spaces and symbols, sit safely inside a web address.`,
-      },
-      {
-        question: `What is the difference between encoding the whole URL and just a value?`,
-        answer: `Encoding a complete URL must preserve its structure (the slashes and colons), while encoding a single value escapes everything. This tool uses component-style encoding, which is right for individual query values; encoding an entire URL this way would escape the separators too.`,
-      },
-      {
-        question: `When should I use auto-detect?`,
-        answer: `Use it when you are not sure whether a string is already encoded. The tool checks for percent-codes and decodes if it finds them, or encodes if it does not — handy for quickly flipping a value either way.`,
-      },
-      {
-        question: `Why did my text get longer after encoding?`,
-        answer: `Each special character is replaced by a percent sign and two hex digits, so a single space becomes three characters (%20). Text with many spaces or symbols expands noticeably, which the live character counters let you see at a glance.`,
-      },
-    ],
-    related: [
-      { slug: 'url-encoder-decoder', note: `For URL-specific work with SEO slug options and parameter extraction.` },
-      { slug: 'base64-encoder', note: `Encode binary or text data as Base64 instead of percent-encoding.` },
-      { slug: 'json-escape', note: `Escape strings for safe inclusion inside JSON.` },
-    ],
-  },
-
   'sql-formatter': {
     intro: [
       `A SQL query crammed onto one line is hard to read and harder to debug. The SQL Formatter reflows it into a clean, indented layout — each major clause on its own line, keywords aligned — so the structure of even a complex query becomes clear at a glance.`,
@@ -4975,7 +4933,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       },
     ],
     related: [
-      { slug: 'url-encoder', note: `Percent-encode text for URLs, a different safe-transport scheme.` },
+      { slug: 'url-encoder-decoder', note: `Percent-encode text for URLs, a different safe-transport scheme.` },
       { slug: 'hash-generator', note: `Produce a one-way hash when you need a fingerprint rather than reversible encoding.` },
       { slug: 'jwt-decoder', note: `Decode JSON Web Tokens, whose segments are Base64URL-encoded.` },
     ],
@@ -6849,7 +6807,7 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     ],
     related: [
       { slug: 'base64-encoder', note: `Another text encoding, used to safely represent binary data as text.` },
-      { slug: 'url-encoder', note: `Encode text for safe use in URLs and query strings.` },
+      { slug: 'url-encoder-decoder', note: `Encode text for safe use in URLs and query strings.` },
       { slug: 'case-converter', note: `Normalize your text's case before encoding it.` },
     ],
   },

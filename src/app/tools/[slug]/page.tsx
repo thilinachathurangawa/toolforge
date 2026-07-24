@@ -78,10 +78,6 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
-  'url-encoder': dynamic(() => import('@/components/tools/URLEncoder').then(mod => ({ default: mod.URLEncoder })), {
-    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
-    ssr: false,
-  }),
   'unit-converter': dynamic(() => import('@/components/tools/UnitConverter').then(mod => ({ default: mod.UnitConverter })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,

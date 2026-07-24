@@ -31,4 +31,4 @@ Fully client-side.
   morse code online", "ASCII to binary tool".
 
 ## Related
-`base64-encoder`, `url-encoder`, `case-converter`.
+`base64-encoder`, `url-encoder-decoder`, `case-converter`.
