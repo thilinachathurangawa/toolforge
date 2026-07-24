@@ -1642,6 +1642,22 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Value-added tax is baked into prices across much of the world, which means you sometimes need to add it and sometimes need to pull it back out. This VAT Calculator does both: switch to "Add VAT" to find the gross price from a net one, or "Remove VAT" to recover the net price hidden inside a VAT-inclusive total.`,
       `Businesses use the reverse calculation constantly — recovering the net figure from a receipt for bookkeeping, or confirming the VAT element of a supplier invoice. Sellers use the forward mode to quote tax-inclusive prices. A quantity field scales either calculation across multiple units.`,
     ],
+    sections: [
+      {
+        placement: 'after-about',
+        heading: `VAT Inclusive vs. VAT Exclusive Prices`,
+        body: [
+          `A price is VAT inclusive — also called gross — when the tax is already built into the figure you see, like a shop shelf price. To pull out the net price and the VAT hidden inside it, use the "Remove VAT" mode. A price is VAT exclusive — also called net — when tax has not been added yet, as on many trade quotes and B2B listings. To find the gross, VAT-inclusive total a customer actually pays, use the "Add VAT" mode. In short: start from an inclusive price and Remove VAT, or start from an exclusive price and Add VAT.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `Other Ways to Say "Remove VAT"`,
+        body: [
+          `Removing VAT goes by plenty of names: deducting VAT, subtracting VAT, extracting VAT, taking VAT off a price, or working out the "minus VAT" or "ex VAT" figure. They all describe the same calculation — recovering the net price from a VAT-inclusive total — which is exactly what this tool's "Remove VAT" mode does. Whichever phrase you searched for, switch to Remove VAT and enter the gross price.`,
+        ],
+      },
+    ],
     steps: [
       `Choose your mode: "Add VAT" to add tax to a net price, or "Remove VAT" to extract it from an inclusive price.`,
       `Enter the price — net in Add mode, gross in Remove mode.`,
