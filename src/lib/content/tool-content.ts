@@ -8918,6 +8918,24 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Converts between metric and imperial units automatically, handling Joules, kilojoules, calories, and BTU without manual conversion.`,
       `Shows energy results in multiple units simultaneously, matching the conventions of different scientific and engineering fields.`,
     ],
+    sections: [
+      {
+        placement: 'after-why',
+        heading: `Kinetic Energy and Force — How They're Related`,
+        body: [
+          `Force and kinetic energy are linked by the work-energy theorem: the work a net force does on an object — the force multiplied by the distance over which it acts — equals the change in that object's kinetic energy, written F × d = ΔKE. So if you know an object's kinetic energy and the distance involved, you can work back to the force at play, and vice versa. That is often the more useful question in practice: not how much energy is in the motion, but how much force it takes to create or kill that motion.`,
+          `For example, a 1,000 kg car travelling at 20 m/s carries ½ × 1,000 × 20² = 200,000 J of kinetic energy. Bringing it to a complete stop over 50 m removes all of that energy, so the average braking force required is 200,000 J ÷ 50 m = 4,000 N. To solve the force side of that relationship directly — including Newton's second law, F = ma — use the Force Calculator.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `Kinetic Energy vs. Mechanical Energy vs. Average Kinetic Energy`,
+        body: [
+          `Total mechanical energy is an object's kinetic energy plus its potential energy at a given moment. Take a 2 kg ball moving at 3 m/s while 5 m above the ground: its kinetic energy is ½ × 2 × 3² = 9 J, its gravitational potential energy is mgh = 2 × 9.8 × 5 = 98 J, and its total mechanical energy is therefore 9 + 98 = 107 J — a total that stays constant as the ball rises and falls if you ignore air resistance, even as energy shifts between the kinetic and potential forms. This calculator handles the kinetic-energy part; add the potential-energy term yourself to reach the mechanical total.`,
+          `One thing it does not compute is average kinetic energy in the thermodynamic sense — the mean energy of gas molecules, which is tied to temperature (proportional to kT, where k is the Boltzmann constant) rather than to a single object's mass and speed. If you came looking for an average kinetic energy calculator for gases, that is a different formula from the KE = ½mv² this tool uses.`,
+        ],
+      },
+    ],
     faqs: [
       {
         question: `What is the formula for kinetic energy?`,
