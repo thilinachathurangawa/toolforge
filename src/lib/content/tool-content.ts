@@ -1114,6 +1114,28 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
       `Sometimes you just want to see what a snippet of HTML actually renders to — without spinning up a file, a server, or an editor. HTML Viewer takes your markup and shows the live result instantly, while checking that your tags are properly opened and closed.`,
       `It is handy for quick checks: previewing the HTML a CMS or email template produced, sanity-checking a block of markup pasted from a colleague, or confirming that a structure renders the way you expect before committing it. The built-in tag validation catches the most common breakage — an unclosed or mismatched tag — and tells you which one is at fault.`,
     ],
+    sections: [
+      {
+        placement: 'after-about',
+        heading: `HTML Viewer, Previewer, or Visualizer — Same Tool`,
+        body: [
+          `Search for an HTML viewer, an HTML previewer, an HTML visualizer, or an online HTML reader and you are describing the same need: pasting raw markup and seeing what it actually becomes. This tool covers every one of those cases. It takes your HTML and renders it into a readable, visual result — the preview updates live as you type — so whether you want to view, preview, visualize, or simply read a block of HTML, this is the page for it.`,
+        ],
+      },
+      {
+        placement: 'after-why',
+        heading: `Common Uses for Previewing HTML`,
+        body: [
+          `A quick render answers "what does this markup actually do?" without any setup. A few situations where that is especially handy:`,
+        ],
+        examples: [
+          `Previewing an email template's HTML before you send it. Email clients render markup differently from browsers, so a browser preview here is a fast first check that the structure holds together before you test it in a real mail client.`,
+          `Checking the raw HTML a CMS produced. Paste the generated output to confirm it matches the structure you expect before you publish, rather than finding a stray or missing tag on the live page.`,
+          `Sanity-checking a snippet from a colleague, a code review, or a Stack Overflow answer. Render it in isolation to see exactly what it produces before you trust it or reuse it in your own project.`,
+          `Testing a single component or block of markup on its own. Previewing a fragment away from its surrounding page makes it easy to confirm it renders correctly before you drop it into a larger template or document.`,
+        ],
+      },
+    ],
     steps: [
       `Paste your HTML into the "HTML Input" box.`,
       `Click Preview to render it.`,
