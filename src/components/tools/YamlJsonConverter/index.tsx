@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Copy, Check, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 
 type Mode = 'yaml-to-json' | 'json-to-yaml';
 

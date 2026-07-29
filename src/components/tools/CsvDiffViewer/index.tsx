@@ -27,7 +27,7 @@ interface ComparisonStats {
   removed: number;
   modified: number;
   unchanged: number;
-  changePercentage: number;
+  changePercentage: string;
 }
 
 interface ParseOptions {
