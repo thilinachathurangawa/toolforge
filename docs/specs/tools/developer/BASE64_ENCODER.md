@@ -17,14 +17,44 @@
 
 ## Functional Requirements
 
-- [ ] Tab: Text encode/decode
-- [ ] Tab: File to Base64
-- [ ] Tab: Image to Base64 (with preview)
-- [ ] Auto-detect mode (encode if text, decode if base64)
-- [ ] Copy output button
-- [ ] Download output as file
-- [ ] URL-safe Base64 option
-- [ ] No library needed (btoa/atob + FileReader API)
+### Core Features
+- [x] Tab: Text encode/decode
+- [x] Tab: File to Base64
+- [x] Tab: Image to Base64 (with preview)
+- [x] Auto-detect mode (encode if text, decode if base64)
+- [x] Copy output button
+- [x] Download output as file
+- [x] URL-safe Base64 option
+- [x] No library needed (btoa/atob + FileReader API)
+
+### Enhanced Features
+- [x] Character encoding options (UTF-8, ASCII, UTF-16)
+- [x] Line wrapping option (configurable line length, default 76 for MIME)
+- [x] Base64 validation with detailed error messages
+- [x] Character/byte count display for input and output
+- [x] Hex to Base64 conversion
+- [x] Base32 encoding support
+- [x] Custom padding option (add/remove `=`)
+- [x] Live preview for decoded text
+- [x] Session-based history (last 10 conversions)
+- [x] Better drag & drop visual feedback
+
+### Image/File Enhancements
+- [x] Format options for images:
+  - [x] With/without data URI prefix
+  - [x] CSS background-image format
+  - [x] HTML img tag format
+- [x] Base64 to file/image decode (convert Base64 back to original file)
+- [x] Image resizing before encoding (optional)
+- [x] Multiple file upload with batch processing
+- [x] File size warning (>10MB alert)
+- [x] Image format conversion (PNG to WebP, etc.)
+
+### Advanced Features
+- [x] Split large Base64 into chunks
+- [x] Merge Base64 chunks back together
+- [x] Hash verification (compare original vs decoded)
+- [x] Compression before encoding (gzip)
 
 ---
 
