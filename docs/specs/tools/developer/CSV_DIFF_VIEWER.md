@@ -17,8 +17,10 @@
 
 ## Functional Requirements
 
+### Core Features
 - Two CSV input areas: "Original CSV" and "Modified CSV"
 - File upload or paste for both
+- Drag and drop support for CSV files
 - Generate a comparative grid table on compare
 - Color coding:
   - Green background: new rows
@@ -27,6 +29,42 @@
 - Show summary: X added, Y removed, Z modified rows
 - Uses papaparse for CSV parsing
 - No server upload
+
+### Input Enhancements
+- CSV file upload buttons for both original and modified inputs
+- Drag and drop support for CSV files
+- Clear/Reset buttons for individual inputs and master reset
+- Sample data button to load test CSV data quickly
+
+### CSV Parsing Options
+- Delimiter selection: comma, semicolon, tab, pipe, or custom
+- Header row toggle: explicit option to specify if first row contains headers
+- Auto-detect delimiter: automatically detect the delimiter used in the CSV
+- Quote character selection: single quote, double quote, or custom
+- Encoding selection: UTF-8, ASCII, and other common encodings
+- Skip empty rows toggle: option to skip or include empty rows
+
+### Comparison Options
+- Key column selection: choose which column to use as the key for matching rows (instead of just index)
+- Case sensitivity toggle: option for case-sensitive or case-insensitive comparison
+- Ignore whitespace toggle: option to ignore leading/trailing whitespace
+- Trim cells toggle: option to trim whitespace from cells before comparison
+
+### Output/Display Options
+- Filter by status: filter results to show only added, removed, or modified rows
+- Search functionality: search within the diff results
+- Column visibility toggle: allow hiding/showing specific columns
+- Side-by-side view: option to view original and modified side by side instead of merged
+- Pagination: add pagination for large CSV files
+- Row limit warning: warn users if CSV is too large (>1000 rows)
+
+### Export Options
+- Export diff results as CSV or JSON
+- Export comparison statistics
+
+### Statistics
+- Detailed statistics: total rows, columns, file sizes, processing time
+- Change percentage: show percentage of rows changed
 
 ---
 
