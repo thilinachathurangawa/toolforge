@@ -127,8 +127,6 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Ahrefs Web Analytics */}
-        <script src="https://analytics.ahrefs.com/analytics.js" data-key="l/e/8G8QQ5RQk9uGJ+H3pA" async></script>
       </head>
       <body className="relative min-h-screen bg-background text-foreground font-body antialiased flex flex-col overflow-x-hidden">
         <ThemeProvider>
