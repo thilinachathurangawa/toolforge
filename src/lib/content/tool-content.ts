@@ -4853,43 +4853,58 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
 
   'json-filter': {
     intro: [
-      `When a JSON array holds hundreds of records but you only care about some of them, scrolling to find the matches is tedious. JSON Filter narrows an array down to the items you want by a key — optionally matching a specific value — and returns the filtered result, neatly formatted.`,
-      `Developers use it to pull just the active users, the orders over a threshold, or the records that have a particular field set, straight out of an API response. It is a quick, no-code way to slice a dataset: give it a key to filter on and, if you like, a value to match, and it hands back only the items that qualify.`,
+      `An API response with hundreds of records is easy to produce and miserable to read. JSON Filter turns one into just the rows you care about: point it at a collection, describe what you want in rows of key, operator and value, and it returns the matching records — reshaped, sorted, and ready to copy.`,
+      `The conditions are where the work happens. Each row takes a path, a comparison, and something to compare against, so "role equals admin", "logins at least 10", "profile.city contains zür", or "avatar does not exist" are all a few keystrokes apart. Rows combine with All or Any, an Invert switch flips the whole selection, and numeric comparisons genuinely compare numbers rather than matching digits inside them.`,
+      `Two details save most of the guesswork. Arrays found anywhere in your document are offered as one-click sources, so records buried under a wrapper like data.users take one tap to reach. And every path the data actually contains is listed with its type and how often it occurs — click one to drop it straight into a condition instead of guessing at spelling.`,
     ],
     steps: [
-      `Paste your JSON array (or a single object) into the input.`,
-      `Enter the key to filter on.`,
-      `Optionally enter a value to match against that key.`,
-      `Apply the filter and read the matching items, formatted and ready to copy.`,
+      `Paste your JSON, or upload or drop a .json file.`,
+      `Pick the collection to work on: click one of the detected arrays, or type a source path such as data.users. Leaving it blank uses the whole document.`,
+      `Build conditions from a path, an operator (equals, contains, at least, matches regex, exists, type is, and more) and a value. Combine them with All or Any, and tick Invert to keep everything that does not match.`,
+      `Or use "search every value" to find records containing text at any depth, without naming a field.`,
+      `Open Output options to keep only certain fields, drop others, pluck a single field into a flat list, or sort and limit the results.`,
+      `Read the "X of Y items matched" line, then copy the result or download it as a .json file.`,
     ],
     why: [
-      `It filters by a key and an optional value with a simple, no-syntax interface — no query language to learn.`,
-      `Value matching is a case-insensitive substring search, so partial matches are caught without exact casing.`,
-      `It accepts either an array or a single object and always returns cleanly formatted JSON.`,
-      `Filtering runs in your browser, so API data you paste is never uploaded.`,
+      `There is no query syntax to learn — conditions are dropdowns and text boxes — yet you still get real comparisons, including greater-than, at-least, regex, type checks, and exists tests.`,
+      `Paths reach into nested data with dots, array indexes, and wildcards: profile.city, tags[0], or items[*].sku, where a wildcard matches if any element qualifies.`,
+      `Numeric operators compare numerically and simply skip values that are not numbers, so a stray "N/A" in a price column cannot quietly corrupt a range filter.`,
+      `When nothing matches, it explains why: how many records were scanned, how many even had the path you named, and a sample of the values it did find there.`,
+      `Awkward data is handled rather than fatal — a null or a bare string inside an array is skipped by key conditions instead of breaking the whole filter.`,
+      `Invalid JSON is reported with a line, a column, and the offending line marked with a caret, so a stray comma takes seconds to find.`,
+      `Everything happens in your browser. Nothing you paste or upload is sent anywhere, which matters when the data is a production API response.`,
     ],
     faqs: [
       {
-        question: `How does the filtering work?`,
-        answer: `It keeps every item in the array that has the key you specify. If you also give a value, it keeps only items whose value for that key contains your text, matched case-insensitively. The rest are dropped from the output.`,
+        question: `How do the conditions work together?`,
+        answer: `Each row is one comparison against a path. With Match set to "all", a record must satisfy every row; with "any", one is enough. Invert then flips the outcome, turning "keep the admins" into "keep everyone who is not an admin". Rows you have not finished filling in are simply ignored rather than treated as errors.`,
       },
       {
         question: `Can I filter on nested fields?`,
-        answer: `The filter matches on a top-level key of each item. For deeply nested data, extract the relevant level first with a JSON path tool, then filter the result here.`,
-      },
-      {
-        question: `What if no items match?`,
-        answer: `You get an empty result, which simply means no item had that key or matched your value. Check the key spelling and that your value text appears in the data — remember the value match is a partial, case-insensitive one.`,
+        answer: `Yes. Write the path with dots and brackets — profile.city, addresses[0].postcode, or items[*].sku. A wildcard segment like [*] means "any element", so items[*].sku equals ABC keeps a record when any of its items has that SKU. The list of keys found in your data gives you the exact paths to click.`,
       },
       {
         question: `Can I filter on a numeric range, like price over 100?`,
-        answer: `The filter does substring matching on the value rather than numeric comparison, so it cannot express "greater than". To keep items with a field present, filter by the key alone; for range conditions, post-process the filtered output in a spreadsheet or script.`,
+        answer: `Yes — choose "greater than", "at least", "less than", or "at most" and give a number. The comparison is numeric, so 90 does not match a filter for values containing 9, and records whose value is not a number are skipped instead of coerced into one.`,
+      },
+      {
+        question: `My records are inside a wrapper object. What do I filter?`,
+        answer: `Set the source path to the collection itself, for example data.users. The tool scans your document for arrays and offers each one as a chip labelled with its path and item count, so usually you can just click the right one. If the source is a plain object instead of an array, its entries are filtered and you get an object back.`,
+      },
+      {
+        question: `What do Include, Exclude and Pluck do?`,
+        answer: `Include keeps only the fields you list, Exclude removes the ones you list, and Pluck returns a flat array of a single path's values — handy for pulling out every email address. Include also accepts dotted paths and lifts them to a flat key of the same name, which is a quick way to flatten one nested field.`,
+      },
+      {
+        question: `Why did a huge number come back slightly different?`,
+        answer: `JSON numbers are parsed as standard doubles, so integers beyond about 9 quadrillion lose precision — an ID like 12345678901234567890 will not survive the round trip exactly. That is a property of JSON parsing rather than this tool; if you need such IDs intact, keep them as strings in the source data.`,
       },
     ],
     related: [
       { slug: 'json-path-finder', note: `Drill into a specific nested value rather than filtering a list.` },
       { slug: 'json-formatter', note: `Pretty-print and validate the JSON before filtering it.` },
       { slug: 'json-to-csv', note: `Turn your filtered records into a spreadsheet-ready table.` },
+      { slug: 'json-diff', note: `Compare two documents instead of selecting records from one.` },
     ],
   },
 
