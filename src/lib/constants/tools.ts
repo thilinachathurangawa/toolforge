@@ -2989,6 +2989,21 @@ export const TOOLS: Tool[] = [
     relatedTools: ['image-compressor', 'image-resizer', 'image-converter'],
     phase: 4,
   },
+  {
+    slug: 'image-editor',
+    name: 'Image Editor',
+    shortDescription: 'Layers, crop, text, brushes, filters and adjustments in one editor',
+    description:
+      'A free, layer-based image editor that runs entirely in your browser. Crop, draw, add text and shapes, adjust colors and apply filters — no upload, no account, no sign-up.',
+    category: 'image',
+    tags: ['image editor', 'photo editor', 'layers', 'crop', 'draw', 'filters', 'text', 'shapes'],
+    keywords: ['free online image editor', 'photo editor online', 'edit image in browser', 'online photoshop alternative', 'layer based image editor'],
+    icon: 'Layers',
+    isNew: true,
+    isPopular: true,
+    relatedTools: ['image-cropper', 'image-compressor', 'image-watermark'],
+    phase: 4,
+  },
 
   // ── Phase 4: Security Tools ──────────────────────────────────────────────────
   {

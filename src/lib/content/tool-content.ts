@@ -7400,6 +7400,54 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     ],
   },
 
+  'image-editor': {
+    intro: [
+      `Most free "photo editor" pages online only do one thing — crop, or resize, or compress — and doing anything more layered than that usually means installing Photoshop or handing your photo to a web app you have to trust with an upload. The Image Editor is a full layer-based editor that runs the whole session on an HTML5 canvas (via Fabric.js) in your own browser tab, so a multi-step edit — crop, then a text caption, then a color fix — never leaves your device between steps.`,
+      `It is built for the edit that needs more than one tool. A seller cropping a marketplace photo to a square, brightening it, and stamping a price badge on top before listing it. A support agent circling part of a screenshot with a shape, adding a text callout, and flattening it into one PNG to paste into a ticket. Someone mocking up a quick social post by combining a gradient background, a heading in a chosen font, and a rounded-rectangle button shape — all as separate, still-editable layers until they're happy with the result. The layer panel supports reordering, opacity, blend modes, locking, hiding, duplicating, merging and flattening, and the crop tool ships with 1:1, 4:3, 16:9, 9:16 and ready-made Instagram/Facebook/LinkedIn/YouTube/Twitter presets.`,
+      `Selection isn't limited to a crop box either: rectangle, ellipse, free-lasso and a real color-tolerance magic wand let you delete or fill a specific region of an image layer — enough to knock out a flat or near-flat background and drop in a transparent, solid or gradient fill without a dedicated "remove background" AI model. Brush, eraser, paint bucket, gradient fill and an eyedropper round out the drawing side, and every change is tracked in an undo/redo history you can scrub through by name, not just Ctrl+Z blindly.`,
+    ],
+    steps: [
+      `Drag a photo onto the canvas, paste one with Ctrl/Cmd+V, or pick a blank canvas size to start from scratch.`,
+      `Pick a tool from the left-hand rail — crop, selection, brush, text, or shape — and adjust its options (color, size, ratio, tolerance) in the panel on the right.`,
+      `Build up layers as you go: manage opacity, blend mode, visibility and lock state per layer, and reorder, duplicate, merge or flatten them from the Layers panel.`,
+      `Use the Adjust and Filters tabs for whole-image edits like brightness, contrast, saturation, hue, temperature, sharpen, grayscale, blur, pixelate, noise and vignette.`,
+      `Step back through any change from the History tab, then click Export to choose PNG, JPG or WebP, set a quality and size scale, and download.`,
+    ],
+    why: [
+      `Everything renders on a canvas in your browser — opening a HEIC iPhone photo, drawing a brush stroke, or exporting the final PNG never sends the image to a server.`,
+      `One editor covers what's usually five separate single-purpose tools: layers, selection, crop, drawing, text/shapes, and color adjustments/filters, with social-platform crop sizes already built in.`,
+      `The magic wand and paint bucket do real per-pixel, color-tolerance selection on the active image layer — not just a rectangular crop — so you can cut out or recolor a specific region.`,
+      `Your session autosaves locally as you work, so accidentally closing the tab prompts you to restore it rather than losing the edit.`,
+    ],
+    faqs: [
+      {
+        question: `Is my photo uploaded anywhere while I edit it?`,
+        answer: `No. Every tool — crop, brush, text, filters, export — operates on an in-browser canvas. Even HEIC (iPhone) photos are converted locally before opening, and the exported file is generated and downloaded on your device without a network request.`,
+      },
+      {
+        question: `Which file formats can I open, and which can I export?`,
+        answer: `You can open PNG, JPG/JPEG, WebP, GIF, BMP, SVG, ICO, AVIF and HEIC/HEIF files. Exporting currently supports PNG, JPG and WebP with adjustable quality and a resize scale; PDF, TIFF, ICO export and saved project files are planned additions.`,
+      },
+      {
+        question: `Can it remove a background automatically with AI?`,
+        answer: `Not yet. Today you cut out a flat or near-flat background manually with the Magic Wand or Paint Bucket (both use real color-tolerance selection), then delete it to transparent or fill in a solid or gradient background. A dedicated AI background-removal model is a planned addition rather than something faked in the current build.`,
+      },
+      {
+        question: `Will I lose my edit if I accidentally close the tab?`,
+        answer: `Your session autosaves to your browser's local storage as you work. The next time you open the Image Editor, you'll be offered a "Restore session" prompt with the timestamp of your last save, until you dismiss it or clear your browser's site data.`,
+      },
+      {
+        question: `Why can't I adjust brightness or apply a filter to a shape or text layer?`,
+        answer: `Adjustments and filters (brightness, contrast, blur, grayscale, and so on) apply to image layers' actual pixels, so they're only enabled when an image layer is selected. Shapes and text use their own fill, stroke and shadow controls in the Properties panel instead.`,
+      },
+    ],
+    related: [
+      { slug: 'image-cropper', note: `A faster, single-purpose tool if all you need is a crop.` },
+      { slug: 'image-compressor', note: `Shrink the exported PNG/JPG/WebP before you upload it elsewhere.` },
+      { slug: 'image-watermark', note: `Batch-stamp a logo or text watermark across many photos at once.` },
+    ],
+  },
+
   'unix-timestamp-converter': {
     intro: [
       `Every time a record is created in a database, a log line is written, or an API response is returned, the timestamp is almost always stored as a Unix epoch — a plain integer counting seconds (or milliseconds) since 1 January 1970 at 00:00:00 UTC. Reading those numbers directly is hopeless. The Unix Timestamp Converter turns them into the exact local time, UTC time, and relative description you need — and reverses the process when you need to go the other direction.`,

@@ -806,6 +806,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'image-editor': dynamic(() => import('@/components/tools/ImageEditor').then(mod => ({ default: mod.ImageEditor })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
   'password-strength-checker': dynamic(() => import('@/components/tools/PasswordStrengthChecker').then(mod => ({ default: mod.PasswordStrengthChecker })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
