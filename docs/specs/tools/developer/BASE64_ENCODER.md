@@ -290,6 +290,10 @@ Two deliberate deviations from the option catalogue, decided during implementati
     magic-byte sniffing for png/jpg/gif/webp/pdf/zip) → show size and a preview
     (image thumbnail or text excerpt) → editable filename (React state, not
     `getElementById`) → Download with the correct Blob MIME type (B11, C2, C3, H1).
+    **Previews must use a `data:` URI, never `URL.createObjectURL`.** The site's CSP
+    in `vercel.json` sets `img-src 'self' data: https:` with no `blob:`, so a blob
+    preview renders as a broken image in production while working fine in `next dev`
+    (where those headers do not apply). Images above 12 MB skip the preview and say so.
 
 **Cross-cutting**
 20. Per-tab error/warning state, cleared on tab switch and on clear (A10, A11).

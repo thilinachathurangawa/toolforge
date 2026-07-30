@@ -93,6 +93,7 @@ const WARN_FILE_SIZE = 10 * 1024 * 1024;
 const MAX_FILE_SIZE = 25 * 1024 * 1024;
 const INLINE_HINT_SIZE = 4 * 1024;
 const MAX_TEXT_DROP_SIZE = 2 * 1024 * 1024;
+const MAX_PREVIEW_SIZE = 12 * 1024 * 1024;
 
 const OPTIONS_KEY = 'toolforge:base64:options';
 const HISTORY_KEY = 'toolforge:base64:history';
@@ -182,7 +183,6 @@ export function Base64Encoder() {
   const [debouncedDecodeInput, setDebouncedDecodeInput] = useState('');
   const [decodeFilename, setDecodeFilename] = useState('decoded');
   const [filenameTouched, setFilenameTouched] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   // History
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -555,8 +555,22 @@ export function Base64Encoder() {
         !isImageMime(mime) && printableRatio(bytes) >= 0.9
           ? new TextDecoder('utf-8').decode(bytes.subarray(0, 600))
           : null;
+      // A data URI, not an object URL: the site's CSP allows `img-src data:` but
+      // not `blob:`, so a blob preview would be refused in production.
+      const previewSrc =
+        isImageMime(mime) && bytes.length <= MAX_PREVIEW_SIZE
+          ? `data:${mime};base64,${bytesToBase64(bytes)}`
+          : null;
 
-      return { ok: true as const, bytes, mime, size: bytes.length, textPreview, declaredMime };
+      return {
+        ok: true as const,
+        bytes,
+        mime,
+        size: bytes.length,
+        textPreview,
+        previewSrc,
+        declaredMime,
+      };
     } catch (error) {
       return {
         ok: false as const,
@@ -571,17 +585,6 @@ export function Base64Encoder() {
     if (!decodedMime || filenameTouched) return;
     setDecodeFilename(`decoded${extensionFor(decodedMime)}`);
   }, [decodedMime, filenameTouched]);
-
-  // Object URL for the decoded image preview, revoked whenever it changes.
-  useEffect(() => {
-    if (!decoded?.ok || !isImageMime(decoded.mime)) {
-      setPreviewUrl(null);
-      return;
-    }
-    const url = URL.createObjectURL(new Blob([new Uint8Array(decoded.bytes)], { type: decoded.mime }));
-    setPreviewUrl(url);
-    return () => URL.revokeObjectURL(url);
-  }, [decoded]);
 
   const handleDecodeDownload = useCallback(() => {
     if (!decoded?.ok) return;
@@ -1373,10 +1376,14 @@ export function Base64Encoder() {
                     </span>
                   </div>
 
-                  {previewUrl && (
+                  {decoded.previewSrc && (
                     <div className="border border-border rounded-lg p-4 flex justify-center bg-muted/50">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={previewUrl} alt="Decoded preview" className="max-w-full max-h-[300px] object-contain" />
+                      <img
+                        src={decoded.previewSrc}
+                        alt="Decoded preview"
+                        className="max-w-full max-h-[300px] object-contain"
+                      />
                     </div>
                   )}
 
@@ -1390,9 +1397,11 @@ export function Base64Encoder() {
                     </div>
                   )}
 
-                  {!previewUrl && !decoded.textPreview && (
+                  {!decoded.previewSrc && !decoded.textPreview && (
                     <p className="text-sm text-muted-foreground">
-                      Binary payload — no preview available, but it can still be downloaded.
+                      {isImageMime(decoded.mime)
+                        ? `This image is over ${formatBytes(MAX_PREVIEW_SIZE)}, so it is not previewed here — download it to view it.`
+                        : 'Binary payload — no preview available, but it can still be downloaded.'}
                     </p>
                   )}
 
