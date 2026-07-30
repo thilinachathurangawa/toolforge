@@ -9357,49 +9357,62 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
 
   'color-palette': {
     intro: [
-      `Color palettes extracted from images provide the actual color schemes used in photographs, artwork, and designs, making them more authentic than randomly generated palettes. The Color Palette Extractor analyzes uploaded images to identify dominant colors, creating harmonious color schemes with hex codes that designers can use directly in their work.`,
-      `UI/UX designers extract color schemes from inspiration images, graphic designers create brand-consistent palettes from logos, and web developers match website colors to photographic content. The tool displays colors in a visual palette with hex codes for easy copying into design tools.`,
-      `Because image analysis happens entirely in your browser using the canvas API, you can extract colors from sensitive or private images without worrying about data leaving your device. The tool can extract anywhere from 3 to 20 dominant colors depending on your needs.`,
+      `A palette lifted from a real photograph carries relationships no random generator invents — the way a sunset's oranges sit against its shadows, or a logo's blue against its paper white. The Color Palette Extractor reads an image's pixels and reports the colours that actually build it, each one with the share of the image it occupies.`,
+      `That percentage is the part most palette tools leave out, and it changes decisions: a colour covering 40 percent of a photograph is a background, while one covering 3 percent is an accent. Alongside it, each swatch shows its HEX, RGB and HSL values, the nearest named colour, and whether it passes WCAG AA as text on white or on black — so you learn immediately which colours can carry copy and which cannot.`,
+      `There is also an eyedropper for the times an average is not what you want. Switch it on, move across the image, and a magnified loupe reads whatever pixel sits under the pointer, straight from the full-resolution image rather than the downscaled copy used for analysis. Click to add that exact colour to your palette.`,
     ],
     steps: [
-      `Drop the image you want to sample onto the tool, or browse for it with the file picker.`,
-      `Select the number of colors you want to extract from the palette (typically 5-10 for most applications).`,
-      `Optionally adjust the sensitivity setting to control how strictly the tool distinguishes similar colors.`,
-      `Click Extract to analyze the image and identify dominant colors.`,
-      `View the extracted color palette with hex codes displayed below each color swatch.`,
-      `Click on any color swatch to copy its hex code to your clipboard.`,
+      `Drop an image onto the tool, browse for it with the file picker, or paste one straight from your clipboard.`,
+      `The palette appears on its own once the image decodes — there is no button to press.`,
+      `Choose how many colours you want, from 3 to 16, and pick Dominant for the most common colours or Vibrant for a vibrant, muted, light and dark set.`,
+      `Adjust Sensitivity if colours are merging too eagerly or splitting too finely, and switch on "ignore near-white/black" when a white background or dark border is crowding out the colours you care about.`,
+      `Read each swatch's share of the image, its colour name, and its contrast ratios, then sort the palette by coverage, hue, lightness or saturation.`,
+      `Turn on the eyedropper to sample any exact pixel, and click to add it to the palette.`,
+      `Copy a single colour in HEX, RGB or HSL, copy the whole palette as CSS, SCSS, Tailwind, JSON or a HEX list, or download it as PNG, SVG or JSON.`,
     ],
     why: [
-      `All image analysis happens locally in your browser using the canvas API—your images are never uploaded to any server, keeping private photos completely secure.`,
-      `Extracts actual dominant colors from real images rather than generating random colors, ensuring the palette reflects the image's authentic color scheme.`,
-      `Supports extracting anywhere from 3 to 20 colors, giving you flexibility for different design needs from simple triadic schemes to complex palettes.`,
-      `Provides hex codes directly in the interface, so you can copy colors into design tools like Figma, Adobe Creative Suite, or CSS without manual conversion.`,
+      `Every swatch reports the percentage of the image it covers, so you can tell a background colour from an accent instead of guessing from swatch order.`,
+      `WCAG contrast ratios against white and black are calculated for each colour, with AA and AAA verdicts, answering the question designers actually have: can I set text in this?`,
+      `The eyedropper reads individual pixels from the full-resolution image, which is what you want when a specific highlight matters more than a statistical average.`,
+      `Two algorithms suit different jobs — Dominant for the colours that genuinely fill the frame, Vibrant when you need a punchy accent, a muted counterpart, and light and dark variants.`,
+      `Transparent pixels are skipped rather than averaged into a muddy grey, and the tool tells you what share of the image was transparent so a logo's palette is never a surprise.`,
+      `It is honest about what an image can support: ask for twelve colours from a two-colour graphic and it returns two, instead of padding the palette with near-duplicates.`,
+      `Analysis runs entirely in your browser on a canvas, with no upload and no third-party library in the path — private photographs and unreleased brand assets never leave your device.`,
     ],
     faqs: [
       {
+        question: `What does the percentage on each swatch mean?`,
+        answer: `It is the share of the sampled pixels that fall into that colour's cluster — roughly, how much of the image is that colour. Large images are scaled down and sampled rather than read pixel by pixel, so treat the figure as an accurate proportion rather than an exact pixel count. Colours you add with the eyedropper show "picked" instead, because a single sampled pixel has no meaningful coverage.`,
+      },
+      {
         question: `How does the tool extract colors from images?`,
-        answer: `The tool analyzes the pixel data of your image using the canvas API, clustering similar colors and identifying the most frequently occurring color values. It then ranks these by frequency and selects the top dominant colors for your palette.`,
+        answer: `The image is drawn to a canvas, scaled so its longest edge is about 1000 pixels, and sampled. Those pixels are then split by median cut: the tool repeatedly divides the colour space along its widest axis until it has the number of clusters you asked for, averages each cluster, and folds together any that are perceptually near-identical. Each surviving cluster becomes a swatch, carrying its population as coverage.`,
       },
       {
         question: `What image formats are supported?`,
-        answer: `The tool supports common image formats including JPG, PNG, WebP, and GIF. Simply upload any image file and the tool will analyze its color content regardless of format.`,
-      },
-      {
-        question: `How many colors should I extract?`,
-        answer: `For most design applications, 5-8 colors provide a good balance between variety and manageability. Fewer colors (3-5) work well for simple, focused designs, while more colors (10-20) are useful for complex, rich designs or when you want maximum flexibility.`,
-      },
-      {
-        question: `Can I use these colors in my designs?`,
-        answer: `Absolutely. The extracted colors are provided as standard hex codes that work in any design tool, programming language, or platform that accepts color values. Use them in CSS, design software, or any application that supports hex color codes.`,
+        answer: `JPG, PNG, WebP, GIF, AVIF and BMP, up to 25 MB. Transparency is respected in the formats that support it, and very large photographs are scaled down for analysis, which keeps a 24-megapixel image as responsive as a thumbnail.`,
       },
       {
         question: `What if the extracted colors don't match what I see?`,
-        answer: `Color perception can be subjective, and the tool identifies mathematically dominant colors rather than perceptually important ones. Try adjusting the sensitivity setting or extracting more colors to capture subtle variations that might be important to your design.`,
+        answer: `Three controls address this. Sensitivity decides how eagerly near-identical colours merge, so "fine" preserves distinctions that "fast" flattens. "Ignore near-white/black" stops a white studio background or a dark vignette dominating the result. And the Vibrant algorithm deliberately favours colourful, perceptually striking tones over merely common ones — which is often what you noticed in the image but the dominant list omitted.`,
+      },
+      {
+        question: `How do I get the colour of one specific spot in the image?`,
+        answer: `Switch on the eyedropper and move the pointer over the preview. A magnified loupe follows it, showing the exact colour under the pointer with its HEX, RGB and nearest colour name. Values are read from the original image rather than the scaled copy, so what you sample is the true pixel. Click to add it to the palette, or copy it on its own.`,
+      },
+      {
+        question: `Can I tell whether a palette colour is safe for text?`,
+        answer: `Yes. Each swatch lists its contrast ratio against white and against black, labelled AAA, AA, AA Large or Fail under the WCAG 2.1 thresholds of 7:1, 4.5:1 and 3:1, and names whichever of white or black reads better on it. Use that to pick text colours with confidence rather than eyeballing the result.`,
+      },
+      {
+        question: `Which export format should I use?`,
+        answer: `CSS custom properties or SCSS variables drop straight into a stylesheet; the Tailwind option gives you a colours object to paste into your theme config. JSON carries everything — hex, rgb, hsl, name, coverage and contrast — for scripts and design tooling. The HEX list is the quickest paste into a design app, while PNG and SVG produce a shareable swatch strip.`,
       },
     ],
     related: [
       { slug: 'color-converter', note: `Convert extracted hex colors to other color formats like RGB, HSL, or CMYK for different use cases.` },
-      { slug: 'color-palette-generator', note: `Generate complementary color schemes from your extracted palette colors.` },
+      { slug: 'color-palette-generator', note: `Build harmonies, shades and tints around a colour you extracted here.` },
+      { slug: 'image-compressor', note: `Shrink the source image once you have pulled its colours out of it.` },
     ],
   },
 };

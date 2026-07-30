@@ -260,28 +260,28 @@ export const TOOLS: Tool[] = [
     faqs: [
       {
         question: 'How does color extraction work?',
-        answer: 'Our tool analyzes the pixels in your image to identify the most frequently occurring colors. It uses advanced algorithms to extract dominant colors while ignoring minor variations and noise.',
+        answer: 'Your image is drawn to a canvas, scaled down, and sampled. Those pixels are clustered by median cut, each cluster is averaged, and near-identical clusters are merged — so every swatch also carries the share of the image it covers.',
       },
       {
         question: 'What color formats are supported?',
-        answer: 'We provide colors in multiple formats including HEX (for web), RGB (for digital design), and HSL (for color manipulation). You can copy any format with one click.',
+        answer: 'We provide colors in multiple formats including HEX (for web), RGB (for digital design), and HSL (for color manipulation). You can copy any format with one click, or copy the whole palette as CSS, SCSS, Tailwind, JSON, or a HEX list.',
       },
       {
         question: 'Can I upload any type of image?',
-        answer: 'Yes, we support all common image formats including JPG, PNG, WebP, GIF, and more. The tool processes images entirely in your browser for maximum privacy.',
+        answer: 'Yes — JPG, PNG, WebP, GIF, AVIF, and BMP up to 25 MB. The tool processes images entirely in your browser for maximum privacy.',
       },
       {
         question: 'How many colors will be extracted?',
-        answer: 'By default, we extract the 10 most dominant colors from your image. You can adjust this number to get fewer or more colors depending on your needs.',
+        answer: 'Six by default, adjustable from 3 to 16. If an image genuinely contains fewer distinct colors than you ask for, you get the real number rather than a padded list of near-duplicates.',
       },
     ],
     howToUse: [
-      'Upload an image by dragging and dropping or clicking the upload button',
+      'Upload an image by dragging and dropping, clicking the upload button, or pasting from your clipboard',
       'The tool automatically extracts dominant colors from your image',
-      'View the color palette with HEX, RGB, and HSL values',
-      'Click on any color to copy it to your clipboard',
+      'View each color with its coverage percentage, HEX/RGB/HSL values, color name, and WCAG contrast verdicts',
+      'Click on any color to copy it to your clipboard, or use the eyedropper to sample an exact pixel',
     ],
-    aboutContent: 'The Color Palette Extractor is a powerful free online tool for designers, developers, and anyone working with colors. Simply upload an image and instantly extract the dominant colors to create beautiful color schemes. Perfect for website design, branding, art projects, and color inspiration. Our tool provides colors in multiple formats and processes images locally for complete privacy.',
+    aboutContent: 'The Color Palette Extractor is a powerful free online tool for designers, developers, and anyone working with colors. Upload an image to extract its dominant colors, see how much of the image each one covers, check whether they are readable as text, and sample exact pixels with the eyedropper. Perfect for website design, branding, art projects, and color inspiration. Everything runs locally in your browser for complete privacy.',
   },
   {
     slug: 'base64-encoder',
