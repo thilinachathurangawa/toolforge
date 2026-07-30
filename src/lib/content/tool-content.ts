@@ -4937,43 +4937,55 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
 
   'base64-encoder': {
     intro: [
-      `Base64 encoding turns binary data or text into a plain-text string of safe characters, which is how images get embedded in CSS, how files ride inside JSON, and how data URLs work. This encoder converts text, files, and images to Base64 and back, with a URL-safe variant for use in links and tokens.`,
-      `Developers use it to embed a small image as a data URI, decode a Base64 blob from an API, or encode credentials and payloads. Three tabs handle the common cases — paste text, upload a file, or drop in an image with a live preview — and the tool correctly handles UTF-8 so accented and non-Latin characters survive the round trip.`,
+      `Base64 rewrites arbitrary bytes as a short run of letters, digits, and two punctuation marks — the trick that lets an image sit inside a stylesheet, a PDF travel inside a JSON field, and a token survive a URL. This tool moves data in both directions, across two tabs: Text for strings you can type or paste, and Files & Images for anything you drop in from disk.`,
+      `The Text tab converts as you type. Leave it on Auto and it inspects what you pasted, then tells you which way it went — a small badge reads "Detected: Base64 → text (decoding)" so the guess is never silent. Alongside standard Base64 you can switch the alphabet to Base64URL for tokens, Base32 for systems that dislike mixed case, or plain Hex, and pick UTF-8 or Latin-1 for how characters map to bytes.`,
+      `The Files & Images tab handles the other half of the job. Encoding accepts several files at once and reports each one's real MIME type, dimensions for images, and Base64 length; decoding works backwards from a pasted string, identifies the payload from its file signature, previews it, and hands you a correctly typed download.`,
     ],
     steps: [
-      `Pick a tab: Text, File, or Image.`,
-      `For text, choose Encode, Decode, or Auto and optionally tick URL-safe; for file or image, upload your file.`,
-      `Read the Base64 output (or decoded text), with a preview shown for images.`,
-      `Copy the result or download it.`,
+      `Open the Text tab for strings, or Files & Images for anything on disk.`,
+      `Paste into the input and read the result underneath — conversion is live, and the Auto badge shows whether your input was treated as text or as an encoded string.`,
+      `Adjust the alphabet (Base64, Base64URL, Base32, Hex) or the character set if the receiving system expects something specific; open Advanced for padding, line wrapping at 76 characters, and the split chunk size.`,
+      `Tick "Verify round-trip" when correctness matters — it re-decodes the output and compares SHA-256 digests of the original and recovered bytes.`,
+      `For files, drop them in and choose how the output is shaped: raw Base64, a data URI, a CSS background-image rule, an HTML img tag, or a JSON object.`,
+      `To rebuild a file, switch Files & Images to "Base64 → file", paste the string, check the detected type and preview, name the file, and download it.`,
+      `Copy or download the result, or press Swap to push the output back into the input with the direction flipped.`,
     ],
     why: [
-      `Three modes — text, file, and image — cover encoding a string, a whole file, or an image with a live preview, in one tool.`,
-      `A URL-safe option swaps the characters that break in URLs and tokens, so the output drops straight into a link or JWT.`,
-      `It handles UTF-8 correctly, so accented and non-Latin text encodes and decodes without corruption.`,
-      `Files are read with the browser's FileReader and never uploaded, keeping your data private.`,
+      `Auto-detection is deliberately conservative: a candidate must be at least eight characters, use a valid alphabet, and decode to something text-like, so ordinary words such as "password" get encoded instead of silently mangled into nonsense.`,
+      `Pasted input is cleaned before decoding — line breaks and spaces are stripped, a data URI prefix is removed, URL-safe dashes and underscores are mapped back, and absent padding is restored — so the string you copied from a log or an email just works.`,
+      `Line wrapping and padding overrides are applied only when encoding, so choosing them can never corrupt decoded text.`,
+      `Round-trip verification is a genuine byte-for-byte check with the Web Crypto API, not a guess: if the output does not reproduce the source bytes exactly, it says so.`,
+      `Decoding a file identifies the payload by its signature — PNG, JPEG, GIF, WebP, PDF, ZIP, and others — and downloads it with that MIME type, instead of dumping an untyped blob.`,
+      `Everything runs in your browser using built-in APIs, with no upload step. History is kept in memory for the session and only written to this device if you tick "Remember on this device".`,
     ],
     faqs: [
       {
-        question: `What is Base64 used for?`,
-        answer: `Base64 represents binary data as text, so it can travel through systems built for text — embedding images directly in HTML or CSS as data URIs, attaching files in JSON or email, and encoding tokens. It is encoding, not encryption, so it does not secure data.`,
+        question: `Why did my short word get encoded instead of decoded?`,
+        answer: `Because plenty of ordinary words are technically valid Base64 — "test" and "password" both are. Auto mode therefore requires a candidate to be reasonably long and to decode into readable text before it will treat it as encoded data. If you genuinely need a short string decoded, click Decode to override the guess.`,
       },
       {
-        question: `What is URL-safe Base64?`,
-        answer: `Standard Base64 uses + and / characters and = padding, which have special meaning in URLs. URL-safe Base64 replaces + with -, / with _, and drops the padding, so the string can be used safely in a URL or a JWT. Tick the URL-safe option to produce it.`,
+        question: `Why is the encoded output about a third larger than my file?`,
+        answer: `Base64 spends four output characters on every three input bytes, so the result grows by roughly 33 percent before any line breaks are added. That overhead is why inlining a large asset as a data URI usually costs more than linking to it — the browser cannot cache the inlined copy separately, and it inflates whatever document carries it.`,
       },
       {
-        question: `Does Base64 make my data secure?`,
-        answer: `No. Base64 is reversible by anyone — it only changes the representation, not the secrecy. Never treat Base64 as encryption; if you need to protect data, encrypt it before encoding.`,
+        question: `Which alphabet should I pick?`,
+        answer: `Standard Base64 for general use and MIME. Base64URL when the value goes into a URL path, query string, filename, or JWT, since it avoids the plus and slash characters and drops padding. Base32 when the target is case-insensitive or the value gets read aloud or typed by hand. Hex when you want a direct one-byte-per-two-digits view for debugging.`,
       },
       {
-        question: `Why is my decoded text garbled?`,
-        answer: `Usually the input was not valid Base64, or it was URL-safe Base64 decoded without the URL-safe option (or vice versa). Make sure the mode matches how the data was encoded; this tool handles UTF-8 correctly when the input is valid.`,
+        question: `Does Base64 protect my data?`,
+        answer: `Not at all — anyone can reverse it, which is the whole point of an encoding. Treat a Base64 string as readable text: it hides nothing. If the contents are sensitive, encrypt them first and encode the ciphertext.`,
+      },
+      {
+        question: `Can I turn a Base64 string back into a real image or PDF?`,
+        answer: `Yes. Switch the Files & Images tab to "Base64 → file" and paste the string, with or without a data URI prefix. The tool inspects the leading bytes to work out what the payload is, shows a thumbnail for images or an excerpt for text, and downloads it with the right extension and MIME type.`,
       },
     ],
     related: [
       { slug: 'url-encoder-decoder', note: `Percent-encode text for URLs, a different safe-transport scheme.` },
       { slug: 'hash-generator', note: `Produce a one-way hash when you need a fingerprint rather than reversible encoding.` },
       { slug: 'jwt-decoder', note: `Decode JSON Web Tokens, whose segments are Base64URL-encoded.` },
+      { slug: 'image-compressor', note: `Shrink an image before you inline it, since Base64 adds a third to whatever you encode.` },
+      { slug: 'image-converter', note: `Change an image to PNG, JPG, or WebP first if the encoded copy needs a particular format.` },
     ],
   },
 
