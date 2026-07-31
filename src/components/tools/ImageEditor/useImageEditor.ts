@@ -303,7 +303,14 @@ export function useImageEditor() {
     const padding = 48;
     const scaleX = (viewport.clientWidth - padding) / docSizeRef.current.width;
     const scaleY = (viewport.clientHeight - padding) / docSizeRef.current.height;
-    applyZoom(Math.max(0.05, Math.min(scaleX, scaleY)));
+    applyZoom(Math.min(scaleX, scaleY));
+    // Re-fitting after the canvas has shrunk should show the whole image from
+    // its top-left corner. Without this, a prior pan/zoom leaves the browser's
+    // scroll position clamped to some non-zero offset into the now-smaller
+    // scrollable area, so the "fitted" view can look scrolled into a corner.
+    requestAnimationFrame(() => {
+      viewport.scrollTo({ left: 0, top: 0 });
+    });
   }, [applyZoom]);
 
   const zoomIn = useCallback(() => applyZoom(zoom * 1.25), [applyZoom, zoom]);

@@ -75,8 +75,9 @@ export function Toolbar({ editor, onExportClick, onNewClick }: ToolbarProps) {
       <button
         type="button"
         onClick={editor.zoomOut}
+        disabled={!editor.hasDocument}
         title="Zoom out"
-        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
       >
         <ZoomOut size={16} />
       </button>
@@ -85,8 +86,9 @@ export function Toolbar({ editor, onExportClick, onNewClick }: ToolbarProps) {
         onChange={(e) => {
           if (e.target.value !== 'custom') editor.applyZoom(Number(e.target.value));
         }}
+        disabled={!editor.hasDocument}
         title="Zoom level"
-        className="text-xs font-medium bg-background border border-border rounded-md px-1.5 py-1 focus:outline-none focus:ring-1 focus:ring-accent"
+        className="text-xs font-medium bg-background border border-border rounded-md px-1.5 py-1 focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-30"
       >
         <option value="custom">{Math.round(editor.zoom * 100)}%</option>
         {ZOOM_PRESETS.map((z) => (
@@ -98,16 +100,18 @@ export function Toolbar({ editor, onExportClick, onNewClick }: ToolbarProps) {
       <button
         type="button"
         onClick={editor.zoomIn}
+        disabled={!editor.hasDocument}
         title="Zoom in"
-        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
       >
         <ZoomIn size={16} />
       </button>
       <button
         type="button"
         onClick={editor.zoomToFit}
+        disabled={!editor.hasDocument}
         title="Fit to screen"
-        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
       >
         <Maximize size={16} />
       </button>
