@@ -778,6 +778,10 @@ const toolComponents: Record<string, React.ComponentType> = {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,
   }),
+  'cr3-to-jpg': dynamic(() => import('@/components/tools/Cr3ToJpg').then(mod => ({ default: mod.Cr3ToJpg })), {
+    loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
+    ssr: false,
+  }),
   'passport-photo-maker': dynamic(() => import('@/components/tools/PassportPhotoMaker').then(mod => ({ default: mod.PassportPhotoMaker })), {
     loading: () => <div className="animate-pulse bg-muted min-h-[600px] rounded-lg" />,
     ssr: false,

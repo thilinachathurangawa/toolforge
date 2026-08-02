@@ -7068,6 +7068,59 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
     ],
   },
 
+  'cr3-to-jpg': {
+    intro: [
+      `Canon's modern mirrorless cameras — the EOS R5, R6, R3, and their siblings — capture images in CR3, a proprietary RAW format that preserves every photon the sensor sees. CR3 files contain unprocessed sensor data alongside extensive EXIF metadata, giving photographers maximum control in post-processing. The tradeoff is file size and compatibility: a single CR3 can exceed 50MB, and most web platforms, email clients, and non-specialized software cannot open RAW files at all. The CR3 to JPG Converter bridges this gap by transforming Canon RAW files into universally compatible JPEGs right in your browser.`,
+      `Here is the detail that makes fast browser conversion possible: a CR3 is not only raw sensor data. Canon wraps everything in an ISO container — the same box structure MP4 uses — and inside it the camera stores a complete, full-resolution JPEG rendering of the shot, produced by the same processor that drives the rear screen. That embedded frame already carries your selected picture style, white balance, and lens corrections. This converter reads the container directly, locates that full-size JPEG along with the camera's EXIF blocks, and re-encodes the image at whatever quality and pixel dimensions you ask for.`,
+      `Because no demosaicing is involved, a 25 MB file finishes in well under a second and nothing is uploaded anywhere — the parsing happens on the bytes sitting in your own tab. The honest tradeoff is that you get the camera's interpretation of the scene, not a fresh development of the sensor data, so blown highlights or crushed shadows in the in-camera rendering cannot be recovered here. When you need that latitude, develop the CR3 in Digital Photo Professional or Lightroom. When you need shareable JPGs from a card full of frames, this is the quicker path.`,
+    ],
+    steps: [
+      `Drag and drop your CR3 files onto the upload zone, or click to browse and select one or more .cr3 files from your Canon camera.`,
+      `Open the Conversion Settings panel to set JPG quality from 10 to 100 percent and pick an output size — original, 75%, 50%, or custom pixel dimensions.`,
+      `Decide whether to auto-rotate using the camera's orientation tag and whether to keep or strip EXIF metadata, then start the conversion.`,
+      `Watch the progress bar as files are processed one at a time; you can cancel the remaining queue at any point without losing finished results.`,
+      `Inspect each result — dimensions, file size, and camera settings are listed beside a thumbnail — then download individual JPGs or grab everything as a ZIP.`,
+    ],
+    why: [
+      `Nothing is transmitted. The container is parsed with the File API and only the slices holding the embedded image are ever read into memory, so a large RAW file never has to be loaded whole.`,
+      `Camera settings survive the conversion. EXIF from the CR3's own metadata blocks — including make, model, exposure, lens, and GPS — is rebuilt into the output JPG unless you deliberately strip it.`,
+      `Orientation is handled properly. Portrait frames are rotated to match the camera's tag and the tag is rewritten to normal, so the JPG looks right everywhere instead of only in EXIF-aware viewers.`,
+      `Batch work is practical. Files are converted sequentially with per-file status, a cancel control, and a single ZIP download at the end.`,
+    ],
+    faqs: [
+      {
+        question: `What is a CR3 file and why does Canon use it?`,
+        answer: `CR3 is Canon's current RAW image format, introduced with the EOS R mirrorless system. It contains unprocessed sensor data captured by the camera, providing maximum dynamic range and color depth for professional editing. CR3 uses Canon's proprietary C-RAW compression to reduce file sizes compared to uncompressed RAW while maintaining quality. It is not natively supported by most web browsers or standard image viewers.`,
+      },
+      {
+        question: `Will converting CR3 to JPG lose image quality?`,
+        answer: `Some, yes. The JPG you get is the camera's own full-resolution rendering re-encoded at the quality you choose, so it carries the usual lossy compression and it reflects the picture style baked in at capture rather than a fresh interpretation of the sensor data. At 90 percent quality the difference is hard to see at normal viewing sizes, and the file typically shrinks to a small fraction of the RAW. Keep the CR3 if you still plan to edit; use the JPG for delivery and sharing.`,
+      },
+      {
+        question: `Why is the conversion so fast compared to desktop RAW software?`,
+        answer: `Desktop converters demosaic the sensor data — reconstructing colour for every photosite — which is genuinely heavy computation. This tool instead reads the full-size JPEG that Canon already stored inside the CR3 container when the shutter fired, so the work is locating the right bytes and re-encoding them. That is why a 25 MB file completes almost instantly, and also why the result matches your in-camera preview rather than offering extra highlight recovery.`,
+      },
+      {
+        question: `Can I convert multiple CR3 files at once?`,
+        answer: `Yes, the tool supports batch conversion. Upload all your CR3 files together, configure your settings once, and convert them in a single operation. The progress indicator tracks each file, and you can download the results individually or as a ZIP archive when processing completes.`,
+      },
+      {
+        question: `Does this preserve EXIF metadata like camera settings and GPS?`,
+        answer: `By default, yes. The camera's metadata blocks are read out of the CR3, shown beside each result, and written back into the finished JPG — make and model, exposure time, aperture, ISO, focal length, lens, capture date, and GPS coordinates when your camera recorded them. Canon's proprietary maker notes are the one exception; they are dropped because their internal references only make sense inside the original file. Tick "Remove EXIF metadata" to publish a clean, stripped JPG instead.`,
+      },
+      {
+        question: `Are my CR3 files uploaded to a server?`,
+        answer: `No. There is no upload step and no server involved in the conversion — the page reads your files through the browser's own File API and does all the parsing, decoding, and JPEG encoding locally. You can confirm this by watching the network tab, or by disconnecting from the internet after the page loads and converting anyway.`,
+      },
+    ],
+    related: [
+      { slug: 'heic-to-jpg', note: `Convert iPhone HEIC photos to JPG using a similar batch workflow.` },
+      { slug: 'image-converter', note: `Convert between common formats like JPG, PNG, WebP, and GIF.` },
+      { slug: 'image-compressor', note: `Further reduce JPG file sizes after conversion with quality-preserving optimization.` },
+      { slug: 'image-resizer', note: `Resize converted images to specific dimensions for web or print use.` },
+    ],
+  },
+
   'passport-photo-maker': {
     intro: [
       `Official passport and visa photos have strict requirements: exact physical dimensions, a plain background, and the subject's head filling a specific portion of the frame. Getting these right at a print shop costs money and requires a trip out. The Passport Photo Maker lets you crop your own portrait to the correct size in your browser, with a head-position guide that helps you frame the shot the way government photo standards specify.`,

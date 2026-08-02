@@ -2892,6 +2892,50 @@ export const TOOLS: Tool[] = [
     phase: 4,
   },
   {
+    slug: 'cr3-to-jpg',
+    name: 'CR3 to JPG Converter',
+    shortDescription: 'Convert Canon RAW CR3 images to JPG free',
+    description:
+      'Convert Canon CR3 RAW images to JPG free, right in your browser. Batch convert multiple RAW photos with adjustable quality, resize options, and EXIF metadata preservation. 100% private — files never leave your device.',
+    category: 'image',
+    tags: ['cr3', 'canon', 'raw', 'jpg', 'convert', 'image', 'photography'],
+    keywords: ['CR3 to JPG converter', 'Canon RAW converter', 'convert CR3 to JPG free', 'Canon RAW to JPG online', 'CR2 to JPG'],
+    icon: 'Camera',
+    isNew: true,
+    relatedTools: ['heic-to-jpg', 'image-converter', 'image-compressor', 'image-resizer'],
+    phase: 4,
+    faqs: [
+      {
+        question: 'What is a CR3 file?',
+        answer: 'CR3 is Canon\'s proprietary RAW image format used by newer Canon cameras like the EOS R series. It contains unprocessed image data from the camera sensor, providing maximum quality and editing flexibility compared to JPG.',
+      },
+      {
+        question: 'Why convert CR3 to JPG?',
+        answer: 'JPG files are much smaller, universally supported by all devices and websites, and ready to share without processing. Converting CR3 to JPG makes your photos suitable for web use, social media, email, and printing at standard labs.',
+      },
+      {
+        question: 'Is my photo data safe when using this converter?',
+        answer: 'Absolutely. All CR3 processing happens directly in your browser using JavaScript. Your photos are never uploaded to any server, ensuring complete privacy and security for your images.',
+      },
+      {
+        question: 'Can I convert multiple CR3 files at once?',
+        answer: 'Yes, our tool supports batch conversion. Upload multiple CR3 files and convert them all at once, then download individual JPGs or all files together as a convenient ZIP archive.',
+      },
+      {
+        question: 'Does this preserve EXIF metadata?',
+        answer: 'By default, yes — the converter preserves camera settings, GPS data, and other EXIF metadata from your original CR3 files. You can choose to remove metadata in the settings if you prefer privacy.',
+      },
+    ],
+    howToUse: [
+      'Upload your CR3 files by dragging and dropping or clicking the upload button',
+      'Configure conversion settings like JPG quality, output resolution, and auto-rotation',
+      'Review the extracted EXIF metadata shown beside each converted photo',
+      'Click "Convert to JPG" to start the batch conversion process',
+      'Download individual JPG images or all files as a ZIP archive',
+    ],
+    aboutContent: 'The CR3 to JPG Converter is a specialized tool for photographers using Canon\'s modern mirrorless cameras. CR3 RAW files offer incredible quality and editing flexibility but are large and incompatible with many platforms. Our converter bridges this gap by transforming CR3 files into widely-compatible JPG format while maintaining excellent image quality. Features include adjustable compression, batch processing, EXIF metadata preservation, and client-side processing for privacy. Perfect for Canon EOS R5, R6, R3, and other CR3-format camera users who need to share their work online.',
+  },
+  {
     slug: 'passport-photo-maker',
     name: 'Passport Photo Maker',
     shortDescription: 'Make 2×2 in and 35×45 mm ID photos online free',
