@@ -17,15 +17,40 @@
 
 ## Functional Requirements
 
-- [ ] Input types: URL, Plain Text, Email, Phone, SMS, WiFi
-- [ ] Live preview (updates as user types)
-- [ ] Customizable foreground color
-- [ ] Customizable background color
-- [ ] Size selector (128px to 1024px)
-- [ ] Error correction level (L, M, Q, H)
-- [ ] Download as PNG
-- [ ] Download as SVG
-- [ ] Copy to clipboard
+### Core Features (Implemented)
+- [x] Input types: URL, Plain Text, Email, Phone, SMS, WiFi
+- [x] Live preview (updates as user types)
+- [x] Customizable foreground color
+- [x] Customizable background color
+- [x] Size selector (128px to 1024px)
+- [x] Error correction level (L, M, Q, H)
+- [x] Download as PNG
+- [x] Download as SVG
+- [x] Copy to clipboard
+
+### Enhancement Options
+
+#### Phase 1 Enhancements (High Priority)
+- [x] **Logo/Center Image Embedding** - Allow users to upload and embed a logo or image in the center of the QR code
+- [x] **VCard/Contact Support** - Add support for vCard format to generate business card QR codes
+- [x] **Calendar Event Support** - Generate QR codes for calendar events (ICS format)
+- [x] **Geo Location Support** - Create QR codes with latitude/longitude coordinates
+- [x] **Custom Margin Control** - Add adjustable margin/padding around the QR code (currently fixed at 2)
+
+#### Phase 2 Enhancements (Medium Priority)
+- [ ] **QR Code Templates** - Preset templates for common use cases (social media profiles, business cards, WiFi sharing, etc.)
+- [ ] **Style Options** - Different module shapes (square dots, rounded dots, circles)
+- [ ] **Gradient Colors** - Support for gradient foreground colors instead of solid colors
+- [ ] **Frame/Border Options** - Add decorative frames with customizable text around the QR code
+- [ ] **Print Size Presets** - Quick size presets for print materials (business card: 350x350, poster: 1024x1024, etc.)
+
+#### Phase 3 Enhancements (Nice to Have)
+- [ ] **Batch Generation** - Generate multiple QR codes from a list of inputs
+- [ ] **History/Saved Codes** - Save generated QR codes locally for later reuse
+- [ ] **Additional Export Formats** - Export as PDF, EPS, or other vector formats
+- [ ] **Custom File Naming** - Allow users to specify custom filenames for downloads
+- [ ] **QR Code Validation** - Built-in scanner to verify generated QR codes are scannable
+- [ ] **Dark Mode Optimization** - Enhanced color presets for dark/light themes
 
 ---
 
