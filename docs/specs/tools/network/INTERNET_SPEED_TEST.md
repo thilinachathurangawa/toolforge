@@ -35,6 +35,25 @@
 
 @cloudflare/speedtest - Cloudflare's speed test SDK for accurate network performance measurement
 
+### Implementation notes
+
+- The component passes an explicit `measurements` array: Cloudflare's default
+  ladder **minus the `packetLoss` phase**. Do not re-add it. That phase relays
+  UDP through a TURN server and fetches credentials from
+  `https://speed.cloudflare.com/turn-creds`, which is CORS-restricted to
+  `https://speed.cloudflare.com` (any other origin gets `403`). Left in, it
+  fails on every run with "Error while measuring packet loss: unable to get
+  turn server credentials." Packet loss is not part of this tool's output.
+  `/__down` and `/__up` are open (`Access-Control-Allow-Origin: *`), so
+  download, upload, latency, and jitter all work cross-origin.
+- `logMeasurementApiUrl` and `logAimApiUrl` are both `null`, so no telemetry
+  request is made — only the measurement traffic itself leaves the browser.
+  The privacy claim in `TOOL_CONTENT` depends on keeping both disabled.
+- Mid-run connection errors are collected, not shown immediately: they surface
+  after the run as a fatal error when nothing at all was measured, otherwise as
+  a warning alongside the partial figures. A 2-minute watchdog finalizes a
+  stalled run instead of leaving the button on "Testing...".
+
 ---
 
 ## UI Layout
