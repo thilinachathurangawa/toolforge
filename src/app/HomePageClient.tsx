@@ -1,7 +1,7 @@
 // src/app/HomePageClient.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TOOLS, CATEGORIES, Tool, CALCULATOR_SUBCATEGORIES } from '@/lib/constants/tools';
 import { cn } from '@/lib/utils';
@@ -21,6 +21,7 @@ export function HomePageClient() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [activeSubcategory, setActiveSubcategory] = useState<string>('all');
   const [filteredTools, setFilteredTools] = useState<Tool[]>(TOOLS);
+  const toolsDirectoryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const query = searchParams.get('search') || '';
@@ -57,6 +58,14 @@ export function HomePageClient() {
 
     setFilteredTools(result);
   }, [searchQuery, activeCategory, activeSubcategory]);
+
+  // Jump to the filtered tools section whenever a search is active, so results
+  // are visible immediately instead of requiring a manual scroll past the hero.
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      toolsDirectoryRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [searchQuery]);
 
   const clearSearch = () => {
     setSearchQuery('');
@@ -237,7 +246,7 @@ export function HomePageClient() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-6" id="tools-directory">
+      <section ref={toolsDirectoryRef} className="flex flex-col gap-6" id="tools-directory">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border pb-5">
           <div>
             <h2 className="font-display text-2xl font-bold tracking-tight text-text-primary">
