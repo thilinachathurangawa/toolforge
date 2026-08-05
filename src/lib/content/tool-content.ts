@@ -5759,21 +5759,25 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
 
   'internet-speed-test': {
     intro: [
-      `How fast is your connection, really? The Internet Speed Test measures your actual download and upload speeds along with latency and jitter, by transferring real data to and from Cloudflare's global measurement network — the same backend behind speed.cloudflare.com.`,
-      `People run it to check whether they are getting the speeds their plan promises, to diagnose buffering and lag, or to compare Wi-Fi against a wired connection. Download and upload speeds tell you how much bandwidth you have, while latency (ping) and jitter reveal how responsive and stable the link is — the figures that matter most for video calls and gaming. Your last several results are kept so you can compare runs across the day or different rooms.`,
-      `Because measuring throughput means actually moving data, the test exchanges traffic with Cloudflare's servers; only that measurement traffic leaves your browser, with optional analytics logging turned off.`,
+      `How fast is your connection, really — and does it stay usable once something is actually downloading? This test measures download and upload throughput, idle ping and jitter, and the latency your line shows while it is saturated, by moving real data to and from Cloudflare's global measurement network, the same backend behind speed.cloudflare.com.`,
+      `People run it to check whether a plan delivers what it promises, to compare Wi-Fi against a wired socket, or to work out why calls break up on a link whose headline speed looks perfectly healthy. That last case is what the latency-under-load reading exists for: when ping climbs from 12 ms to 400 ms the instant a transfer starts — bufferbloat — video calls stutter and games lag regardless of how many megabits the line carries. Ratings for streaming, video calls, and gaming turn the raw numbers into something actionable, and each rating names the single metric holding it back.`,
+      `Pick Quick for a fast check that moves roughly 60 MB, or Full for Cloudflare's complete ladder, which keeps scaling payload sizes until it finds your ceiling. Every run reports the data it consumed and how long it took, and your last twenty results stay in this browser — labelled, and exportable as CSV or JSON — so comparing rooms, times of day, or a router change before and after is straightforward. Beyond the measurement traffic to Cloudflare, nothing is uploaded: analytics logging is switched off and the saved history never leaves your device.`,
     ],
     steps: [
-      `Click Start Speed Test — for the most accurate result, close other downloads and streaming first.`,
-      `Watch the progress as it measures latency, then download, then upload speed.`,
-      `Read your download and upload speeds in Mbps, plus latency and jitter in milliseconds.`,
-      `Use Stop to cancel a run, and check the history to compare it against earlier tests; Copy saves the result.`,
+      `Choose Quick or Full, then press Start Speed Test — for figures closest to your plan, pause other downloads and streams first.`,
+      `Watch the live gauge and the speed-over-time trace as it works through latency, download, and upload; Stop abandons the run at any point.`,
+      `Read the download and upload headline figures, then the ping block: idle latency with its minimum, maximum, and sample count, alongside jitter.`,
+      `Check the latency-under-load panel for how far ping rises while the line is busy, then the streaming, video-call, and gaming ratings beneath it.`,
+      `Use Re-check ping to re-measure latency on its own in a few seconds — useful while repositioning a router — without paying for another full transfer.`,
+      `Label the run and Copy or Share the summary; export or clear your saved history from the panel at the bottom.`,
     ],
     why: [
-      `It performs a genuine measurement against Cloudflare's worldwide network, so the download and upload figures reflect your real throughput — not an estimate or simulation.`,
-      `It reports latency and jitter alongside bandwidth, the responsiveness metrics that determine call and game quality, which simple speed tests often omit.`,
-      `It keeps a short history of recent runs so you can compare connections, rooms, or times of day.`,
-      `Analytics logging is disabled, so beyond the unavoidable measurement traffic to Cloudflare, nothing about your test is recorded, and there is no sign-up.`,
+      `Genuine transfers against Cloudflare's worldwide network mean the download and upload figures reflect throughput you actually have, not an estimate or a simulation.`,
+      `Latency under load is reported, not just idle ping — the bufferbloat measurement that explains stuttering calls on a connection which tests fast, and which most free speed tests omit entirely.`,
+      `Ping detail — minimum, maximum, and how many samples were taken — shows whether a line is steady or spiky, something a single averaged figure hides.`,
+      `Quick and Full modes plus a per-run data readout keep the tool usable on a metered or mobile connection, rather than quietly consuming a gigabyte.`,
+      `Twenty labelled results are stored locally with CSV and JSON export, so comparing the kitchen against the study comes down to reading two rows.`,
+      `Analytics logging is disabled and the history stays in your browser, so the only traffic leaving your machine is the measurement itself. No sign-up.`,
     ],
     faqs: [
       {
@@ -5781,16 +5785,24 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
         answer: `Many factors sit between your plan's headline rate and a real-world result: Wi-Fi signal strength, other devices using the connection, your hardware, and network congestion. For the closest comparison to your plan, test on a wired connection with other activity paused.`,
       },
       {
-        question: `What do latency and jitter mean?`,
-        answer: `Latency, or ping, is the round-trip time for data in milliseconds — lower is better, and it governs how responsive browsing, calls, and games feel. Jitter is the variation in that latency; low, steady jitter means a stable connection, while high jitter causes stutter in real-time apps.`,
+        question: `What is latency under load, and why does it matter?`,
+        answer: `It is the ping your connection shows while it is busy transferring, rather than sitting idle. A link that pings at 15 ms when quiet but 300 ms mid-download suffers from bufferbloat, usually caused by oversized queues in a router or modem. Because real usage is rarely idle, this figure predicts call and game quality far better than idle ping does, and it often improves with smart queue management on the router.`,
+      },
+      {
+        question: `What do ping and jitter mean?`,
+        answer: `Ping, or latency, is the round-trip time for data in milliseconds — lower is better, and it governs how responsive browsing, calls, and games feel. Jitter is the variation between those pings; low, steady jitter means a stable connection, while high jitter causes stutter in real-time apps even when average ping looks fine.`,
       },
       {
         question: `What is a good internet speed?`,
         answer: `It depends on use: roughly 25 Mbps download handles HD streaming for a household, while 4K, large downloads, and many simultaneous users benefit from 100 Mbps or more. Upload speed matters for video calls and uploading files; latency under about 50 ms is good for gaming.`,
       },
       {
-        question: `Does the test use my data, and is it private?`,
-        answer: `Yes, it transfers real data to measure throughput, so it consumes some of your data allowance — worth noting on a metered or mobile connection. The test runs against Cloudflare's network with extra analytics logging disabled, so only the measurement traffic itself leaves your browser.`,
+        question: `How much data does a test use?`,
+        answer: `Quick mode moves up to about 60 MB. Full mode scales payloads to match your connection, so a slow link transfers little while a gigabit link can move a substantial amount before the test finds its ceiling. Either way the exact figure is shown with the result, so nothing is hidden — on a mobile or capped connection, stick to Quick.`,
+      },
+      {
+        question: `Are the streaming and gaming ratings guarantees?`,
+        answer: `No — treat them as guides. Each rating takes the worst of the metrics that matter for that activity and tells you which one it was, so you know what to fix. Packet loss is not measured here, and a service can still perform poorly for reasons outside your connection, such as an overloaded server at the other end.`,
       },
     ],
     related: [
