@@ -41,6 +41,18 @@ performance measurement.
 
 ### Implementation notes
 
+- **`https://speed.cloudflare.com` must stay in the CSP `connect-src` list in
+  `vercel.json`.** It was missing, so the browser blocked every measurement
+  request in production — the SDK retried each one 20 times and reported
+  "Connection failed to https://speed.cloudflare.com/__down?bytes=0. Gave up
+  after 20 retries." The failure is invisible in local development, because
+  `vercel.json` headers are only applied by Vercel; `next dev` and `next start`
+  serve no CSP at all. Any future measurement host needs the same entry.
+- The metadata request uses `__down?bytes=1`, **not** `bytes=0`, and is awaited
+  before the engine starts. The SDK's latency phase requests `__down?bytes=0`
+  and recovers its timings with
+  `performance.getEntriesByName(url).slice(-1)[0]`, so a concurrent request to
+  the same URL can be mistaken for a latency sample.
 - The component passes an explicit `measurements` array: Cloudflare's default
   ladder **minus the `packetLoss` phase**. Do not re-add it. That phase relays
   UDP through a TURN server and fetches credentials from

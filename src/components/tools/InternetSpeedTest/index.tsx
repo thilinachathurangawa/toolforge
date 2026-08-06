@@ -21,6 +21,7 @@ import { cn } from '@/lib/utils';
 import { Gauge } from './Gauge';
 import { ThroughputChart } from './ThroughputChart';
 import {
+  EDGE_META_TIMEOUT_MS,
   EDGE_META_URL,
   HISTORY_KEY,
   HISTORY_LIMIT,
@@ -150,19 +151,28 @@ export function InternetSpeedTest() {
    * whether the test ran over IPv6 or IPv4. No third party involved.
    */
   // Re-read per run rather than caching: a VPN toggled between tests would
-  // otherwise leave a stale IP on screen.
+  // otherwise leave a stale IP on screen. Awaited before the engine starts so
+  // it never competes with a measurement, and time-boxed so a blocked host
+  // cannot hold up the test.
   const loadEdgeMeta = useCallback(async () => {
+    const controller = new AbortController();
+    const bail = setTimeout(() => controller.abort(), EDGE_META_TIMEOUT_MS);
     try {
-      const response = await fetch(EDGE_META_URL, { cache: 'no-store' });
+      const response = await fetch(EDGE_META_URL, {
+        cache: 'no-store',
+        signal: controller.signal,
+      });
       const ip = response.headers.get('cf-meta-ip');
       metaRef.current = ip ? { clientIp: ip, ipVersion: ip.includes(':') ? 6 : 4 } : {};
     } catch {
       metaRef.current = {};
+    } finally {
+      clearTimeout(bail);
     }
   }, []);
 
   const start = useCallback(
-    (runMode: TestMode) => {
+    async (runMode: TestMode) => {
       teardown();
       const runId = runIdRef.current;
       const isStale = () => runIdRef.current !== runId;
@@ -182,7 +192,9 @@ export function InternetSpeedTest() {
         setResult(null);
         setTrace([]);
         metaRef.current = null;
-        void loadEdgeMeta();
+        await loadEdgeMeta();
+        // The user may have pressed Stop while that was in flight.
+        if (isStale()) return;
       }
 
       try {
@@ -408,7 +420,7 @@ export function InternetSpeedTest() {
           </div>
 
           <button
-            onClick={() => start(mode)}
+            onClick={() => void start(mode)}
             disabled={isRunning}
             className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
           >
@@ -482,7 +494,7 @@ export function InternetSpeedTest() {
             </h3>
             <div className="flex items-center gap-2">
               <button
-                onClick={() => start('ping')}
+                onClick={() => void start('ping')}
                 disabled={isRunning}
                 title="Re-measure latency only (a few seconds, negligible data)"
                 className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"

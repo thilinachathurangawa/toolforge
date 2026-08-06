@@ -64,8 +64,21 @@ export const MODE_INFO: Record<Exclude<TestMode, 'ping'>, { label: string; blurb
 /** Abandon a run that stalls rather than leaving the UI stuck on "Testing...". */
 export const RUN_TIMEOUT_MS = 120_000;
 
-/** Reads the client IP / IP version from `cf-meta-ip` on a zero-byte response. */
-export const EDGE_META_URL = 'https://speed.cloudflare.com/__down?bytes=0';
+/**
+ * Reads the client IP / IP version from the `cf-meta-ip` response header.
+ *
+ * `bytes=1`, deliberately not `bytes=0`: the SDK's latency phase requests
+ * `__down?bytes=0` and reads its timings back via
+ * `performance.getEntriesByName(url).slice(-1)[0]`. Sharing the URL would let
+ * this request's resource-timing entry be picked up as a latency sample. No
+ * measurement plan uses a 1-byte payload.
+ *
+ * The host must be present in the CSP `connect-src` (see vercel.json).
+ */
+export const EDGE_META_URL = 'https://speed.cloudflare.com/__down?bytes=1';
+
+/** Cap on the metadata request so a blocked host can't delay the test start. */
+export const EDGE_META_TIMEOUT_MS = 2000;
 
 export const HISTORY_KEY = 'toolforge:internet-speed-test:history:v1';
 export const MODE_KEY = 'toolforge:internet-speed-test:mode:v1';
