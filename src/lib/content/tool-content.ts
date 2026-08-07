@@ -8399,34 +8399,41 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
 
   'excel-formula-explainer': {
     intro: [
-      `A formula like =INDEX(A2:A100,MATCH(1,(B2:B100=F1)*(C2:C100=F2),0)) is perfectly valid Excel, but reading it cold — especially when someone else wrote it — requires knowing what INDEX and MATCH each do, why they are nested together, why the multiplication is there, and what the trailing zero means. The Excel Formula Explainer parses formulas and translates each function into plain English so you can understand what a formula does without looking up each function separately.`,
-      `The explainer recognizes over 60 of the most-used Excel functions across lookup, math, text, date, logic, and statistical categories. It identifies nested calls, describes the purpose of each argument, and explains the overall intent of the full expression. This is useful when you inherit a complex workbook, audit a formula written by a colleague, try to understand a formula found online, or simply want to verify that a formula you wrote does what you think it does. All parsing happens in your browser — no formula text is sent to any server.`,
+      `A formula like =INDEX(A2:A100,MATCH(1,(B2:B100=F1)*(C2:C100=F2),0)) is perfectly valid Excel, but reading it cold — especially when someone else wrote it — requires knowing what INDEX and MATCH each do, why they are nested together, why the multiplication is there, and what the trailing zero means. Paste it here and the formula is parsed into its real structure: a plain-English summary at the top, then a breakdown that expands every nested call, names every argument, and numbers the order the parts actually run in.`,
+      `The reference behind it covers 231 functions across lookup, logic, text, maths, dates, finance, statistics, the newer dynamic-array family (FILTER, SORT, UNIQUE, SEQUENCE, LET, LAMBDA), and functions that exist only in Google Sheets (QUERY, ARRAYFORMULA, REGEXEXTRACT). Operators get the same treatment, including the idioms that make inherited formulas look like line noise — the double unary minus, and multiplying comparisons together to require several conditions at once. All parsing happens in your browser; no formula text is sent to any server.`,
     ],
     steps: [
-      `Type or paste an Excel formula into the input field. You can include or omit the leading "=" sign.`,
-      `The tool identifies every function in the formula and displays a plain-English description of each one, including its purpose and how its arguments relate to each other.`,
-      `For nested formulas (like INDEX/MATCH or IF with nested IFs), each layer is explained in sequence so you can follow the logic from the innermost function outward.`,
-      `Use the example formula buttons to load common formulas and see how the explainer works before pasting your own.`,
-      `Click "Clear" to reset and start with a new formula.`,
+      `Type or paste a formula. The breakdown updates as you type, with or without the leading "=" sign, and both comma and semicolon argument separators are detected automatically.`,
+      `Read the plain-English summary first — one sentence describing what the whole formula produces, composed from the parts rather than from a template.`,
+      `Expand the breakdown tree to walk into each nested call. Hovering a branch highlights exactly which characters of the formula it covers.`,
+      `Check the evaluation order to see which part runs first, and the "Things to check" list for approximate-match lookups, error handlers that hide more than intended, unanchored lookup tables, and volatile functions.`,
+      `Use Format to spread a long formula across indented lines, Single line to collapse it back, and Share to produce a link that reopens the same breakdown.`,
+      `Copy the result as plain text or Markdown, or download it as a .md file for a ticket or a workbook handover note.`,
     ],
     why: [
-      `60+ function database: the explainer covers VLOOKUP, HLOOKUP, INDEX, MATCH, SUMIF, SUMIFS, COUNTIF, IF, IFS, AND, OR, IFERROR, TEXT, LEFT, RIGHT, MID, TRIM, LEN, DATE, TODAY, DATEDIF, AVERAGE, AVERAGEIF, MIN, MAX, and dozens more — the functions most likely to appear in real-world spreadsheets.`,
-      `Nested formula parsing: the parser identifies function calls inside other function calls and explains each layer separately rather than stopping at the outer function, which is where comprehension usually breaks down.`,
-      `Browser-only processing: your formula text never leaves the page. This matters when formulas reference sensitive data labels, business logic, or proprietary calculation methods.`,
-      `Example formulas: a set of pre-loaded examples (VLOOKUP, INDEX/MATCH, SUMIF, nested IF) lets you try the tool immediately and see the kind of explanations it produces before pasting your own formula.`,
+      `Real parsing, not pattern matching: the formula is tokenized and parsed into a syntax tree, so nesting of any depth is followed correctly, commas inside quoted text never split an argument, and $A$1, B:C, Sheet1!A1, 'Q3 Data'!A1:B9, [Book1.xlsx]Sheet1!A1, Table1[Amount] and spilled ranges like A2# are all recognised for what they are.`,
+      `Arguments matched to the right parameter: repeating groups are expanded properly, so the fifth argument of SUMIFS is labelled criteria_range2 rather than left unnamed, and LET's trailing calculation is not mistaken for another name-value pair.`,
+      `Mistakes surfaced before they cost you: a VLOOKUP asking for column 5 of a three-column table is flagged as a guaranteed #REF!, a missing fourth argument as a silent approximate match, and a number written in quotes as a comparison that can never be true.`,
+      `Modern replacements written out for you: where a better equivalent exists the rewritten formula is generated and ready to copy — VLOOKUP and INDEX/MATCH become XLOOKUP, a chain of nested IFs becomes IFS, CONCATENATE becomes the & operator.`,
+      `Syntax errors that point at the problem: an unbalanced parenthesis, an unterminated text value, or a curly quote pasted in from a web page is reported with a caret under the exact character rather than the tool silently doing nothing.`,
+      `Browser-only processing: your formula text never leaves the page. That matters when formulas carry sensitive data labels, business logic, or proprietary calculation methods.`,
     ],
     faqs: [
       {
         question: `Does the explainer work for Google Sheets formulas?`,
-        answer: `Yes. The vast majority of functions covered — VLOOKUP, INDEX, MATCH, SUMIF, IF, TEXT, and the rest — exist identically in Google Sheets. A small number of Excel-specific functions (like some newer dynamic array functions) may not be in the reference database, but the common functions work the same way in both applications.`,
+        answer: `Yes, and it tells you where the two applications differ. Shared functions such as VLOOKUP, INDEX, MATCH, SUMIFS, and TEXT behave identically in both. Sheets-only functions including QUERY, ARRAYFORMULA, IMPORTRANGE, SPLIT, and REGEXEXTRACT are covered and marked as unavailable in Excel, while Excel-only additions such as GROUPBY and PIVOTBY are marked the other way. Functions introduced in a specific release, such as XLOOKUP or TEXTSPLIT, note the version they need — which is usually the answer when a formula copied from the web returns #NAME?.`,
       },
       {
-        question: `Can it explain array formulas entered with Ctrl+Shift+Enter?`,
-        answer: `The explainer recognizes the functions inside array formulas and explains what each function does. It does not explicitly explain the array-entry mechanism (the curly braces), but the function-by-function explanation usually makes the array behavior apparent from the context.`,
+        question: `Can it explain array formulas and dynamic arrays?`,
+        answer: `Array constants written with braces, such as {1,2;3,4}, are parsed as rows and columns rather than as text. The dynamic-array functions are in the reference, and the spilled-range operator A2# is recognised and described as referring to the whole spilled result. The double unary minus and the technique of multiplying comparison results together are explained as the boolean-to-number idioms they are, rather than being read literally as arithmetic.`,
+      },
+      {
+        question: `What does a formula being "volatile" mean, and why is it flagged?`,
+        answer: `A volatile function recalculates every time anything in the workbook changes, not only when its own inputs change. TODAY, NOW, RAND, RANDBETWEEN, OFFSET, INDIRECT, and CELL all behave this way. A handful is harmless; hundreds spread through a large model is a common reason a workbook feels sluggish. INDIRECT and OFFSET get a second flag because they build their reference while the formula runs, which means Trace Precedents cannot follow them and inserting or deleting rows will not update them.`,
       },
       {
         question: `Why would VLOOKUP and INDEX/MATCH give different results?`,
-        answer: `VLOOKUP always searches the leftmost column of the lookup range and returns a column to the right, so it cannot look left. INDEX/MATCH has no such constraint — the lookup column and the return column can be in any position relative to each other. VLOOKUP also defaults to approximate match, which requires a sorted column, while MATCH's third argument makes the match type explicit and defaults to exact (0) in most INDEX/MATCH formulas.`,
+        answer: `VLOOKUP always searches the leftmost column of the lookup range and returns a column to its right, so it cannot look left, and it counts the return column by position — inserting a column inside the table silently changes what it returns. INDEX/MATCH has neither constraint. VLOOKUP also defaults to an approximate match, which quietly requires sorted data, while a typical INDEX/MATCH passes 0 to MATCH and asks for an exact one. The explainer flags both differences when it sees them and offers the XLOOKUP rewrite that removes the problem entirely.`,
       },
     ],
     related: [
@@ -8439,19 +8446,19 @@ export const TOOL_CONTENT: Record<string, ToolLongContent> = {
   'excel-function-reference': {
     intro: [
       `Excel has hundreds of worksheet functions, but most spreadsheets rely on a core set of perhaps sixty: the lookup functions (VLOOKUP, INDEX, MATCH, XLOOKUP), the conditional aggregations (SUMIF, SUMIFS, COUNTIF, AVERAGEIF), the logical tests (IF, IFS, AND, OR, IFERROR), the text utilities (LEFT, MID, RIGHT, TRIM, TEXT, LEN), the date calculations (DATE, TODAY, EDATE, NETWORKDAYS), and the statistical functions (SUM, AVERAGE, MIN, MAX, STDEV). Knowing these sixty well covers the overwhelming majority of real-world spreadsheet work.`,
-      `This function reference covers those sixty-plus functions with concise syntax summaries, argument descriptions, and example calls for each. You can search by name or filter by category (Math & Statistical, Lookup & Reference, Text, Date & Time, Logical, or Information) to narrow the list. Each entry is designed to answer the "what does this argument do?" question quickly — the kind of question you usually have mid-formula when you cannot pause to read full documentation. All content is displayed instantly in your browser with no network requests.`,
+      `This reference covers 231 functions with a concise syntax signature and a description of every argument. Ten category filters narrow the list — Lookup & Reference, Logical, Text, Math & Trig, Date & Time, Financial, Statistical, Information, the Dynamic Array family, and the functions that exist only in Google Sheets. Each entry answers the "what does this argument actually do?" question quickly, which is the question you usually have mid-formula when you cannot stop to read full documentation. Everything is displayed instantly in your browser with no network requests.`,
     ],
     steps: [
       `Use the search box to type any function name or keyword. Results filter in real time as you type.`,
-      `Click a category filter button (All, Math, Lookup, Text, Date, Logic, Statistical) to narrow the list to one function group.`,
-      `Click any function card to expand it and see the full syntax, argument descriptions, and an example formula.`,
-      `Use the search and category filter together to quickly zero in on a specific function type — for example, search "if" in the Logic category to see IF, IFS, IFERROR, and IFNA.`,
+      `Click a category filter to narrow the list to one group, including Dynamic Array for the spilling functions and Google Sheets for the ones Excel does not have.`,
+      `Click any function card to see its full syntax signature and a description of each argument, including which arguments are optional.`,
+      `Use the search and category filter together to zero in on a function type — for example, search "if" within Logical to see IF, IFS, IFERROR, IFNA, and SWITCH side by side.`,
     ],
     why: [
-      `Category filtering: the six category buttons (Math, Lookup, Text, Date, Logic, Statistical) let you browse all functions in a domain at once, useful when you know the kind of function you need but not its exact name.`,
+      `Category filtering: browse every function in one domain at once, which is what you want when you know the kind of function you need but not its name. Dynamic Array and Google Sheets are separate categories so the modern and platform-specific functions are easy to find.`,
       `Instant search: the search field filters by function name in real time, so typing "sum" immediately shows SUMIF, SUMIFS, SUMPRODUCT, and SUM — no page reload or button press required.`,
-      `Syntax + example for every function: each entry shows the exact syntax signature with argument names and a short example formula so you can see the function in context, not just in the abstract.`,
-      `Pairs with the Formula Explainer: if you understand what a function does from this reference but want to understand a specific formula that uses it, paste the formula into the Excel Formula Explainer for a full breakdown.`,
+      `Full signature for every function: each entry shows the exact argument order with the optional arguments marked, so you can tell at a glance where a comma belongs and which arguments you are allowed to leave out.`,
+      `Shares its database with the Formula Explainer: both tools read the same 231 entries, so a function described here is described identically there. The explainer links straight back to the matching entry for any function it finds in your formula.`,
     ],
     faqs: [
       {
